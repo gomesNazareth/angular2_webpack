@@ -1,0 +1,50 @@
+<div class="popup">
+    <div class="logout-pop">
+        <div   class="modal close_editsavesearch edit-saved-search-{{selJob.id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <H2 *ngIf="selJob.id != -1">Edit Saved Search</H2>
+                        <H2 *ngIf="selJob.id == -1">Saved Search</H2>
+                           <form [formGroup]="form">
+                        <div class="full-box"> 
+                       
+                        <input  formControlName="search_string"  type="text"  value="{{selJob.title}}" placeholder="Title">
+                        </div>
+                        <div *ngIf="!form.controls['search_string'].valid && form.controls['search_string'].touched"  class="alert alert-danger martop5">
+                             Search string name Required
+                        </div>
+                        <div class="martop5"> 
+                       
+                        <input  formControlName="web_url"  [ngModel]="this.selJob.web_url" type="text"  value="{{selJob.web_url}}" placeholder="Web Url">
+                        </div>
+                        <div *ngIf="!form.controls['web_url'].valid && form.controls['web_url'].touched"  class="alert alert-danger martop5">
+                             Web Url Required
+                        </div>
+                        <div class=" martop5">
+                            <bootstrap-selectbox *ngIf="(alertTypes | async)" (selectedId)="form.controls['alert_type'].setValue($event.id)"
+                                                 [selectedValue]="selJob.alertTypeId"  [placeholder]="'Select Alert Type'"
+                                                 [selectList]=" (alertTypes | async)">
+                            </bootstrap-selectbox>
+                            <input type="hidden" formControlName="alert_type">
+
+                           
+                        </div>
+                        <div *ngIf="!form.controls['alert_type'].valid && form.controls['alert_type'].touched"  class="alert alert-danger martop5">
+                             Alert Type Required
+                        </div>
+
+                        <div class="pop-button">
+                            <button type="button" class="btn postive disabled_button"  *ngIf="!form.valid" >Save</button>
+                            <button type="button" class="btn postive" (click)="submitSetupAlert()" *ngIf="form.valid">Save</button>
+                            <button data-dismiss="modal" type="button" class="btn negative">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

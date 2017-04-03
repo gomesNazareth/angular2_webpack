@@ -1,0 +1,202 @@
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="viewed-Profile"  [class.active]="isWvmpActive">
+        <div class="commen-container top-sp-mob">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="block bottom-gap ">
+                    <div class="block-title-2 hidden-xs hidden-sm">
+                        <div class="left"><h2 class="padding-top-10">{{'Who Viewed My Profile' }}</h2></div>
+                        <div class="right hidden-xs">
+
+
+                            <div class="sort-drop">
+                                <div class="click-dropdown-sort">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="btn-group btn-input clearfix">
+                                                <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                                                    <span data-bind="label">{{filer_name}}</span>&nbsp;<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <div class="arow-dropdown zmdi zmdi-caret-up"></div>
+                                                    <!--<li><a (click)="onAddFilter('date')" class="cursor_pointer1">{{'Date Posted' }}</a></li>-->
+                                                    <li><a (click)="onAddFilter('followers')" class="cursor_pointer1">No. of Followers</a></li>
+                                                    <li><a (click)="onAddFilter('date')" class="cursor_pointer1">Date Posted</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> </div>
+                            <div class="clr"></div>
+
+
+                        </div>
+                        <div class=" clr"></div>
+                    </div>
+
+<div class="empty-min2">
+                    <div class="filter-jobs">
+
+                           <div class="block-contant" *ngIf="(companies$  | async)?.length == 0 || companiesLoading">
+                            <div class="empty-min2">
+                                <div class="empty-prf ">
+                                    <spinner [visible]="companiesLoading"></spinner>
+                                    <span *ngIf="!companiesLoading">
+                                        <i class="icon-empty-viewprofile"></i>
+                                    <h5>No Viewers on your profile</h5>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+    <div *ngFor="let company of (companies$  | async),let i = index"  class="row company">
+            <div class="featured-box">
+
+                <div class="most-viewed-jobseeker-profile-left">
+
+
+                    <a class="cursor_pointer1"  [routerLink]="['/'+this._accountService.getPath()+'/companies/details/'+company?.company?.id]"  >
+
+
+                        <div class="hidden-xs">
+                            <div class="feturd-compny">
+                                <i *ngIf="!company?.company?.avatar" class="zmdi zmdi-city-alt empty-blank"></i> 
+                                <span>
+                                    <img *ngIf="company?.company?.avatar" [attr.src]="company?.company?.avatar">
+                                </span>
+                            </div>
+
+
+                            <div class="feturd-compny-dtls">
+                                <div class="txt-white">{{company?.company?.name}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{company?.company?.current_city?.name}}, {{company?.company?.current_country?.name}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{company?.company?.sector?.name}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-time"></i>&nbsp;{{company.duration}} Ago</div>
+                                <!-- <div class="cmpny-txt" *ngIf="company.duration > 1"><i class="zmdi zmdi-time"></i>{{company.duration}} days ago</div> -->
+
+                            </div>
+                        </div>
+
+                        <div class=" clearfix"></div>
+
+
+                        <!-- Mobile Listing -->
+                        <div class="hidden-lg hidden-md hidden-sm">
+                            <div class="job_mobile">
+                                <div class="row">
+                                    <div>
+                                        <div class="company_logo">
+                                            <div class="feturd-compny mobile-without-matching" *ngIf="!company?.company?.avatar">
+                                                <i  class="zmdi zmdi-city-alt empty-blank"></i> 
+                                            </div>
+                                            <div class="feturd-compny" *ngIf="company?.company?.avatar">
+                                                <span>
+                                                    <img src="{{company?.company?.avatar}}">
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Job title and company name -->
+                                        <div class="job_details">
+                                            <div class="txt-white">{{company?.company?.name}}</div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{company?.company?.current_city?.name}}, {{company?.company?.current_country?.name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="row job_mobile-bottom">
+                                    <div>
+                                        <div class="feturd-compny-dtls">
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i><span>&nbsp;{{company?.company?.sector?.name}}</span></div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-time"></i>&nbsp;{{company.duration}} Ago</div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+
+                        </div>
+
+
+                    </a>
+
+
+                </div>
+
+
+                <div class="most-viewed-jobseeker-profile-right">
+                    <div class="align mobile-align-fx">
+                        <div class="company-following">
+                            <i class="zmdi zmdi-accounts"></i>&nbsp;{{(company?.company?.followers_count | number)}}<span class="follow-change hide-feedback">&nbsp;Followers</span>
+                        </div>
+                        <div class="follow-following">
+                            <button class="follow" (click)="followCompany(i)" *ngIf="(followLis$ | async).indexOf(i) == -1">
+                                <a  class="msg-follow"><i class="zmdi zmdi-plus-square"></i> Follow</a>
+                                <a  class="msg-following"><i class="zmdi zmdi-check-square"></i> Following</a>
+                                <a  class="msg-unfollow"><i class="zmdi zmdi-minus-square"></i> Unfollow </a>
+                            </button>
+
+
+                            <button class="follow following" (click)="unFollowCompany(i)" *ngIf="(followLis$ | async).indexOf(i) != -1 ">
+                                <a  class="msg-follow"><i class="zmdi zmdi-plus-square"></i> Follow</a>
+                                <a  class="msg-following"><i class="zmdi zmdi-check-square"></i> Following</a>
+                                <a  class="msg-unfollow"><i class="zmdi zmdi-minus-square"></i> Unfollow </a>
+                            </button>
+                        </div>
+                        <div class=" clearfix"></div>
+                    </div>
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-lg hidden-md hidden-sm hidden-xs ">
+                <div class="advertisement">
+
+                    <div *ngFor="let ad of ads,let i = index" class="side-advt bottom-gap">
+                        <div class="advt"><a href="/ad/{{ad.id}}"><img src="{{ad.url}}" width="100%"> </a></div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            
+        </div>
+
+
+
+
+
+
+    </div>
+</div>

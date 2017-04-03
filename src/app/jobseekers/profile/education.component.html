@@ -1,0 +1,320 @@
+<div class="col-lg-12 col-md-12 col-sm-12 tab-sizing">
+    <div class="block bottom-gap">
+        <div class="saved" [style.display]="edu_status == 'read' ?'block':'none'"> <!-- save -->
+            <div class="education work-experience">
+                <div class="block-title">
+                    <div class="left"><h4>Education</h4></div>
+                    <div class="right" *ngIf="(jobSeekerEduList$ | async)?.length > 0">
+                        <a (click)="onEditEDU()">
+                            <span class="light"><i class="zmdi zmdi-edit"></i> Edit</span>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="block-contant cursor_pointer1" *ngIf="(jobSeekerEduList$ | async)?.length == 0" (click)="onAddEdu()">
+                    <div class="empty-prf empty-min1">
+                        <i class="icon-empty-education"></i>
+                        <h5>Add Your Education </h5>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="block-contant" *ngFor="let education of (jobSeekerEduList$ | async),let edu_index = index">
+                    <div class="work-logo">
+                        <div class="work-lg-defalt"><i class="zmdi zmdi-graduation-cap"></i></div>
+                    </div>
+                    <div class="work-exp-details">
+                        <div>
+                            <div class="hlaf-width-exp-left">
+                                <div class="dark bold">{{education.school}}</div>
+                                <div class="work-light">{{education.edu_field_study}}</div>
+                                <div class="work-light">{{education.edu_name}}</div>
+
+                            </div>
+                            <div class="hlaf-width-exp-right">
+                                
+                                    <div class="inner-box-left-xp">
+                                        <div class="work-light btn-clr border-none">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-pin"></i>
+                                            </div>
+                                            <div class="text-bx" *ngIf="education.country.name">
+                                                {{education.city.name}}, {{education.country.name}}
+                                            </div>
+                                            <div class="text-bx" *ngIf="!education.country.name">
+                                                {{education.city.name}}&nbsp;
+                                            </div>
+                                        </div>
+                                        <div  *ngIf="education.edu_still_studing" class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                                {{education.edu_start_date | date:'d MMM,  yyyy'}} - Present
+                                                <span class="dark"></span>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!education.edu_still_studing" class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                                {{education.edu_start_date | date:'d MMM,  yyyy'}} -
+                                                {{education.edu_end_date | date:'d MMM,  yyyy'}}
+                                                <span class="dark">&nbsp;({{education.edu_duration}})</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-box-right-xp">
+                                        <div class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-badge-check"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                                Grade: {{education.edu_grade}}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="work-light mobile-attachement" *ngIf="education.doc_upload_name">
+                                            <a href="education.edu_doc_upload_path" class="d-up-b">
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{education.edu_doc_upload_name}}
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="work-light mobile-attachement" *ngIf="education.edu_file_D.file_url">
+                                            <a href="{{education.edu_file_D.file_url}}" target="_blank" class="d-up-b">
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    <span class="work-light"> {{education.edu_file_D.file_name}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="edit" [style.display]="edu_status == 'edit' ?'block':'none'"> <!-- edit -->
+            <div class="work-experience clicks">
+                <div class="block-title-2">
+                    <div class="left"><h4>Education</h4></div>
+                    <div class="right">
+                        <span class="cancel padding-0">
+                            <button (click)="onReadEDU()"><i class="zmdi zmdi-close"></i> Cancel</button>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="block-contant"
+                     *ngFor="let education of (jobSeekerEduList$ | async),let edu_index = index">
+
+                    <div   *ngIf="educationEditList.indexOf(edu_index) == -1">
+                        <div class="work-logo">
+                            <div class="work-lg-defalt"><i class="zmdi zmdi-graduation-cap"></i></div>
+                        </div>
+                        <div class="work-exp-details">
+                            <div>
+
+                                <div class="hlaf-width-exp-left">
+                                    <div class="dark bold">{{education.school}}</div>
+                                    <div class="work-light">{{education.edu_field_study}}</div>
+                                    <div class="work-light">{{education.edu_name}}</div>
+
+                                </div>
+                                <div class="hlaf-width-exp-right">
+                                 
+                                        <div class="inner-box-left-xp">
+                                            <div class="work-light btn-clr border-none">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                </div>
+                                                <div class="text-bx" *ngIf="education.country.name">
+                                                {{education.city.name}}, {{education.country.name}}
+                                                </div>
+                                                <div class="text-bx" *ngIf="!education.country.name">
+                                                {{education.city.name}}&nbsp;
+                                                </div>
+                                            </div>
+
+
+                                            <div *ngIf="education.edu_still_studing" class="work-light">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{education.edu_start_date |
+                                                    date:'d MMM,  yyyy'}} - Present <span class="dark"></span>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="!education.edu_still_studing" class="work-light">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                {{education.edu_start_date |
+                                                date:'d MMM,  yyyy'}}-
+                                                {{education.edu_start_date | date:'d MMM,  yyyy'}}
+                                                <span class="dark">&nbsp;({{education.edu_duration}})</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner-box-left-xp">
+                                            <div class="work-light">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-badge-check"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    Grade: {{education.edu_grade}}
+                                                </div>
+                                            </div>
+
+
+                                            <div class="work-light" *ngIf="display_mode == 'desktop' && !education.edu_file_D.file_url" >
+                                                <span>
+                                                    <div class="icon-bx">
+                                                        <i class="icon-resume"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        <a href="#" class="block-title-2 btn-clr border-none padding-0" data-toggle="modal"
+                                                           [attr.data-target]="'.'+education.edu_file_D.classMap">
+                                                            <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                        </a>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="work-light" *ngIf="display_mode == 'mobile' && !education.edu_file_D.file_url">
+                                                <span>
+                                                    <div class="icon-bx">
+                                                        <i class="icon-resume"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        <a href="#" data-toggle="modal" class="block-title-2 btn-clr border-none padding-0"
+                                                           [attr.data-target]="'.'+education.edu_file_M.classMap">
+                                                            <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                        </a>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="work-light"  *ngIf="education.edu_file_D.file_url">
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    <a href="{{education.edu_file_D.file_url}}" target="_blank"> <span class="work-light"> {{education.edu_file_D.file_name}}</span></a>
+                                                    <a data-toggle="modal" [attr.data-target] = "'.delete-education-file-'+education.id" >
+                                                        <i class="zmdi zmdi-close-circle-o"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="bullet full-xp-left">
+                                <div>
+                                        <span class="cancel padding-0">
+                                            <button (click)="onEditEDU(edu_index)"><i
+                                                    class="zmdi zmdi-edit"></i> Edit</button></span>
+                                    <span class="cancel padding-0">
+                                    <a data-toggle="modal" [attr.data-target] = "'.delete-education-'+education.id" >
+                                        <button> <i class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <up-load  *ngIf="display_mode == 'desktop'" [file]="education.edu_file_D" (onUpload)="onUploadComplete($event)"></up-load>
+                        <up-load  *ngIf="display_mode == 'mobile'" [file]="education.edu_file_M" (onUpload)="onUploadComplete($event)"></up-load>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div *ngIf="educationEditList.indexOf(edu_index) != -1" >
+                        <sel-education (cancelEDU)="onCancelEDU2($event)"
+                                       (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)"
+                                       (saveEDU)="onSaveEDU($event)"
+                                       [display_mode]="display_mode"
+                                       [edu_index]="edu_index"
+                                       [city_Obj] = "city_Obj"
+                                       [countryList]="countryList"
+                                       [cityList]="cityList"
+                                       [education]="education"
+                                       [educationList]="educationList"
+                                       [field_studyList]="field_studyList"  >
+
+                        </sel-education>
+
+                    </div>
+
+                    <!--Delete education Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-education-{{education.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" (click)="closeBox()" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Education</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDeleteEdu(education.id,edu_index)" type="button" class="btn postive">Delete</button>
+                                                <button (click)="closeBox()" type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Delete education file Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-education-file-{{education.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" (click)="closeBox()" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Certificate</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDeleteFile(education.id,edu_index)" type="button" class="btn postive">Delete</button>
+                                                <button  type="button" (click)="closeBox()" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="block-footer border-none">
+                    <button *ngIf="(addNewEduFlag$ | async)" (click)="onAddEdu()">Add New University</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

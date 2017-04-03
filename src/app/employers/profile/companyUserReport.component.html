@@ -1,0 +1,292 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'users'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+
+    <div class="commen-container user-report">
+
+        <!--SAIDEBAR-->
+
+
+        <div class="col-lg-3 refine-serch">
+    <div class="block bottom-gap user-report-side-bar">
+        <div class="row block-title-2">
+            <h2>Refine Your Search By</h2>
+        </div> 
+
+<!--FILTER-->
+        <div class="row invite">
+
+            <div class="company filter-jobs">
+
+                <div class="row user-detail">
+                    <div class="user_detail_head">
+                        
+                        <div class="feturd-compny-dtls">
+                            <h2>{{selUser?.first_name}} {{selUser?.last_name}}</h2>
+                            
+                            <div *ngIf="selUser?.active" class="online"><i class="icon-round"></i><span class="light"> Active </span> </div>
+                            <div *ngIf="!selUser?.active" class="offline"><i class="icon-round"></i><span class="light"> Inactive </span></div>
+                            <span><i class="zmdi zmdi-calendar-alt"></i> {{selUser?.join_date | date:'d MMM,  yyyy'}}</span>
+                         
+                        </div>
+
+                        <div class=" clearfix"></div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+
+                
+                <!-- previlages -->
+                <div class="previlages">
+                    <h2>Access</h2>
+                    <ul>
+                        <li *ngFor="let selPermission of selUser?.permissions"> {{permissionHash[selPermission]}} </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+        
+        
+        </div>
+
+
+<!--MAIN BUTTON--> 
+        <div class="row block-footer edit ">
+            
+
+       <div class="full-box margin-btm-10">  
+            <bootstrap-selectbox *ngIf="(companyUsersObs | async)" (selectedId)="selUserId =$event.id"  [selectedValue]="selUserId"  [placeholder]="'Select from list'" [selectList]="(companyUsersObs | async)">
+            </bootstrap-selectbox>
+        </div>  
+            
+            
+            <button class="save-serch" class="save-serch" (click)="onChangeUser()"> Generate</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+  -------------------      --> 
+
+
+
+        
+
+        <div class="col-lg-9 refine-serch bottom-gap">
+            <div class="block">
+
+
+
+                <div class="row block-title-2">
+
+
+                    <h2 class="padding-top-10">User Report</h2>
+                    <a (click)="onBack()" class="hidden-xs" > <button> <span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span>  </button> </a>
+
+
+                </div>
+
+                <div>
+                    <div class="mobile-job-application">
+
+
+
+                        <ul class="nav nav-tabs margin-2" role="tablist">
+                            <li role="presentation" class="active border-none"   [routerLink]="['/'+_accountService.getPath()+'/profile/user_report']" [queryParams]="{id: selUserId,view:'jobs'}">
+                                <a href="#jobposted"  class="cursor_pointer1"  aria-controls="jobposted" role="tab" data-toggle="tab">
+                                    <div class="big-txt">{{(totalJobs | async) | number}}</div>
+                                    <div class="light">No of Job Posted</div>
+
+                                </a></li>
+                            <li role="presentation" class="border-none"  [routerLink]="['/'+_accountService.getPath()+'/profile/user_report']" [queryParams]="{id: selUserId,view:'blogs'}">
+                                <a  href="#articleposted"  class="cursor_pointer1"  aria-controls="articleposted" role="tab" data-toggle="tab">
+                                    <div class="big-txt">{{(totalBlogs | async) | number}}</div>
+                                    <div class="light">No of Article Posted</div>
+                                </a></li>
+                        </ul>
+
+
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="jobposted">
+
+                                <div class="saved-searches">
+
+                                    <div class="row tracking-title">
+                                        <div class="col-lg-6 col-md-6 text-left"><span class="navy-dark">Jobs</span></div>
+                                        <div class="col-lg-2 col-md-2 text-center"><span class="navy-dark">No.of Applications</span></div>
+                                        <div class="col-lg-2 col-md-2 text-center"><span class="navy-dark">No.of Views</span></div>
+                                        <div class="col-lg-2 col-md-2 text-center border-none"><span class="navy-dark">Status</span></div>
+
+
+                                    </div>
+
+                                    <div class="row savedserch  filter-jobs" id="our-jobs">
+
+
+                                            <div class="report-blank" *ngIf="!(jobsObs | async) || (jobsObs | async)?.jobs?.length == 0">
+
+                                            <div class="empty-prf" *ngIf="!(jobsObs | async)">
+                                                <spinner [visible]="true"></spinner>
+                                            </div>
+
+
+                                            <div *ngIf="(jobsObs | async) && (jobsObs | async)?.jobs?.length == 0"  class="report-blank">
+
+                                                <div class="empty-prf">
+                                                    <i class="icon-empty-job"></i>
+                                                    <h5>No Job Post</h5>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                       
+
+
+
+                                        <div *ngIf="(jobsObs | async)?.jobs?.length > 0">
+                                        <div class="row" *ngFor="let selJob of (jobsObs | async)?.jobs,let jobIndex = index">
+                                           
+                                            <div class="featured-box col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-20 report-list">
+                                                <!--<div *ngIf="selJob.avatar" class="feturd-compny"><img src="{{selJob.avatar}}"></div>-->
+                                                <!--<div   class="cover-blog" *ngIf="selJob.avatar"-->
+                                                     <!--[ngStyle]="{'background-image': 'url(' + selJob.avatar + ')'}">-->
+                                                <!--</div>-->
+                                                <!--<div *ngIf="!selJob.avatar" class="feturd-compny"><i class="zmdi zmdi-city-alt"></i> </div>-->
+                                                <div class="feturd-compny"><img [attr.src]="selJob?.company?.avatar"></div>
+                                                <div class="feturd-compny-dtls d-report">
+                                                    <div class="txt-white">{{selJob.title}}</div>
+                                                    <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i>{{selJob.company.name}}</div>
+                                                    <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{selJob.sector.name}}</div>
+                                                    <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>{{selJob.start_date | date:'d MMM,  yyyy'}}</div>
+                                                </div>
+                                                <div class=" clearfix"></div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 text-center sd-height">
+                                                <span class="navy"><i class="zmdi zmdi-comment-alt-text"></i>&nbsp;{{selJob.job_applications_count | number}}</span>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 text-center sd-height">
+                                                <span class="navy" *ngIf="selJob.views_count"><i class="zmdi zmdi-eye"></i>&nbsp;{{selJob.views_count}} </span>
+                                                <span class="navy" *ngIf="!selJob.views_count"><i class="zmdi zmdi-eye"></i>&nbsp;0</span>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 text-center padding-0 sd-height">
+                                                <div class="open-closed">
+
+                                                    <div class="deleted-label" *ngIf="selJob.deleted">Deleted</div>
+                                                    <div class="draft-label" *ngIf="!selJob.deleted  && selJob.job_status?.status == 'Draft'" >Draft</div>
+                                                    <div class="expired-label" *ngIf="!selJob.deleted  && getIfExpired(selJob.end_date) && selJob.job_status?.status != 'Draft'">Expired</div>
+                                                    <div class="active-label" *ngIf="!selJob.deleted  && !getIfExpired(selJob.end_date)  && selJob.job_status?.status == 'Open'">Active</div>
+                                                    <!---->
+                                                    <!--<div *ngIf="selJob.job_status.status == 'Open'" class="active-label"> {{selJob.job_status.status}} </div>-->
+                                                    <!--<div *ngIf="selJob.job_status.status == 'Closed'" class="expired-label"> {{selJob.job_status.status}}</div>-->
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="rport-pagi" *ngIf="(totalJobs | async) > 10" >
+                                        <pagination-new [url]="'/'+_accountService.getPath()+'/profile/user_report'" [totalRecords]="totalJobs"></pagination-new>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div role="tabpanel" class="tab-pane" id="articleposted">
+
+                                <div class="saved-searches">
+
+                                    <div class="row tracking-title">
+                                        <div class="col-lg-8 col-md-8 text-left"><span class="navy-dark">Articles</span></div>
+                                        <div class="col-lg-2 col-md-2 text-center"><span class="navy-dark">No.of Comments</span></div>
+                                        <div class="col-lg-2 col-md-2 text-center border-none"><span class="navy-dark">No.of Views</span></div>
+
+
+                                    </div>
+
+                                    <div class="row savedserch">
+
+                                        <div class="report-blank" *ngIf="!(blogsObs | async) || (blogsObs | async)?.blogs?.length == 0">
+
+                                            <div class="empty-prf" *ngIf="!(blogsObs | async)">
+                                                <spinner [visible]="true"></spinner>
+                                            </div>
+
+
+                                    <div *ngIf="(blogsObs | async) && (blogsObs | async)?.blogs?.length == 0"  class="report-blank">
+
+                                                <div class="empty-prf">
+                                                    <i class="icon-empty-blog"></i>
+                                                    <h5>No Articles</h5>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row"  *ngFor="let selBlog of (blogsObs | async)?.blogs,let blogIndex = index">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-left">
+                                                <div class="blog-img"><img src="{{selBlog.avatar}}"> </div>
+                                                <div class="blog-detail">
+                                                    <div class="navy-blue bold">{{selBlog.title}}</div>
+                                                    <div class="light">
+                                                    <span class="navy-blue"><i class="zmdi zmdi-calendar-alt"></i></span>&nbsp;{{selBlog.created_at | date:'d MMM, yyyy'}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+
+
+                                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center">
+                                                <span class="navy"><i class="zmdi zmdi-comment-alt-text"></i>&nbsp;{{selBlog.comments_count | number}}</span>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center">
+                                                <span class="navy"><i class="zmdi zmdi-eye"></i>&nbsp;{{selBlog.views_count | number}} </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="rport-pagi" *ngIf="(totalBlogs | async) > 10">
+                                    <pagination-new [url]="'/'+_accountService.getPath()+'/profile/user_report'" [totalRecords]="totalBlogs"></pagination-new>
+                                </div>
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <a (click)="onBack()" class="hidden-md hidden-lg hidden-sm">
+        <button class="full-width-button margin-bootom-5">Back</button>
+        </a>
+
+
+    </div>
+
+</div>
+

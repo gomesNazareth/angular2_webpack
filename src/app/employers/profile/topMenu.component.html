@@ -1,0 +1,73 @@
+<div class=" main-tab hidden-xs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'profile'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile']" routerLinkActive="active" class="cursor_pointer1">
+            <i class="zmdi zmdi-city-alt"></i> Profile
+        </a>
+        </li>
+
+        <li role="presentation" [class.active]="activeFlag == 'users'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile/users']" routerLinkActive="active" class="cursor_pointer1" >
+            <i class="icon-users"></i> Users
+        </a>
+        </li>
+        <li *ngIf="_accountService.getSearchJobSeekers()" role="presentation" [class.active]="activeFlag == 'followers'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile/followers']" routerLinkActive="active">
+            <i class="zmdi zmdi-accounts"></i> Followers
+        </a>
+        </li>
+
+        <li *ngIf="_accountService.getInviteFriends()" role="presentation" [class.active]="activeFlag == 'inviteFriends'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile/invite-connections']" class="cursor_pointer1" routerLinkActive="active">
+            <i class="zmdi zmdi-accounts-add"></i> Invite Connections
+        </a>
+        </li>
+
+        <!--<li role="presentation" class="green-tab">-->
+            <!--<a href="#featured-employer" aria-controls="featured-employer" role="tab" data-toggle="tab">-->
+            <!--Featured Employer Subscription-->
+        <!--</a>-->
+        <!--</li>-->
+
+
+    </ul>
+</div>
+
+
+<!-- mobile -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'profile'?true:false">
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/profile']"  routerLinkActive="active" >
+                <i class="zmdi zmdi-case"></i> Profile
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'users'?true:false" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/profile/users']" routerLinkActive="active" >
+
+                <i class="icon-suggestedjobs"></i>
+                Users
+            </a>
+        </li>
+        <li *ngIf="_accountService.getSearchJobSeekers()"  role="presentation" [class.active]="activeFlag == 'followers'?true:false" >
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/profile/followers']" routerLinkActive="active" >
+
+                <i class="icon-my-jobs"></i>
+                Followers
+            </a>
+        </li>
+        <li *ngIf="_accountService.getInviteFriends()" role="presentation" [class.active]="activeFlag == 'inviteFriends'?true:false"  >
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/profile/invite-connections']" routerLinkActive="active" >
+
+                <i class="icon-saved-searches"></i>
+                Invite Connections
+            </a>
+        </li>
+        <!--<li role="presentation" [class.active]="activeFlag == 'featuredJobs'?true:false" class="green-tab">-->
+                <!--<a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/profile/invite_friends']" routerLinkActive="active" >-->
+
+                <!--<i class="icon-saved-jobs"></i>-->
+                <!--Featured Employer Subscription-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+<!-- ***** -->

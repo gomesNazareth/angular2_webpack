@@ -1,0 +1,113 @@
+<!--<div class="blog">-->
+    <!--<div>-->
+        <!--<div class="white blog-spinner" *ngIf="!(loadingFlagList$ | async)">-->
+            <!--<div class="loading-spinner-space empty-min3"><spinner></spinner></div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Carousel &ndash;&gt;-->
+        <!--<div [style.display]="(loadingFlagList$ | async) ? 'block' : 'none'" id="carousel-example-generic" class=" carousel slide" data-ride="carousel">-->
+            <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+            <!--<div class="carousel-inner">-->
+                <!--<div  *ngFor="let selBlog of (generalBlogs$ | async),let blogIndex= index"-->
+                    <!--class="item active"-->
+                    <!--[class.active]= "!blogIndex" >-->
+                    <!--<div class="over-box">-->
+                        <!--<a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active" >-->
+                            <!--<div class="dflt-blogbnr" *ngIf="!selBlog.bannerImage"></div>-->
+                            <!--<div class="cover-blog" *ngIf="selBlog.bannerImage"-->
+                                <!--[ngStyle]="{'background-image': 'url(' + selBlog.bannerImage + ')'}">-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--&lt;!&ndash; Static Header &ndash;&gt;-->
+                        <!--<div class="header-text">-->
+                            <!--<div class="col-md-12">-->
+                                <!--<a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active" >-->
+                                    <!--<h2>-->
+                                        <!--{{selBlog.name}}-->
+                                    <!--</h2>-->
+
+                                    <!--<h3>-->
+                                        <!--<span><i class="zmdi zmdi-calendar-alt"></i>{{selBlog.postDate | date:'d MMM, yyyy'}}</span>-->
+                                    <!--</h3>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>&lt;!&ndash; /header-text &ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Controls &ndash;&gt;-->
+            <!--<div class="row hidden-xs" *ngIf="(loadingFlagList$ | async) && (generalBlogs$ | async)?.length > 1">-->
+                <!--<a class="right carousel-control right-adjst" data-slide="prev" role="button"-->
+                   <!--href="#carousel-example-generic">-->
+                    <!--<i class="zmdi zmdi-chevron-left"></i>-->
+                <!--</a>-->
+
+
+                <!--<a class="right carousel-control" data-slide="next" role="button"-->
+                   <!--href="#carousel-example-generic">-->
+                    <!--<i class="zmdi zmdi-chevron-right"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash; /carousel &ndash;&gt;-->
+
+        <!--<div class="bottom-gap">-->
+
+            <!--<div *ngFor="let selBlog of (generalBlogs$ | async),let blogIndex= index" class="div block padding-10 margin-top-10 blog_listing pull-left">-->
+                <!--&lt;!&ndash; blog_post_thumbnail &ndash;&gt;-->
+                <!--<div class="blog_post_thumbnail">-->
+                    <!--<a  [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active" class="cursor_pointer1">-->
+                        <!--<div  *ngIf="!selBlog.bannerImage"></div>-->
+                        <!--&lt;!&ndash; Original List &ndash;&gt;-->
+                        <!--<img  *ngIf="selBlog.bannerImage" [src]="selBlog.bannerImage">-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;{{selBlog | json}}&ndash;&gt;-->
+                <!--&lt;!&ndash; blog_post_detail &ndash;&gt;-->
+                <!--<div class="di blog_post_detail">-->
+                    <!--<a  [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active" class="cursor_pointer1"><h1>{{selBlog.name}}</h1></a>-->
+                    <!--<span>Posted by <strong>{{selBlog.postedUserName}}</strong><br><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{selBlog.postDate | date:'d MMM,  yyyy'}}</span>-->
+                    <!--<div class="like-comment">-->
+                    <!--<span *ngIf="!_accountService.getAuth()">-->
+                            <!--<i class="zmdi zmdi-favorite-outline"></i><strong>{{selBlog.likes}}</strong>-->
+                        <!--<i *ngIf="selBlog.likes == 1">Like</i>-->
+                        <!--<i *ngIf="selBlog.likes > 1 || selBlog.likes ==0">Likes</i>-->
+                    <!--</span>-->
+                        <!--<span *ngIf="!selBlog.liked && _accountService.getAuth()">-->
+                        <!--<a (click)="getLike(blogIndex)" class="cursor_pointer1" data-tooltip="Like">-->
+                            <!--<i class="zmdi" [class.zmdi-favorite-outline]="!selBlog.liked"-->
+                               <!--[class.zmdi-favorite]="selBlog.liked"></i><strong>{{selBlog.likes}}</strong>-->
+                        <!--<i *ngIf="selBlog.likes == 1">Like</i>-->
+                        <!--<i *ngIf="selBlog.likes > 1">Likes</i>-->
+                        <!--</a>-->
+                        <!--</span>-->
+                        <!--<span *ngIf="selBlog.liked && _accountService.getAuth()">-->
+                        <!--<a (click)="getUnLike(blogIndex)" class="cursor_pointer1" data-tooltip="Like">-->
+                            <!--<i class="zmdi" [class.zmdi-favorite-outline]="!selBlog.liked"-->
+                               <!--[class.zmdi-favorite]="selBlog.liked"></i><strong>{{selBlog.likes}}</strong>-->
+                              <!--<i *ngIf="selBlog.likes == 1">Like</i>-->
+                              <!--<i *ngIf="selBlog.likes > 1">Likes</i>-->
+                        <!--</a>-->
+                        <!--</span>-->
+                        <!--<span>-->
+                            <!--<a [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" [fragment]="'comment'"-->
+                               <!--routerLinkActive="active" class="cursor_pointer1" data-tooltip="Comments">-->
+                        <!--<i class="zmdi zmdi-comment-alt-text"></i><strong>{{selBlog.totalComments}}</strong>-->
+                                <!--<i *ngIf="selBlog.totalComments == 1">Comment</i>-->
+                                <!--<i *ngIf="selBlog.totalComments > 1 || selBlog.totalComments == 0 ">Comments</i>-->
+
+                            <!--</a>-->
+                        <!--</span>-->
+
+                    <!--</div>-->
+
+                    <!--<share-social-media-2 [url]="(url$ | async)+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)" [title]="selBlog.name" [description]="selBlog.name"></share-social-media-2>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"> </div>-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<pagination-new [url]="'/'+_accountService.getPath()+'/blog'" [totalRecords]="totalRecords$">-->
+<!--</pagination-new>-->

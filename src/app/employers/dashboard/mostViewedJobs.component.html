@@ -1,0 +1,171 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'mostViewedJobs'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+    <!--Companies edit details-->
+        <div role="tabpanel" class="tab-pane active" id="viewed-Profile">
+        <div class="commen-container">
+
+            <div class="col-lg-12 col-sm-12 col-xs-12" *ngIf="(topViewedJobs$ | async)?.jobs?.length ==0 || (showSpinner$ | async)">
+            <div class="row empty-min2 white"  >
+                <div  class="row empty-min2">
+                    <div class="empty-prf" *ngIf="(showSpinner$ | async)"><spinner [visible]="(showSpinner$ | async)"></spinner></div>
+                    <div class="empty-prf " *ngIf="(topViewedJobs$ | async)?.jobs?.length ==0">
+                        <i class="icon-empty-job"></i>
+                        <h5>No Jobs Available</h5>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+            <div *ngIf="!(showSpinner$ | async) && (topViewedJobs$ | async)?.jobs?.length >0">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="block filter-jobs bottom-gap">
+                        <div class="block-title">
+                            <h1> Most Viewed Jobs </h1>
+                        </div>
+
+                        <div class="row tracking-title">
+                            <div class="headding-box-dash">&nbsp;&nbsp;Job Title</div>
+                            <div class="headding-box-dash-action">
+                                <div class="equal-box-actions">No. of Views</div>
+                                <div class="equal-box-actions">No. of Applications</div>
+                                <div class="equal-box-actions">Days to Close</div>
+                                <div class="equal-box-actions">Job Type</div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="row featured-box veiw-secton" *ngFor="let selJob of (topViewedJobs$ | async)?.jobs,let selJobIndex = index">
+
+                            <!-- Desktop -->
+
+                                <div  class="cursor_pointer1 hidden-xs hvr-shutter-out-vertical">
+
+                                <div class="box-dash-profile-left">
+                                            <div>
+                                            <div class="feturd-compny">
+                                                <span>
+                                                <i *ngIf="!selJob?.company?.avatar" class="zmdi zmdi-city-alt empty-blank"></i>
+                                                <img *ngIf="selJob?.company?.avatar" src="{{selJob?.company?.avatar}}">
+                                                </span>
+                                            </div>
+                                            <div class="feturd-compny-dtls">
+                                                <div class="txt-white">{{selJob?.title}}</div>
+                                                <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i>{{selJob?.company?.name}}</div>
+                                                <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{selJob?.city?.name}}, {{selJob?.country?.name}}</div>
+                                                <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{selJob?.sector?.name}}</div>
+                                            </div>
+                                            </div> 
+                                        </div>
+
+                                        <div class="box-dash-profile-right">
+                                            <div class="row tablet-men">
+                                                <div class="col-sm-3">No. of Views</div>
+                                                <div class="col-sm-3">No. of Applications</div>
+                                                <div class="col-sm-3">Days to Close</div>
+                                                <div class="col-sm-3">Job Type</div>
+                                            </div>
+
+                                            <div class="equal-box-action">
+                                                <div class="probability">
+                                                    <i class="icon-views blue-silver-txt"></i>
+                                                    <div class="applicants-numbers blue-silver">{{selJob?.views_count | number}}</div>
+                                                    <div class="applicants-txt blue-silver-txt hidden-md hidden-sm hidden-lg">No. of Views</div>
+                                                </div>
+                                            </div>
+                                            <div class="equal-box-action">
+                                                <div class="probability">
+                                                    <i class="icon-applicants navy-light-txt"></i>
+                                                    <div class="applicants-numbers navy-light">{{selJob?.job_applications_count | number}}</div>
+                                                    <div class="applicants-txt navy-light-txt hidden-md hidden-sm hidden-lg">No. of Applicants</div>
+                                                </div>
+                                            </div>
+                                            <div class="equal-box-action">
+                                                <div class="hidden-xs">
+                                                    <div>
+                                                        <div class="day">{{selJob?.days_to_expired}} Days</div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="equal-box-action">
+                                                <div>
+                                                    <div class="stnderd" *ngIf="!selJob?.is_featured"> Standard</div>
+                                                    <div class="featured"  *ngIf="selJob?.is_featured"> Featured</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                                <!-- Mobile -->
+                                <a class="hidden-md hidden-lg hidden-sm">
+                                    <div>
+                                        <div class="mob-most-view">
+                                            <div class="feturd-compny">
+                                                <div>
+                                                    <i *ngIf="!selJob?.company?.avatar" class="zmdi zmdi-city-alt empty-blank"></i>
+                                                    <img *ngIf="selJob?.company?.avatar" src="{{selJob?.company?.avatar}}">
+                                                </div>
+                                            </div>
+                                            <div class="feturd-compny-dtls">
+                                                <div class="txt-white">{{selJob?.title}}</div>
+                                                <div class="light bold"><span class="zmdi zmdi-city-alt"></span>{{selJob?.company?.name}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mob-most-view">
+                                            <div class="light"><span class="zmdi zmdi-pin"></span>{{selJob?.city?.name}}, {{selJob?.country?.name}}</div>
+                                            <div class="light"><span class="zmdi zmdi-chart-donut"></span>{{selJob?.sector?.name}}</div>
+                                        </div>
+
+                                        <div class="mob-most-view">
+                                            <div class="light">
+                                                <div class="text-left">Job Type:</div>
+                                                <div class="text-right">Standard</div> 
+                                            </div>
+                                            <div class="light">
+                                                <div class="text-left">Status:</div>
+                                                <div class="text-right">{{selJob?.days_to_expired}} Days</div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                        <div class="probability">
+                                            <i class="icon-views blue-silver-txt"></i>
+                                            <div class="applicants-numbers blue-silver">{{selJob?.views_count | number}}</div>
+                                            <div class="applicants-txt blue-silver-txt hidden-md hidden-lg">No. of Views</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                        <div class="probability">
+                                            <i class="icon-applicants navy-light-txt"></i>
+                                            <div class="applicants-numbers navy-light">{{selJob?.job_applications_count | number}}</div>
+                                            <div class="applicants-txt navy-light-txt hidden-md hidden-lg">No. of Applicants</div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </a>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div>
+                        <!-- Pgination -->
+                        <pagination-new [url]="'/'+_accountService.getPath()+'/dashboard/most-viewed-jobs'" [totalRecords]="totalRecords$">
+                        </pagination-new>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

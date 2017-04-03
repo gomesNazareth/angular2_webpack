@@ -1,0 +1,17 @@
+Searching 1343 files for "check-box.svg"
+
+/Users/sajeerbloovo/webapps/Employer_Jobseeker/angular/src/client/assets/sass/layout/_commen.scss:
+  552  
+  553    label.css-label {
+  554:     background-image: url(../../images/check-box.svg);
+  555      -webkit-touch-callout: none;
+  556      -webkit-user-select: none;
+
+/Users/sajeerbloovo/webapps/Employer_Jobseeker/angular_lazy_loading/src/client/assets/sass/layout/_commen.scss:
+  559  
+  560    label.css-label {
+  561:     background-image: url(../../images/check-box.svg);
+  562      -webkit-touch-callout: none;
+  563      -webkit-user-select: none;
+
+2 matches across 2 files

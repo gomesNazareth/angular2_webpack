@@ -1,0 +1,177 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<blog-topmenu [activeFlag]="'blog'"></blog-topmenu>
+
+
+    <div role="tabpanel" class="tab-pane" id="blog">
+        <div  *ngIf="!blogDetailFlag" class="commen-container load-data-js">
+
+            <div class="col-lg-8 col-md-8">
+                <div class="blog">
+
+
+
+                    <div *ngIf="postSuccessFull" class="alert comen-alert">
+                        <i class="zmdi zmdi-check-circle"></i>
+                        Your article has been successfully published.
+                    </div>
+
+                    <form [formGroup]="blogForm" *ngIf="_accountService.getCreateBlog()">
+                        <div class="block bottom-gap">
+                            <div class="block-contant padding-btm-0 editor">
+                                <spinner [visible]="(submitForm$ | async)"></spinner>
+                                <div><h1>Share Your Story</h1> </div>
+                                <div>
+                                    <input type="text" name="title" placeholder="Title" formControlName="title">
+                                    <div  *ngIf="(blogForm.controls['title'].touched || !(pristineFlag$ | async)) && blogForm.controls['title'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please enter a Title
+                                    </div>
+                                </div>
+
+                                <!--Blog Content-->
+                                <div class="margin-top-10">
+                                    <textarea id="edit-blog-area" type="text" placeholder="Share your story..." name="description" formControlName="description"></textarea>
+                                </div>
+                                <div>
+                                    <div  *ngIf="(blogForm.controls['description'].touched || !(pristineFlag$ | async)) && blogForm.controls['description'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please enter a Description (Minimum of 2,000 and maximum of 20,000 characters)
+                                    </div>
+                                </div>
+                                <span class="light font-12">Minimum of 2,000 and maximum of 20,000 characters.</span>
+
+                                <!-- Tag Section for Blog Post-->
+   
+                                <h4>Tags</h4>
+
+                                <div class="edit blog-tags-se">
+                                    <div class="full-box-post">
+                                        <div  *ngIf="(blogForm.controls['tags'].touched || !(pristineFlag$ | async)) && blogForm.controls['tags'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                            Please Add Tags
+                                        </div>
+                                        <div>
+                                            <div class="tag-new" *ngFor="let selCert of tagarry;let certIndex = index"  >
+
+                                                <div class="txt"> {{selCert.name}} </div>
+                                                <div class="close-tag" (click)="onRemoveElement(certIndex)">
+                                                    <i class="zmdi zmdi-close-circle"></i></div>
+                                            </div>
+                                            <div class="tag-new border-none">
+                                                <auto-complete *ngIf="tagarry.length < 5" [excludeItems]="tagarry"
+                                                               [resetOnSelect]="true"
+                                                               [keepSelected]="false"
+                                                               [placeholder]="'Add Tags'"
+                                                               [selectOneEnter]="true"
+                                                               [recordType]="'Tag'" (changeRecords)="onAddElement($event)">
+                                                </auto-complete>
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <input type="hidden" formControlName="tags">
+
+
+                                        <div class=" clearfix"></div>
+                                    </div>
+
+                                    <!-- Devider -->
+                                    <div><hr></div>
+                                </div>
+
+                                <!--Border-->
+                                <div><hr></div>
+
+                                <!--blog image post details-->
+                                <div class="instraction-blg">
+                                    <div class="up-content-blog">
+                                        <h4 class="navy">Upload Image</h4>
+                                        <p class="light">Please choose an image that is at least 920 pixels wide and at least 500 pixels tall. File size should be less than 4MB</p>
+                                        <div  *ngIf="(blogForm.controls['avatar'].touched || !(pristineFlag$ | async)) && blogForm.controls['avatar'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                            Please upload an Image
+                                        </div>
+                                        <input type="hidden" formControlName="avatar">
+
+                                    </div>
+                                    <div class="up-button-blog">
+                                        <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg"> -->
+                                        <a data-target=".blog-crop" data-toggle="modal" class="browser"> Browse </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                                <!--After Upload image that will show here-->
+
+                                <div class="after-upload" *ngIf="(selectImageDone$ | async)">
+                                    <div class="upload-img-out">
+                                        <span><i class="zmdi zmdi-image"></i>{{tagetFile?.name}}</span>
+                                    </div>
+                                    <div class="upload-img-out-action">
+                                        <button (click)="removeImage()"><i class="zmdi zmdi-delete"></i>Delete</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="block-footer border-none padding-top-0 "   (click)="createBlog()"><button> Post </button> </div>
+                        </div>
+                    </form>
+                    <blog-page [companyId]="(companyId$ | async)" [newBlog]="newBlog" ></blog-page>
+                </div>
+            </div>
+            <top-viewed-blog></top-viewed-blog>
+        </div>
+    </div>
+
+
+<div class="popup">
+    <div class="upload-pop">
+
+        <div class="file_upload_popup_close modal blog-crop" id="blog-crop"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body upload-dp">
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+
+                        <div>
+                            <h2>Blog Post Image</h2>
+                            <h4>We accept  <span class="dark">{{fileInfo.file_types}}.</span> Maximum Upload Size <span class="dark">{{fileInfo.size}} {{fileInfo.sizeUnit}}.</span> </h4>
+
+                            <div *ngIf=" (fileInfo.size * 1048576)  < tagetFile?.size"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                File size too large!
+                            </div>
+
+                            <div *ngIf="tagetFile?.type && fileInfo.format_list.indexOf(tagetFile?.type) == -1" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Invalid File Format
+                            </div>
+
+                            <div *ngIf="(selectImageDone$ | async)">
+                                <img-cropper  #cropper [image]="dataCrop" [settings]="cropperSettings"></img-cropper>
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                    {{(tagetFile?.name)?tagetFile?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class='input-container'>
+                                    <input type="file" (change)="fileChange($event)" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg">
+                                </div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button (click)="selectImage()" data-dismiss="modal" type="button" class="btn postive"> Save </button>
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

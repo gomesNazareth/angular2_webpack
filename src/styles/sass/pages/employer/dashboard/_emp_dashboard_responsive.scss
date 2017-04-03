@@ -1,0 +1,789 @@
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (max-width: 1200px){
+    .dashboard-employer{
+       .total-applications{
+          
+            .tottal{
+                i{ 
+                    font-size:$font-35;
+                }
+                h2{ 
+                    font-size:$font-35; 
+                }
+            }
+            .dash-navy{ 
+                font-size:$font-16;  
+            }
+        }  
+    } 
+    #viewed-Profile{
+        .filter-jobs .featured-box .feturd-compny{ 
+            width:70px; 
+            height:70px;   
+            i{ 
+                line-height:70px;
+            }
+        }
+    }
+    .dashboard-employer{
+        .total-applications{
+            .dash-navy{ 
+                font-size:$font-14;  
+            }
+        }  
+    }
+    #viewed-Profile{
+        .mob-viewd{
+            margin-top:20px;   
+        }
+        .clos{ 
+            padding:2px 6px;   
+        }
+        .stnderd{ 
+            padding:2px 6px;   
+        }
+        .featured{ 
+            padding:2px 6px;  
+        }
+    } 
+    #users{   
+        #most-profile{
+            .padding-20{
+                margin:0px!important  
+            } 
+        }
+        .filter-jobs{
+            .featured-box{
+                border-top: 0px solid $grey-border
+            }
+        }    
+    }
+    .emplyer-edit{
+
+        .margin-top-20{ 
+            margin-top:15px;  
+        }
+        .member{
+            .member-box{
+                margin-bottom:5px; 
+            }
+        }        
+    }
+    #followers{ 
+        .align .company-following{ 
+            width:100%;  
+        }
+    }
+    //User Report
+    .user-report{
+        .saved-searches .savedserch .col-lg-2{ 
+            border-top: 1px solid $grey-border; 
+            text-align: center; 
+            padding:0px; 
+        }
+        .savedserch{ 
+            .row{ 
+                border-top:solid 5px $bg 
+            }
+       } 
+    } 
+    // MostViewedJob css
+    #viewed-Profile{
+        .feturd-compny{
+            width: 40px!important;
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+            }
+            i{
+                line-height: 40px!important;
+                font-size: $font-16;
+            }
+        }
+        .navy-dark{
+            font-size: 13px;
+            padding:0px!important;
+        }
+    }
+    .scroll-chart{
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 990px) and (max-width: 1435px){
+    .scroll-chart{
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+    // most-viwed-jobs
+    .headding-box-dash{
+        width: calc(100% - 600px);
+    }
+    .headding-box-dash-action{
+        width: 600px;
+    }
+    .box-dash-profile-left{
+        width: calc(100% - 600px);
+    }
+    .box-dash-profile-right{
+        width: 600px;
+    }
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+
+@media (min-width: 768px) and (max-width: 1024px){
+
+    // Dashboard Count
+    .dashboard-employer .nav > li > a{
+        padding:0px!important;
+        min-height: 60px;
+        text-align: center;
+        font-size: $font-14;
+        padding-bottom:10px;
+        span{
+            display: block;
+            text-align: center;
+        }
+    }
+    // Movile-view
+    #most-profile{
+       
+        .invt{
+            width: 30px!important;
+            height: auto!important;
+            .invit-egg{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+            }
+            .invit-egg-default{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+                line-height: 36px!important;
+                i{
+                  line-height: 36px!important;
+                  font-size: $font-16;  
+                }
+            }
+        }
+        .feturd-compny-dtls{
+            margin-top: 0px;
+        }
+        .mob-most-view{
+            padding: 10px 0px;
+            border-bottom:1px solid #f1f1f1;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+        }
+        .bt-half{
+            display: block;
+            width: 50%;
+            text-align: center;
+            height: 35px;
+            float: left;
+            border:1px solid #f1f1f1;
+            line-height: 35px!important;
+            color: $blue-bali;
+            i{
+                line-height: 35px!important;
+                color: $navy-dark
+            }
+        }
+    }
+    // MostViewed_Job
+    #viewed-Profile{
+        .col-lg-2{
+            min-height:auto!important;
+            padding-bottom:10px!important;
+        }
+        .mob-most-view{
+            padding: 10px;
+            border-bottom:1px solid #f1f1f1;
+            float: left;
+            width: 100%;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+            .feturd-compny{
+                float: left!important;
+                margin-right: 10px;
+                margin-left: 0px!important;
+            }
+            .feturd-compny-dtls{
+                float: left!important;
+                width: 70%!important;
+                margin-top: 0px;
+            }
+            .light{
+                float: left;
+                width: 100%;
+                font-size: $font-14;
+                span{
+                    color: $navy-dark;
+                }
+                .text-left{
+                    float: left!important;
+                    color: $navy-dark;
+                }
+                .text-right{
+                    float: right;
+                    padding-left:10px;
+                    width: calc(100% - 70px);
+                    text-align: left;
+                }
+            } 
+        }
+    }
+    .scroll-chart{
+        overflow-y: hidden;
+        overflow-x: scroll; 
+    }
+     #most-profile{
+        .featured-box{
+            padding:10px;
+        }
+    }
+    // most-viwed-jobs
+    .box-dash-profile-left{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+    }
+    .box-dash-profile-right{
+        width: 100%;
+    }
+    .tablet-men{
+        display: block;
+    } 
+
+}
+
+
+@media (min-width: 767px) and (max-width: 768px){
+.mob-font-15 {
+        font-size: 16px !important;
+    }
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+
+@media (max-width: 767px) {
+
+//User Report
+.user-report{
+    .saved-searches .savedserch .col-lg-2{ 
+        border-top: 1px solid $grey-border; 
+        text-align: center; 
+        padding:10px; 
+    }
+    .savedserch{ 
+        .row{ 
+            border-top:solid 5px $bg 
+        }
+        .open-jobs{
+            margin: 20px auto;
+        }
+        .close-jobs{
+            margin: 20px auto;
+        }
+    }
+    #jobposted .savedserch .col-lg-2{ 
+        line-height:50px; 
+        min-height:50px;    
+    }
+}  
+// Dashboard Count
+    .dashboard-employer .nav > li > a{
+        padding:0px!important;
+        min-height: 60px;
+        text-align: center;
+        font-size: $font-14;
+        padding-bottom:10px;
+        span{
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            font-family: $font-medium;
+            padding-top:5px;
+        }
+    }
+    .bar-chart{
+        .bar-date{
+            h5{
+                font-size: 8px;
+            }
+        }
+    }
+    .align-center-text{
+        float: none!important;
+        width: 100%;
+        text-align: center;
+    }
+    .full-back{
+        width: 100%;
+        background-color: $navy-dark;
+        height: 40px;
+        text-align: center;
+        border:none;
+        color: $white;
+    }
+    .min-bar-277{
+        min-height: auto;
+    }
+    #most-profile{
+        .commen-container{
+            margin-top: 0px;
+            padding:0px!important;
+        }
+    }
+    #most-profile{
+        .commen-container{
+            margin-top: 0px;
+            padding:0px!important;
+        }
+        .invt{
+            width: 30px!important;
+            height: auto!important;
+            .invit-egg{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+            }
+            .invit-egg-default{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+                line-height: 36px!important;
+                i{
+                  line-height: 36px!important;
+                  font-size: $font-16;  
+                }
+            }
+        }
+        .feturd-compny-dtls{
+            margin-top: 0px;
+        }
+        .mob-most-view{
+            padding: 10px 0px;
+            border-bottom:1px solid #f1f1f1;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+        }
+        .bt-half{
+            display: block;
+            width: 50%;
+            text-align: center;
+            height: 35px;
+            float: left;
+            border:1px solid #f1f1f1;
+            line-height: 35px!important;
+            color: $blue-bali;
+            i{
+                line-height: 35px!important;
+                color: $navy-dark
+            }
+        }
+    }
+    // MostViewed_Job
+    #viewed-Profile{
+        .commen-container{
+            margin-top: 0px;
+            padding-top:0px!important;
+        }
+        .col-lg-2{
+            min-height:auto!important;
+            padding-bottom:10px!important;
+        }
+        .mob-most-view{
+            padding: 10px 0px!important;
+            border-bottom:1px solid #f1f1f1;
+            float: left;
+            width: 100%;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+            .feturd-compny{
+                float: left!important;
+                margin-right: 10px;
+                margin-left: 0px!important;
+            }
+            .feturd-compny-dtls{
+                float: left!important;
+                width: 70%!important;
+                margin-top: 0px;
+            }
+            .light{
+                float: left;
+                width: 100%;
+                font-size: $font-14;
+                span{
+                    color: $navy-dark;
+                }
+                .text-left{
+                    float: left!important;
+                    width: 70px;
+                    color: $navy-dark;
+                }
+                .text-right{
+                    float: left;
+                    padding-left:10px;
+                    width: calc(100% - 70px);
+                    text-align:left;
+                }
+            }  
+        }
+    }
+    .scroll-chart{
+        overflow-y: hidden;
+        overflow-x: scroll; 
+    }
+    // Employer Dashbord BarChart Padding
+    .bar-graph{
+        .col-lg-1{
+            padding:0px!important;
+        }
+    }
+    .bar-date{
+       .col-lg-1{
+            padding:0px!important;
+        } 
+    }
+    #most-profile{
+        .featured-box{
+            padding:10px;
+        }
+    }
+    #followers{
+        .mob-most-view{
+            padding:10px 0px!important;
+        }
+    }
+    .mobile-invt{
+        i{
+            line-height: 85px!important;
+            font-size: 26px!important;
+        }
+    }
+    .mob-font-23{
+        font-size: 20px!important;
+    }
+    .mob-font-15{
+        font-size: 16px!important;
+    }
+    .mg-r-s{
+        float: right;
+        display: block;
+        width: 100%;
+        text-align: right;
+    }
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (max-width: 480px) {
+
+    #viewed-Profile{ 
+        float:left!important
+    }
+    #most-profile{
+    .align{
+        .company-following{ 
+            width:49%; 
+            margin-bottom:0px; 
+        }
+    } 
+    .padding-20-0{ 
+        padding:0px 10px!important;  
+    }
+        .padding-20{ 
+            margin:0px 0px;   
+        }
+        .invt{
+            width: 60px; 
+                i{ 
+                    line-height:60px
+                }
+                .invit-egg-default{ 
+                    width:60px;
+                    height: 76px; 
+                    line-height:96px;   
+                }
+                .invit-egg{ 
+                    width:60px;
+                    height: 76px;  
+                }
+        }
+    }
+    #viewed-Profile{
+        .mob-viewd{ 
+            margin-left:-10px; 
+            margin-top:10px;   
+        }
+        .clos{ 
+            padding:2px 6px;   
+        }
+        .stnderd{ 
+            padding:2px 6px;   
+        }
+        .featured{ 
+            padding:2px 6px;  
+        }
+    }  
+    #users{
+        .block-title-2{ 
+            button{ 
+                margin-bottom:5px;  
+            }
+            .pull-right{ 
+                float: left;
+            }
+        }
+        .filter-jobs .featured-box{ 
+            border-top: 0px solid $grey-border
+        }
+        .block .block-footer button{ 
+            padding:0px 10px!important;  
+        }
+    }  
+    #followers{ 
+        .align .company-following{ 
+            width:100%;  
+        }
+        .block .block-footer button{ 
+            padding:10px 10px 
+        }
+    }
+    //User Report
+    .user-report{
+        .saved-searches .savedserch .col-lg-2{ 
+            border-top: 1px solid $grey-border; 
+            text-align: center
+        }
+        .saved-searches .savedserch .navy{
+            white-space: nowrap;           
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 212px
+        }
+        .savedserch{ 
+            .row{ 
+                border-top:solid 5px $bg 
+            }
+            .open-jobs{
+                margin: 10px auto;
+            }
+            .close-jobs{
+                margin: 10px auto;
+            }
+    }
+        #jobposted .savedserch .col-lg-2{ 
+            line-height:30px; 
+            min-height:50px;    
+        }
+    }
+    // Dashboard Count
+    .dashboard-employer .nav > li > a{
+        padding:0px!important;
+        min-height: 60px;
+        text-align: center;
+        font-size: $font-14;
+        padding-bottom:10px;
+        span{
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            font-family: $font-medium;
+            padding-top:5px;
+        }
+    }
+    .bar-chart{
+        .bar-date{
+            h5{
+                font-size: 6px;
+            }
+        }
+    }
+    .scroll-chart{
+        overflow-y: hidden;
+        overflow-x: scroll; 
+    }
+    .followers-padd{
+        padding:10px 0px!important;
+    }
+    .dashboard-employer{
+        .branding{
+            min-height: auto;
+        }
+    }
+    #employer-rofile{
+        .commen-container{
+            padding:0px!important;
+        }
+        .block-title-2{
+            h2{
+                text-align: center;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+    .align-center-text{
+        float: none!important;
+        width: 100%;
+    }
+    .full-back{
+        width: 100%;
+        background-color: $navy-dark;
+        height: 40px;
+        text-align: center;
+        border:none;
+        color: $white;
+    }
+    .min-bar-277{
+        min-height: auto;
+    }
+    // Movile-view
+    #most-profile{
+        .commen-container{
+            margin-top: 0px;
+            padding:0px!important;
+        }
+        .invt{
+            width: 30px!important;
+            height: auto!important;
+            .invit-egg{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+            }
+            .invit-egg-default{
+                width: 30px!important;
+                height: 36px!important;
+                margin:0px!important;
+                line-height: 36px!important;
+                i{
+                  line-height: 36px!important;
+                  font-size: $font-16;  
+                }
+            }
+        }
+        .feturd-compny-dtls{
+            margin-top: 0px;
+        }
+        .mob-most-view{
+            padding: 10px 0px!important;
+            border-bottom:1px solid #f1f1f1;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+
+        }
+        .bt-half{
+            display: block;
+            width: 50%;
+            text-align: center;
+            height: 35px;
+            float: left;
+            border:1px solid #f1f1f1;
+            line-height: 35px!important;
+            color: $blue-bali;
+            i{
+                line-height: 35px!important;
+                color: $navy-dark
+            }
+        }
+    }
+    // MostViewed_Job
+    #viewed-Profile{
+        .commen-container{
+            margin-top: 0px;
+            padding-top:0px!important;
+        }
+        .col-lg-2{
+            min-height:auto!important;
+            padding-bottom:10px!important;
+        }
+        .mob-most-view{
+            padding: 10px;
+            border-bottom:1px solid #f1f1f1;
+            float: left;
+            width: 100%;
+            span{
+                padding-right: 5px;
+                width: 20px;
+            }
+            .feturd-compny{
+                float: left!important;
+                margin-right: 10px;
+            }
+            .feturd-compny-dtls{
+                float: left!important;
+                width: 70%!important;
+                margin-top: 0px;
+            }
+            .light{
+                float: left;
+                width: 100%;
+                font-size: $font-14;
+                span{
+                    color: $navy-dark;
+                }
+                .text-left{
+                    float: left!important;
+                    color: $navy-dark;
+                    width: 70px;
+                }
+                .text-right{
+                    float: left;
+                    padding-left:10px;
+                    width: calc(100% - 70px);
+                    text-align: left;
+                }
+            }
+        }
+    }
+    // Employer Dashbord BarChart Padding
+    .bar-graph{
+        .col-lg-1{
+            padding:0px!important;
+        }
+    }
+    .bar-date{
+       .col-lg-1{
+            padding:0px!important;
+        } 
+    }
+    .mob-font-23{
+        font-size: 16px!important;
+    }
+    .mob-font-15{
+        font-size: 16px!important;
+    }
+    .border-left-no{
+        .bootstrap-select{
+            .btn{
+                border-left:1px solid #e1e1e1!important;
+            }
+        }
+    }
+    .border-left-no-default{
+        border-left:1px solid #e1e1e1!important;
+    }
+    .mg-r-s{
+        float: right;
+        display: block;
+        width: 100%;
+        text-align: right;
+    }
+}

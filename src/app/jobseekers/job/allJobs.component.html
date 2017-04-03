@@ -1,0 +1,404 @@
+<job-menu [activeFlag]="'all'"></job-menu>
+<div class="tab-content job-bloovo">
+<div role="tabpanel" class="tab-pane active load-data-js" id="all-jobs">
+    <div [class.commen-container]="(isAuthorized$ | async)"  [class.commen-container-public]="!(isAuthorized$ | async)">
+
+        <!--SAIDEBAR-->
+
+        <div *ngIf="!showfilter" class="col-lg-3 refine-serch filter-hide ">
+            <div class="block bottom-gap">
+                <div class="row block-title">
+                    <h2>Refine Your Search By</h2>
+                </div>
+                <filter1-area-job [page]="urlPath"> </filter1-area-job>
+                <!--<filter1-area-job [page]="'/'+_accountService.getPath()+'/jobs/country/178/United-Arab-Emirates'"> </filter1-area-job>-->
+
+            </div>
+        </div>
+
+
+        <!--BODY-AREA-->
+        <div *ngIf="!showfilter" class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <div class=" row main-alert" id="alert-open" *ngIf="showHelpFlag">
+                <div class="row">
+                    <div class="pull-left"><h4>How to Use Job Searching Engine</h4></div>
+                    <div (click)="getToggleHelp()" class="pull-right" id="alert-close"><i
+                            class="zmdi zmdi-close-circle navy"></i></div>
+                    <div class=" clearfix"></div>
+                </div>
+                <!--<p>{{(help_message$ | async )}}</p>-->
+                <p>By default you are seeing all the jobs posted on the platform, each with a unique Matching Percentage with your profile. It is always advisable that you have a complete profile so that the system can help you identify the perfect jobs for you.</p>
+            </div>
+
+            <!--TITTLE-->
+            <div class="row block career hidden-xs margin-bootom-5">
+                <div class="block-title" *ngIf="!(isPublic$ | async)">
+                    <h2> Your Future Career Starts Here </h2>
+                    <a (click)="getToggleHelp()"> <span class="light" id="alert-click">
+                        <span class="dark padding-0"><i class="zmdi zmdi-help"></i></span> Help
+                        </span></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row future-serch padding-10-15">
+                    <div class="search-box-job-seeker">
+                        <div class="future-serch-icon">
+                            <i class="zmdi zmdi-case"></i>
+                            <form [formGroup]="form1">
+                                <input type="text" placeholder="Search Jobs by Job Title"  [ngModel]="search_string"  name="search_string" formControlName="search_string" (keyup.enter)="onSearch()" >
+                               <!--  <button class="bt-s-mobile hidden-lg hidden-md" (click)="onSearch()">
+                                    <i class="icon-featured-serch"></i>
+                                </button> -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class=" block-footer border-none padding-0">
+                        <button class="serch-future" (click)="onSearch()"><i class="icon-featured-serch"></i> Search
+                        </button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!--SEARCH-->
+            <!--FEATURED Jobs  Are Disabled for now . But may come in the future-->
+
+            <!--<div class="row"  *ngIf="(featuredJobList$ | async)?.length >0">-->
+                <!--<div class="row">-->
+                    <!--<div class="plain-title"><h2> Featured Jobs Matching your Profile</h2></div>-->
+                <!--</div>-->
+                <!--<div class="featured-jobs bottom-gap">-->
+                    <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
+                        <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+                        <!--<div class="carousel-inner">-->
+                            <!--<div *ngFor="let selJob of(featuredJobList$ | async),let jobcount=index" class="item"-->
+                                 <!--[class.active]="jobcount ==0">-->
+                                <!--<div class="featured-box">-->
+                                    <!--<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 padding-20-0 mob-bdr">-->
+
+                                        <!--<div class="feturd-compny" *ngIf="!selJob.companyObj.profileImage">-->
+                                            <!--<i class="zmdi zmdi-city-alt empty-blank"></i></div>-->
+                                        <!--<div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">-->
+                                            <!--<span>-->
+                                                <!--<img src="{{selJob.companyObj.profileImage}}">-->
+                                            <!--</span>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="feturd-compny-dtls">-->
+                                            <!--<div class="txt-white">{{selJob.title}}</div>-->
+                                            <!--<div class="cmpny-txt"><i class="zmdi zmdi-city-alt"></i>{{selJob.companyObj.name}}-->
+                                            <!--</div>-->
+                                            <!--<div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{selJob.city}}-->
+                                                <!--&lt;!&ndash;,{{selJob.countryCountry}}&ndash;&gt;-->
+                                            <!--</div>-->
+                                            <!--<div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{selJob.companyObj.sector}}-->
+                                            <!--</div>-->
+                                            <!--<div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i> 8 May, 2016</div>-->
+                                        <!--</div>-->
+
+
+                                        <!--<div class="feturd-matching-percentage">-->
+                                            <!--<div class="prg-cercle">-->
+                                                <!--<div [class]="'c100 p'+selJob.matchingPercent+' green small'">-->
+                                                    <!--<span>{{selJob.matchingPercent}}%</span>-->
+                                                    <!--<div class="slice">-->
+                                                        <!--<div class="bar"></div>-->
+                                                        <!--<div class="fill"></div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="percenge-txt">Matching Percentage</div>-->
+                                        <!--</div>-->
+                                        <!--<div class=" clearfix"></div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-lg-6 col-sm-6 col-xs-6 matching-applicants padding-20-0">-->
+                                                <!--<i class="icon-applicants"></i>-->
+                                                <!--<div class="applicants-numbers">{{selJob.numberApplicants | number}}-->
+                                                <!--</div>-->
+                                                <!--<div class="applicants-txt">No. of Applicants</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-lg-6 col-sm-6 col-xs-6 probability padding-20-0">-->
+                                                <!--<i class="icon-probability-success"></i>-->
+                                                <!--<div class="applicants-numbers">{{selJob.probabilitySuccess |-->
+                                                    <!--number}}%-->
+                                                <!--</div>-->
+                                                <!--<div class="applicants-txt">Probability of Success</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class=" clearfix"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--&lt;!&ndash; Controls &ndash;&gt;-->
+                        <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">-->
+                            <!--<span class="zmdi"><i class="zmdi zmdi-chevron-left"></i></span>-->
+                        <!--</a>-->
+                        <!--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">-->
+                            <!--<span class="zmdi"><i class="zmdi zmdi-chevron-right"></i></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+            <!--FILTER-->
+            <div class="row block filter-jobs bottom-gap box-shadow-none border-top ">
+                <div class="row block-title-2 padding-5-10 border-none hidden-xs hidden-sm">
+
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <h2 class="padding-top-10"> {{(matching_jobs$ | async) | number}}
+                        <span class="light" *ngIf="!(isPublic$ | async)">Matching Jobs</span>
+                        <span class="light" *ngIf="(isPublic$ | async)">All Jobs</span>
+                    </h2>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6  col-xs-12 drop-jobs hidden-xs hidden-sm">
+                        <div class="sort-drop">
+                            <div class="click-dropdown-sort">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="btn-group btn-input clearfix">
+                                            <button type="button" class="btn btn-default dropdown-toggle form-control"
+                                                    data-toggle="dropdown">
+                                                <span data-bind="label">{{(order_name$ | async)}}</span>&nbsp;<span
+                                                    class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <div class="arow-dropdown zmdi zmdi-caret-up"></div>
+                                                <!--<li><a  class="cursor_pointer1" (click)="onSelectOrder('probability_success','Probability of Success')" >Probability of Success</a></li>-->
+                                                <li><a class="cursor_pointer1" (click)="onSelectOrder('created_at','Date Posted')">Date Posted</a></li>
+                                                <li *ngIf="!(isPublic$ | async)"><a class="cursor_pointer1" (click)="onSelectOrder('matching_percentage','Matching Percentage')">Matching Percentage</a></li>
+                                                <!--<li><a class="cursor_pointer1" (click)="onSelectOrder('','None')">None</a></li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="srt-feture">Sort By:</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <!--SEARCH TAGS-->
+                <search-tag-module *ngIf="(search_tags$ |async )!= null" [search_tagsObs]="search_tags$" [url]="'/'+_accountService.getPath()+'/jobs/all'"  [titleObs]="title$" [loctitleObs]="loctitle$"  >
+                </search-tag-module>
+                <!--ALL LISTING-->
+
+                <div class="row empty-min2">
+
+                <div class="empty-prf" *ngIf="(showSpinner$ | async)">
+                    <spinner [visible]="(showSpinner$ | async)"></spinner>
+                </div>
+
+
+                    <div *ngIf="!(showSpinner$ | async) && (jobList$ | async)?.length ==0"  class="row empty-min2">
+
+                        <div class="empty-prf ">
+                            <i class="icon-empty-nojobs"></i>
+                            <h5>No Jobs Available</h5>
+                        </div>
+
+                    </div>
+                    <span  *ngIf="!(showSpinner$ | async)">
+                        <div class="row"  *ngFor="let selJob of (jobList$ | async),let jobcount =index">
+
+
+
+                            <!-- desktop -->
+                                <div class="featured-box joblisting hidden-xs">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-10 mob-bdr1">
+
+                                         <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+
+                                        <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage || (isPublic$ | async)">
+                                            <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                        </div>
+                                        <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage && !(isPublic$ | async)">
+                                            <span>
+                                                <img src="{{selJob.companyObj.profileImage}}">
+                                            </span>
+                                        </div>
+                                        </a>
+
+                                        <div class="feturd-compny-dtls">
+                                            <div class="txt-white"><a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">{{selJob.title}}</a></div>
+                                            <div class="cmpny-txt navy bold">
+                                                <i class="zmdi zmdi-city-alt"></i>
+                                                <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/companies/'+selJob.companyObj.id+'/'+_accountService.getSpaceToDash(selJob.companyObj.name)]">{{selJob.companyObj.name}}</a>
+                                            </div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}
+                                            </div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{selJob.sector}}</div>
+
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{selJob.createdDate}}</div>
+                                        </div>
+
+                                        
+                                        
+                                        <div  class="feturd-matching-percentage">
+
+                                            <div  *ngIf="(isPublic$ | async)" class="tooltip-x">
+                                                <!--Tool Tip-->
+                                                <strong class="tooltiptext-xvv">
+                                                    <p>Sign Up Now to Check Your Matching Percentage<br>with this Job!</p>
+                                                </strong>
+
+                                                <div class="prg-cercle">
+                                                    <div [class]="'c100 p'+(selJob.matchingPercent | number:'1.0-0')+' small'">
+                                                        <span *ngIf="!(isPublic$ | async)">{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                        <span *ngIf="(isPublic$ | async)">?%</span>
+                                                        <div class="slice">
+                                                            <div class="bar"></div>
+                                                            <div class="fill"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="percenge-txt">Matching Percentage</div>
+                                            </div>
+
+                                             <div *ngIf="!(isPublic$ | async)" >
+                                                <!--Tool Tip-->
+                                                
+
+                                                <div class="prg-cercle">
+                                                    <div [class]="'c100 p'+(selJob.matchingPercent | number:'1.0-0')+' small'">
+                                                        <span *ngIf="!(isPublic$ | async)">{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                        <span *ngIf="(isPublic$ | async)">?%</span>
+                                                        <div class="slice">
+                                                            <div class="bar"></div>
+                                                            <div class="fill"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="percenge-txt">Matching Percentage</div>
+                                            </div>
+
+                                        </div>
+                                        
+
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-lg hidden-sm hidden-xs hidden-md">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 col-xs-12 matching-applicants padding-20">
+                                                <i class="icon-applicants"></i>
+                                                <div class="applicants-numbers">{{selJob.numberApplicants}}</div>
+                                                <div class="applicants-txt">No. of Applicants</div>
+                                            </div>
+                                            <!--<div class="col-lg-6 col-sm-6 col-xs-6 probability padding-20">-->
+                                                <!--<i class="icon-probability-success"></i>-->
+                                                <!--<div class="applicants-numbers">{{selJob.probabilitySuccess}}%</div>-->
+                                                <!--<div class="applicants-txt">Probability of Success</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+
+                                <!-- Mobile -->
+                                <div class="featured-box joblisting hidden-lg hidden-md hidden-sm">
+
+                                    <div class="job_mobile">
+
+                                    <!-- company logo -->
+                                        <div class="company_logo">
+                                            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+_accountService.getSpaceToDash(selJob.title)]"  >
+                                            <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage || (isPublic$ | async)">
+                                                <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                            </div>
+                                            <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage && !(isPublic$ | async)">
+                                                <span>
+                                                    <img src="{{selJob.companyObj.profileImage}}">
+                                                </span>
+                                            </div>
+                                                </a>
+                                        </div>
+
+                                    <!-- Job title and company name -->
+                                        <div class="job_details">
+                                            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  > 
+                                            <div class="txt-white">{{selJob.title}}</div>
+                                            <div class="cmpny-txt bold">
+                                                <i class="zmdi zmdi-city-alt"></i>
+                                                {{selJob.companyObj.name}}
+                                            </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12">
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+_accountService.getSpaceToDash(selJob.title)]" >
+                                        <div class="row job_mobile-bottom">
+                                            <div class="col-xs-9 col-sm-9">
+                                                <div class="feturd-compny-dtls">
+                                                    <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i><span>{{selJob.city}}, {{selJob.countryCountry}}</span></div>
+                                                    <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i><span>{{selJob.sector}}</span></div>
+                                                    <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i><span>{{selJob.createdDate}}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3">
+                                                <div class="prg-cercle">
+
+                                                    <div [class]="'c100 p'+(selJob.matchingPercent | number:'1.0-0')+' small'">
+                                                        <span *ngIf="!(isPublic$ | async)">{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                        <span *ngIf="(isPublic$ | async)">?%</span>
+                                                        <div class="slice">
+                                                            <div class="bar"></div>
+                                                            <div class="fill"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+<!--             <div class="is-text-centered ">
+                <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+                <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+            </div> -->
+
+            <pagination-new  [url]="'/'+_accountService.getPath()+'/jobs/all'" [totalRecords]="totalRecords$">
+            </pagination-new>
+        </div>
+
+        <div *ngIf="showfilter" class="col-lg-12 refine-serch">
+            <div class="block bottom-gap">
+
+                <div class="row block-title-2">
+                    <h2 class="padding-top-10">Refine Your Search By</h2>
+                    <a (click)="getToggleFilter()">
+                        <button><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span></button>
+                    </a>
+                </div>
+                <filter1-area-job [page]="urlPath"></filter1-area-job>
+                <!--<filter1-area-job [page]="'/'+_accountService.getPath()+'/jobs/all'"></filter1-area-job>-->
+            </div>
+        </div>
+        <!-- Filter -->
+        <div class="row" id="filter" >
+            <div class="filter-mobile">
+                <a *ngIf="!showfilter" (click)="getToggleFilter()">
+                    <button>Filter</button>
+                </a>
+
+                <a *ngIf="showfilter" (click)="getToggleFilter()">
+                    <button>Apply</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

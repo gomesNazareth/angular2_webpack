@@ -1,0 +1,604 @@
+/*---------------------------------------------------1-------------------------------------------------------*/
+
+@media (max-width: 1200px){
+
+    .padding-gap-left{ 
+        padding-left:10px;  
+    }
+    .applications{ 
+        width:40px;  
+    }
+
+    .button-fiton-mobile2{
+        width: 23.5%!important;
+    }
+
+    #viewed-Profile{
+        .hide-feedback{ 
+            display:none
+        }
+    }
+}
+
+/*---------------------------------------------------2-------------------------------------------------------*/
+
+@media (min-width: 768px) and (max-width: 1024px){
+
+    .margin-top-20{ 
+        margin-top:10px
+    }
+    
+     .clicks input[type=checkbox].css-checkbox + label.css-label{
+            font-size: 14px!important;
+        }
+    
+    .button-fiton-mobile2{
+        width: 23.5%!important;
+    }
+
+    .min-474{
+        .item{
+            height: auto!important;
+        }
+    }
+
+    .min-prf{
+        min-height: auto !important;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .information .saved{
+        min-height: auto;
+    }
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .col-lg-4{
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    //  .block{
+    //     .block-footer{
+    //         display:block!important;
+    //     }
+    // }
+}
+
+
+/*---------------------------------------------------3-------------------------------------------------------*/
+
+@media (max-width: 767px) {
+
+    .margin-top-20{ 
+        margin-top:10px
+    }
+    .tab-sizing{ 
+        margin-left: -10px;
+        margin-right: -10px
+    }
+    .contry-numbers{
+        width:90%;
+     }
+    
+    .min-474{
+        height: auto;
+        .item{
+            height: auto !important
+        }
+    }
+    
+    .tab-content{
+        canvas{
+            height: auto !important;
+        }
+    } 
+    
+    .alert-danger{   
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        padding: 15px!important;
+        border: none !important;
+        border-radius: 0px !important;
+            button{
+                width: auto!important;
+                right: 0px !important;
+            }
+    
+     .display{
+        .dp-rgt-1{ 
+            width: 100%!important; 
+        }
+        .dp-lft{
+              margin-bottom: 0px !important;  
+        }
+    } 
+        
+    .alert-danger{   
+        .close-error{
+            width: auto !important;
+            right: 0px !important;
+        }
+    }
+ 
+    .popup{
+            .modal-body{
+                padding: 20px !important;
+            }
+        } 
+            
+     .requirement{
+            .col-lg-4{
+                padding: 10px !important;
+            }
+        } 
+    .hint--right:before, .hint--right:after {
+        display: none;
+       }
+
+     .mobile-edit{
+            background: #ffffff;
+            margin: 0px auto;
+            float:right;
+            width: 38%;
+            height: 35px;
+            text-align: center;
+            line-height: 30px;
+            margin-bottom: 10px;
+            border: 1px solid #f1f1f1;
+            font-size: 16px;
+            a{
+                font-size: 13px;
+            }
+    }
+
+    .box-manual{
+        .box-manual{
+            text-align: center;
+        }
+    }
+    .button-fiton-mobile{
+        width: 50%!important;
+    }
+     
+    .button-fiton-mobile{
+        width: 47%!important;
+    } 
+
+    video{
+        height: auto!important;
+    }
+
+    .mobile-text-center{
+        text-align:center!important;
+    }
+     .navbar-default .navbar-nav > li > a{ 
+        padding: 16px 20px!important;
+    }
+
+    .employers-details{
+        .employers-logo{
+            width: 112px!important;
+            height: 112px!important;
+            span{
+                line-height: 108px!important;
+            }
+        }
+    }
+
+    .error_pg{
+        .four{
+            padding-top:35%;
+            img{
+                width: 45%;
+            }
+        }
+    }
+    .error_pg .light{
+        padding:15px;
+    }
+    .company-main-title-txt{
+        padding-top: 10px;
+    }
+    .common-container-inner-public{
+        margin-top: 60px;
+    }
+    .sign-in .existing, .sign-up .existing{
+        padding:8px!important;
+        font-size: 12px!important;
+    }
+    .sign-page .sign{
+        padding:15px!important;
+    }
+    .sign-page{
+        h5{
+            font-size: 12px!important;
+        }
+    }
+    .sign-page{
+        .sign-logo{
+            padding: 40px 0px 20px 0px!important;
+        }
+    }
+     .sign-page{
+        .sign-logo{
+            img{
+                height: 70px!important;
+            }
+        }
+    }
+    .new-user-sign-form{
+        h2{
+            font-size: 18px!important;
+        }
+    }
+}
+
+/*---------------------------------------------------4-------------------------------------------------------*/
+
+@media (max-width: 480px) {
+
+    
+    .margin-top-20{ 
+        margin-top:10px;  
+    }
+
+    #viewed-Profile{
+        .feturd-compny-dtls{
+            width: 100%!important;
+        }
+    }
+    .tab-sizing{ 
+        margin-left: -10px;
+        margin-right: -10px
+    }
+    .invite-box{
+        i{
+            padding-top:0px !important;
+        }
+    }
+    
+    .min-474{
+        height: auto;
+        .item{
+            height: auto !important
+            }
+    }
+    
+    .tab-content{
+        canvas{
+            height: auto !important;
+        }
+    } 
+    
+    
+    .block-title{
+        h2{
+            font-size: $font-16 !important;
+            text-align: center;
+        }
+    } 
+    
+    }
+
+    .mobile-edit{
+        background: #ffffff;
+        margin: 0px auto;
+        width: 38%;
+        height: 35px;
+        text-align: center;
+        line-height: 30px;
+        margin-bottom: 10px;
+        border: 1px solid #f1f1f1;
+        font-size: 16px;
+        float: none!important;
+        a{
+            font-size: 13px;
+        }
+    }
+    
+    .dp-txt{
+        h3{
+            padding: 0px 0px;
+        }
+    }
+
+    .social-section{
+        margin: 0px;
+    }
+    
+    .display{
+        .dp-lft{
+              margin-bottom: 15px !important; 
+           
+        }
+        .dp-txt{
+            padding-bottom:0px!important;
+        }
+    }
+    
+    .left-dp{
+         h3{
+                font-size:$font-18 !important;
+            }
+    }
+    .rounded{
+        span{
+            font-size: $font-14;
+        }
+    }
+    .min-prf{
+        min-height: auto !important;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .skill{
+        .beg{
+            font-size:12px;
+        }
+        .int{
+            font-size:12px;
+        }
+        .exp{
+            font-size:12px;
+        }
+        .skill-pad{ 
+            margin-top:10px;
+            .skill-20{ 
+                margin-top:2px;
+            }
+         }
+         .skill-category{
+            margin-bottom: 20px;
+         }
+    }
+    .display{
+        .edit{
+            .alert-danger{   
+   
+            button{
+                width: auto !important;
+                right: 0px !important;
+            }
+            } 
+        }
+    }
+    
+    .popup{
+        .modal-body{
+            padding: 15px !important;
+        }
+    }
+    
+    .plain-title{
+        h2{
+            font-size: $font-16;
+        }
+    } 
+    
+    .saved-searches{
+        padding: 5px!important;
+        .block-title-2{
+            h2{
+                font-size: 18px !important;
+                display: block;
+                text-align: center;
+            } 
+        }
+       
+    }
+
+    .block-title-2{
+            h2{
+                font-size: 16px !important;
+            }
+        }
+    
+    .requirement{
+        .col-lg-4{
+            padding: 10px !important;
+        }
+    }
+    .requirement{
+        .req-2{
+            .txt{
+                font-size: $font-14;
+            }
+            .req-dark{
+               font-size: $font-14;
+            }
+        }
+    }
+    
+    .social-section{
+        .social-media{
+            height: auto!important;
+            text-align: center!important;
+        }
+    }
+
+    .box-manual{
+        border-top:1px solid #f1f1f1;
+        float: left;
+        width: 100%;
+        padding:10px 0px;
+    }
+
+    .mobile-edit{
+        background: #fff;
+        margin: 0px auto;
+        float:none;
+        width: 38%;
+        height: 35px;
+        text-align: center;
+        line-height: 30px;
+        margin-bottom: 10px;
+        border: 1px solid #f1f1f1;
+        font-size: 16px;
+        a{
+            font-size: 13px;
+        }
+    }
+
+    .button-fiton-mobile{
+        width: 50%!important;
+    }
+    .button-fiton-mobile2{
+        width: 47%!important;
+    }
+    
+    video{
+        height: auto!important;
+    }
+    .hide-mobile{
+        display:none;
+    }
+
+    .mobile-font{
+        font-size:$font-12;
+    }
+
+    .mobile-text-center{
+        text-align:center!important;
+    }
+
+    .mobile-padding{
+        padding:15px!important;
+    }
+    #about-company{
+        .padding-0-20{
+            padding:0px 10px!important;
+        }
+    }
+
+    .fit-on-mob{
+        padding-top:10px;
+        margin-top: 10px!important;
+        border-top:1px solid #f1f1f1;
+        float: left;
+        width: 100%;
+      } 
+
+     
+    .pagination-footer{
+        padding-bottom: 0px;
+    }
+
+    #saved-searches{
+       .navy{
+        font-size: 14px;
+       } 
+    }
+
+    .mobile-align-fx{
+        margin: 0px!important;
+        margin-top: -20px;
+        .company-following{
+            margin-top: 0px;
+        }
+        .follow-following{
+            margin-top: 0px;
+        }
+    }
+
+    .empty-min2{ 
+        .empty-prf{ 
+            .padding-15{
+                padding:0px 0px!important;
+            }
+        }
+   
+    }
+
+    .navbar-default .navbar-nav > li > a{ 
+        padding: 16px 20px!important;
+    }
+    
+    .employers-details{
+        .employers-logo{
+            width: 112px!important;
+            height: 112px!important;
+            span{
+                line-height: 108px!important;
+            }
+        }
+    }
+
+    .side-menu{
+        .brand-name-wrapper{
+            img{
+                height: 50px;
+            }
+        }
+    }
+
+    .error_pg{
+        .four{
+            padding-top:35%;
+            img{
+                width: 45%;
+            }
+        }
+    }
+    .error_pg .light{
+        padding:15px;
+    }
+
+    // all page minimum height of the pages
+    .commen-container {
+      min-height: 568px;
+    }
+
+    .commen-container-less {
+      min-height: 568px;
+    }
+    .commen-container-public{
+        min-height: 568px;
+    }
+    .company-main-title-txt{
+        padding-top: 10px;
+    }
+    .app-job-j{
+        width: 100%;
+        height: 35px;
+        line-height: 34px;
+        background-color:$navy-dark;
+        border:none;
+        color: #fff;
+    }
+    .common-container-inner-public{
+        margin-top: 60px;
+        padding:0px 10px;
+    }
+    .sign-in .existing, .sign-up .existing{
+        padding:8px!important;
+        font-size: 12px!important;
+    }
+    .sign-page .sign{
+        padding:15px!important;
+    }
+    .sign-page{
+        h5{
+            font-size: 12px!important;
+        }
+    }
+    .sign-page{
+        .sign-logo{
+            padding: 40px 0px 20px 0px!important;
+        }
+    }
+    .sign-page{
+        .sign-logo{
+            img{
+                height: 70px!important;
+            }
+        }
+    }
+    .new-user-sign-form{
+        h2{
+            font-size: 18px!important;
+        }
+    }
+
+}

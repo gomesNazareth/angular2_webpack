@@ -1,0 +1,146 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'mostViewProfiles'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+    <!---------------------------  Companies edit details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="most-profile">
+        <div class="commen-container">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 invite">
+
+                <div class="row empty-min2 white" *ngIf="(topViewedProfiles$ | async)?.jobseekers?.length ==0 || (showSpinner$ | async)" >
+
+                    <div  class="row empty-min2">
+
+                        <div class="empty-prf" *ngIf="(showSpinner$ | async)"><spinner [visible]="(showSpinner$ | async)"></spinner></div>
+                        <div class="empty-prf " *ngIf="(topViewedProfiles$ | async)?.jobseekers?.length ==0">
+                            <i class="icon-empty-candidates"></i>
+                            <h5>No Profiles Available</h5>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="block bottom-gap " *ngIf="!(showSpinner$ | async) && (topViewedProfiles$ | async)?.jobseekers?.length >0">
+                    <div class="block-title-2">
+                        <h1>Most Viewed Profiles</h1>
+                        <div class=" clearfix"></div>
+                    </div>
+                    <div class="filter-jobs">
+
+
+
+                        <div class="row company" *ngFor="let selProfile of (topViewedProfiles$ | async)?.jobseekers,let selIndex = index">
+
+                            <!-- Desktop -->
+                            <div class="featured-box hidden-xs hidden-sm padd-15">
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-padding-grid">
+                                    <div class="invt">
+                                        <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                        <div class="invit-egg" *ngIf="selProfile?.avatar">
+                                        <img  src="{{selProfile?.avatar}}">
+                                        </div>
+                                    </div>
+                                    <div class="feturd-compny-dtls right-candi">
+                                        <div class="txt-white">
+                                        <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/dashboard/candidate_details']" [queryParams]="{id:selProfile?.user_id}">
+                                            {{selProfile?.first_name}} {{selProfile?.last_name}}
+                                        </a>
+                                        </div>
+                                        <div class="cmpny-txt">{{selProfile?.current_position}}</div>
+                                        <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i> {{selProfile?.current_company_name}}</div>
+
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="light" *ngIf="selProfile?.city?.name"><span class="navy">
+                                    <i class="zmdi zmdi-pin"></i></span>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                    <div class="light" *ngIf="!selProfile?.city?.name"><span class="navy">
+                                    <i class="zmdi zmdi-pin"></i></span>{{selProfile?.country?.name}}</div>
+                            <div class="light" *ngIf="selProfile?.num_years_experience == 1"><span class="navy">
+                                <i class="zmdi zmdi-case"></i></span>{{selProfile?.num_years_experience}}  Year of Experience
+                            </div>
+                            <div class="light" *ngIf="selProfile?.num_years_experience != 1"><span class="navy">
+                                <i class="zmdi zmdi-case"></i></span>{{selProfile?.num_years_experience}}  Years of Experience
+                            </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="pull-right bt-two">
+                                        <div class="company-following">
+                                            <i class="icon-profile-view"></i>&nbsp;{{selProfile?.number_of_viewers}}<span class="follow-change">&nbsp;Views</span>
+                                        </div>
+                                        <a class="cursor_pointer1" class="company-following" [routerLink]="['/'+_accountService.getPath()+'/dashboard/candidate_details']" [queryParams]="{id:selProfile?.user_id}">
+                                            <i class="zmdi zmdi-eye"></i>&nbsp;View Profile
+                                        </a>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <!-- Mobile -->
+                            <div class="row company hidden-md hidden-lg">
+                                <div class="featured-box">
+                                    <div class="mob-most-view">
+                                        <div class="invt">
+                                            <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                            <div class="invit-egg" *ngIf="selProfile?.avatar"><img src="{{selProfile?.avatar}}"></div>
+                                        </div>
+                                        <div class="feturd-compny-dtls mobile-dtls">
+                                            <div class="txt-white">
+                                                <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/dashboard/candidate_details']" [queryParams]="{id:selProfile?.user_id}">
+                                                    {{selProfile?.first_name}} {{selProfile?.last_name}}
+                                                </a>
+                                            </div>
+                                            <div class="cmpny-txt">{{selProfile?.current_position}}</div>
+
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                    <div class="mob-most-view">
+                                        <div class="light bold"><span class="navy zmdi zmdi-city-alt"></span>{{selProfile?.current_company_name}}</div>
+                                        <div class="light"><span class="navy zmdi zmdi-pin"></span>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                        <div class="light"><span class="navy zmdi zmdi-case"></span>{{selProfile?.years_of_experience}} of Experience</div>
+                                    </div>
+                                    <div class="mob-most-view">
+                                        <div>
+                                            <div class="bt-half">
+                                                <i class="icon-profile-view"></i>&nbsp;{{selProfile?.number_of_viewers}}<span class="follow-change">&nbsp;Views</span>
+                                            </div>
+                                            <div class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/dashboard/candidate_details']" [queryParams]="{id:1000}"  class="bt-half">
+                                                <i class="zmdi zmdi-eye"></i>&nbsp;View Profile
+                                            </div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+
+                            </div>
+
+                        <div class=" clearfix"></div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            
+            <div>
+                <pagination-new [url]="'/'+_accountService.getPath()+'/dashboard/most-viewed-profiles'" [totalRecords]="totalRecords$"></pagination-new>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

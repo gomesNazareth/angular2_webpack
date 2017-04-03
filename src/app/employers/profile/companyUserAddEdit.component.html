@@ -1,0 +1,298 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'users'"></emp-profile-topmenu>
+
+<div class="tab-content job-bloovo">
+    <!---------------------------  Companies edit details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="followers">
+
+        <div class="commen-container" >
+            <div role="tabpanel" class="tab-pane" id="new_user">
+                <div class="margin-btm-0">
+                    <div class="add-new-user">
+                        <div class="col-lg-12">
+                            <div class="block-title-2">
+                                <div class="pull-left left-bx"><h2 class="padding-top-10 tex-left">{{textPrint}}</h2></div>
+                                <div class="pull-right right-bx">
+                                    <a href="#users" aria-controls="users" role="tab" data-toggle="tab">
+                                        <button (click)="onBack()"  >
+                                            <span>Back</span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="row empty-min2 white" *ngIf="!loadDataFlag">
+                                <div class="empty-prf" *ngIf="!loadDataFlag">
+                                    <spinner [visible]="true"></spinner>
+                                </div>
+                            </div>
+
+                            <div class="add-new-user-forms" *ngIf="loadDataFlag">
+                                
+                                <!-- New add User alert success-->
+                                <div class="alert comen-alert margin-top-5" *ngIf="(successFlag | async)">
+                                    <i class="zmdi zmdi-check-circle"></i>
+                                    Your invitiation has been sent successfully.
+                                </div>
+
+<!-- edit User alert success-->
+<!--   <div class="alert comen-alert">
+    <i class="zmdi zmdi-check-circle"></i>
+    Your update has been implemented successfully.
+</div> -->
+
+
+                                <!-- alert worng-->
+                                <div class="alert alert-danger" *ngIf="(errorFlag | async)">
+                                    <i class="zmdi zmdi-close-circle"></i>
+                                    {{errorMessage}}
+                                </div>
+
+                                <!-- personal information -->
+                                <div class="row section-end">
+                                    <h3>Personal Information</h3>
+                                    <form [formGroup]="userForm">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12">
+                                                <input type="text" name="" placeholder="First Name" formControlName="first_name">
+
+                                                <div  *ngIf="( postFlag || userForm.controls['first_name'].touched )&& !userForm.controls['first_name'].valid" class="alert alert-danger alert-dismissible margin-bootom-5" role="alert">
+
+                                                    Please enter First Name
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12">
+                                                <input type="text" name="" placeholder="Last Name" formControlName="last_name">
+
+                                                <div  *ngIf="( postFlag || userForm.controls['last_name'].touched ) && !userForm.controls['last_name'].valid" class="alert alert-danger alert-dismissible margin-bootom-5" role="alert">
+
+                                                    Please enter Last Name
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12">
+                                                <input type="text" name="" placeholder="Email" formControlName="email">
+
+                                                <div  *ngIf="( postFlag || userForm.controls['email'].touched ) && !userForm.controls['email'].valid" class="alert alert-danger alert-dismissible margin-bootom-5" role="alert">
+
+                                                    Please enter Email ID
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12" *ngIf="_accountService.getUserId() != selId">
+                                                <span class="Rol-text">Role of the user</span>
+                                                <div class="skill-radio clicks">
+                                                    <div class="sk-radio user-rol">
+                                                        <div class="radio radio-primary">
+                                                            <input id="radio222"    type="radio" formControlName="role" value="false">
+                                                            <label for="radio222">User</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sk-radio user-rol">
+                                                        <div class="radio radio-primary">
+                                                            <input id="radio233"   type="radio" formControlName="role" value="true">
+                                                            <label for="radio233">Admin</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12" *ngIf="_accountService.getUserId() == selId">
+                                                <span class="Rol-text">Role of the user</span>
+                                                <div class="skill-radio clicks">
+                                                    <div class="sk-radio user-rol">
+                                                        <div class="radio radio-primary">
+                                                            <input id="radio2223"  disabled  type="radio" formControlName="role"  value="false">
+                                                            <label for="radio2223">User</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sk-radio user-rol">
+                                                        <div class="radio radio-primary">
+                                                            <input id="radio2333" disabled  type="radio"  formControlName="role" value="true">
+                                                            <label for="radio2333">Admin</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12">
+                                                <input type="password" name="" placeholder="Password" formControlName="password">
+                                                <div  *ngIf="( postFlag || userForm.controls['password'].touched ) && !userForm.controls['password'].valid" class="alert alert-danger alert-dismissible" role="alert">
+                                                    Please enter a valid Password
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md 4 col-sm-12 col-xs-12">
+                                                <input type="password" name="" placeholder="Confirm Password" formControlName="confirm_password">
+                                                <div  *ngIf="( postFlag || userForm.controls['confirm_password'].touched ) && !userForm.controls['confirm_password'].valid" class="alert alert-danger alert-dismissible" role="alert">
+                                                    Please confirm Password
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                                <!-- box -->
+                                <div class="row section-end" *ngIf="userForm.controls['role'].value == 'false' && _accountService.getUserId() != selId ">
+
+                                    <h3>Action</h3>
+
+                                    <div class="row">
+                                        <!-- Action box1 -->
+                                        <div class="box-action border-left">
+                                            <div class="row box-action-heading">
+                                                <h2>Company Information Access</h2>
+                                                <div class="clicks">
+                                                    <input id="checkboxG1" class="css-checkbox" type="checkbox" (click)="companyInfoPermissions()"  name="checkboxG1">
+                                                    <label class="css-label" for="checkboxG1"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row box-action-body">
+                                                <div class="row">
+                                                    <h4>Can Edit Company Profile</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG2" class="css-checkbox" type="checkbox"  #editcompany (click)="onSetPermission('edit_company',editcompany.checked)"   [ngModel]="permissionParams['edit_company']" name="checkboxG2">
+                                                        <label class="css-label" for="checkboxG2"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <h4>Can Invite Connections</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG3" class="css-checkbox" type="checkbox"  #invite_connection (click)="onSetPermission('invite_connection',invite_connection.checked)"   [ngModel]="permissionParams['invite_connection']" name="checkboxG3">
+                                                        <label class="css-label" for="checkboxG3"></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Action box1 -->
+                                        <div class="box-action">
+                                            <div class="row box-action-heading">
+                                                <h2>Candidate Search Access</h2>
+                                                <div class="clicks">
+                                                    <input id="checkboxG4" class="css-checkbox" type="checkbox" (click)="candidateSearchPermissions()" name="checkboxG4">
+                                                    <label class="css-label" for="checkboxG4"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row box-action-body">
+                                                <div class="row">
+                                                    <h4>Can Post a Job</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG5" class="css-checkbox"  #create_job (click)="onSetPermission('create_job',create_job.checked)" [ngModel]="permissionParams['create_job']" type="checkbox" name="checkboxG5">
+                                                        <label class="css-label" for="checkboxG5"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <h4>Can Change Applicant Status</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG6" class="css-checkbox" #edit_job_application_status (click)="onSetPermission('edit_job_application_status',edit_job_application_status.checked)"  [ngModel]="permissionParams['edit_job_application_status']"  type="checkbox" name="checkboxG6">
+                                                        <label class="css-label" for="checkboxG6"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <h4>Can Delete Active / Inactive Jobs</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG7" class="css-checkbox" #destroy_job (click)="onSetPermission('destroy_job',destroy_job.checked)"   [ngModel]="permissionParams['destroy_job']" type="checkbox" name="checkboxG7">
+                                                        <label class="css-label" for="checkboxG7"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <h4>Database Search</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG8" class="css-checkbox" #search_jobseekers (click)="onSetPermission('search_jobseekers',search_jobseekers.checked)"   [ngModel]="permissionParams['search_jobseekers']" type="checkbox" name="checkboxG8">
+                                                        <label class="css-label" for="checkboxG8"></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Action box1 -->
+                                        <div class="box-action last-mob">
+                                            <div class="row box-action-heading">
+                                                <h2>Brand Related Access</h2>
+                                                <div class="clicks">
+                                                    <input id="checkboxG9" class="css-checkbox" type="checkbox" (click)="brandRelatedPermissions()" name="checkboxG9">
+                                                    <label class="css-label" for="checkboxG9"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row box-action-body">
+                                                <div class="row">
+                                                    <h4>Can Post Blog</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG10" class="css-checkbox" type="checkbox"  #create_blog (click)="onSetPermission('create_blog',create_blog.checked)"  [ngModel]="permissionParams['create_blog']" name="checkboxG10">
+                                                        <label class="css-label" for="checkboxG10"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <h4>Can Manage Blog Posts</h4>
+                                                    <div class="clicks">
+                                                        <input id="checkboxG11" class="css-checkbox" type="checkbox"    #manage_blog (click)="onSetPermission('manage_blog',manage_blog.checked)"  [ngModel]="permissionParams['manage_blog']" name="checkboxG11">
+                                                        <label class="css-label" for="checkboxG11"></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- status information -->
+                                <div class="row section-end status-user">
+                                    <h3 class="padd-only-user">Status</h3>
+                                    <div class="row">
+                                        <div class="skill-radio clicks">
+                                            <div class="sk-radio">
+                                                <div class="radio radio-primary online">
+                                                    <input id="radio225" name="isActive" type="radio" value="true"
+                                                           [checked]="(isActive$ | async)" (click)="isActive$.next(true)">
+                                                    <label for="radio225">&nbsp;<i class="icon-round"></i>&nbsp;Active</label>
+                                                </div>
+                                            </div>
+                                            <div class="sk-radio ">
+                                                <div class="radio radio-primary offline">
+                                                    <input id="radio234" name="isActive" type="radio" value="false"
+                                                           [checked]="!(isActive$ | async)" (click)="isActive$.next(false)">
+                                                    <label for="radio234">&nbsp;<i class="icon-round"></i>&nbsp;Inactive</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Footer-button -->
+                                <div class="row user-footer">
+                                    <div class="block-footer">
+
+                                            <button (click)="onSaveAccount()">Save</button>
+
+                                            <button class="cancel" (click)="onBack()" >Cancel</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

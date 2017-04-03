@@ -1,0 +1,64 @@
+<div  [class.bloovo-header]="(isAuthorized$ | async)" *ngIf="!(isHome$ | async) && _accountService.getProfileComplete()">
+    <div *ngIf="(isAuthorized$ | async) && !_accountService.getCheckEmployer()" class="col-lg-5 col-md-6 col-sm-6 bloovo-left">
+        <div class="search">
+            <form [formGroup]="form1">
+                <input type="text" placeholder="Search Jobs by Job Title"   name="search_string" formControlName="search_string" (keyup.enter)="onSearch()" >
+            </form>
+            <i class="zmdi zmdi-search"></i>
+        </div>
+    </div>
+    <div *ngIf="(isAuthorized$ | async)"  class="bloovo-right click-dropdown">
+        <div class="dropdown">
+            <button class="dropbtn">
+                <div class="profile-picture bloovo-right ">
+                    <!-- <img src="images/profile.png "> -->
+                    <img  *ngIf="(profileHeader$ | async)?.avatar" [src]="(profileHeader$ | async)?.avatar">
+                    <i *ngIf="!(profileHeader$ | async)?.avatar" class="icon-profile" ></i>
+                </div>
+                <!-- Jobseeker Login details-->
+                <div *ngIf="!_accountService.getCheckEmployer()" class="profile-name bloovo-right">
+                     {{(profileHeader$ | async)?.full_name}}
+                </div>
+
+                <!--Employer login details-->
+                <div *ngIf="_accountService.getCheckEmployer() && !_accountService.getCompanyOwner()" class="profile-name bloovo-right light bold-none">
+                    {{(profileHeader$ | async)?.full_name}}
+                    <strong class="dark padding-left">&nbsp;&nbsp;({{(profileHeader$ | async)?.company_name}})
+                    </strong>
+                </div>
+                <div *ngIf="_accountService.getCheckEmployer() && _accountService.getCompanyOwner()" class="profile-name bloovo-right light bold-none">
+                    {{(profileHeader$ | async)?.company_name}}
+                </div>
+            </button>
+            <div class="dropdown-content">
+                <div class="arow-dropdown"><i class="zmdi zmdi-caret-up"></i></div>
+
+                <a [routerLink]="['/' + _accountService.getPath() + '/settings']" ><i class="zmdi zmdi-settings"></i>&nbsp;&nbsp;Account Settings</a>
+                <a [routerLink]="['/' + _accountService.getPath() + '/profile/invite-connections']">
+                <i class="zmdi zmdi-accounts-add"></i>&nbsp;Invite Friends</a>
+                <a  class="cursor_pointer1" (click)="logout()"> <i class="zmdi zmdi-power"></i>&nbsp;&nbsp;Logout</a>
+            </div>
+        </div>
+        <div class=" clr"></div>
+    </div>
+    <div *ngIf="!(isAuthorized$ | async)">
+        <header class="home-inner-header">
+            <div class="col-lg-6 col-sm-6 col-xs-3 hidden-xs">
+                <i><a [routerLink]="'/home'" class="logo-home-inner"><img src="images/logo2.svg"  class="img-responsive"></a></i>
+            </div>
+            <div class="menu col-lg-6 col-sm-6 col-xs-12 mobile-top-menu-fit">
+                <a [routerLink]="'/home/login'" class="signin"> Sign In</a>
+                <a [routerLink]="'/home/signup'" class="signup">Sign Up</a>
+                <a (click)="goBack()" class="bt_public_header">Back</a>
+            </div>
+            <div class="clearfix"></div>
+        </header>
+    </div>
+</div>
+
+
+
+
+
+
+

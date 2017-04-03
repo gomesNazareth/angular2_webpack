@@ -1,0 +1,50 @@
+<div class="sign-page back-bg">
+   
+    <div>
+        <div class="public-sign-up-both">
+            <div class="sign-logo"><a class="cursor_pointer1" [routerLink]="'/home'"> <img src="images/sign-logo.svg"> </a></div>
+        </div>
+        <div class="public-sign-up-both sign-in">
+            <div class="sign">
+                <h1 class="text-center">Sign In </h1>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="home-full"> <input type="text" name="phn" placeholder="Enter Your Email"></div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="home-full"> <input type="text" name="phn" placeholder="Password"></div>
+                    </div>
+                </div>
+
+
+                <div class="home-full2">
+                    <div class="requr clicks pull-left">
+                        <input id="checkboxG6" class="css-checkbox" type="checkbox" name="checkboxG6">
+                        <label class="css-label" for="checkboxG6">
+                            <span>Remember&nbsp;Me </span>
+                        </label>
+                    </div>
+                    <div class="pull-right"><a href="forgot-password.html"> Forgot Password</a> </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="pop-button">
+                    <button type="button" class="btn postive">Sign In</button>
+                    <div class="clr"></div>
+                </div>
+                <div>
+                    <h5 class="text-center">Don't have an Account? <a [routerLink]="['/home/signup']" routerLinkActive="active">Sign Up Now</a> </h5>
+                    <!--Existing-->
+                    <div class="existing">
+                        We no longer support login via Social Accounts To recover your old account please <a [routerLink]="['/home/signin_social']" routerLinkActive="active">Click Here.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3  col-sm-10 col-sm-offset-1 sign-ftr">
+            <h5 class="text-center padding-20">Copyright &copy; BLOOVO Middle East FZ LLC. All Rights Reserved.</h5>
+        </div>
+    </div>
+</div>

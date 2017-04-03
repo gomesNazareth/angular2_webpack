@@ -1,0 +1,198 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'users'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+    <!---------------------------  Companies edit details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="followers">
+
+        <div class="commen-container" >
+            <div class="col-lg-12 hidden-xs hidden-sm ">
+                <div class="block bottom-gap user-section">
+                    <div class="block-title-2">
+
+                        <span class="pull-left"> <h2 class="padding-top-10"> {{(companyUsersObs | async)?.meta?.total_count }} <span class="light">Users</span> </h2></span>
+                        <span class="pull-right ">
+        <a *ngIf="!_accountService.getCompanyUser()" [routerLink]="['/'+_accountService.getPath()+'/profile/user_add']" class="cursor_pointer1">
+            <button>
+                <i class="zmdi zmdi-plus-circle"></i> Add New User </button>
+        </a>
+        <a *ngIf="_accountService.getCompanyUser()" class="cursor_pointer1">
+            <button class="disabled_button">
+                <i class="zmdi zmdi-plus-circle"></i> Add New User </button>
+        </a>
+        <a *ngIf="!_accountService.getCompanyUser()"  [routerLink]="['/'+_accountService.getPath()+'/profile/user_report']"  class="cursor_pointer1">
+            <span class="cancel"><button><i class="zmdi zmdi-file-text"></i> User Report</button></span></a>
+
+
+        <a *ngIf="_accountService.getCompanyUser()"  class="cursor_pointer1">
+            <span class="cancel"><button class="disabled_button"><i class="zmdi zmdi-file-text"></i> User Report</button></span></a>
+
+
+        </span>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+                <div class="row" id="most-profile" >
+
+                <div class="col-lg-12">
+                <div class="empty-min2 white" *ngIf="!(companyUsersObs | async) || (companyUsersObs | async)?.users?.length == 0">
+                    <div class="empty-prf" *ngIf="!(companyUsersObs | async)">
+                        <spinner [visible]="true"></spinner>
+                    </div>
+
+
+                    <div *ngIf="(companyUsersObs | async) && (companyUsersObs | async)?.users?.length == 0"  class="empty-min2">
+
+                        <div class="empty-prf ">
+                            <i class="icon-empty-user"></i>
+                            <h5>No Users</h5>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+
+
+
+
+            <div *ngIf="(companyUsersObs | async)">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let selUser of (companyUsersObs | async)?.users,let userIndex = index">
+                    <div class="block bottom-gap user-section">
+                        <div class="company filter-jobs">
+                            <div>
+                                <div class="user-card">
+                                    <div class="feturd-compny-dtls">
+                                        <div class="txt-white">{{selUser?.first_name}} {{selUser?.last_name}}</div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-email"></i> {{selUser?.email}}</div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i> Joined: {{ (selUser?.join_date | date:'d MMM, yyyy')}}</div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="block-footer">
+                            <span class="pull-left online line-center" *ngIf="selUser?.active"> <i class="icon-round"></i> Active </span>
+                            <span class="pull-left offline line-center" *ngIf="!selUser?.active"> <i class="icon-round"></i> Inactive </span>
+                            <span class="pull-right">
+
+                    <!-- desktop -->
+                    <div class="row hidden-sm hidden-xs">
+                        <a *ngIf="_accountService.getCompanyOwner()"  class="cursor_pointer1"  [routerLink]="[_accountService.getSpaceToDash(selUser?.first_name)+'/'+selUser.employer_id+'/edit']"  aria-controls="edit_new_users">
+                        <button><i class="zmdi zmdi-edit"></i> Edit </button>
+                        </a>
+                        <a *ngIf="!_accountService.getCompanyOwner()"  class="cursor_pointer1">
+                        <button class="disabled_button"><i class="zmdi zmdi-edit"></i> Edit </button>
+                        </a>
+                        <span *ngIf="_accountService.getCompanyOwner()"  class="cancel">
+                                  <a data-toggle="modal" [attr.data-target] = "'.delete-user'+selUser.id"><button><i
+                                          class="zmdi zmdi-delete"></i>&nbsp;Delete</button>
+                                  </a>
+                        </span>
+                        <span *ngIf="!_accountService.getCompanyOwner()"  class="cancel">
+                                  <a><button class="disabled_button"><i
+                                          class="zmdi zmdi-delete"></i>&nbsp;Delete</button>
+                                  </a>
+                        </span>
+                    </div>
+
+                                <!-- Mobile -->
+                    <div class="row mob_user_action hidden-lg hidden-md">
+
+                        <a *ngIf="_accountService.getCompanyOwner()" class="cursor_pointer1"
+                           [routerLink]="[_accountService.getSpaceToDash(selUser?.first_name)+'/'+selUser.employer_id+'/edit']"
+                           aria-controls="edit_new_users"
+                           role="tab" data-toggle="tab">
+                        <button class="equal small-b"><i class="zmdi zmdi-edit"></i></button>
+                        </a>
+                        <a *ngIf="!_accountService.getCompanyOwner()" >
+                              <button class="equal small-b disabled_button"><i class="zmdi zmdi-edit"></i></button>
+                        </a>
+                        <span class="cancel">
+                        <a *ngIf="_accountService.getCompanyOwner()" data-toggle="modal" [attr.data-target] = "'.delete-user'+selUser.id" >
+                            <button class="equal small-b"><i class="zmdi zmdi-delete"></i></button>
+                        </a>
+                        <a *ngIf="!_accountService.getCompanyOwner()">
+                              <button class="equal small-b disabled_button"><i class="zmdi zmdi-delete"></i></button>
+                        </a>
+
+                        </span>
+                    </div>
+
+                    </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--Delete Pop up-->
+                    <div class="popup" *ngIf="_accountService.getCompanyOwner()" >
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-user{{selUser?.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div  *ngIf="errorFlag"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                {{errorMessage}}
+                                            </div>
+                                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete User</h2>
+
+                                            <h4><span class="navy"> Sure you want to delete User  <b></b>{{selUser?.first_name}} {{selUser?.last_name}}</span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="deleteUser(selUser.employer_id,userIndex)" type="button" class="btn postive">Delete</button>
+                                                <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <!-- Button Mobile -->
+                <div *ngIf="!_accountService.getCompanyUser()" class="col-xs-12 user-footer2 hidden-lg hidden-md">
+                    <a  [routerLink]="['/'+_accountService.getPath()+'/profile/user_add']" class="cursor_pointer1">
+                        <button><i class="zmdi zmdi-plus-circle"></i> Add New User</button>
+                    </a>
+
+                    <a  [routerLink]="['/'+_accountService.getPath()+'/profile/user_report']" class="cursor_pointer1">
+                        <button class="cancel"><i class="zmdi zmdi-file-text"></i> User Report</button>
+                    </a>
+                </div>
+                <div *ngIf="_accountService.getCompanyUser()" class="col-xs-12 user-footer2 hidden-lg hidden-md">
+                    <a>
+                        <button  class="disabled_button"><i class="zmdi zmdi-plus-circle"></i> Add New User</button>
+                    </a>
+
+                    <a>
+                        <button class="cancel disabled_button"><i class="zmdi zmdi-file-text"></i> User Report</button>
+                    </a>
+
+                </div>
+                <!-- Pagination -->
+                <div class=" cl-lg-12 col-md-12">
+                    <pagination-new  [perPage]="12"  [url]="'/'+_accountService.getPath()+'/profile/users'" [totalRecords]="totalRecords$"></pagination-new>
+                </div>
+</div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    
+
+</div>
+
+

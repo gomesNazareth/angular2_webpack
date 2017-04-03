@@ -1,0 +1,163 @@
+<div role="tabpanel" class="tab-pane active" id="invite-friends">
+    <div class="commen-container invite clicks invite-space">
+        <div>
+            <div>
+                <div class="block bottom-gap ">
+                    <div class="block-title-2">
+                        <h2>Let Your Friends Know About BLOOVO With a Click</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="invite-find">
+                    <div class="block-title-2">
+
+                        <div class="left">
+                            <h2>Invite Friends</h2>
+
+                        </div>
+                        <div class="right"><a>
+                            <button (click)="onBack()"> Back</button>
+                        </a></div>
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="block-contant">
+
+                        <div class="full-box relative">
+                            <form [formGroup]="searchFriendForm">
+
+                                <div class="left">
+                                    <div class="search">
+                                        <input type="text" name="" placeholder="Search Your Friends"
+                                               name="search_friends"
+                                               formControlName="search_friend"
+                                               (ngModelChange)="searchContacts($event)"
+                                               [(ngModel)]="search_text"
+                                        >
+
+                                        <i class="zmdi zmdi-search"></i>
+                                    </div>
+
+                                </div>
+                                <div class="right">
+
+                                    <div class=" margin-top-10 ">
+                                        <input id="checkboxG90" class="css-checkbox"
+                                               (ngModelChange)="addRemoveAll($event)"
+                                               [(ngModel)]="selectAllFlag"
+                                               [ngModelOptions]="{standalone: true}"
+                                               type="checkbox" name="checkboxG90">
+                                        <label class="css-label" for="checkboxG90">Select All</label>
+
+                                    </div>
+
+                                </div>
+                            </form>
+                            <div class=" clearfix"></div>
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        <!--<form  *ngIf="postFriendForm" [ngFormModel]="postFriendForm">-->
+                        <div class="invt" *ngFor="let friend of (friendListObs) | filterEmail:search_text,let friend_index = index">
+                            <div class="invt-tick">
+                                <input *ngIf="friend.email" [id]="'checkboxG9'+friend.email" class="css-checkbox" type="checkbox"
+                                       [checked]="friend.checked || selectAllFlag"
+                                       [(ngModel)]="friend.checked"
+                                       (click)="addRemoveFriend({name: friend.name,email: friend.email, screen_name: friend.screen_name})"
+                                       [name]="'checkboxG9'+friend.id">
+                                <label *ngIf="friend.email" class="css-label" [attr.for]="'checkboxG9'+friend.email"></label>
+
+                                <input *ngIf="friend.screen_name" [id]="'checkboxG9'+friend.screen_name" class="css-checkbox" type="checkbox"
+                                       [checked]="friend.checked || selectAllFlag"
+                                       [(ngModel)]="friend.checked"
+                                       (click)="addRemoveFriend({name: friend.name,email: friend.email, screen_name: friend.screen_name})"
+                                       [name]="'checkboxG9'+friend.id">
+                                <label *ngIf="friend.screen_name" class="css-label" [attr.for]="'checkboxG9'+friend.screen_name"></label>
+                            </div>
+                            <!-- <div class="invit-egg"><img src="images/profile-3.png"> </div> -->
+                            <div class="invit-egg-default"><i class="icon-profile"></i> </div>
+                            <div class="dark"> {{friend.name | truncate : [25]}} </div>
+                            <div class="light"> {{friend.email | truncate : [25]}} </div>
+                            <div class="dark"> {{friend.screen_name | truncate : [25]}} </div>
+                        </div>
+                        <!--</form>-->
+
+                        <div class=" clearfix"></div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                <div  class="block bottom-gap">
+
+                    <div class="block-title-2">
+                        <h2> Your Message </h2>
+                    </div>
+
+
+                    <div class="block-contant">
+                        <spinner [visible]="postflag"></spinner>
+                        <div *ngIf="!postflag">
+
+
+                            <div class="dark padding-left"> (You can edit the following personal meesage to your
+                                friends/connections.)
+                            </div>
+
+
+                            <div class="full-box margin-top-10">
+                                <textarea rows="5" name="message_box" wrap="hard"
+                                          [(ngModel)]="requestMessage" placeholder="Hi,
+                                You have received an invitation from sajeerali Arakka to join BLOOVO. Visit https://www.bloovo.com/
+
+                                Thank You
+                                BLOOVO Team"
+                                >
+                                </textarea>
+                                <div *ngIf="errorflag" class="alert alert-danger">
+                                    Please enter your message to be sent
+                                </div>
+                                <div *ngIf="errorFriendflag"  class="alert alert-danger">
+                                    Please select friends from the list
+                                </div>
+
+                            </div>
+
+                            <div class="block-title-2 padding-0 border-none">
+                                <button  (click)="InviteFriends()">Invite</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="advertisment">
+                    <div class="advt5 bottom-gap"><img src="images/advertisement/advt-5.png" width="100%"></div>
+                    <div class="advt6 bottom-gap"><img src="images/advertisement/advt-6.png" width="100%"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

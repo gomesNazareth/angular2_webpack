@@ -1,0 +1,198 @@
+<job-menu  [activeFlag]="'search'"></job-menu>
+<div class="tab-content job-bloovo">
+<div role="tabpanel" class="tab-pane active load-data-js" id="saved-searches">
+    <div class="commen-container">
+        <!--Saved Serches-->
+        <div class="col-lg-12 saved-searches clicks">
+            <div class="block">
+                <div class="row block-title-2 padding-10 border-none hidden-xs">
+                    <div class="col-lg-6 col-sm-6 col-xs-12"><h2 class="padding-top-10">Saved&nbsp;Searches</h2></div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 hidden-xs hidden-sm">
+                        <form [formGroup]="form1">
+                        <span class="select-all">
+                            <input id="checkboxG40" formControlName="check_all"  class="css-checkbox" type="checkbox" name="checkboxG40">
+                            <label class="css-label" for="checkboxG40">Select All</label>
+                        </span>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Application Tracking-->
+
+
+                <div class="row empty-min2">
+
+
+
+                    <div class="row tracking-title">
+                        <div class="savedjob_title"><span class="navy-dark">&nbsp;Title</span></div>
+                        <div class="savedjob_date"><span class="navy-dark">Date Created</span></div>
+                        <div class="savedjob_alert text-center"><span class="navy-dark"> Alert Type</span></div>
+                        <div class="savedjob_action text-center border-none"><span class="navy-dark"> Actions</span></div>
+                    </div>
+
+                    <div class="saved-bdr hidden-lg" ></div>
+
+                    <div class="empty-prf" *ngIf="(displaySpinner$ | async)"><spinner [visible]="(displaySpinner$ | async)"></spinner></div>
+
+                    
+                  
+                    <span *ngIf="(jobs$ | async) != null && !(displaySpinner$ | async)">
+
+                    <div *ngIf="(jobs$ | async)?.length ==0 "  class="row empty-min2">
+
+                            <div class="empty-prf ">
+                                <i class="icon-empty-saved-serch"></i>
+                                <h5>No Saved Search Available</h5>
+                            </div>
+
+                        </div>
+                    <div *ngFor="let selJob of (jobs$ | async), let jobcount = index" class="row savedserch ">
+
+                        <!-- Desktop Listing -->
+                        <div class="row hidden-xs">
+                            <div class="savedjob_title_part">
+                                &nbsp;<span class="navy">
+                                    <input [id]="'checkboxGSavedSearch'+selJob.id" [checked]="selJob.checked" (click)="toggleCheckbox(jobcount)"
+                                           [attr.name]="'checkboxGSavedSearch'+selJob.id" class="css-checkbox hidden-xs hidden-sm" type="checkbox" >
+                                    <label class="css-label" [attr.for]="'checkboxGSavedSearch'+selJob.id">{{selJob.title}}</label>
+                                </span>
+                            </div>
+
+                            <div class="m-t-j hidden-md hidden-lg hidden-xs">
+                                <div class="title-avedjob-tablet">Date Created</div>
+                                <div class="title-avedjob-tablet">Alert Type</div>
+                                <div class="title-avedjob-tablet">Actions</div>
+                            </div>
+
+                            <div class="savedjob_date_part">
+                                <span class="navy">
+                                    <span class="hide-saved">
+                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                    </span>
+                                    {{selJob.dateCreated | date:'d MMM, yyyy'}}
+                                </span>
+                            </div>
+
+                            <div class="savedjob_alert_part">
+                                <span class="navy">
+                                    <span class="hide-saved">
+                                        <i class="zmdi zmdi-notifications-active"></i> 
+                                    </span>
+                                        {{selJob.alertType}}
+                                </span>
+                            </div>
+
+                            <div class="savedjob_action_part">
+                                <span class="cancel bt-sj-edit">
+                                <a data-toggle="modal"   [attr.data-target] = "'.edit-saved-search-'+selJob.id" >
+                                    <button><i class="zmdi zmdi-edit"></i>&nbsp;Edit</button>
+                                </a>
+                                </span>
+                                <span class="bt-sj-delete">
+                                    <a data-toggle="modal" [attr.data-target] = "'.delete-saved-search-'+selJob.id" ><button class="bt-delete-j">
+                                    <i class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Listing -->
+
+                        <div class="job_mobile hidden-lg hidden-md hidden-sm">
+                            <!-- Job title and company name -->
+                            <div class="job_details">
+                                <div class="txt-white">{{selJob.title}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>{{selJob.dateCreated | date:'d MMM, yyyy'}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-notifications-active"></i>{{selJob.alertType}}</div>
+                            </div>
+                            <!-- buttons -->
+                            <div class="buttons-mobile">
+                                <div class="buttons-mobile-delte" data-toggle="modal"  [attr.data-target] = "'.delete-saved-search-'+selJob.id">
+                                     <i class="zmdi zmdi-delete"></i>
+                                </div>
+                                <div class="button_mobile-edit" data-toggle="modal"   [attr.data-target] = "'.edit-saved-search-'+selJob.id">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <saved-search-form (onUpdateDone)="reloadData($event)" 
+                                            [selJob]="selJob" [alertTypes]="alertTypes$">
+                        </saved-search-form>
+
+
+
+                        <!--Delete Saved Search Pop up-->
+                        <div class="popup">
+                            <div class="logout-pop">
+                                <div class="modal close_delete delete-saved-search-{{selJob.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                <h2>Delete Saved Search</h2>
+                                                <h4><span class="navy"> Are you sure want to delete '<b>{{selJob.title}}</b>'?</span></h4>
+                                                <div class="pop-button">
+                                                    <button (click)="deleteSavedSearch(selJob.id)" type="button" class="btn postive">Delete</button>
+                                                    <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                    <div class="clr"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+</span>
+                    <div class="row block-footer border-none hidden-xs">
+
+                        <a data-toggle="modal"   [style.display]= "(totalRecords$ | async) >0 &&  !(displaySpinner$ | async) && ((displayDelete$ | async) || listJobsIds.length>0) ?'block':'none'"  [attr.data-target] = "'.delete-saved-search-all'" ><button><i
+                                class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+
+
+                        <!--Delete Saved Search Pop up-->
+                        <div class="popup">
+                            <div class="logout-pop">
+                                <div class="modal close_delete delete-saved-search-all" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                <h2>Delete All Selected Saved Searches</h2>
+                                                <h4><span class="navy"> Are you sure to delete ?  </span> </h4>
+                                                <div class="pop-button">
+                                                    <button (click)="deleteAllSavedSearch()" type="button" class="btn postive">Delete</button>
+                                                    <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                    <div class="clr"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        <div class="pagination-footer margin-top-10">
+            <pagination-new [url]="_accountService.getPath()+'/jobs/saved-searches'" [totalRecords]="totalRecords$">
+            </pagination-new>
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+
+

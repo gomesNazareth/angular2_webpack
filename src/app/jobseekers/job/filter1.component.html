@@ -1,0 +1,398 @@
+<!--FILTER-->
+<div class="row filter clicks">
+    <div id="main">
+
+        <div class="panel-group border-bottom" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                           aria-expanded="true" aria-controls="collapseOne" class="border-none">
+                            Location
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="empty-min4 " *ngIf="((locations$ | async)?.elements?.length >0)? false:true">
+                            <div class="empty-prf">
+                                <spinner  [visible]="true"></spinner>
+                            </div>
+                        </div>
+
+                        <div class="fltr-check" *ngFor="let country of (locations$ | async)?.elements,let country_index =index" >
+                            <input    [id]="'checkboxCountry'+country_index"
+                                      value="{{country.id}}"
+                                      (click)="onSelectElement(country.id,'locations')"
+                                      class="css-checkbox" type="checkbox"
+                                      [attr.name]="'checkboxCountry'+country_index"
+                                      [checked]="country.selectedFlag"
+                            >
+                            <label class="css-label" [attr.for]="'checkboxCountry'+country_index">
+                                {{country.name}}&nbsp;(<strong *ngIf="country.jobs_count == 1">{{country.jobs_count}}&nbsp;Job</strong><strong *ngIf="country.jobs_count != 1">{{country.jobs_count}}&nbsp;Jobs</strong>)
+                                <span class="job-count"></span>
+                            </label>
+                        </div>
+                        <div *ngIf="(locations$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(locations$ | async)?.expendAddmoreFlag" [class.filter-open]="(locations$ | async)?.expendAddmoreFlag" (click)="customAdd('locations')" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(locations$ | async)?.expendAddmoreFlag" [class.filter-open]="!(locations$ | async)?.expendAddmoreFlag">
+                                <auto-complete [fullWidth]="true" [resetOnSelect]="true" [recordType]="'Country'" [placeholder]="'Add a Country'" (changeRecords)="onAddElement($event,'locations')" [excludeItems]="(locations$ | async)?.elements"></auto-complete>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="(locations$ | async)?.elementsChecked.length >0" class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            City
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div class="empty-min4 " *ngIf="((cities$ | async)?.elements?.length >0)? false:true">
+                            <div class="empty-prf">
+                                <spinner  [visible]="true"></spinner>
+                            </div>
+                        </div>
+                        <div class="fltr-check" *ngFor="let city of (cities$ | async)?.elements,let city_index =index" >
+                            <input [id]="'checkboxCity'+city_index"
+                                   value="{{city.id}}"
+                                   (click)="onSelectElement(city.id,'cities')"
+                                   class="css-checkbox"
+                                   type="checkbox" [attr.name]="'checkboxCity'+city_index"
+                                   [checked]="city.selectedFlag"
+                            >
+                            <label class="css-label" [attr.for]="'checkboxCity'+city_index">{{city.name}}&nbsp;
+                                (<strong *ngIf="city.jobs_count == 1">{{city.jobs_count}}&nbsp;Job</strong><strong *ngIf="city.jobs_count != 1">{{city.jobs_count}}&nbsp;Jobs</strong>)
+                            </label>
+                        </div>
+
+
+                        <div   *ngIf="(cities$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(cities$ | async)?.expendAddmoreFlag" [class.filter-open]="(cities$ | async)?.expendAddmoreFlag" (click)="customAdd('cities')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(cities$ | async)?.expendAddmoreFlag" [class.filter-open]="!(cities$ | async)?.expendAddmoreFlag" >
+                                <auto-comp-city [fullWidth]="true" [resetOnSelect]="true" [recordType]="'City'" (changeRecords)="onAddElement($event,'cities')" [placeholder]="'Add a City'"   [countryList]="(locations$ | async)?.elementsChecked" [excludeItems]="(cities$ | async)?.elements" [excludeItems]="(cities$ | async)?.elements"></auto-comp-city>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+                            Sector
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+
+
+                    <div class="panel-body">
+
+
+                        <div class="fltr-check" *ngFor="let sector of (sectors$ | async)?.elements,let sector_index =index;trackBy:sector?.id" >
+                            <input [id]="'checkboxSector'+sector_index" value="{{sector.id}}" class="css-checkbox"
+                                   type="checkbox" [attr.name]="'checkboxSector'+sector_index"
+                                   [checked] = "sector.selectedFlag"
+                                   (click)="onSelectElement(sector.id,'sectors')">
+                            <label class="css-label" [attr.for]="'checkboxSector'+sector_index">{{sector.name}}</label>
+                        </div>
+
+
+                        <div  *ngIf="(sectors$ | async)?.showAddmoreFlag" class="edit">
+
+                            <div [class.filter-add]="!(sectors$ | async)?.expendAddmoreFlag" [class.filter-open]="(sectors$ | async)?.expendAddmoreFlag" (click)="customAdd('sectors')" class="edit" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(sectors$ | async)?.expendAddmoreFlag"  [class.filter-open]="!(sectors$ | async)?.expendAddmoreFlag">
+
+                                <auto-complete [fullWidth]="true" [resetOnSelect]="true" [placeholder]="'Add a Sector'" [recordType]="'Sector'" (changeRecords)="onAddElement($event,'sectors')" [excludeItems]="(sectors$ | async)?.elements"></auto-complete>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                            Functional Area
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsefour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+
+
+
+                        <div class="fltr-check" *ngFor="let funArea of (fareas$ | async)?.elements,let funArea_index =index" >
+                            <input [id]="'checkboxFuncA'+funArea_index" value="{{funArea.id}}"
+                                   class="css-checkbox" type="checkbox" [attr.name]="'checkboxFuncA'+funArea_index"
+                                   [checked] = "funArea.selectedFlag"
+                                   (click)="onSelectElement(funArea.id,'fareas')">
+                            <label class="css-label" [attr.for]="'checkboxFuncA'+funArea_index">{{funArea.name}}</label>
+                        </div>
+
+
+                        <div  *ngIf="(fareas$ | async)?.showAddmoreFlag" class="edit">
+                            <div  [class.filter-add]="!(fareas$ | async)?.expendAddmoreFlag" [class.filter-open]="(fareas$ | async)?.expendAddmoreFlag" (click)="customAdd('fareas')" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(fareas$ | async)?.expendAddmoreFlag" [class.filter-open]="!(fareas$ | async)?.expendAddmoreFlag"  >
+
+                                <auto-complete  [placeholder]="'Add Functional Area'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'FunctionalArea'" (changeRecords)="onAddElement($event,'fareas')" [excludeItems]="(fareas$ | async)?.elements">
+                                </auto-complete>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                            Job Type
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsefive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+
+
+
+                        <div class="fltr-check" *ngFor="let jobType of (jobTypes$ | async)?.elements,let jobType_index =index" >
+                            <input [id]="'checkboxJobType'+jobType_index" value="{{jobType.id}}"
+                                   class="css-checkbox" type="checkbox"
+                                   [attr.name]="'checkboxJobType'+jobType_index"
+                                   [checked]="jobType.selectedFlag"
+                                   (click)="onSelectElement(jobType.id,'jobtypes')">
+                            <label class="css-label" [attr.for]="'checkboxJobType'+jobType_index">{{jobType.name}}</label>
+                        </div>
+
+
+                        <div  *ngIf="(jobTypes$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(jobTypes$ | async)?.expendAddmoreFlag" [class.filter-open]="(jobTypes$ | async)?.expendAddmoreFlag" (click)="customAdd('jobtypes')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(jobTypes$ | async)?.expendAddmoreFlag" [class.filter-open]="!(jobTypes$ | async)?.expendAddmoreFlag" >
+
+                                <auto-complete [placeholder]="'Add Job Type'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'JobType'" [excludeItems]="(jobTypes$ | async)?.elements" (changeRecords)="onAddElement($event,'jobtypes')"></auto-complete>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                            Salary Level
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+                        <div class="fltr-check" *ngFor="let selRange of (salarylevels$ | async)?.elements,let selRange_index =index" >
+                            <input [id]="'checkboxSalRangeType'+selRange_index" value="{{selRange.id}}" class="css-checkbox" type="checkbox" [attr.name]="'checkboxSalRangeType'+selRange_index"  [checked]="selRange.selectedFlag" (click)="onSelectElement(selRange.id,'salarylevels')">
+                            <label class="css-label" [attr.for]="'checkboxSalRangeType'+selRange_index">{{selRange.name}}</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                            Education Level
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseseven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+
+                        <div class="fltr-check" *ngFor="let eduType of (edulevels$ | async)?.elements,let eduType_index =index" >
+                            <input [id]="'checkboxEduType'+eduType_index" value="{{eduType.id}}"
+                                   class="css-checkbox" type="checkbox"
+                                   [checked]="eduType.selectedFlag"
+                                   [attr.name]="'checkboxEduType'+eduType_index" (click)="onSelectElement(eduType.id,'edulevels')">
+                            <label class="css-label" [attr.for]="'checkboxEduType'+eduType_index">{{eduType.name}}</label>
+                        </div>
+
+
+                        <div  *ngIf="(edulevels$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(edulevels$ | async)?.expendAddmoreFlag" [class.filter-open]="(edulevels$ | async)?.expendAddmoreFlag" (click)="customAdd('edulevels')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(edulevels$ | async)?.expendAddmoreFlag" [class.filter-open]="!(edulevels$ | async)?.expendAddmoreFlag">
+
+                                <auto-complete [placeholder]="'Add Education Level'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'JobEducation'" (changeRecords)="onAddElement($event,'edulevels')" [excludeItems]="(edulevels$ | async)?.elements"></auto-complete>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
+                            Experience Level
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseeight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+                        <div class="fltr-check" *ngFor="let exType of (explevels$ | async)?.elements,let exType_index =index" >
+                            <input [id]="'checkboxExType'+exType_index" value="{{exType.id}}"
+                                   class="css-checkbox" type="checkbox"
+                                   [attr.name]="'checkboxExType'+exType_index"
+                                   [checked]="exType.selectedFlag"
+                                   (click)="onSelectElement(exType.id,'explevels')">
+                            <label class="css-label" [attr.for]="'checkboxExType'+exType_index">{{exType.name}}</label>
+                        </div>
+
+
+
+                        <div  *ngIf="(explevels$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(explevels$ | async)?.expendAddmoreFlag" [class.filter-open]="(explevels$ | async)?.expendAddmoreFlag" (click)="customAdd('explevels')" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(explevels$ | async)?.expendAddmoreFlag" [class.filter-open]="!(explevels$ | async)?.expendAddmoreFlag">
+
+                                <auto-complete  [placeholder]="'Add Experience Level'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'JobExperience'" [excludeItems]="(explevels$ | async)?.elements" (changeRecords)="onAddElement($event,'explevels')" ></auto-complete>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsenine" aria-expanded="false" aria-controls="collapsenine">
+                            Company
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsenine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+
+
+
+                        <div class="fltr-check" *ngFor="let companyType of (companies$ | async)?.elements,let companyType_index =index" >
+                            <input [id]="'checkboxCompanyType'+companyType_index" value="{{companyType.id}}" class="css-checkbox"
+                                   type="checkbox"
+                                   [attr.name]="'checkboxCompanyType'+companyType_index"
+                                   [checked]="companyType.selectedFlag"
+                                   (click)="onSelectElement(companyType.id,'companies')">
+                            <label class="css-label" [attr.for]="'checkboxCompanyType'+companyType_index">{{companyType.name}}</label>
+                        </div>
+
+
+
+                        <div  *ngIf="(companies$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(companies$ | async)?.expendAddmoreFlag" [class.filter-open]="(companies$ | async)?.expendAddmoreFlag" (click)="customAdd('companies')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(companies$ | async)?.expendAddmoreFlag" [class.filter-open]="!(companies$ | async)?.expendAddmoreFlag" >
+
+                                <auto-complete [placeholder]="'Add Company'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'Company'" (changeRecords)="onAddElement($event,'companies')" [excludeItems]="(companies$ | async)?.elements"></auto-complete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--BUTTONS SUBMIT REFERESH-->
+<div class="row block-footer border-none padding-top-0">
+    <!--<button   class="apply" (click)="onApply()">Apply</button>-->
+    <!--<button  class="reset" (click)="onReset()">Reset</button>-->
+
+    <a data-toggle="modal"   [attr.data-target] = "'.edit-saved-search-'+selJob.id" >
+        <button class="apply" (click)="onSaveSearch()">Save&nbsp;Search</button>
+    </a>
+    <button  class="reset" (click)="onReset()">Reset</button>
+
+
+</div>
+
+
+
+
+<!--&lt;!&ndash;MAIN BUTTON&ndash;&gt;-->
+<!--<div class="row block-footer border-none padding-top-0">-->
+    <!--<a data-toggle="modal"   [attr.data-target] = "'.edit-saved-search-'+selJob.id" >-->
+        <!--<button class="save-serch" (click)="onSaveSearch()"><i class="zmdi zmdi-floppy"></i> Save Search</button>-->
+    <!--</a>-->
+<!--</div>-->
+
+
+<saved-search-form [selJob]="selJob"></saved-search-form>
+

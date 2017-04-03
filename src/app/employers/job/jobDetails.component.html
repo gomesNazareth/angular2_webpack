@@ -1,0 +1,380 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+
+
+<div class="tab-content job-bloovo">
+    <!--------------------------- All Jobs details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="jobs-details-employer">
+        <div *ngIf="!loadedData" class="empty-min2">
+            <i class="small_loading"><spinner></spinner></i>
+        </div>
+        <div *ngIf="loadedData" class="commen-container-less jobs-employer">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="block">
+                        <div class="refine-serch">
+                            <div class="row block-title-2">
+                                <div class="pull-left left-bx">
+                                <h2 class="padding-top-10">{{(selJobObs | async)?.title}}</h2>
+                                </div>
+                                <div class="pull-right right-bx">
+                                <a (click)="onBack()"  class="cursor_pointer1"><button><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span> </button> </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="block bottom-gap margin-6 job-info hidden-xs hidden-sm">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6  applications">
+                            <h1>{{(selJobAnalysisObs | async)?.applications_count}}</h1>
+                            <div class="light"> Applications </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 reviewed">
+                            <h1>{{(selJobAnalysisObs | async)?.reviewed_applications_count}}</h1>
+                            <div class="light"> Reviewed </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 shortlisted">
+                            <h1>{{(selJobAnalysisObs | async)?.shortlisted_applications_count}}</h1>
+                            <div class="light"> Shortlisted </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 interviewed">
+                            <h1>{{(selJobAnalysisObs | async)?.interviewed_applications_count}}</h1>
+                            <div class="light"> Interviewed </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 successful">
+                            <h1>{{(selJobAnalysisObs | async)?.successful_applications_count}}</h1>
+                            <div class="light">Successful </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 unsuccessful">
+                            <h1>{{(selJobAnalysisObs | async)?.unsuccessful_applications_count}}</h1>
+                            <div class="light"> Unsuccessful </div>
+                        </div>
+                        <div class=" clearfix "></div>
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="block  bottom-gap">
+
+                        <!--company details-->
+
+                        <div class="row padding-15-10 company-details"> <!--Desktop-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 job-logo">
+                                <div class="compny-logo" *ngIf="(selJobObs | async)?.company?.avatar">
+                                    <span><img  src="{{(selJobObs | async)?.company?.avatar}}"></span>
+                                </div>
+                                <div class="compny-logo"  *ngIf="!(selJobObs | async)?.company?.avatar"><i class="zmdi zmdi-city-alt"></i></div>
+
+                                <div class="compny-details clicks">
+                                    <div class="row">
+                                        <div class="cmpny-txt padding-0"><i class="zmdi zmdi-city-alt"></i><span class="dark padding-0 bold">&nbsp;{{(selJobObs | async)?.company?.name}}</span></div>
+
+                                        <div class="cmpny-txt padding-0"><i class="zmdi zmdi-pin"></i>&nbsp;{{(selJobObs | async)?.city?.name}},&nbsp;{{(selJobObs | async)?.country?.name}}</div>
+
+                                        <div class="cmpny-txt padding-0"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;Posted on {{(selJobObs | async)?.created_at | date:'d MMM, yyyy'}}</div>
+                                    </div>
+
+                                    <div class="row block-title-2 padding-0 border-none pading-top-10 hidden-sm hidden-xs">
+                                        <div class="edit-job action-job-detail-page" *ngIf="(selJobObs | async)?.id">
+                                            <button *ngIf="!(selJobObs | async)?.deleted" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+(selJobObs | async)?.id+'/edit']"><i class="zmdi zmdi-edit"></i> Edit Job</button>
+
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status == 'Open' && !getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="active-label">
+                                                    Active
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted  && (selJobObs | async)?.job_status?.status == 'Draft'">
+                                                <span class="draft-label">
+                                                    Draft
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status != 'Draft' && getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="expired-label">Expired</span>
+                                            </div>
+
+                                            <div class="opn-cls2" *ngIf="(selJobObs | async)?.deleted">
+                                                <span class="deleted-label" >
+                                                    Deleted
+                                                </span>
+                                            </div>
+
+
+                                            <div class="job-socail" *ngIf="(selJobObs | async)?.id && (selJobObs | async)?.job_status?.status == 'Open' && !(selJobObs | async)?.deleted && !getIfExpired((selJobObs | async)?.end_date) ">Share
+                                                <div class="mg-r-s">
+                                                    <share-social-media [url]="(url$ | async)+'/jobs/'+(selJobObs | async)?.id+'/display'" [title]="'Jobs'" [description]="'Jobs'"></share-social-media>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <!-- Smartscreen-oly -->
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 job-logo hidden-md hidden-lg border-top margin-top-10 smart-screen-only-resp">
+                                <div class="compny-details width-full clicks padding-0">
+                                    <div class="row block-title-2 padding-0 border-none pading-top-10">
+                                        <div class="edit-job action-job-detail-page" *ngIf="(selJobObs | async)?.id" >
+                                            <button *ngIf="!(selJobObs | async)?.deleted" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+(selJobObs | async)?.id+'/edit']"><i class="zmdi zmdi-edit"></i> Edit Job</button>
+
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status == 'Open' && !getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="active-label">
+                                                    Active
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted  && (selJobObs | async)?.job_status?.status == 'Draft'">
+                                                <span class="draft-label">
+                                                    Draft
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status != 'Draft' && getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="expired-label">Expired</span>
+                                            </div>
+
+                                            <div class="opn-cls2" *ngIf="(selJobObs | async)?.deleted">
+                                                <span class="deleted-label" >
+                                                    Deleted
+                                                </span>
+                                            </div>
+
+
+                                            <div class="job-socail" *ngIf="(selJobObs | async)?.id && (selJobObs | async)?.job_status?.status == 'Open' && !(selJobObs | async)?.deleted && !getIfExpired((selJobObs | async)?.end_date) ">Share
+                                                <div class="mg-r-s">
+                                                    <share-social-media [url]="(url$ | async)+'/jobs/'+(selJobObs | async)?.id+'/display'" [title]="'Jobs'" [description]="'Jobs'"></share-social-media>
+                                                </div>
+                                            </div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <!-- small-oly -->
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 job-logo small-screen-only-resp">
+                                <div class="compny-details width-full clicks padding-0">
+                                    <div class="row block-title-2 padding-0 border-none pading-top-10">
+                                        <div class="edit-job action-job-detail-page" *ngIf="(selJobObs | async)?.id">
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status == 'Open' && !getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="active-label">
+                                                    Active
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted  && (selJobObs | async)?.job_status?.status == 'Draft'">
+                                                <span class="draft-label">
+                                                    Draft
+                                                </span>
+                                            </div>
+                                            <div class="opn-cls2" *ngIf="!(selJobObs | async)?.deleted && (selJobObs | async)?.job_status?.status != 'Draft' && getIfExpired((selJobObs | async)?.end_date) ">
+                                                <span class="expired-label">Expired</span>
+                                            </div>
+
+                                            <div class="opn-cls2" *ngIf="(selJobObs | async)?.deleted">
+                                                <span class="deleted-label" >
+                                                    Deleted
+                                                </span>
+                                            </div>
+
+                                             <button *ngIf="!(selJobObs | async)?.deleted" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+(selJobObs | async)?.id+'/edit']"><i class="zmdi zmdi-edit"></i> Edit Job</button>
+                                                 
+                                            <div class="job-socail" *ngIf="(selJobObs | async)?.id && (selJobObs | async)?.job_status?.status == 'Open' && !(selJobObs | async)?.deleted && !getIfExpired((selJobObs | async)?.end_date) ">Share
+                                                <div class="mg-r-s">
+                                                    <share-social-media [url]="(url$ | async)+'/jobs/'+(selJobObs | async)?.id+'/display'" [title]="'Jobs'" [description]="'Jobs'"></share-social-media>
+                                                </div>
+                                            </div>
+                                       
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+
+                        </div>
+
+                        
+
+                        <!--requirement-->
+                        <div class="row requirement">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-chart-donut"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Sector</div>
+                                    <div class="req-dark">{{(selJobObs | async)?.sector?.name}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-view-dashboard"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Functional Area</div>
+                                    <div class="req-dark">{{(selJobObs | async)?.functional_area?.name}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-case"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Years of Experience</div>
+                                    <div class="req-dark">{{(selJobObs | async)?.experience_from}} - {{(selJobObs | async)?.experience_to}} Years </div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-experience"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Experience Level </div>
+                                    <div class="req-dark">{{(selJobObs | async)?.job_experience_level?.name}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-money-box"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Monthly Salary Range (USD)</div>
+                                    <div class="req-dark" *ngIf="(selJobObs | async)?.salary_range?.salary_from">{{(selJobObs | async)?.salary_range?.salary_from | number}} - {{(selJobObs | async)?.salary_range?.salary_to | number}}</div></div>
+                                    <div class="req-dark light-color-text" *ngIf="!(selJobObs | async)?.salary_range?.salary_from">&nbsp;N/A</div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-graduation-cap"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Education Requirement</div>
+                                    <div class="req-dark">{{(selJobObs | async)?.job_education?.name}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-notice-period"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Certificates Required</div>
+                                    <div class="req-dark">
+                                        <span *ngFor="let selCert of (selJobObs | async)?.certificates,let certIndex = index">{{selCert?.name}} <span  *ngIf="certIndex <= ((selJobObs | async)?.certificates?.length-2)">,</span></span><div class="req-dark light-color-text" *ngIf="(selJobObs | async)?.certificates && (selJobObs | async)?.certificates?.length ==0 ">N/A</div>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-language"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Languages</div>
+                                    <div class="req-dark">
+                                        <span *ngFor="let selLan of (selJobObs | async)?.languages,let certIndex = index">{{selLan?.name}} <span  *ngIf="certIndex <= ((selJobObs | async)?.languages?.length-2)">,</span></span><div class="req-dark light-color-text" *ngIf="(selJobObs | async)?.languages && (selJobObs | async)?.languages?.length ==0 ">&nbsp;N/A</div>
+                                <div class=" clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-gender"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Gender Preference</div>
+                                    <div class="req-dark" *ngIf="(selJobObs | async)?.gender_type">{{genderHash[(selJobObs | async)?.gender_type]}}</div></div><div class="req-dark light-color-text"  *ngIf="!(selJobObs | async)?.gender_type">&nbsp;Any</div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            
+                            
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-current-Job font-12"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Job Type</div>
+                                    <div class="req-dark">{{(selJobObs | async)?.job_type?.name}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="zmdi zmdi-calendar-alt"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Joining Date</div>
+                                    <div class="req-dark" *ngIf="(selJobObs | async)?.join_date">{{(selJobObs | async)?.join_date == null?"Immediately": (selJobObs | async)?.join_date | date:'d MMM, yyyy' }}</div>
+                                    <div class="req-dark" *ngIf="!(selJobObs | async)?.join_date">&nbsp;Immediately</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="req-1"><i class="icon-License"></i></div>
+                                <div class="req-2">
+                                    <div class="txt">Driving License </div>
+                                    <div class="req-dark">{{(selJobObs | async)?.license_required?"Required":"Not Required"}}</div></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                           
+
+                           
+
+                            
+
+                            
+
+
+
+                </div>
+
+            </div>
+
+            <!--Job Description-->
+
+            <div class="row job-detail-description">
+                <div class="block bottom-gap">
+                    <div class="block-title"><h2>Job Description</h2></div>
+                    <div class="block-contant">
+                        <div class="bullet text-justify">
+                            {{(selJobObs | async)?.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row job-detail-description">
+                <div class="block bottom-gap">
+                    <div class="block-title"><h2>Job Requirements</h2></div>
+                    <div class="block-contant">
+                        <div class="bullet text-justify">
+                            {{(selJobObs | async)?.requirements}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row benefits">
+                <div class="row">
+                    <div class="block">
+                        <div class="block-title"><h2>Benefits</h2></div>
+                    </div>
+                </div>
+                <div class="row bottom-gap">
+                    <div class="benafit-box block" *ngFor="let selBenefit of (selJobObs | async)?.benefits">
+                        <div class="ben-icn"><i class="{{selBenefit.icon}}"></i> </div>
+                        <p>{{selBenefit.name}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+    </div>
+</div>

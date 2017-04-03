@@ -1,0 +1,774 @@
+<!--<div class="information">-->
+    <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+        <!--<div class="block bottom-gap info-min">-->
+            <!--<div [style.display]="tab_status == 'read' ?'block':'none'"> &lt;!&ndash; save &ndash;&gt;-->
+                <!--<div class="block-title">-->
+                    <!--<div class="left"><h4>My Information</h4></div>-->
+                    <!--<div class="right"><a (click)="onEdit()"><span class="light"><i-->
+                            <!--class="zmdi zmdi-edit"></i> Edit</span></a></div>-->
+                    <!--<div class="clearfix"></div>-->
+                <!--</div>-->
+                <!--<div class="block-contant padding-0">-->
+                    <!--<div class="info">-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-chart-donut"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Sector</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.sector_name"> {{ (jobSeekerGeneralInfo | async)?.sector_name}}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.sector_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-view-dashboard"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Functional Area</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.functional_area_name">{{ (jobSeekerGeneralInfo | async)?.functional_area_name }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.functional_area_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-graduation-cap"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Highest Education</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.highest_edu_name">{{ (jobSeekerGeneralInfo | async)?.highest_edu_name }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.highest_edu_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-experience"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Experience Level </div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.experince_level_name">{{ (jobSeekerGeneralInfo | async)?.experince_level_name }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.experince_level_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-case"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Years of Experience </div>-->
+                                <!--<div class="dark"  *ngIf="(jobSeekerGeneralInfo | async)?.total_years_experience">{{ (jobSeekerGeneralInfo | async)?.total_years_experience }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.total_years_experience">0</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-current-Job font-13"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Current Job Type</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.job_type_name">{{ (jobSeekerGeneralInfo | async)?.job_type_name }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.job_type_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Current Monthly Salary (USD)</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.current_salary">{{ (jobSeekerGeneralInfo | async)?.current_salary | number}}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.current_salary">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Expected Salary (USD)</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.expected_salary">{{ (jobSeekerGeneralInfo | async)?.expected_salary | number }} </div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.expected_salary">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-flag"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Nationality</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.nationality_name">{{ (jobSeekerGeneralInfo | async)?.nationality_name }}</div>-->
+                                <!--<div class="dark"  *ngIf="!(jobSeekerGeneralInfo | async)?.nationality_name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-language"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Languages</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.languages?.length >0">-->
+                                    <!--<span class="pull-left" *ngFor="let selLang of (jobSeekerGeneralInfo | async)?.languages,let selIndex = index">-->
+                                        <!--<b *ngIf="selIndex >0">, </b>{{selLang.name}}</span>-->
+                                <!--</div>-->
+                                <!--<div class="dark"  *ngIf="(jobSeekerGeneralInfo | async)?.languages?.length ==0">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-account-circle"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Age</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.dob">{{ (jobSeekerGeneralInfo | async)?.dob | calcAge }} Years Old</div>-->
+                                <!--<div class="dark"  *ngIf="!(jobSeekerGeneralInfo | async)?.dob">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-gender"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Gender</div>-->
+                                <!--<div class="dark"  *ngIf="(jobSeekerGeneralInfo | async)?.gender">{{ genderHash[(jobSeekerGeneralInfo | async)?.gender]}}</div>-->
+                                <!--<div class="dark"  *ngIf="!(jobSeekerGeneralInfo | async)?.gender">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="zmdi zmdi-account"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Marital Status</div>-->
+                                <!--<div class="dark"  *ngIf="(jobSeekerGeneralInfo | async)?.marital_status">{{ maritalStatusHash[(jobSeekerGeneralInfo | async)?.marital_status] }}</div>-->
+                                <!--<div class="dark"  *ngIf="!(jobSeekerGeneralInfo | async)?.marital_status">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-visa-status"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Visa status</div>-->
+                                <!--<div class="dark"  *ngIf="(jobSeekerGeneralInfo | async)?.visa_status?.name">{{ (jobSeekerGeneralInfo | async)?.visa_status?.name }}</div>-->
+                                <!--<div class="dark" *ngIf="!(jobSeekerGeneralInfo | async)?.visa_status?.name">N/A</div>-->
+
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+                    <!--<div class="info">-->
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-License"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Driving License Issued From</div>-->
+                                <!--<div class="dark" *ngIf="generalInfo?.driving_license_issued_from?.name">{{ generalInfo?.driving_license_issued_from?.name }}</div>-->
+                                <!--<div class="dark" *ngIf="!generalInfo?.driving_license_issued_from?.name">N/A</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                            <!--<div class="left1 inf-icn"><i class="icon-notice-period"></i></div>-->
+                            <!--<div class="left1">-->
+                                <!--<div class="txt">Notice Period</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.notice_period_in_months && (jobSeekerGeneralInfo | async)?.notice_period_in_months > 5">6+ Months</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.notice_period_in_months && (jobSeekerGeneralInfo | async)?.notice_period_in_months > 1 && (jobSeekerGeneralInfo | async)?.notice_period_in_months <= 5">{{ (jobSeekerGeneralInfo | async)?.notice_period_in_months}} Months</div>-->
+                                <!--<div class="dark" *ngIf="(jobSeekerGeneralInfo | async)?.notice_period_in_months && (jobSeekerGeneralInfo | async)?.notice_period_in_months ==1">{{ (jobSeekerGeneralInfo | async)?.notice_period_in_months}} Month</div>-->
+                                <!--<div class="light" *ngIf="!(jobSeekerGeneralInfo | async)?.notice_period_in_months">Less than 1 Month</div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+                        <!--<div class=" clearfix"></div>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div [style.display]="tab_status == 'edit' ?'block':'none'">-->
+                <!--<div class="block-title-2">-->
+                    <!--<div class="left"><h4>My Information</h4></div>-->
+                    <!--<div class="right">-->
+                        <!--<button (click)="saveDetails()" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save</button>-->
+                        <!--<span class="cancel padding-0"><button (click)="onRead()"><i class="zmdi zmdi-close"></i> Cancel</button></span>-->
+                    <!--</div>-->
+                    <!--<div class="clearfix"></div>-->
+                <!--</div>-->
+                <!--<i class="inf-spn" *ngIf="(generalInfoLoader$ | async)"> <spinner [visible]="(generalInfoLoader$ | async)"></spinner></i>-->
+
+                <!--<form *ngIf="!(generalInfoLoader$ | async) && activeForm" [formGroup]="generalInfo_form">-->
+
+
+                    <!--<div class="block-contant padding-0">-->
+
+
+                        <!--<div class="info">-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-chart-donut"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Sector</div>-->
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #sectorInpt name="generalInfo_form_sector_name"-->
+                                               <!--formControlName="sector_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="sectorList" (selectedId)="generalInfo_form.controls['sector_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="sectorInpt.value"  [placeholder]="'Select a Sector'"-->
+                                                             <!--[selectList]="sectorList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--<div *ngIf="( generalInfo_form.controls['sector_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['sector_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select a Sector-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-view-dashboard"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Functional Area</div>-->
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #fareaInpt name="generalInfo_form_functional_area_name"-->
+                                               <!--formControlName="functional_area_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="functionalAreaList" (selectedId)="generalInfo_form.controls['functional_area_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="fareaInpt.value"  [placeholder]="'Select a Functional Area'"-->
+                                                             <!--[selectList]="functionalAreaList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['functional_area_id'].touched || (formPostedValid$ | async))&& !generalInfo_form.controls['functional_area_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select a Functional Area-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-graduation-cap"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Highest Education</div>-->
+                                    <!--<div class="full-box">-->
+
+
+                                        <!--<input type="hidden" #heduInpt name="generalInfo_form_highest_edu_name"-->
+                                               <!--formControlName="highest_edu_name_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="educationList" (selectedId)="generalInfo_form.controls['highest_edu_name_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="heduInpt.value"  [placeholder]="'Select Highest Education'"-->
+                                                             <!--[selectList]="educationList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--<div *ngIf=" (generalInfo_form.controls['highest_edu_name_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['highest_edu_name_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select Highest Education-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-experience"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Experience Level </div>-->
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #expLevInpt name="generalInfo_form_experince_level_name"-->
+                                               <!--formControlName="experience_level_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="experienceLevelList" (selectedId)="generalInfo_form.controls['experience_level_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="expLevInpt.value"  [placeholder]="'Select Experience Level'"-->
+                                                             <!--[selectList]="experienceLevelList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['experience_level_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['experience_level_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select Experience Level-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-case"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Years of Experience </div>-->
+
+
+                                    <!--<div class="full-box">-->
+
+                                        <!--&lt;!&ndash;<bootstrap-selectbox   (selectedId)="generalInfo_form.controls['total_years_experience'].setValue($event.id)"  [selectedValue]="generalInfo_form.controls['total_years_experience'].value"  [placeholder]="'Total Years of Experience'"  [showSearch]="false" [selectList]="yearsExpList" >&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</bootstrap-selectbox>&ndash;&gt;-->
+                                        <!--<input type="text"-->
+                                               <!--name="generalInfo_form_total_years_experience"-->
+                                               <!--formControlName="total_years_experience"-->
+                                               <!--#total_years_experience-->
+                                               <!--placeholder="Total Years of Experience"-->
+                                        <!--&gt;-->
+
+
+
+                                    <!--</div>-->
+
+                                    <!--<div *ngIf="(generalInfo_form.controls['total_years_experience'].touched || (formPostedValid$ | async))&& !generalInfo_form.controls['total_years_experience'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">-->
+                                        <!--Please enter your Total Years of Experience-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-current-Job"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Current Job Type</div>-->
+                                    <!--<div class="full-box">-->
+
+
+                                        <!--<input type="hidden" #jobTypInpt name="generalInfo_form_job_type_name"-->
+                                               <!--formControlName="job_type_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="jobTypeList" (selectedId)="generalInfo_form.controls['job_type_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="jobTypInpt.value"  [placeholder]="'Select Current Job Type'"-->
+                                                             <!--[selectList]="jobTypeList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['job_type_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['job_type_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Enter your Current Job Type-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Current Monthly Salary (USD)</div>-->
+
+
+                                    <!--<div class="full-box">-->
+                                        <!--<input type="text"-->
+                                               <!--name="generalInfo_form_currently_monthly_salary"-->
+                                               <!--formControlName="currently_monthly_salary"-->
+                                               <!--placeholder="Current Monthly Salary"-->
+                                        <!--&gt;-->
+                                    <!--</div>-->
+
+                                    <!--<div *ngIf="(generalInfo_form.controls['currently_monthly_salary'].touched || (formPostedValid$ | async))&& !generalInfo_form.controls['currently_monthly_salary'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">-->
+                                        <!--Please enter a valid Current Monthly Salary-->
+                                    <!--</div>-->
+
+
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Expected Salary (USD)</div>-->
+
+
+                                    <!--<div class="full-box" >-->
+
+                                        <!--<input  class=" minimal" name="expected_monthly_salary"-->
+                                                <!--formControlName="expected_monthly_salary">-->
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['expected_monthly_salary'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['expected_monthly_salary'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please enter a valid Expected Monthly Salary-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-flag"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Nationality</div>-->
+
+
+                                    <!--<div class="full-box">-->
+
+
+                                        <!--<input type="hidden" #nationalityInpt name="generalInfo_form_nationality_id"-->
+                                               <!--formControlName="nationality_id">-->
+                                        <!--<bootstrap-selectbox *ngIf="countryList" (selectedId)="generalInfo_form.controls['nationality_id'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="nationalityInpt.value"  [placeholder]="'Select Nationality'"-->
+                                                             <!--[selectList]="countryList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['nationality_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['nationality_id'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please Select a Nationality-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-language"></i></div>-->
+                                <!--<div class="left2 edit">-->
+                                    <!--<div class="txt">-->
+                                        <!--<div class="pull-left">Languages</div>-->
+                                        <!--<div class="pull-right">*3 is the maximum Language limit</div>-->
+                                        <!--<div class=" clearfix"></div>-->
+                                    <!--</div>-->
+                                    <!--<div class="language-tag">-->
+                                        <!--<lang-tag (onLanChange)="onChangeLan($event)" [languageList]="languagesList" ></lang-tag>-->
+                                        <!--<div class=" clearfix"></div>-->
+                                        <!--<div *ngIf="(language_touched || (formPostedValid$ | async))&& !language_valid" class="alert alert-danger martop5">-->
+                                            <!--Add a Language-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-account-circle"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Age</div>-->
+                                    <!--<div class="full-box">-->
+
+                                        <!--&lt;!&ndash;generalInfo_form.controls['dob'].setValue($event)&ndash;&gt;-->
+                                        <!--<datePicker-block (emitSelDate)="setDOB($event)" [dp_placeholder]="'DOB'"-->
+                                                          <!--[toYear]="toDOBYear"-->
+                                                          <!--[sel_id]="'14'"-->
+                                                          <!--[toYear]="toYear"-->
+                                                          <!--[maxDate]="maxDate"-->
+                                                          <!--[dp_value]="generalInfo_form.controls['dob'].value">-->
+                                        <!--</datePicker-block>-->
+                                        <!--<input type="hidden" placeholder="Day"-->
+                                               <!--name="generalInfo_form_dob_day"-->
+                                               <!--formControlName="dob"-->
+                                               <!--placeholder="Day"-->
+
+                                        <!--&gt;-->
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['dob'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['dob'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">-->
+                                            <!--Please enter a Valid Date of Birth-->
+                                        <!--</div>-->
+
+
+                                    <!--</div>-->
+                                    <!--<div class=" clearfix"></div>-->
+
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-gender"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Gender</div>-->
+
+
+
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #genderInpt name="generalInfo_form_gender"-->
+                                               <!--formControlName="gender">-->
+                                        <!--<bootstrap-selectbox *ngIf="genderList" (selectedId)="generalInfo_form.controls['gender'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="genderInpt.value"  [placeholder]="'Select Gender'"-->
+                                                             <!--[selectList]="genderList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+
+
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['gender'].touched || (formPostedValid$ | async))&& !generalInfo_form.controls['gender'].valid"-->
+                                             <!--class="alert alert-danger">Please select Gender-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="zmdi zmdi-account"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Marital Status</div>-->
+
+
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #maritalInpt name="generalInfo_form_marital_status"-->
+                                               <!--formControlName="marital_status">-->
+                                        <!--<bootstrap-selectbox *ngIf="maritalList" (selectedId)="generalInfo_form.controls['marital_status'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="maritalInpt.value"  [placeholder]="'Select Marital Status'"-->
+                                                             <!--[selectList]="maritalList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+                                        <!--<div *ngIf="(generalInfo_form.controls['marital_status'].touched || (formPostedValid$ | async))&& !generalInfo_form.controls['marital_status'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select Maritial Status-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-visa-status"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Visa status</div>-->
+
+
+
+                                    <!--<div class="full-box">-->
+
+                                        <!--<input type="hidden" #visaStatusInpt name="generalInfo_form_visa_status"-->
+                                               <!--formControlName="visa_status">-->
+                                        <!--<bootstrap-selectbox *ngIf="visaList" (selectedId)="generalInfo_form.controls['visa_status'].setValue($event.id)"-->
+                                                             <!--[selectedValue]="visaStatusInpt.value"  [placeholder]="'Select Visa Status'"-->
+                                                             <!--[selectList]="visaList">-->
+                                        <!--</bootstrap-selectbox>-->
+
+
+                                        <!--<div *ngIf="( generalInfo_form.controls['visa_status'].touched || (formPostedValid$ | async))&& ! generalInfo_form.controls['visa_status'].valid"-->
+                                             <!--class="alert alert-danger martop5">Please select Visa Status-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="info">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-License"></i></div>-->
+                                <!--<div class="left2 clicks">-->
+                                    <!--<div class="txt">Driving License Issued From</div>-->
+
+
+
+
+
+
+                                    <!--&lt;!&ndash;ngControl="driving_license_status_id."&ndash;&gt;-->
+                                    <!--&lt;!&ndash;#driving_license_status_id="ngForm"&ndash;&gt;-->
+
+                                    <!--<div class=" twenty-box">-->
+                                        <!--<div class="radio radio-primary">-->
+                                            <!--<input type="radio" name="radio2" id="radio1"-->
+                                                   <!--(click)="clickSelectDrivingLicense()" value="option1"-->
+
+                                                   <!--name="generalInfo_form_driving_license_status_id"-->
+                                                   <!--[checked]="(jobSeekerGeneralInfo | async)?.driving_license">-->
+                                            <!--<label for="radio1">   <span>Yes </span> </label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--&lt;!&ndash;ngControl="driving_license_status_id"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;#driving_license_status_id="ngForm"&ndash;&gt;-->
+                                    <!--<div class=" twenty-box">-->
+                                        <!--<div class="radio radio-primary">-->
+                                            <!--<input type="radio" name="radio2" (click)="clickUnSelectDrivingLicense()"-->
+                                                   <!--id="radio2" value="option2"-->
+
+                                                   <!--name="generalInfo_form_driving_license_status_id"-->
+                                                   <!--[checked]="!drivingLicenseFlag"-->
+                                            <!--&gt;-->
+                                            <!--<label for="radio2">-->
+                                                <!--<span>No</span>-->
+                                            <!--</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="ten-box" *ngIf="drivingLicenseFlag">-->
+                                        <!--<div class="txt">From</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="half-box-rgt" *ngIf="drivingLicenseFlag">-->
+                                        <!--<div class="full-box">-->
+
+
+                                            <!--<input type="hidden" #drivingLicenseInpt name="generalInfo_form_driving_license_country_id"-->
+                                                   <!--formControlName="driving_license_country_id">-->
+                                            <!--<bootstrap-selectbox *ngIf="countryList" (selectedId)="generalInfo_form.controls['driving_license_country_id'].setValue($event.id)"-->
+                                                                 <!--[selectedValue]="drivingLicenseInpt.value"  [placeholder]="'Select a Country'"-->
+                                                                 <!--[selectList]="countryList">-->
+                                            <!--</bootstrap-selectbox>-->
+
+
+
+
+                                            <!--<div *ngIf="(generalInfo_form.controls['driving_license_country_id'].touched || (formPostedValid$ | async)) && !generalInfo_form.controls['driving_license_country_id'].valid" role="alert">-->
+                                                <!--Please select the Issuing CountryFile size is too large!-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class=" clerfix"></div>-->
+
+
+                                <!--</div>-->
+
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+                                <!--<div class="left1 inf-icn"><i class="icon-notice-period"></i></div>-->
+                                <!--<div class="left2">-->
+                                    <!--<div class="txt">Notice Period</div>-->
+
+
+                                    <!--<div class="full-box">-->
+                                        <!--<div>-->
+
+
+                                            <!--<input type="hidden" #noticePeriodInpt name="generalInfo_form_notice_period_in_months"-->
+                                                   <!--formControlName="notice_period_in_months">-->
+                                            <!--<bootstrap-selectbox *ngIf="noticePeriodMonthsList" (selectedId)="generalInfo_form.controls['notice_period_in_months'].setValue($event.id)"-->
+                                                                 <!--[selectedValue]="noticePeriodInpt.value"  [placeholder]="'Select Notice Period'"-->
+                                                                 <!--[selectList]="noticePeriodMonthsList">-->
+                                            <!--</bootstrap-selectbox>-->
+
+
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class=" clearfix"></div>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</form>-->
+
+
+            <!--</div>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Profile Complete &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+    <!--<div class="desktop"> &lt;!&ndash; Desktop &ndash;&gt;-->
+        <!--<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">-->
+
+            <!--<div class="block bottom-gap saved">-->
+                <!--<div class="profile-status">-->
+                    <!--<div class="profile-status-header">-->
+                        <!--<h3>{{(jobSeekerGeneralInfo | async)?.jobseeker_name}}</h3>-->
+                        <!--<h4>Your Profile is Not Complete</h4>-->
+
+                    <!--</div>-->
+
+                    <!--<div class="block-contant">-->
+
+                        <!--<div class="profile-percentage">-->
+                            <!--<div class="prg-cercle">-->
+                                <!--<div class=" c100 green p{{(percentage | async) | number}}">-->
+                                    <!--<span>{{(percentage | async) | number}}%</span>-->
+                                    <!--&lt;!&ndash;<span>{{percentage| number}}%</span>&ndash;&gt;-->
+                                    <!--<div class="slice">-->
+                                        <!--<div class="bar"></div>-->
+                                        <!--<div class="fill"></div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="clearfix"></div>-->
+                        <!--</div>-->
+
+
+
+                        <!--<div class="block-title-2 border-none">-->
+                            <!--<button (click)="onEdit()">Update Profile</button>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="dark">Get Noticed!</div>-->
+
+                        <!--<p class="big-18">-->
+                            <!--<span class="light">A Complete Profile Gives You a </span><span class="dark">Better-->
+                    <!--Employer Reach</span><span class="light"> & </span> <span class="dark"> a Higher Chance of</span>-->
+                            <!--<span class="light">Getting the</span> <span class="dark"> Perfect Job Match.</span>-->
+                        <!--</p>-->
+
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+<!--</div>-->

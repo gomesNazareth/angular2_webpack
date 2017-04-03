@@ -1,0 +1,439 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div class="commen-container-less load-data-js">
+    <div class="col-lg-12">
+        <div class="block settings bottom-gap">
+            <div class="col-lg-6 col-md-6 col-sm-12 padding-none">
+
+
+                <h2 class="mobile-padding">Account Settings</h2>
+                <spinner [visible]="loadingFlag1"></spinner>
+                <form  [formGroup]="form1">
+
+                    <div class="row padding-10-15 txt border-bottom min-height">
+
+
+
+                        <div *ngIf="(postsuccessFlag$ | async) == true"   class="comen-alert">
+                            <i class="zmdi zmdi-check-circle"></i> Your password has been changed successfully.
+                        </div>
+
+
+
+                        <div *ngIf="failedPostFlag" class="alert alert-danger mar15">
+                            <div>{{errorMessage}}</div>
+                        </div>
+
+
+
+<div class="set">
+<div class="row"><span>Password</span></div>
+
+<div class="set-lft">
+    <p class="align-left margin-top-5">Current Password</p>
+         <input type="password"
+               name="current_password"
+               placeholder="xxxxxx" formControlName="current_password">
+
+         <div *ngIf="(form1.controls['current_password'].touched || postFlag == true) && form1.controls['current_password'].errors"  class="alert martop15 alert-danger">
+                 <div *ngIf="form1.controls['current_password'].errors.required">Please enter your Current Password</div>
+
+        </div>
+
+</div>
+<div class="set-rgt">
+          <p class="align-left margin-top-5">New Password</p>
+                <input type="password"
+                       name="new_password"
+                       placeholder="xxxxxx"
+                       formControlName="new_password">
+
+
+        <div *ngIf="(form1.controls['new_password'].touched || postFlag == true) && form1.controls['new_password'].errors">
+            <div *ngIf="form1.controls['new_password'].errors.required" class="alert martop15 alert-danger">
+               Please enter your New Password
+            </div>
+
+            <div *ngIf="!form1.controls['new_password'].errors.required && form1.controls['new_password'].errors.complexPass"
+                 class="alert alert-danger mar15">
+                The new password min length must be {{
+                form1.controls['new_password'].errors.complexPass.minlength}}
+            </div>
+        </div>
+
+
+</div>
+<div class="clearfix"></div>
+
+</div>
+
+
+                        <div class="row pspacing">
+                            <div class="row"><p class="align-left margin-top-5">Confirm New Password</p></div>
+                            <input type="password"
+                                   name="new_password2"
+                                   formControlName="new_password2"
+                                   placeholder="********">
+                                </div>
+                        <div *ngIf="(form1.controls['new_password2'].touched || postFlag == true)&& form1.controls['new_password2'].errors">
+                            <div *ngIf="form1.controls['new_password2'].errors.required" class="alert martop15 alert-danger">
+                               Please confirm your New Password
+                            </div>
+                            <div *ngIf="!form1.controls['new_password2'].errors.required  && form1.controls['new_password2'].errors.passwordMissmatch"
+                                 class="alert martop15 alert-danger">Password miss Match.
+                            </div>
+                        </div>
+
+
+
+                        <div class="row block-footer padding-none">
+                            <button (click)="onSubmitAccountSettings()" >Save Changes</button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Deactivate Your Account -->
+
+                <div class="padding-alert-without-space" >
+                    <div *ngIf="(deactivatedFlag$ | async) == true"   class="comen-alert mg-bt-0">
+                        <i class="zmdi zmdi-check-circle"></i>
+                        Your account is de Activated. Please contact the admin to re activate.
+                    </div>
+                    <div *ngIf="(deactivatedFlag$ | async) == false"  class="alert alert-danger mar mg-bt-0">
+                        <div>Sorry your account deactivated try Again</div>
+                    </div>
+                </div>
+
+
+
+                
+
+                <h2 class="border-none padding-btm-0">Deactivate Your Account</h2>
+                <div class="row padding-10-15 txt min-height-165">
+                    <div class="row pspacing">
+                        <p  *ngIf="!_accountservice.getCheckEmployer()"  class="align-left mobile-text-center">If you deactivate your account, your profile won’t be visible to
+                            employers on BLOOVO, and employers won’t be able to search for you.</p>
+                        <p  *ngIf="_accountservice.getCheckEmployer()"  class="align-left mobile-text-center">If you deactivate your account, your profile won’t be visible to
+                            job seekers on BLOOVO, and job seekers won’t be able to search for you. </p>
+                    </div>
+                    <div class="row block-footer padding-none">
+                        <!--<button (click)="onActivate()">Deactivate</button>-->
+
+                        <a    data-toggle="modal" [attr.data-target] = "'.deactivate-account'" ><button>Deactivate</button></a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 padding-none border-left">
+                <h2 class="mobile-padding">Notification Settings</h2>
+                <div class="row padding-10-15 txt border-bottom min-height">
+       <div class="padding-btm-0" >
+                <div *ngIf="(notificationUpateFlag$ | async) == true"   class="comen-alert">
+                    <i class="zmdi zmdi-check-circle"></i>
+                    Your selection has been updated
+                </div>
+                </div>
+
+                <div *ngIf="(notificationUpateFlag$ | async) == false"  class="alert alert-danger mar15">
+                    <div>Your notification settings are Updated</div>
+                </div>
+
+
+
+                    <div class="row pspacing border-bottom hidden-sm hidden-xs hidden-md">
+                        <div class="col-lg-6 zero-margin">
+                            <div class="row">&nbsp;</div>
+                        </div>
+                        <div class="col-lg-6 zero-margin">
+                            <div class="row padding-btm-5">
+                                <div  class="box-4"><strong>Daily</strong></div>
+                                <div class="box-4"><strong>Weekly</strong></div>
+                                <div class="box-4"><strong>Monthly</strong></div>
+                                <div class="box-4"><strong>None</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="userType == 'jobseeker'">
+
+                        <div class="col-lg-6 zero-margin">
+                            <h3>Suggested Jobs </h3>
+                        </div>
+                        <div class="col-lg-6 zero-margin">
+                            <div class="skill-radio clicks">
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="suggestedJobNotification" id="radio101" (click)="setNotificationId(1,1)" [checked]="(account$ | async)?.job == '1'" value="1">
+                                        <label for="radio101">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Daily</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="suggestedJobNotification" id="radio111" (click)="setNotificationId(2,1)" [checked]="(account$ | async)?.job == '2'" value="2">
+                                        <label for="radio111">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Weekly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="suggestedJobNotification" id="radio121" (click)="setNotificationId(3,1)" [checked]="(account$ | async)?.job  == '3'" value="3">
+                                        <label for="radio121">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Monthly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="suggestedJobNotification" id="radio131" (click)="setNotificationId(0,1)" [checked]="(account$ | async)?.job == '0'" value="0">
+                                        <label for="radio131">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">None</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="userType == 'employer'">
+
+                        <!--<div class="col-lg-6 zero-margin">-->
+                            <!--<h3>Candidates </h3>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6 zero-margin">-->
+                            <!--<div class="skill-radio clicks">-->
+                                <!--<div class="sk-radio">-->
+                                    <!--<div class="radio radio-primary">-->
+                                        <!--<input type="radio" name="candidateNotification" id="radio10" (click)="setNotificationId(1,1)" [checked]="(account$ | async)?.candidate == '1'" value="1">-->
+                                        <!--<label for="radio10">-->
+                                            <!--<span class="hidden-lg visible-xs visible-sm visible-md">Daily</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="sk-radio">-->
+                                    <!--<div class="radio radio-primary">-->
+                                        <!--<input type="radio" name="candidateNotification" id="radio11" (click)="setNotificationId(2,1)" [checked]="(account$ | async)?.candidate == '2'" value="2">-->
+                                        <!--<label for="radio11">-->
+                                            <!--<span class="hidden-lg visible-xs visible-sm visible-md">Weekly</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="sk-radio">-->
+                                    <!--<div class="radio radio-primary">-->
+                                        <!--<input type="radio" name="candidateNotification" id="radio12" (click)="setNotificationId(3,1)" [checked]="(account$ | async)?.candidate  == '3'" value="3">-->
+                                        <!--<label for="radio12">-->
+                                            <!--<span class="hidden-lg visible-xs visible-sm visible-md">Monthly</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="sk-radio">-->
+                                    <!--<div class="radio radio-primary">-->
+                                        <!--<input type="radio" name="candidateNotification" id="radio13" (click)="setNotificationId(0,1)" [checked]="(account$ | async)?.candidate == '0'" value="0">-->
+                                        <!--<label for="radio13">-->
+                                            <!--<span class="hidden-lg visible-xs visible-sm visible-md">None</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class=" clearfix"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6 zero-margin">
+                            <h3>Blog Posts </h3>
+                        </div>
+                        <div class="col-lg-6 zero-margin">
+                            <div class="skill-radio clicks">
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="blogNotification" id="radio14"  (click)="setNotificationId(1,2)" [checked]="(account$ | async)?.blog == '1'" value="1">
+                                        <label for="radio14">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Daily</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="blogNotification" id="radio15"  (click)="setNotificationId(2,2)" [checked]="(account$ | async)?.blog == '2'" value="2">
+                                        <label for="radio15">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Weekly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="blogNotification" id="radio16"  (click)="setNotificationId(3,2)" [checked]="(account$ | async)?.blog == '3'" value="3">
+                                        <label for="radio16">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Monthly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="blogNotification" id="radio17"  (click)="setNotificationId(0,2)"  [checked]="(account$ | async)?.blog == '0'" value="0">
+                                        <label for="radio17">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">None</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row border-bottom padding-mobile">
+
+                        <div class="col-lg-6 zero-margin">
+                            <h3>Polls </h3>
+                        </div>
+                        <div class="col-lg-6 zero-margin">
+
+                            <div class="skill-radio clicks">
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="pollNotification" id="radio18"  (click)="setNotificationId(1,3)" [checked]="(account$ | async)?.poll_question == '1'" value="1">
+                                        <label for="radio18">
+                                            <span class="hidden-lg visible-xs visible-sm  visible-md">Daily</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="pollNotification" id="radio19"  (click)="setNotificationId(2,3)" [checked]="(account$ | async)?.poll_question == '2'" value="2">
+                                        <label for="radio19">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Weekly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="pollNotification" id="radio20" (click)="setNotificationId(3,3)" [checked]="(account$ | async)?.poll_question == '3'" value="3">
+                                        <label for="radio20">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">Monthly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="pollNotification" id="radio21" (click)="setNotificationId(0,3)" [checked]="(account$ | async)?.poll_question  == '0'" value="0">
+                                        <label for="radio21">
+                                            <span class="hidden-lg visible-xs visible-sm visible-md">None</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" *ngIf="userType == 'jobseeker'">
+
+                        <div class="col-lg-6 zero-margin">
+                            <h3>Visible to My Current Employer </h3>
+                        </div>
+                        <div class="col-lg-6 zero-margin">
+                            <div class="skill-radio clicks">
+                                <div class="sk-radio spacing-left">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="employerVisible" id="radio22" 
+                                                [checked]="(account$ | async)?.visible_by_employer"
+                                                [value]="true"
+                                                (click)="setEmployerVisible(true)">
+                                        <label for="radio22">
+                                            <!-- <span class="hidden-lg visible-xs visible-sm visible-md">Daily</span> -->
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio ">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="employerVisible" id="radio23" 
+                                                [checked]="!(account$ | async)?.visible_by_employer"
+                                                [value]="false"
+                                                (click)="setEmployerVisible(false)">
+                                        <label for="radio23">
+                                            <!-- <span class="hidden-lg visible-xs visible-sm visible-md">Weekly</span> -->
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row block-footer padding-none">
+                        <button (click)="onUpdateNotifications()">Save Changes</button>
+                    </div>
+
+                </div>
+
+                <!-- Deactivate Your Account -->
+                <div class="padding-alert-without-space" >
+                    <div *ngIf="(newsletterFlag$ | async) == true"   class="comen-alert">
+                        <i class="zmdi zmdi-check-circle"></i>
+                        Your newsletter subcription has been updated successfully
+                    </div>
+                    <div *ngIf="(newsletterFlag$ | async) == false"  class="alert alert-danger ">
+                        <div >Your newsletter subcription is Update</div>
+                    </div>
+                </div>
+
+                <h2  class="border-none padding-btm-0">Newsletter Subscription</h2>
+                <div *ngIf="(newletterSub$ | async) == false" class="row padding-10-15 txt min-height-165">
+                    <div class="row pspacing">
+                        <p class="align-left mobile-text-center">Click Here to Subscribe to BLOOVO’s Newsletters. </p>
+                    </div>
+                    <div class="row block-footer padding-none">
+                        <button (click)="onSubNewsLetter()">Subscribe</button>
+                    </div>
+
+                </div>
+                <div *ngIf="(newletterSub$ | async) == true" class="row padding-10-15 txt min-height-165">
+                    <div class="row pspacing">
+                        <p class="align-left mobile-text-center">Click Here to Unsubscribe to BLOOVO’s Newsletters. </p>
+                    </div>
+                    <div class="row block-footer padding-none">
+                        <button (click)="onUnSubNewsLetter()">Unsubscribe</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Delete Saved Search Pop up-->
+<div class="popup">
+    <div class="logout-pop">
+        <div class="modal close_deactivate deactivate-account" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <h2>Acount Deactivation</h2>
+                        <h4><span class="light">Are you sure you want to deactivate your account?</span>
+                        </h4>
+                        <div class="pop-button">
+                            <button (click)="onActivate()" type="button" class="btn postive">Deactivate</button>
+                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,262 @@
+<form [formGroup]="education.edu_form" >
+    <up-load [file]="education.edu_file_D"></up-load>
+    <div class="work-logo">
+        <div class="work-lg-defalt"><i class="zmdi zmdi-graduation-cap"></i></div>
+    </div>
+    <div class="work-exp-details">
+        <div>
+            <div class="col-lg-6">
+                <div class="work-exp-form">
+                    <div class="full-box">
+                        <div class="dark">University or School</div>
+                        <div class="full-box">
+                            <input type="text"
+                                   name="edu_name"
+                                   formControlName="edu_name"
+                                   placeholder="Name of University or School" 
+                            >
+                            <div *ngIf="(education.edu_form.controls['edu_name'].touched || !pristineEducation) && !education.edu_form.controls['edu_name'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter University or School Name
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="full-box">
+                        <div class="dark">Educational Qualification</div>
+                        <div class="full-box">
+                            <div class="btn-group">
+                                <input type="hidden" #eduQualificationInpt name="edu_q_id"
+                                       formControlName="edu_q_id">
+                                <bootstrap-selectbox *ngIf="educationList" (selectedId)="education.edu_form.controls['edu_q_id'].setValue($event.id)"
+                                                     [selectedValue]="eduQualificationInpt.value"  [placeholder]="'Select Education Qualification'"
+                                                     [selectList]="educationList">
+                                </bootstrap-selectbox>
+                                <div *ngIf="(education.edu_form.controls['edu_q_id'].touched  || !pristineEducation) && !education.edu_form.controls['edu_q_id'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                    Please select your Education Qualification
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="full-box">
+                        <div class="dark">Field of Study</div>
+                        <div class="full-box">
+                            <input type="text"
+                                   name="edu_field_study"
+                                   formControlName="edu_field_study"
+                                   placeholder="Field of Study" 
+                            >
+                            <div  *ngIf="(education.edu_form.controls['edu_field_study'].touched  || !pristineEducation) && !education.edu_form.controls['edu_field_study'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Field of Study
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="full-box">
+                    <div class="half-box-lft">
+                        <div class="full-box">
+                            <div class="dark">Country</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                        <input type="hidden" #eduCountryInpt name="edu_country_id"
+                                               formControlName="edu_country_id">
+                                        <bootstrap-selectbox *ngIf="countryList" (selectedId)="education.edu_form.controls['edu_country_id'].setValue($event.id)"
+                                                             [selectedValue]="eduCountryInpt.value"  [placeholder]="'Select a Country'"
+                                                             [selectList]="countryList">
+                                        </bootstrap-selectbox>
+                                        <div  *ngIf="(education.edu_form.controls['edu_country_id'].touched  || !pristineEducation) && !education.edu_form.controls['edu_country_id'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                           Please select the Location of University or School
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="half-box-rgt">
+                        <div class="full-box" *ngIf="(country_Obj$ | async)?.id">
+                            <div class="dark">City</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+
+                                     <span *ngFor="let sel_country of countryList">
+                                             <auto-comp1 *ngIf="sel_country.id == (country_Obj$ | async)?.id" [countryId]="sel_country.id"
+                                                         [initData]="(sel_country.id == firstCountryId) ? [city_Obj]:[]"
+                                                         (changeCityId)=" onSelectCity($event)" >
+                                                    </auto-comp1>
+                                    </span>
+
+
+                                    <input  type="hidden"
+                                            name="edu_city_id"
+                                            formControlName="edu_city_id"
+                                            [ngModel]="city_Obj.id"
+                                            placeholder="City" 
+                                            class="btn btn-default dropdown-toggle minimal">
+
+                                    <div  *ngIf="(education.edu_form.controls['edu_city_id'].touched  || !pristineEducation) && !education.edu_form.controls['edu_city_id'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select the relavant City
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="full-box" *ngIf="!(country_Obj$ | async)?.id">
+                            <div class="dark">City</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+
+
+                                    <input  type="text"
+                                            placeholder="Select A City"
+                                            class="btn btn-default dropdown-toggle minimal">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div>
+                    <div class="full-box" >
+                        <div class="third-box">
+                            <div class="full-box">
+                                <div class="dark">Start Date</div>
+                                <div class="full-box relative">
+                                    <input type="hidden"
+                                           placeholder="From"
+                                           [ngModel]="startDate | date:'d MMMM, yyyy'"
+                                           #eduStartDate
+                                           (change)="selectStartDate(eduStartDate)"
+                                            name="edu_start_date"
+                                           formControlName="edu_start_date">
+
+                                    <datePicker-block
+                                            (emitSelDate)="education.edu_form.controls['edu_start_date'].setValue($event['selDate']);
+                                            education.edu_form.controls['edu_end_date'].setValue(null);
+                                            education.edu_still_studing = true;
+                                            education.edu_form.controls['edu_still_studing'].setValue(true)"
+                                            [dp_placeholder]="'From'"  [sel_id]="edu_index+'_'+display_mode+'24'"
+                                            [maxDate]="maxDate"
+                                            [toYear]="toYear"
+                                            [dp_value]="education.edu_form.controls['edu_start_date'].value" >
+
+                                    </datePicker-block>
+
+
+
+                                    <div  *ngIf="(education.edu_form.controls['edu_start_date'].touched  || !pristineEducation) && !education.edu_form.controls['edu_start_date'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select Start Date
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="third-box">
+                            <div class="full-box" [style.display]="education.edu_still_studing?'none':'block'">
+                                <div class="dark">End Date</div>
+                                <div class="full-box relative">
+                                    <input type="hidden"
+                                           #eduEndDate
+                                           [ngModel]="endDate | date:'d MMMM, yyyy'"
+                                           (change)="selectEndDate(eduEndDate)"
+                                           name="edu_end_date"
+                                           formControlName="edu_end_date"
+                                           placeholder="To">
+
+                                    <datePicker-block (emitSelDate)="education.edu_form.controls['edu_end_date'].setValue($event['selDate']);
+                                                                      education.edu_form.controls['edu_still_studing'].setValue(false);education.edu_still_studing = false"
+                                                      [dp_placeholder]="'To'"  [sel_id]="edu_index+'_'+display_mode+'25'"
+                                                      [dateRangeFlag]="true"
+                                                      [toYear]="toYear"
+                                                      [maxDate]="maxDate"
+                                                      [dp_startDate]="education.edu_form.controls['edu_start_date'].value"
+                                                      [dp_value]="education.edu_form.controls['edu_end_date'].value"></datePicker-block>
+
+                                    <div  *ngIf="(education.edu_form.controls['edu_end_date'].touched  || !pristineEducation) && edu_end_date_error" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select End Date
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="third-box margin-top-30">
+
+
+                            <input type="checkbox"
+                                   [name]="'checkboxG7'+edu_index"
+                                   [id]="'checkboxG7'+edu_index"
+                                   (click)="onToggleCurrentlyStuding()"
+                                   formControlName="edu_still_studing"
+                                   class="css-checkbox" />
+
+                            <label  [attr.for]="'checkboxG7'+edu_index"   class="css-label"> I currently study here </label>
+
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="full-box" style=" display:none">
+                        <div class="half-box-lft">
+                            <div class="full-box">
+                                <div class="dark">Time Period</div>
+                                <div class="full-box relative">
+                                    <input type="text" [id]="'datepicker_edu_'+edu_index+'_1'" placeholder="From">
+                                    <div class="absulute-btn-i block-title-2 padding-0 border-none">
+                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="half-box-rgt margin-top-40">
+                            <input type="checkbox" name="checkboxG7" id="checkboxG7"
+                                   class="css-checkbox"/>
+                            <label for="checkboxG7" class="css-label">I currently work
+                                here</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="full-box">
+                    <div class="half-box-lft">
+                        <div class="dark">Grade</div>
+                        <div class="full-box">
+                            <input type="text" name="edu_grade" formControlName="edu_grade" placeholder="Enter Your Grade">
+                        </div>
+
+
+
+                        <div  *ngIf="(education.edu_form.controls['edu_grade'].touched  || !pristineEducation) && !education.edu_form.controls['edu_grade'].valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please enter Grade
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-lg-12">
+                <div class="block-title-2 border-none margin-top-5 padding-0">
+                    <button (click)="onSaveEdu(edu_index)"><i class="zmdi zmdi-floppy"></i> Save</button>
+                    <span class="span-button" (click)="onCancelEDU(edu_index)">
+                          <i  class="zmdi zmdi-close"></i>
+                             Cancel
+                        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class=" clearfix"></div>
+</form>

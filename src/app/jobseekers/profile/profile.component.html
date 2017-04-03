@@ -1,0 +1,634 @@
+<div class="main-tab mobile-tab-top" *ngIf="(current_step$ | async) == 3">
+    <!-- desktop -->
+    <ul class="nav nav-tabs hidden-xs" role="tablist">
+        <li role="presentation" [class.active]="ismyProfile" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile']" routerLinkActive="active">
+                <i class="icon-profile"></i> My Profile
+            </a>
+        </li>
+        <li role="presentation" [class.active]="isInviteFriend" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile/invite-connections']" routerLinkActive="active">
+                <i class="zmdi zmdi-accounts-add"></i>
+                Invite Friends
+            </a>
+        </li>
+    </ul>
+    <!-- ****** -->
+
+
+    <!-- Mobile Tab -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="ismyProfile" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile']" routerLinkActive="active">
+                <i class="icon-profile"></i> My Profile
+            </a>
+        </li>
+        <li role="presentation" [class.active]="isInviteFriend" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/profile/invite-connections']" routerLinkActive="active">
+                <i class="zmdi zmdi-accounts-add"></i>
+                Invite Friends
+            </a>
+        </li>
+    </ul>
+    <!-- ****** -->
+</div>
+
+<div class="tab-content load-data-js" *ngIf="(current_step$ | async) == 3">
+    <div  role="tabpanel" class="tab-pane" [class.active]="ismyProfile" id="my-profile">
+
+        <div *ngIf="!(cachedProfile$ | async)" class="empty-min2">
+            <!-- <div id="loader-wrapper"> -->
+            <i class="small_loading">
+                <spinner></spinner>
+            </i>
+            <!-- </div> -->
+        </div>
+
+        <div class="commen-container" *ngIf="(cachedProfile$ | async)">
+            <div class="col-lg-12">
+                <div class="block display bottom-gap padd-15">
+                    <div class=" col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- dp section -->
+                        <i class="spinner-prf" *ngIf="(loadSpinner$ | async)"><spinner></spinner></i>
+
+                        <div class="saved" *ngIf="profile_status == 'read' && !(loadSpinner$| async) "><!-- save -->
+                            <div class=" dp-lft">
+                                <div class="right mobile visble-xs"><a (click)="onEditProfile()"><span class="light"><i
+                                        class="zmdi zmdi-edit"></i> Edit</span></a>
+                                </div>
+                                <div class="dp">
+                                    <span *ngIf="(avatar$ | async) && (avatar$ | async) != ''">
+                                         <img [attr.src]="(avatar$ | async)" class="dp dp_egg">
+                                    </span>
+                                    <span  *ngIf="!(avatar$ | async)">
+                                        <div class="dp-empty">
+                                            <a>
+                                                <i class="zmdi zmdi-camera-add"></i>
+                                            </a>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="dp-rgt">
+
+                                <div class="profile_name_txt border-none padding-0">
+                                    <div class="left-dp"><h3 class="mob-center-text">{{first_name}} {{last_name}}</h3></div>
+                                    <div class="desktop mobile-edit"><a (click)="onEditProfile()"><span class="light"><i
+                                            class="zmdi zmdi-edit"></i> Edit</span></a>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+
+
+                                <div class="box-manual">
+                                    <div class="dp-txt">
+
+                                        <h3 class="rounded">
+                                            <i class="zmdi zmdi-account"></i>
+                                            <span>{{(latestWorkPositionName$ | async )}}</span>
+                                        </h3>
+
+                                    </div>
+                                    <div class="dp-txt">
+                                        <h1 class="rounded">
+                                            <i class="zmdi zmdi-view-headline"></i>
+                                            <span class="navy bold">{{(latestWorkCompanyName$ | async)}}</span>
+                                        </h1>
+
+                                    </div>
+
+                                    <div class="dp-txt">
+                                        <h3 class="rounded">
+                                            <i class="zmdi zmdi-chart-donut"></i>
+                                            <span>{{(latestWorkSectorName$ | async)}}</span>
+                                        </h3>
+
+                                    </div>
+                                    <div class="dp-txt padding-btm-10">
+                                        <h3 class="rounded">
+                                            <i class="zmdi zmdi-pin"></i>
+                                            <span *ngIf="countryObj">{{cityObj.name}}, {{countryObj.name}}</span>
+                                            <span *ngIf="!countryObj">{{cityObj.name}}</span>
+                                        </h3>
+                                        <div class="clearfix" ></div>
+                                    </div>
+
+                                    <div class="social-section fit-on-mob">
+                                        <div class="left">
+                                            <div class="social-media">
+                                                <a *ngIf="social_media_facebook" href="{{gethtpValidate(social_media_facebook)}}" target="_blank">
+                                                    <div class="s-media facebook"><i class="zmdi zmdi-facebook"></i></div>
+                                                </a>
+                                                <a *ngIf="!social_media_facebook" target="_blank">
+                                                    <div class="s-media facebook social-desable"><i class="zmdi zmdi-facebook"></i></div>
+                                                </a>
+                                                <a *ngIf="social_media_twitter" href="{{gethtpValidate(social_media_twitter)}}" target="_blank">
+                                                    <div class="s-media twitter"><i class="zmdi zmdi-twitter"></i></div>
+                                                </a>
+                                                <a *ngIf="!social_media_twitter"   target="_blank">
+                                                    <div class="s-media twitter social-desable"><i class="zmdi zmdi-twitter"></i></div>
+                                                </a>
+                                                <a *ngIf="social_media_linkedIn"  href="{{gethtpValidate(social_media_linkedIn)}}" target="_blank">
+                                                    <div class="s-media linkdin"><i class="zmdi zmdi-linkedin"></i></div>
+                                                </a>
+                                                <a *ngIf="!social_media_linkedIn"   target="_blank">
+                                                    <div class="s-media linkdin social-desable"><i class="zmdi zmdi-linkedin"></i></div>
+                                                </a>
+                                                <a *ngIf="social_media_google_plus" href="{{gethtpValidate(social_media_google_plus)}}" target="_blank">
+                                                    <div class="s-media google-plus"><i class="zmdi zmdi-google-plus"></i>
+                                                    </div>
+                                                </a>
+                                                <a *ngIf="!social_media_google_plus"   target="_blank">
+                                                    <div class="s-media google-plus social-desable"><i class="zmdi zmdi-google-plus"></i>
+                                                    </div>
+                                                </a>
+                                                <!--<a *ngIf="social_media_skype"  href="{{social_media_skype}}" target="_blank">-->
+                                                    <!--<div class="s-media skype "><i class="zmdi zmdi-skype"></i></div>-->
+                                                <!--</a>-->
+
+                                                <!--<a *ngIf="!social_media_skype" target="_blank">-->
+                                                    <!--<div class="s-media skype social-desable"><i class="zmdi zmdi-skype"></i></div>-->
+                                                <!--</a>-->
+                                                <div class="clearfix" ></div>
+                                            </div>
+                                        </div>
+                                        <div class="right block-title-2 border-none padding-0">
+                                            <span class="cancel padding-0">
+
+                                                <button class="bt-pdf" *ngIf="!showDownloadSpinner"    (click)="onSavePDF()" >
+                                                    <!-- Spinner -->
+                                                    <i  class="zmdi zmdi-floppy"></i>
+                                                    Save Profile in PDF
+                                                </button>
+                                                <button class="bt-pdf disabled_button"  *ngIf="showDownloadSpinner"  >
+                                                    <!-- Spinner -->
+                                                    <i  class="pdf_spinner"><img src="images/balls.svg"></i>
+
+                                                    Save Profile in PDF
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="edit"   *ngIf="profile_status == 'edit'" ><!-- edit -->
+
+                            <form [style.display]="!(loadSpinner$ | async) ?'block':'none'" [formGroup]="profile_form">
+
+                                <div *ngIf="profilePostError" class="main-alert error-message"> Sorry could not Update
+                                </div>
+
+                                <div  *ngIf="(!profile_form.valid && profile_form.dirty) || !profilePristine"
+                                      class="main-alert2 error-message">
+                                </div>
+
+                                <div class="dp-lft">
+                                    <div class="dp">
+
+                                        <div *ngIf="(avatar$ | async) == null " class="dp-empty">
+                                            <a href="#" data-toggle="modal" data-target=".upload-dp"><i class="zmdi zmdi-camera-add"></i></a>
+                                        </div>
+                                        <span *ngIf="(avatar$ | async) != null  && (avatar$ | async) != '' ">
+                                             <img [attr.src]="(avatar$ | async)" class="dp dp_egg">
+                                        </span>
+
+                                        <div class="dp-edit">
+                                            <a href="#" data-toggle="modal" [attr.data-target]="'.'+file_profile.classMap">
+                                                <i class="zmdi zmdi-camera-add"></i>
+                                            </a>
+                                            <!--<a  href="#" data-toggle="modal" [attr.data-target] = "'.delete-avatar'" >-->
+                                                <!--<i class="zmdi zmdi-delete"></i>-->
+                                            <!--</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dp-edit-right-section">
+                                    <div class="dp-rgt-1">
+                                        <div class="dp-input">
+                                            <div class="half-box">
+                                                <input type="text"
+                                                       placeholder="First Name"
+                                                       [ngModel]="first_name"
+                                                       name="profile_first_name"
+                                                       formControlName="first_name">
+
+                                                <ul>
+                                                <li *ngIf="(profile_form.controls['first_name'].touched || !profilePristine) && profile_form.controls['first_name'].errors">
+                                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                                        Please enter your First Name
+                                                    </div>
+                                                </li>
+                                                </ul>
+                                            </div>
+                                            <div class="half-box">
+                                                <input type="text"
+                                                       [ngModel]="last_name"
+                                                       placeholder="Last Name"
+                                                       name="profile_last_name"
+                                                       formControlName="last_name">
+                                                <ul>
+                                                <li *ngIf="(profile_form.controls['last_name'].touched || !profilePristine) && profile_form.controls['last_name'].errors">
+                                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                                        Please enter your Last Name
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                            <div class=" clearfix"></div>
+                                            <!-- Alert box -->
+                                            
+
+                                        </div>
+
+                                        <div class="dp-txt">
+                                            <h3 class="rounded"><i class="zmdi zmdi-account"></i><span> {{(latestWorkPositionName$ | async )}}</span>
+                                            </h3>
+                                        </div>
+                                        <div class="dp-txt">
+                                            <h3 class="rounded">
+                                                <i class="zmdi zmdi-view-headline"></i>
+                                                <span class="navy">{{(latestWorkCompanyName$ | async)}}</span>
+                                            </h3>
+
+                                        </div>
+                                        <div class="dp-txt">
+                                            <h3 class="rounded">
+                                                <i class="zmdi zmdi-chart-donut"></i>
+                                                <span> {{(latestWorkSectorName$ | async)}}</span>
+                                            </h3>
+                                        </div>
+
+                                        <div class="dp-input margin-top-5">
+                                            <div class="half-box">
+                                                <div class="btn-group">
+                                                    <bootstrap-selectbox *ngIf="countryList" (selectedId)="country_id =$event.id;countryObj.id = $event.id;profile_form.controls['city_id'].setValue(null)"
+                                                                         [selectedValue]="countryObj.id"  [placeholder]="'Select a Country'"
+                                                                         [selectList]="countryList">
+                                                    </bootstrap-selectbox>
+
+                                                    <input type="hidden" name="profile_country"
+                                                           [ngModel]="countryObj.id" formControlName="country_id">
+
+                                                </div>
+                                                <ul>
+                                                    <li *ngIf="(profile_form.controls['country_id'].touched || !profilePristine) && profile_form.controls['country_id'].errors">
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                            Please Select a Country
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="half-box relative">
+                                                <div class="btn-group margin-btm-5">
+                                                    <input type="hidden" name="profile_city"
+                                                           [ngModel]="cityObj.id" formControlName="city_id">
+
+
+                                                    <span *ngFor="let sel_country of countryList">
+                                                    <auto-comp1 *ngIf="sel_country.id == country_id"
+                                                                [countryId]="sel_country.id"
+                                                                [current_city]="cityObj"
+                                                                [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                                                (changeCityId)="onSelectCity($event)">
+                                                    </auto-comp1>
+                                                </span>
+                                                </div>
+                                                <ul>
+                                                    <li *ngIf="(profile_form.controls['city_id'].touched || !profilePristine) && (profile_form.controls['city_id'].errors)">
+                                                        <div class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                            Please select a City
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class=" clearfix"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="dp-rgt-2 block-title-2 padding-0 border-none desktop desktop1">
+                                        <button (click)="onSubmitProfile()"><i class="zmdi zmdi-floppy"></i>&nbsp;Save
+                                        </button>
+                                        <span class="cancel padding-0">
+                                        <a (click)="onReadProfile()" class="cursor_pointer1">
+                                            <div class="prf-cncel"><i class="zmdi zmdi-close"></i>&nbsp;Cancel</div>
+                                        </a>
+                                    </span>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+
+                                <div class="soc">
+                                    <div class="social-section">
+                                        <div class="social-media desktop"><!-- desktop -->
+                                            <div class="fb">
+                                                <ul>
+                                                    <li>
+                                                        <span (click)="onToggleSocialMedia('facebook')"
+                                                              class="s-media facebook " id="fb"><i
+                                                                class="zmdi zmdi-facebook"></i>
+                                                        </span>
+                                                        <div id="fb-section" *ngIf="facebookToggleFlag"
+                                                             class="social-area">
+                                                            <input type="text"
+                                                                    class="feld-url"
+                                                                    name="profile_facebook"
+                                                                    formControlName="facebook"
+                                                                    placeholder="Facebook">
+                                                        </div>
+                                                        <div class=" clearfix"></div>
+                                                    </li>
+
+                                                    <li>
+                                                        <span (click)="onToggleSocialMedia('googleplus')" class="s-media google-plus " id="gp">
+                                                            <i class="zmdi zmdi-google-plus"></i>
+                                                        </span>
+
+                                                        <div id="gp-section" *ngIf="googleplusToggleFlag"
+                                                             class="social-area">
+                                                            <input type="text" class="feld-url"
+                                                                    formControlName="google_plus"
+                                                                    name="profile_google_plus"
+                                                                    placeholder="Google Plus">
+                                                        </div>
+                                                        <div class=" clearfix"></div>
+
+                                                    </li>
+
+
+                                                    <li>
+                                                        <span (click)="onToggleSocialMedia('twitter')" class="s-media twitter " id="tw">
+                                                            <i class="zmdi zmdi-twitter"></i>
+                                                        </span>
+                                                        <div id="tw-section" *ngIf="twitterToggleFlag"
+                                                             class="social-area">
+                                                            <input type="text"
+                                                                    class="feld-url"
+                                                                    name="profile_twitter"
+                                                                    formControlName="twitter"
+                                                                    placeholder="Twitter">
+                                                        </div>
+                                                        <div class=" clearfix"></div>
+
+                                                    </li>
+                                                    <li>
+                                                        <span (click)="onToggleSocialMedia('linkedIn')" class="s-media linkdin " id="in">
+                                                            <i class="zmdi zmdi-linkedin"></i>
+                                                        </span>
+                                                        <div id="in-section" *ngIf="linkedInToggleFlag"
+                                                             class="social-area">
+                                                            <input type="text"
+                                                                    class="feld-url"
+                                                                    formControlName="linkedIn"
+                                                                    name="profile_linkedIn"
+                                                                    placeholder="LinkedIn">
+                                                        </div>
+                                                        <div class=" clearfix"></div>
+
+                                                    </li>
+
+                                                    <!--Disabled skype since need to find a way to show it-->
+                                                    <!--<li>-->
+                                                        <!--<span (click)="onToggleSocialMedia('skype')"-->
+                                                              <!--class="s-media skype " id="sk">-->
+                                                            <!--<i class="zmdi zmdi-skype"></i>-->
+                                                        <!--</span>-->
+                                                        <!--<div id="sk-section" *ngIf="skypeToggleFlag"-->
+                                                             <!--class="social-area">-->
+                                                            <!--<input type="text" name="profile_skype"-->
+                                                                    <!--formControlName="skype"-->
+                                                                    <!--[ngModel]="social_media_skype"-->
+                                                                    <!--class="feld-url"-->
+                                                                    <!--placeholder="Skype">-->
+                                                        <!--</div>-->
+                                                        <!--<div class=" clearfix"></div>-->
+                                                    <!--</li>-->
+
+                                                    <div class=" clearfix"></div>
+                                                </ul>
+                                            </div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+
+                                        <div class=" mobile"><!-- mobile -->
+
+                                            <div class="fb123">
+                                                <div class="full-box12 social-media">
+                                                    <input type="text" placeholder="url"
+                                                           name="profile_facebook"
+                                                           [ngModel]="social_media_facebook"
+                                                           formControlName="facebook">
+                                                    <div class="s-media facebook"><i class="zmdi zmdi-facebook"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="full-box12 social-media">
+                                                    <input type="text" placeholder="url"
+                                                           name="profile_twitter"
+                                                           [ngModel]="social_media_twitter"
+                                                           formControlName="twitter">
+                                                    <div class="s-media twitter"><i class="zmdi zmdi-twitter"></i></div>
+                                                </div>
+
+                                                <div class="full-box12 social-media">
+                                                    <input type="text" placeholder="url"
+                                                           name="profile_linkedIn"
+                                                           [ngModel]="social_media_linkedIn"
+                                                           formControlName="linkedIn">
+                                                    <div class="s-media linkdin"><i class="zmdi zmdi-linkedin"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="full-box12 social-media">
+                                                    <input type="text" placeholder="url"
+                                                           name="profile_google_plus"
+                                                           [ngModel]="social_media_google_plus"
+                                                           formControlName="google_plus">
+                                                    <div class="s-media google-plus"><i
+                                                            class="zmdi zmdi-google-plus"></i>
+                                                    </div>
+                                                </div>
+
+                                                <!--Disable skype for now since need to find a way to show it-->
+                                                <!--<div class="full-box12 social-media">-->
+                                                    <!--<input type="text" placeholder="url"-->
+                                                           <!--name="profile_skype"-->
+                                                           <!--[ngModel]="social_media_skype"-->
+                                                           <!--formControlName="skype">-->
+                                                    <!--<div class="s-media skype"><i class="zmdi zmdi-skype"></i></div>-->
+                                                <!--</div>-->
+                                                <div class=" clearfix"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="dp-rgt-2 block-title-2 padding-0 border-none mobile mobile1 margin-top-5">
+                                    <button (click)="onSubmitProfile()">
+                                        <i class="zmdi zmdi-floppy"></i>&nbsp;Save
+                                    </button>
+                                    
+                                    <button (click)="onReadProfile()" class="bt-blank-button"><i class="zmdi zmdi-close"></i>&nbsp;Cancel</button>
+                                    
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12 video"><!-- video -->
+                        <div class="saved" *ngIf="profile_video == 'read'"><!--saved-->
+                            <div class="vedio-head">
+                                <div class="left"><i class="zmdi zmdi-videocam "></i> My Video</div>
+                                <div class="right"><a class="cursor_pointer1" (click)="onEditVideo()"><span
+                                        class="light"><i
+                                        class="zmdi zmdi-edit"></i> Edit</span></a></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <video-style *ngIf="(social_media_video$ | async)" [social_media_video]="social_media_video$" [video_screenshot]="video_screenshot$">
+                            </video-style>
+
+                            <div *ngIf="!(social_media_video$ | async)" class="vedio-box">
+                                <div class="vedio-cover padding-12 cursor_pointer1" (click)="onEditVideo()">
+                                    <i class="icon-emptyvedio"></i>
+                                    <h5> Add Your 30-Second Video  </h5>
+                                </div>
+
+
+
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="edit" *ngIf="profile_video == 'edit'"><!--edit-->
+                            <div class="vedio-head">
+                                <div class="left"><i class="zmdi zmdi-videocam"></i> My 30-Second Video</div>
+                                <div class="right">
+
+                                    <a (click)="onReadVideo()" class="cursor_pointer1"><span
+                                            class="light"> Cancel</span></a>
+
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="vedio-box">
+                                <div class="vedio-cover">
+                                    <div *ngIf="!(social_media_video$ | async)" class="vedio-cover">
+                                        <i class="icon-emptyvedio"></i>
+                                        <h5> Add Your 30-Second Video  </h5>
+                                    </div>
+                                    <img *ngIf="(social_media_video$ | async)" src="{{ (video_screenshot$ | async) }}" width="100%">
+                                    <!--<img src="{{social_media?.video}}" width="100%">-->
+                                </div>
+
+                                <div class=" block-title-2 border-none padding-btm-0 pading-top-10">
+                                    <a href="#" data-toggle="modal"
+                                       [attr.data-target]="'.'+file_video.classMap">
+
+                                        <button> Upload <span>New Video</span></button>
+
+                                    </a>
+                                    <a [style.display]="(social_media_video$ | async)?'inline':'none'" data-toggle="modal" [attr.data-target] = "'.delete-video'" ><button><i
+                                            class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+                                </div>
+
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <div class=" clearfix"></div>
+                        </div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+            </div>
+
+
+            <address_contact_resume (onUpdateProfileStatus)="onUpdateProfileStatus()"
+                                    [cachedProfile]="cachedProfile$"
+                                    [jobSeekerAddress]="jobSeekerAddress$"
+                                    [jobSeekerContact]="jobSeekerContact$"
+                                    [resumes]="resume"
+                                    [cover_letters]="cover_letter"
+                                    [commonData]="commonData$">
+            </address_contact_resume>
+            <general_info  [percentage]="percentage$"
+                           (onUpdateProfileStatus)="onUpdateProfileStatus()"
+                           [generalInfo]="generalInfo"
+                           [jobSeekerGeneralInfo]="jobSeekerGeneralInfo$">
+            </general_info>
+            <profile-summary [summary]="summary" (onUpdateProfileStatus)="onUpdateProfileStatus()"  ></profile-summary>
+            <work-edu-cert  [cachedProfile]="cachedProfile$"
+                            (onUpdateProfileStatus)="onUpdateProfileStatus()"
+                            [commonData]="commonData$">
+            </work-edu-cert>
+            <profile-skills [skills]="skills$" (onUpdateProfileStatus)="onUpdateProfileStatus()" ></profile-skills>
+            <job-tags [tags]="tags$" (onUpdateProfileStatus)="onUpdateProfileStatus()" ></job-tags>
+
+        </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" [class.active]="isInviteFriend" id="invite-friends">
+        <div><invite-friend *ngIf="isInviteFriend" ></invite-friend></div>
+    </div>
+</div>
+<up-load [file]="file_video" (onUpload)="onVideoUploaded($event)"></up-load>
+<up-load *ngIf="profile_status == 'edit'"  [mode]="'imageCrop'" [file]="file_profile" (onUpload)="onAvatarUploaded($event)" ></up-load>
+<!--Delete Saved Search Pop up-->
+<div class="popup">
+    <div class="logout-pop">
+        <div class="modal close_delete delete-avatar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <h2>Delete Video</h2>
+
+                        <h4><span class="navy"> Sure you want to delete your <b>Profile Picture</b>?</span> </h4>
+                        <div class="pop-button">
+                            <button (click)="onDeleteImage()"  type="button" class="btn postive">Delete</button>
+                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" *ngIf="(current_step$ | async) == 3">
+    <div class="logout-pop">
+        <div class="modal close_delete delete-video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <h2>Delete Video</h2>
+
+                        <h4><span class="navy"> Sure you want to delete your <b>Profile Video</b>?</span> </h4>
+                        <div class="pop-button">
+                            <button (click)="onDeleteVideo()"  type="button" class="btn postive">Delete</button>
+                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="(current_step$ | async) != 3">
+    <complete-profile  *ngIf="(cachedProfile$ | async)"  [profileObject]="cachedProfile$"  [current_step]="current_step$"></complete-profile>
+</div>

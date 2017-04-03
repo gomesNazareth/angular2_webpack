@@ -1,0 +1,1599 @@
+    <div class="col-lg-12 tab-seperate" *ngIf="jobId != null && is_applied == true">
+        <div class="sec-area">
+            <div class="width-al">
+                <ul>
+                    <li role="presentation" class="active ">
+                        <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+candidateId+'/'+this._accountService.getSpaceToDash(this.candidateName)+'/'+'profile']"  [queryParams]="{job_id:jobId}"  class="active-candidate" >Applicant Profile</a>
+                    </li>
+                    <li role="presentation" *ngIf="is_applied">
+                        <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+candidateId+'/'+this._accountService.getSpaceToDash(this.candidateName)+'/'+'communication']"  [queryParams]="{job_id:jobId}">Communication with Applicant</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="width-small">
+                <button (click)="onBackJobApplicants()" class="border-w-l">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!---------- Bloovo display Picture Section ------------>
+    <div class="col-lg-12">
+        <div class="block">
+
+
+
+            <div class="block-title-2"  *ngIf="jobId == null || is_applied == false">
+                <div class="pull-left left-bx"><h2 class="padding-top-10 tex-left">{{headerString}}</h2> </div>
+                <div class="pull-right right-bx"><a class="cursor_pointer1" (click)="onBack()"> <button> Back </button></a> </div>
+                <div class=" clearfix"></div>
+            </div>
+
+            <div class="display bottom-gap padding-10">
+                <div class=" col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- dp section -->
+                    <div class="saved" ><!-- save -->
+                        <div class=" dp-lft candidate-dp">
+
+                            <div class="dp">
+                                <span *ngIf="(candidateDetailsObs | async)?.avatar">
+                                   <img [attr.src]="(candidateDetailsObs | async)?.avatar" class="dp dp_egg">
+                                </span>
+                                <span  *ngIf="!(candidateDetailsObs | async)?.avatar">
+                                    <div class="dp-empty"><a href="#" data-toggle="modal" data-target=".upload-dp"><i class="icon-profile"></i></a> </div>
+
+                                </span>
+
+                            </div>
+
+                            <div class="candi-name hidden-lg hidden-md hidden-sm">
+                                <h3 class="mob-center-text">{{(candidateDetailsObs | async)?.first_name}} {{(candidateDetailsObs | async)?.last_name}} </h3> 
+                            </div>
+                            
+                        </div>
+
+                        <div class="dp-rgt">
+
+                            <div class="profile_name_txt border-none padding-0">
+                                <div class="left-dp">
+                                <h3 class="mob-center-text hidden-xs hidden-sm">{{(candidateDetailsObs | async)?.first_name}} {{(candidateDetailsObs | async)?.last_name}} </h3> 
+                                </div>
+
+
+
+
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="dp-txt">
+                            <h3 class="rounded">
+                            <i class="zmdi zmdi-account"></i>
+                            <span>{{(candidateDetailsObs | async)?.current_experience?.position}}</span>
+                            </h3> 
+                            </div>
+                            <div class="dp-txt">
+                            <h3 class="rounded">
+                                <i class="zmdi zmdi-view-headline"></i>
+                                <span class="bold navy">{{(candidateDetailsObs | async)?.current_experience?.company_name}}</span>
+                            </h3>
+                            </div>
+                            <div class="dp-txt">
+                            <h3 class="rounded">
+                            <i class="zmdi zmdi-chart-donut"></i>
+                                <span>{{(candidateDetailsObs | async)?.general_info?.sector?.name}}</span>
+                            </h3>
+                            </div>
+                            <div class="dp-txt padding-btm-10">
+                                <h3 class="rounded">
+                                    <i class="zmdi zmdi-pin"></i>
+                                    <span *ngIf="(candidateDetailsObs | async)?.address?.country?.name">{{(candidateDetailsObs | async)?.address?.city?.name}}, {{(candidateDetailsObs | async)?.address?.country?.name}}</span>
+                                    <span *ngIf="!(candidateDetailsObs | async)?.address?.country?.name">{{(candidateDetailsObs | async)?.address?.city?.name}} &nbsp;</span>
+                                </h3>
+                            </div>
+
+                            <div class="social-section">
+                                <div class="left">
+                                    <div class="social-media">
+                                        <a target="_blank" *ngIf="(candidateDetailsObs | async)?.social_media?.facebook" href="{{(candidateDetailsObs | async)?.social_media?.facebook}}"><div class="s-media facebook" ><i class="zmdi zmdi-facebook"></i></div> </a>
+                                        <a target="_blank" *ngIf="!(candidateDetailsObs | async)?.social_media?.facebook"><div class="s-media facebook social-desable"><i class="zmdi zmdi-facebook"></i></div> </a>
+
+                                        <a target="_blank" *ngIf="(candidateDetailsObs | async)?.social_media?.twitter" href="{{(candidateDetailsObs | async)?.social_media?.twitter}}"><div class="s-media twitter" [class.disable_social]="!(candidateDetailsObs | async)?.social_media?.twitter"><i class="zmdi zmdi-twitter"></i></div> </a>
+                                        <a target="_blank" *ngIf="!(candidateDetailsObs | async)?.social_media?.twitter"><div class="s-media twitter social-desable" [class.disable_social]="!(candidateDetailsObs | async)?.social_media?.twitter"><i class="zmdi zmdi-twitter"></i></div> </a>
+
+
+                                        <a target="_blank" *ngIf="(candidateDetailsObs | async)?.social_media?.linkedin" href="{{(candidateDetailsObs | async)?.social_media?.linkedin}}"><div class="s-media linkdin" [class.disable_social]="!(candidateDetailsObs | async)?.social_media?.linkedin"><i class="zmdi zmdi-linkedin"></i></div> </a>
+                                        <a target="_blank" *ngIf="!(candidateDetailsObs | async)?.social_media?.linkedin"  ><div class="s-media linkdin social-desable"><i class="zmdi zmdi-linkedin"></i></div> </a>
+
+                                        <a target="_blank" *ngIf="(candidateDetailsObs | async)?.social_media?.google_plus"  href="{{(candidateDetailsObs | async)?.social_media?.google_plus}}"><div class="s-media google-plus" [class.disable_social]="!(candidateDetailsObs | async)?.social_media?.google_plus"><i class="zmdi zmdi-google-plus"></i></div> </a>
+                                        <a target="_blank"  *ngIf="!(candidateDetailsObs | async)?.social_media?.google_plus"  ><div class="s-media google-plus social-desable"><i class="zmdi zmdi-google-plus"></i></div> </a>
+
+                                        <!--<a target="_blank" href="{{(candidateDetailsObs | async)?.social_media?.skype}}"><div class="s-media skype" [class.disable_social]="!(candidateDetailsObs | async)?.social_media?.skype"><i class="zmdi zmdi-skype"></i></div> </a>-->
+                                        <!--<div class=" clearfix"></div>-->
+
+                                    </div>
+                                </div>
+
+
+                                <div class="right block-title-2 border-none padding-0 mg-mob">
+
+                                    <span class="cancel padding-0">
+                                      <button [class.disabled_button]="showDownloadSpinner"   (click)="onSavePDF()" >
+
+                                        <!-- Spinner -->
+                                        <i *ngIf="showDownloadSpinner" class="pdf_spinner"><img src="images/balls.svg"></i>
+
+                                        <i *ngIf="!showDownloadSpinner" class="zmdi zmdi-floppy"></i>
+                                        Save Profile in PDF
+                                    </button>
+
+                                    </span>
+
+
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        <div class=" clearfix"></div>
+                    </div>
+
+
+                </div>
+                <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12 video"><!-- video -->
+                    <div class="saved candi-video"><!--saved-->
+                        <div class="vedio-head">
+                            <i class="zmdi zmdi-videocam"></i> My 30-Second Video
+
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <!-- Empty Design -->
+                        <div class="vedio-box white" *ngIf="(loadSpinner$ | async)">
+                            <div class="empty-prf empty-video">
+                             <spinner></spinner>
+                            </div>
+                            <div class=" clearfix"></div>    
+                        </div>
+                        <!-- Empty Design -->
+                        <div class="vedio-box" *ngIf="!(social_media_video$ | async) && !(loadSpinner$ | async)">
+                            <div class="vedio-cover empty-video">
+                            <i class="icon-emptyvedio"></i>
+                            <h5> No Video Available</h5>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <video-style *ngIf="(social_media_video$ | async)" [social_media_video]="social_media_video$" [video_screenshot]="video_screenshot$">
+                        </video-style>
+                    </div>
+
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!---------- Contact Details Section ------------>
+    <div class="col-lg-12" *ngIf="jobId == null">
+        <div class="block bottom-gap">
+
+            <div class="profile-contact" >
+                <div class="col-lg-4 col-md-4 col-sm-12-col-xs-12 min-195"> <!---------- Contact Details ------------>
+                    <div class="saved"> <!-- save -->
+                        <div class="block-title">
+                            <h4>Contact Details</h4>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)"> 
+                            <i class="spinner-candi">
+                                <spinner [visible]="(loadSpinner$ | async)"></spinner>
+                            </i>     
+                        </div>
+                        <div class="block-contant contact-icon-align-fx" *ngIf="!(loadSpinner$ | async)">
+
+                            <div class="txt"><i class="zmdi zmdi-email"></i>{{(candidateDetailsObs | async)?.contact?.email_address}}</div>
+                            <div class="txt"><i class="zmdi zmdi-smartphone-android"></i>{{(candidateDetailsObs | async)?.contact?.phone_no}}</div>
+                            <div class="txt"><i class="zmdi zmdi-smartphone-android"></i>{{(candidateDetailsObs | async)?.contact?.mobile_no}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12-col-xs-12 bdr-all min-195"> <!---------- Address ------------>
+
+                    <div class="saved"> <!-- save -->
+                        <div class="block-title">
+                            <h4>Address</h4>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)"> 
+                            <i class="spinner-candi">
+                                <spinner [visible]="(loadSpinner$ | async)"></spinner>
+                            </i>     
+                        </div>
+                        <div class="block-contant" *ngIf="!(loadSpinner$ | async)">
+                            <div class="txt">{{(candidateDetailsObs | async)?.address?.address_line1}}</div>
+                            <div class="txt">{{(candidateDetailsObs | async)?.address?.address_line2}}</div>
+                            <div class="txt">{{(candidateDetailsObs | async)?.address?.postal_code}}</div>
+                            <div class="txt"  *ngIf="(candidateDetailsObs | async)?.address?.country?.name">{{(candidateDetailsObs | async)?.address?.city?.name}}, {{(candidateDetailsObs | async)?.address?.country?.name}}</div>
+                            <div class="txt"  *ngIf="!(candidateDetailsObs | async)?.address?.country?.name">{{(candidateDetailsObs | async)?.address?.city?.name}}&nbsp;</div>
+                            <div class="txt"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12-col-xs-12 min-195"> <!---------- Resume ------------>
+
+                <div class="resume mobile-job-application">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#cv" aria-controls="cv" role="tab" data-toggle="tab">My CVs</a></li>
+                        <li role="presentation"><a href="#cover-letter" aria-controls="cover-letter" role="tab" data-toggle="tab">My Cover Letter</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="cv">
+
+                            <div class="saved"> <!-- Save -->
+                                <div class="resume-contant candidate-cv-em">
+
+                                    <div class="row" *ngIf="!(candidateDetailsObs | async)?.resumes?.length" >
+                                        <div class="candidate-cv">
+
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf padding-top-10"  >
+                                                <i class="icon-emptycv"></i>
+                                                <h5> No CV Available</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" *ngFor="let selresume of (candidateDetailsObs | async)?.resumes" >
+                                        <div class="candidate-cv" *ngIf="selresume?.default == true">
+                                            
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf" *ngIf="!selresume?.document_file_name">
+                                                <i class="icon-emptycv"></i>
+                                                <h5> No CV Available</h5>
+                                            </div>
+
+
+                                            <div *ngIf="selresume?.document_file_name">
+                                                <i class="zmdi zmdi-file-text"></i>
+                                                <div class="light">{{selresume?.document_file_name}}  </div>
+                                                <div class="block-title-2 padding-0 border-none">
+                                                   <span class="cancel padding-0">
+                                                       <a target="_blank" href="{{selresume?.document}}"> <button><i class="zmdi zmdi-download"></i> Download</button></a>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane " id="cover-letter">
+                            <div class="saved" > <!-- Save -->
+                                <div class="resume-contant candidate-cv-em">
+
+                                    <div class="row" *ngIf="!(candidateDetailsObs | async)?.coverletters?.length && !(loadSpinner$ | async)">
+                                        <div class="candidate-cv" >
+
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf">
+                                                <i class="icon-empty-cover"></i>
+                                                <h5> No Cover Letters Available</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="(loadSpinner$ | async)">
+                                        <div class="candidate-cv padding-top-10">
+                                            <i class="spinner-candi">
+                                                <spinner [visible]="(loadSpinner$ | async)"></spinner>
+                                            </i>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" *ngFor="let selcover of (candidateDetailsObs | async)?.coverletters" >
+                                        <div class="candidate-cv" *ngIf="selcover?.default == true">
+
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf" *ngIf="!selcover?.document_file_name">
+                                                <i class="icon-empty-cover"></i>
+                                                <h5> No Cover Letters Available</h5>
+                                            </div>
+
+                                            <div *ngIf="selcover?.document_file_name">
+                                                <i class="zmdi zmdi-file-text"></i>
+                                                <div class="light"> {{selcover?.document_file_name}} </div>
+                                                <div class="block-title-2 padding-0 border-none">
+                                                       <span class="cancel padding-0">
+                                                         <a target="_blank" href="{{selcover?.document}}"><button><i class="zmdi zmdi-download"></i> Download</button></a>
+                                                        </span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+    <!---------- Contact Details Section ------------>
+    <div class="bottom-gap candidates-search" *ngIf="jobId != null">
+
+
+
+        <div class="col-lg-4">
+            <div class="block bottom-gap min-hgt-serch">
+
+                <div class="resume mobile-job-application">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#Contact" aria-controls="Contact" role="tab" data-toggle="tab">Contact Details</a></li>
+                        <li role="presentation"><a href="#Address" aria-controls="Address" role="tab" data-toggle="tab">Address</a></li>
+                    </ul>
+
+                    <div class="tab-content min-140">
+                        <div role="tabpanel" class="tab-pane active" id="Contact">
+                            <div class="saved"> <!-- save -->
+                                <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                                    <i class="spinner-candi">
+                                        <spinner [visible]="(loadSpinner$ | async)"></spinner>
+                                    </i>
+                                </div>
+                                <div class="block-contant contact-icon-align-fx" *ngIf="!(loadSpinner$ | async)">
+                                    <div class="txt"><i class="zmdi zmdi-email"></i>{{(candidateDetailsObs | async)?.contact?.email_address}}</div>
+                                    <div class="txt"><i class="zmdi zmdi-smartphone-android"></i>{{(candidateDetailsObs | async)?.contact?.phone_no}}</div>
+                                    <div class="txt"><i class="zmdi zmdi-smartphone-android"></i>{{(candidateDetailsObs | async)?.contact?.mobile_no}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Address">
+
+                            <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                                <i class="spinner-candi">
+                                    <spinner [visible]="(loadSpinner$ | async)"></spinner>
+                                </i>
+                            </div>
+                            <div class="block-contant" *ngIf="!(loadSpinner$ | async)">
+                                <div class="txt">{{(candidateDetailsObs | async)?.address?.address_line1}}</div>
+                                <div class="txt">{{(candidateDetailsObs | async)?.address?.address_line2}}</div>
+                                <div class="txt">{{(candidateDetailsObs | async)?.address?.postal_code}}</div>
+                                <div class="txt">{{(candidateDetailsObs | async)?.address?.city?.name}}</div>
+                                <div class="txt">{{(candidateDetailsObs | async)?.address?.country?.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="block bottom-gap min-hgt-serch ">
+
+                <div class="resume mobile-job-application">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#cv2" aria-controls="cv" role="tab" data-toggle="tab">My CVs</a></li>
+                        <li role="presentation"><a href="#cover-letter2" aria-controls="cover-letter" role="tab" data-toggle="tab">My Cover Letter</a></li>
+                    </ul>
+
+                    <div class="tab-content min-140">
+                        <div role="tabpanel" class="tab-pane active" id="cv2">
+                            <div class="saved" > <!-- Save -->
+                                <div>
+                                    <div class="row" *ngIf="!defaultResume" >
+                                        <div class="candidate-cv">
+
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf padding-top-10"  >
+                                                <i class="icon-emptycv"></i>
+                                                <h5> No CV Available</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="defaultResume?.default == true">
+                                        <div class="candidate-cv" >
+
+                                            <i class="zmdi zmdi-file-text"></i>
+                                            <div class="light">{{defaultResume?.document_file_name}}</div>
+                                            <div class="block-title-2 padding-0 border-none">
+                                                       <span class="cancel padding-0">
+                                                           <a target="_blank" href="{{defaultResume?.document}}">    <button><i class="zmdi zmdi-download"></i> Download</button> </a>
+                                                       </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="cover-letter2">
+
+                            <div class="saved"> <!-- Save -->
+                                <div>
+
+                                    <div class="row" *ngIf="!defaultCoverLetter">
+                                        <div class="candidate-cv" >
+
+                                            <!-- Empty Design for candidate  -->
+                                            <div class="empty-prf">
+                                                <i class="icon-empty-cover"></i>
+                                                <h5> No Cover Letters Available</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="defaultCoverLetter?.default == true" >
+                                        <div class="candidate-cv" >
+                                            <i class="zmdi zmdi-file-text"></i>
+                                            <div class="light">{{defaultCoverLetter?.document_file_name}}</div>
+                                            <div class="block-title-2 padding-0 border-none">
+                                                       <span class="cancel padding-0">
+                                                              <a target="_blank" href="{{defaultCoverLetter?.document}}">
+                                                                  <button><i class="zmdi zmdi-download"></i> Download</button>
+                                                              </a>
+                                                        </span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 hidden-xs">
+            <div class="block bottom-gap min-hgt-serch">
+
+                <div class="block-contant">
+                    <div class="profile-percentage min-140">
+                        <div class="prg-cercle"  *ngIf="(candidateDetailsObs | async)?.matching_percentage">
+                            <div class=" c100 p{{(candidateDetailsObs | async)?.matching_percentage  | number:'1.0-0'}} blue">
+                                <span>{{(candidateDetailsObs | async)?.matching_percentage | number:'1.1-1'}}%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                        <div class="light text-center bold navy">Job Matching </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!---------- Information Details Section ------------>
+    <div class="information">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+                <div class="saved"> <!-- save -->
+                    <div class="block-title">
+                        <h4>Candidate Information</h4>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="block-contant padding-0">
+                        <div class="info">
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-chart-donut"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Sector</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.sector?.name">{{(candidateDetailsObs | async)?.general_info?.sector?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.sector?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-view-dashboard"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Functional Area</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.functional_area?.name">{{(candidateDetailsObs | async)?.general_info?.functional_area?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.functional_area?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-graduation-cap"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Highest Education</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.highest_edu?.name">{{(candidateDetailsObs | async)?.general_info?.highest_edu?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.highest_edu?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="info">
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-experience"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Experience Level </div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.experince_level?.name">{{(candidateDetailsObs | async)?.general_info?.experince_level?.name}} </div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.experince_level?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-case"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Years of Experience </div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.total_years_experience">{{(candidateDetailsObs | async)?.general_info?.total_years_experience}} Years </div>
+                                    <div class="light" *ngIf="!(candidateDetailsObs | async)?.general_info?.total_years_experience">0</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-current-Job font-13"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Current Job Type</div>
+                                    <div class="dark"  *ngIf="(candidateDetailsObs | async)?.general_info?.job_type?.name">{{(candidateDetailsObs | async)?.general_info?.job_type?.name}} </div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.job_type?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+
+
+                        <div class="info">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Current Monthly Salary (USD)</div>
+                                    <div class="dark"  *ngIf="(candidateDetailsObs | async)?.general_info?.current_salary">{{(candidateDetailsObs | async)?.general_info?.current_salary | number}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.current_salary">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-money-box"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Expected Salary Range (USD)</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.expected_salary">{{(candidateDetailsObs | async)?.general_info?.expected_salary | number}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.expected_salary">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-flag"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Nationality</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.nationality?.name">{{(candidateDetailsObs | async)?.general_info?.nationality?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.nationality?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="info">
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-language"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Languages</div>
+                                    <!-- <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.languages?.length >0">
+                                        <span *ngFor="let selLang of (candidateDetailsObs | async)?.general_info?.languages">
+                                            {{selLang?.name}}
+                                        </span>
+                                    </div> -->
+
+
+                                    <div class="dark">
+                                        <span *ngFor="let selLan of (candidateDetailsObs | async)?.general_info?.languages,let certIndex = index">{{selLan?.name}}<span  *ngIf="certIndex <= ((candidateDetailsObs | async)?.general_info?.languages?.length-2)">, </span>
+                                        </span>
+                                        <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.languages && (candidateDetailsObs | async)?.general_info?.languages?.length ==0 ">&nbsp;
+                                            N/A
+                                        </div>
+                                <div class=" clearfix"></div>
+                                </div>
+
+
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-account-circle"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Age</div>
+                                    <div class="dark" *ngIf="age">{{age }} Years Old</div>
+                                    <div class="dark" *ngIf="!age">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-gender"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Gender</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.gender">{{genderHash[(candidateDetailsObs | async)?.general_info?.gender]}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.gender">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class=" clearfix"></div>
+                        </div>
+
+
+
+                        <div class="info">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="zmdi zmdi-account"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Marital Status</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.marital_status">{{marryHash[(candidateDetailsObs | async)?.general_info?.marital_status]}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.marital_status">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-visa-status"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Visa status</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.visa_status?.name">{{(candidateDetailsObs | async)?.general_info?.visa_status?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.visa_status?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-License"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Driving License Issued From</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.driving_license_issued_from?.name">{{(candidateDetailsObs | async)?.general_info?.driving_license_issued_from?.name}}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.driving_license_issued_from?.name">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="info">
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn"><i class="icon-notice-period"></i></div>
+                                <div class="left1">
+                                    <div class="txt">Notice Period</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.notice_period_in_months && (candidateDetailsObs | async)?.general_info?.notice_period_in_months > 1">
+                                    {{(candidateDetailsObs | async)?.general_info?.notice_period_in_months }} Months
+                                    </div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.general_info?.notice_period_in_months && (candidateDetailsObs | async)?.general_info?.notice_period_in_months == 1">
+                                    {{(candidateDetailsObs | async)?.general_info?.notice_period_in_months }} Month
+                                    </div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.general_info?.notice_period_in_months">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="left1 inf-icn green-active">
+                                    <i class="icon-last-active"></i>
+
+
+                                </div>
+                                <div class="left1">
+                                    <div class="txt">Last Active</div>
+                                    <div class="dark" *ngIf="(candidateDetailsObs | async)?.last_active">{{(candidateDetailsObs | async)?.last_active | date:'d MMM,  yyyy' }}</div>
+                                    <div class="dark" *ngIf="!(candidateDetailsObs | async)?.last_active">N/A</div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class=" clearfix"></div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!---------- summary Details Section ------------>
+
+    <div class="summary">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+
+                <div class="saved"> <!-- save -->
+                    <div class="block-title">
+                        <h4>Summary</h4>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="block-contant" >
+                    <!-- Empty Design -->
+                        <div class="empty-prf empty-min1" *ngIf="(loadSpinner$ | async)" >
+                           <spinner></spinner>
+                        </div>
+                        <div class="empty-prf empty-min1" *ngIf="!(candidateDetailsObs | async)?.summary?.length && !(loadSpinner$ | async)" >
+                            <i class="icon-empty-summery"></i>
+                            <h5> No Summary Available</h5>
+                        </div>
+
+                        <div class="txt" *ngIf="(candidateDetailsObs | async)?.summary">
+                            {{(candidateDetailsObs | async)?.summary }}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class=" clearfix"></div>
+    </div>
+
+    <!---------- Work Experience Details Section ------------>
+    <div class=" desktop"> <!-- Desktop -->
+        <!---------- Work Experience Details Section ------------>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+                <div class="saved"> <!-- save -->
+                    <div class="work-experience" >
+                        <div class="block-title">
+                            <h4>Work Experience</h4>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1"> 
+                              <spinner></spinner>
+                            </div>
+                        </div>
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.work_experience?.length && !(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1">
+                                <i class="icon-empty-experiance"></i>
+                                <h5> No Work Experience Available</h5>
+                            </div>
+                        </div>
+
+                        <div class="block-contant" *ngFor="let work_experience of (candidateDetailsObs | async)?.work_experience,let i = index">
+                            <div class="work-logo">
+                                <div class="work-lg-defalt"><i class="zmdi zmdi-city-alt"></i></div>
+                            </div>
+                            <div class="work-exp-details">
+                                <div>
+                                    <div class="hlaf-width-exp-left">
+                                        <div class="dark bold">{{work_experience?.company?.name}}</div>
+                                        <div class="work-light">{{work_experience?.position}}</div>
+                                        <div class="work-light">{{work_experience?.sector?.name}}</div>
+                                    </div>
+                                    <div class="hlaf-width-exp-right">
+                                        <div class="row">
+                                            <div class="inner-box-left-xp">
+                                                <div class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-pin"></i>
+                                                    </div>
+                                                    <div class="text-bx" *ngIf="work_experience?.country?.name">{{work_experience?.city?.name}}, {{work_experience?.country?.name}}</div>
+                                                    <div class="text-bx" *ngIf="!work_experience?.country?.name">{{work_experience?.city?.name}}&nbsp;</div>
+                                                </div>
+                                                <div class="work-light" *ngIf="work_experience?.to">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                {{work_experience?.from | date:'d MMM,  yyyy'}} - {{work_experience?.to | date:'d MMM,  yyyy'}}<span class="dark">&nbsp;({{work_experience?.from  | duration :work_experience?.to}})</span>
+                                                </div>
+                                                </div>
+
+                                                <div class="work-light" *ngIf="!work_experience?.to">
+                                                        <div class="icon-bx"><i class="zmdi zmdi-calendar-alt"></i></div>
+                                                        <div class="text-bx">{{work_experience?.from | date:'d MMM,  yyyy'}} - Present</div>
+                                                </div>
+                                            </div>
+                                            <div class="inner-box-right-xp" *ngIf="work_experience?.document">
+                                                <div class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="icon-resume"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        <a href="{{work_experience?.document}}"  target="_blank" >
+                                                        <span class="work-light">{{work_experience?.document_file_name}}</span>
+                                                        </a>
+                                                    </div>    
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="bullet full-xp-left" *ngIf="work_experience.description.length >0">
+                                    <div class="dark">Roles and Responsibilities</div>
+                                    <ul>
+                                        <li *ngFor="let role of work_experience.description">
+                                            <span class="work-light">{{role}} </span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!---------- Education Details Section ------------>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+                <div class="saved"> <!-- save -->
+                    <div class="education work-experience">
+                        <div class="block-title">
+                            <h4>Education</h4>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1"> 
+                                <spinner></spinner>
+                            </div>
+                        </div>
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.education?.length && !(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1">
+                                <i class="icon-empty-education"></i>
+                                <h5>No Education Available</h5>
+                            </div>
+                        </div>
+
+                        <div class="block-contant" *ngFor="let education of (candidateDetailsObs | async)?.education,let edu_index = index">
+                            <div class="work-logo">
+                                <div class="work-lg-defalt"><i class="zmdi zmdi-graduation-cap"></i></div>
+                            </div>
+                            <div class="work-exp-details">
+                                <div>
+                                    <div class="hlaf-width-exp-left">
+                                        <div class="dark bold">{{education.school}}</div>
+                                        <div class="work-light">{{education.field_of_study}}</div>
+                                        <div class="work-light">{{education.name}}</div>
+
+                                    </div>
+                                    <div class="hlaf-width-exp-right">
+                                        <div class="row">
+                                            <div class="inner-box-left-xp">
+                                                <div class="work-light btn-clr border-none">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-pin"></i>
+                                                    </div>
+                                                    <div class="text-bx" *ngIf="education?.country?.name">
+                                                        {{education?.city?.name}}, {{education?.country?.name}}
+                                                    </div>
+                                                    <div class="text-bx" *ngIf="!education?.country?.name">
+                                                        {{education?.city?.name}}&nbsp;
+                                                    </div>
+                                                </div>
+                                                <div  *ngIf="!education?.end_date" class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                    {{education?.start_date | date:'d MMM,  yyyy'}} - Present<span class="dark"></span>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="education?.end_date" class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        {{education?.start_date | date:'d MMM,  yyyy'}} -
+                                                        {{education?.end_date | date:'d MMM,  yyyy'}}
+                                                        <span class="dark">&nbsp;({{education?.start_date | duration :education?.end_date}})</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="inner-box-right-xp">
+                                                <div class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-badge-check"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        Grade:{{education?.grade}}
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="work-light" *ngIf="education?.document">
+                                                    <div class="icon-bx">
+                                                        <i class="icon-resume"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        <a href="{{education?.document}}" target="_blank"><span class="work-light"> {{education?.document_file_name}}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!---------- Certificate Details Section ------------>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+                <div class="saved"> <!-- save -->
+                    <div class="certificate work-experience">
+                        <div class="block-title">
+                            <h4>Certificates</h4>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1"> 
+                                <spinner></spinner>
+                            </div>
+                        </div>
+                        <!-- Empty Design -->
+                        <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.certificate?.length && !(loadSpinner$ | async)">
+                            <div class="empty-prf empty-min1">
+                                <i class="icon-empty-experiance"></i>
+                                <h5> No Certificate Available</h5>
+                            </div>
+                        </div>
+
+                        <div class="block-contant"
+                             *ngFor="let certificate of (candidateDetailsObs | async)?.certificate,let cert_index = index">
+                            <div class="work-logo">
+                                <div class="work-lg-defalt"><i class="zmdi zmdi-file-text"></i></div>
+                            </div>
+                            <div class="work-exp-details">
+                                <div>
+                                    <div class="hlaf-width-exp-left">
+                                        <div class="dark bold">{{certificate?.name}}</div>
+                                        <div class="work-light">{{certificate?.institute}}</div>
+
+                                    </div>
+                                    <div class="hlaf-width-exp-right">
+                                        <div class="row">
+                                            <div class="inner-box-left-xp">
+                                                <div class="work-light">
+                                                    <div class="icon-bx">
+                                                    <i class="zmdi zmdi-badge-check"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        Grade:{{certificate?.grade}}
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="certificate?.end_date" class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                    </div>
+                                                    <div class="text-bx">
+                                                        {{certificate?.start_date | date:'d MMM,  yyyy'}} - {{certificate?.end_date | date:'d MMM,  yyyy'}}
+                                                        <span class="dark">&nbsp;({{certificate?.start_date | duration :certificate?.end_date}})</span>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="!certificate?.end_date" class="work-light">
+                                                    <div class="icon-bx">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                        </div>
+                                                        <div class="text-bx">
+                                                            {{certificate?.start_date | date:'d MMM,  yyyy'}} - Present
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="inner-box-right-xp">
+
+                                                <div *ngIf="certificate?.document"
+                                                     class="work-light">
+                                                        <div class="icon-bx">
+                                                            <i class="icon-resume"></i>
+                                                        </div>
+                                                        <div class="text-bx">
+                                                            <a href="{{certificate?.document}}" target="_blank"  class="navy">
+                                                            <span class="work-light"> {{certificate?.document_file_name}}</span>
+                                                            </a>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="mobile"> <!-- mobile -->
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="block bottom-gap">
+                <div class="dashboard-graph">
+
+                    <div class="mobile">
+                        <div class="col-lg-3 col-md-3 col-sm-3 padding-none">
+                            <nav class="nav-sidebar">
+                                <ul class="nav tabs">
+                                    <li class="active"><a href="#experience" data-toggle="tab">Experience</a></li>
+                                    <li class=""><a href="#education" data-toggle="tab">Education</a></li>
+                                    <li class=""><a href="#certificate" data-toggle="tab">Certificate</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="padding-none tab-content">
+                <div class="tab-pane active text-style" id="experience"><!---------- Work Experience Details Section mobile ------------>
+                                <div class="saved"> <!-- save -->
+                                    <div class="work-experience">
+                                        <div class="block-title">
+                                            <h4>Work Experience</h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <!-- Empty Design -->
+                                        <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1"> 
+                                               <spinner></spinner>
+                                            </div>
+                                        </div>
+                                        <!-- Empty Design -->
+                                        <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.work_experience?.length && !(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1">
+                                                <i class="icon-empty-experiance"></i>
+                                                <h5>No Work Experience Available</h5>
+                                            </div>
+                                        </div>
+                                        <div class="block-contant"  *ngFor="let selWork of (candidateDetailsObs | async)?.work_experience ">
+                                            <div class="work-logo">
+                                                <div class="work-lg-defalt"><i class="zmdi zmdi-city-alt"></i></div>
+                                                <!--<div class="work-lg"><img src="images/company-logo-1.png"> </div>-->
+                                            </div>
+                                            <div class="work-exp-details">
+                                                <div>
+                                                    <div class="hlaf-width-exp-left">
+                                                        <div class="dark">{{selWork?.company?.name}} </div>
+                                                        <div class="work-light">{{selWork?.position}}</div>
+                                                        <div class="work-light">{{selWork?.sector?.name}}</div>
+                                                    </div>
+                                                    <div class="hlaf-width-exp-right">
+                                                            <div>
+                                                                <div class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-pin"></i>
+                                                                    </div>
+                                                                    <div class="text-bx" *ngIf="selWork?.country?.name">
+                                                                    {{selWork?.city?.name}}, {{selWork?.country?.name}}
+                                                                    </div>
+                                                                    <div class="text-bx" *ngIf="!selWork?.country?.name">
+                                                                    {{selWork?.city?.name}}&nbsp;
+                                                                    </div>
+                                                                </div>
+                                                                <div class="work-light" *ngIf="selWork?.to">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        {{selWork?.from | date:'d MMM,  yyyy'}} - {{selWork?.to | date:'d MMM,  yyyy'}}
+                                                                        <span class="dark">&nbsp;({{selWork?.from  | duration :selWork?.to}})</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="work-light" *ngIf="!selWork?.to">
+                                                                <div class="icon-bx">
+                                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                                </div>
+                                                                <div class="text-bx">
+                                                                    {{selWork?.from | date:'d MMM,  yyyy'}}<span class="dark">&nbsp;(Present)</span>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-xs-12"  *ngIf="selWork?.document">
+                                                                <div class="work-light mobile-attachement">
+                                                                    <a href="{{selWork?.document}}"  target="_blank" class="d-up-b" >
+                                                                        <div class="icon-bx">
+                                                                            <i class="icon-resume"></i>
+                                                                        </div>
+                                                                        <div class="text-bx">    
+                                                                        {{selWork?.document_file_name}}
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div> 
+                                                <div class="bullet full-xp-left" *ngIf="selWork?.description.length >0">
+                                                    <div class="dark">Roles and Responsibilities </div>
+                                                    <ul>
+                                                        <li *ngFor="let selRole of selWork?.description">
+                                                            <span class="work-light">{{selRole}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane  text-style" id="education"><!---------- Education Details Section mobile ------------>
+                                <div class="saved"> <!-- save -->
+                                    <div class="education work-experience">
+                                        <div class="block-title">
+                                            <h4>Education</h4>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+                                         <!-- Empty Design -->
+                                        <div class="block-contant"  *ngIf="(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1"> 
+                                              <spinner></spinner>
+                                            </div>
+                                        </div>
+                                         <!-- Empty Design -->
+                                        <div class="block-contant"  *ngIf="!(candidateDetailsObs | async)?.education?.length && !(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1">
+                                                <i class="icon-empty-education"></i>
+                                                <h5> No Education Available</h5>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="block-contant" *ngFor="let selEdu of (candidateDetailsObs | async)?.education ">
+                                            <div class="work-logo">
+                                                <!--<div class="work-lg"><img src="images/company-logo-1.png"> </div>-->
+                                                <div class="work-lg-defalt"><i class="zmdi zmdi-graduation-cap"></i></div>
+                                            </div>
+                                            <div class="work-exp-details">
+                                                <div>
+                                                    <div class="hlaf-width-exp-left">
+                                                        <div class="dark">{{selEdu?.school}}</div>
+                                                        <div class="work-light">{{selEdu?.field_of_study}}</div>
+                                                        <div class="work-light">{{selEdu?.name}}</div>
+                                                    </div>
+                                                    <div class="hlaf-width-exp-right">
+                                                        <div>
+                                                            <div>
+                                                                <div class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-pin"></i>
+                                                                    </div>
+                                                                    <div class="text-bx" *ngIf="selEdu?.country?.name">
+                                                                        {{selEdu?.city?.name}}, {{selEdu?.country?.name}}
+                                                                    </div>
+                                                                    <div class="text-bx" *ngIf="!selEdu?.country?.name">
+                                                                        {{selEdu?.city?.name}}&nbsp;
+                                                                    </div>
+                                                                </div>
+                                                                <div class="work-light" *ngIf="selEdu?.end_date">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        {{selEdu?.start_date | date:'d MMM,  yyyy'}} -{{selEdu?.end_date | date:'d MMM,  yyyy'}}<span class="dark">&nbsp;({{selEdu?.start_date | duration :selEdu?.end_date}})</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="work-light" *ngIf="!selEdu?.end_date">
+                                                                <div class="icon-bx">   
+                                                                    <i class="zmdi zmdi-calendar-alt"></i> 
+                                                                </div>
+                                                                    <div class="text-bx">
+                                                                        {{selEdu?.start_date | date:'d MMM,  yyyy'}}<span class="dark">(Still studing)  </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-badge-check"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        Grade: {{selEdu?.grade}}%
+                                                                    </div>
+                                                                </div>
+                                                                <div class="work-light mobile-attachement" *ngIf="selEdu?.document">
+                                                                    <a target="_blank" href="{{selEdu?.document}}">
+                                                                        <div class="icon-bx">
+                                                                            <i class="icon-resume"></i>
+                                                                        </div>
+                                                                        <div class="text-bx">
+                                                                            {{selEdu?.document_file_name}}
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane text-style" id="certificate"><!---------- Certificate Details Section mobile ------------>
+                                <div class="saved"> <!-- save -->
+                                    <div class="certificate work-experience">
+                                        <div class="block-title">
+                                            <h4>Certificate</h4>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <!-- Empty Design -->
+                                        <div class="block-contant"  *ngIf="(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1">
+                                           <spinner></spinner>
+                                            </div>
+                                        </div>
+
+                                        <!-- Empty Design -->
+                                        <div class="block-contant"  *ngIf="!(candidateDetailsObs | async)?.certificate?.length && !(loadSpinner$ | async)">
+                                            <div class="empty-prf empty-min1">
+                                                <i class="icon-empty-cover"></i>
+                                                <h5>No Certificate Available</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="block-contant"  *ngFor="let selCert of (candidateDetailsObs | async)?.certificate ">
+                                            <div class="work-logo">
+                                                <!--<div class="work-lg"><img src="images/company-logo-1.png"> </div>-->
+                                                <div class="work-lg-defalt"><i class="zmdi zmdi-file-text"></i> </div>
+                                            </div>
+                                            <div class="work-exp-details">
+                                                <div>
+                                                    <div class="hlaf-width-exp-left">
+                                                        <div class="dark">{{selCert?.name}}</div>
+                                                        <div class="work-light">{{selCert?.institute}}</div>
+
+                                                    </div>
+                                                    <div class="hlaf-width-exp-right">
+                                                       
+                                                            <div>
+                                                                <div class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-badge-check"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        Grade: {{selCert?.grade}}
+                                                                    </div>
+                                                                </div>
+                                                                <div *ngIf="selCert?.end_date" class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        {{selCert?.start_date | date:'d MMM,  yyyy'}} - {{selCert?.end_date | date:'d MMM,  yyyy'}}<span class="dark">&nbsp;({{selCert?.start_date | duration :selCert?.end_date}})</span>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                <div *ngIf="!selCert?.end_date" class="work-light">
+                                                                    <div class="icon-bx">
+                                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                                    </div>
+                                                                    <div class="text-bx">
+                                                                        {{selCert?.start_date | date:'d MMM,  yyyy'}}
+                                                                        <span class="dark">( Present )</span>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div>
+
+                                                                <div class="work-light mobile-attachement" *ngIf="selCert?.document_file_name">
+                                                                    <a target="_blank" href="{{selCert?.document}}">
+                                                                        <div class="icon-bx">
+                                                                            <i class="icon-resume"></i>
+                                                                        </div>
+                                                                        <div class="text-bx">
+                                                                            {{selCert?.document_file_name}}
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- end mobile -->
+
+
+    <!---------- Skill Section ------------>
+    <div class="skill">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block bottom-gap">
+
+                <div class="saved"> <!-- save -->
+                    <div class="block-title desktop">
+                        <div class="left"><h4>Skills</h4></div>
+                        <div class="right">
+                            <span class="beg"> <i class="icon-round"></i> beginner </span>
+
+                            <span class="int"> <i class="icon-round"></i> Intermediate </span>
+
+                            <span class="exp"> <i class="icon-round"></i> Expert </span>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <!-- Skills Emnpty -->
+                    <div class="block-contant hidden-xs"  *ngIf="(loadSpinner$ | async)">
+                         <div class="empty-prf empty-min1"> 
+                           <spinner></spinner>
+                        </div>
+                    </div>
+                    <!-- Skills Emnpty -->
+                    <div class="block-contant hidden-xs"  *ngIf="!(candidateDetailsObs | async)?.skills?.length && !(loadSpinner$ | async)">
+                         <div class="empty-prf empty-min1">
+                            <i class="icon-empty-skill"></i>
+                            <h5>No Skills Available</h5>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mobile">
+                        <div class="block-title">
+                            <h4>Skill</h4>
+                            <div class=" clearfix"></div>
+                        </div>
+
+
+                        <!-- Skills Emnpty -->
+                        <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                             <div class="empty-prf empty-min1"> 
+                                <spinner></spinner>
+                            </div>
+                        </div>
+                        <!-- Skills Emnpty -->
+                        <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.skills?.length && !(loadSpinner$ | async)">
+                             <div class="empty-prf empty-min1">
+                                <i class="icon-empty-skill"></i>
+                                <h5>No Skills Available</h5>
+                            </div>
+                        </div>
+
+
+                        <div class="right-skill">
+                            <span class="beg"> <i class="icon-round"></i> Beginner </span>
+                            <span class="int"> <i class="icon-round"></i> Intermediate </span>
+                            <span class="exp"> <i class="icon-round"></i> Expert </span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="block-contant padding-10 ">
+                        <div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" *ngFor="let selSkill of (candidateDetailsObs | async)?.skills">
+                                <div>
+                                    <div class="skill-txt">
+                                        <div class="pull-left"><div class="light">{{selSkill?.name}} </div> </div>
+                                        <div class="pull-right"><div class="light">{{(selSkill?.level == 1)?'Beginner':(selSkill?.level == 2)? 'Intermediate':'Expert'}} </div> </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="skill-category">
+                                        <div class="skill-box">
+                                            <div *ngIf="(selSkill?.level >= 1)" class="beginner"></div>
+                                            <div *ngIf="(selSkill?.level >= 2)" class="intermediate"></div>
+                                            <div *ngIf="(selSkill?.level >= 3)" class="expert"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class=" clearfix"></div>
+    </div>
+
+
+
+
+    <!---------- Tag Section ------------>
+    <div class="tag-secton bottom-gap">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block">
+
+                <div class="saved"> <!-- save -->
+                    <div class="block-title">
+                        <h4>#Tag Yourself</h4>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <!-- Emnpty Design-->
+                    <div class="block-contant" *ngIf="(loadSpinner$ | async)">
+                         <div class="empty-prf"> 
+                            <spinner></spinner>
+                        </div>
+                    </div>
+                    <div class="block-contant" *ngIf="!(candidateDetailsObs | async)?.tags?.length && !(loadSpinner$ | async)">
+                         <div class="empty-prf">
+                            <i class="icon-empty-tag"></i>
+                            <h5>No Tags Available</h5>
+                        </div>
+                    </div>
+
+
+                    <div class="block-contant margin-top-10">
+
+                        <div class="tagss" *ngFor="let selTag of (candidateDetailsObs | async)?.tags">
+                            <span class="tag-main"><span class="hash">#</span>
+                                <span class="tag-txt" >{{selTag?.name}}</span>
+                            </span>
+                        </div>
+
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class=" clearfix"></div>
+    </div>
+
+    <div class="col-xs-12 hidden-md hidden-lg">
+        <a class="bt-full-button" (click)="onBack()"> 
+            <button> Back </button>
+        </a>
+    </div>
+
+
+

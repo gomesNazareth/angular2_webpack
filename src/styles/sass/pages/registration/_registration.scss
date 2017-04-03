@@ -1,0 +1,961 @@
+//reg
+.blur-bloovo{
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px); height: 100%; width: 100%;
+    position: fixed;
+}
+
+.blue-bg{
+    background:rgba(51, 121, 189, 0.9) none repeat scroll 0 0;
+    width: 100%;
+    position:fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+.gray-bg{
+    background:$bg;
+    width: 100%;
+    position:fixed;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.slid-frm{
+    width: 100%;
+    position:absolute;
+    z-index: 12;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    .slid-container{
+        // width: 80%;
+        width: 960px;
+        margin: 0 auto;
+        margin-bottom: 5%;
+        .slid-head{
+            text-align: center;
+            padding-top: 7%;
+            padding-bottom: 2%;
+            h1{
+                color: $white;
+                margin: 0px;
+                font-size:35px;
+                font-family: $font-medium;
+                font-weight: bolder;
+                padding-bottom:8px;
+            }
+            h2{
+                color: $white;
+                font-size:20px;
+                margin: 10px;
+                span{
+                    color:#c6e2fd;
+                    font-family:$font-medium;
+                    font-weight: bolder;
+                }
+            }
+        }
+
+        .slid-section{
+            background:#000 ;
+            position:relative;
+            .slid-left{
+                float: left;
+                background: #000;
+                height: 100%;
+                width:350px;
+                min-height:546px;
+                background-image:url("../../assets/images/slid-image.jpg");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                padding: 40px 30px 10px 30px;
+                .logo-reg{
+                    width: 50%;
+                }
+                .reg-contnr{
+                    margin-top:50px;
+                    .reg-step{
+                        color: $white;
+                        font-size: $font-20;
+                        margin: 10px 0px;
+                        span{
+                            i{
+                                color:$successful;
+                                font-size: $font-20
+                            }
+                        }
+
+                    }
+                    .reg-space{
+                        width: 100%;
+                        border-left: solid $white 1px;
+                        height: 60px;
+                        margin-left:27px;
+                    }
+                    .opacity{
+                        opacity: 0.3
+                    }
+
+                }
+                .step-lft{
+                    float: left;
+                    height: 55px;
+                    width: 55px;
+                    text-align: center;
+                    border: solid 2px $white;
+                    border-radius:50%;
+                    margin-right:10px;
+                    i{
+                        line-height:50px;
+                        color:$white;
+                        font-size:$font-24;
+                    }
+
+                }
+                .step-txt{
+                    float:left;
+                    margin-top: 15px;
+                }
+
+            }
+            .slid-right{
+                float: right;
+                background: #fff;
+                height: 100%;
+                padding: 25px;
+                width: calc(100% - 350px);
+                min-height: 546px;
+                input, select, textarea{
+                    height: 35px!important;
+                }
+
+
+                h3{
+                    font-size:$font-14;
+                    margin: 0px;
+                    color:$navy-dark;
+                    padding:20px 0px 10px 0px;
+                    font-family: $font-medium;
+                    span{
+                        color:#b4c3ca;
+                        font-size:$font-12
+                    }
+                }
+
+
+                h4{
+                    font-size:$font-18;
+                    margin-bottom: 10px;
+                    color:$navy-dark;
+                    margin:0px;
+                    margin-bottom: 5px;
+                }
+                h5{
+                    font-size:$font-16;
+                    color:$navy-dark;
+                    margin:14px 0px 20px 0px;
+                }
+                //new-css
+
+                h6{
+                    font-size:$font-14;
+                    color:$navy-dark;
+                    margin: 0px;
+                    padding:0px 0px 10px 0px;
+                    font-family: $font-medium;
+                }
+                .italic{
+                    font-style: italic;
+                    font-size:$font-14;
+                    color:#b4c3ca
+                }
+                .emp-cover-img{
+                    text-align: center;
+                    margin:10px 0px 20px 0px;
+                    height: 120px;
+                    overflow:hidden;
+                    img{
+                        width: 75%;
+                    }
+                }
+                .reg-capcha{
+                    margin-top:20px;
+                    margin-left:-5px;
+                    .capcha{
+                        float: left
+                    }
+                    .reg-btn-emp{
+                        float: right;
+                        margin-left:15px;
+                        padding-top:30px;
+                    }
+
+                    button{
+                        height: 35px;
+                        border: none;
+                        padding: 0 40px;
+                        color: $white
+                    }
+                    .nxt{
+                        background:$navy-dark
+                    }
+                    .nxt:hover{
+                        background:$navy-light
+                    }
+                    .bck{
+                        background:$grey-light;
+                        color: $navy-dark;
+                        margin-right: 10px;}
+                    .bck:hover{
+                        background:#d0d0d0
+                    }
+
+                }
+                //end-new-css
+
+                .sk-radio{ display: inline-flex; padding-right: 2px;
+                    .clicks .radio{ padding-top: 0px; }
+                    .radio, .checkbox{ margin-top: 0px; margin-bottom: 0px; }
+
+                }
+                .drving{ margin-top: 20px;
+                    .clicks{ margin-top:0px; }
+                    .h3{ margin: 16px 0; }
+                }
+
+            }
+
+        }
+
+        //new-css
+        .slid-footer{
+            width: 100%;
+            text-align: center;
+            background:rgba(0, 0, 0, 0.6);
+            p{ color:$grey;
+                padding:8px 0px;
+                font-size:$font-14
+            }
+            a{ color: $white;
+                text-decoration: underline!important;
+            }
+            a:hover{
+                color:$grey;
+            }
+        }
+        //end-new-css
+
+        .reg-btn{
+            margin-top: 70px;
+            button{
+                height: 35px;
+                border: none;
+                padding: 0 40px;
+                color: $white;
+                float: right;
+            }
+            .nxt{
+                background:$navy-dark
+            }
+            .nxt:hover{
+                background:$navy-light
+            }
+            .bck{
+                background:$grey-light;
+                color: $navy-dark;
+                margin-right: 10px;
+            }
+            .bck:hover{
+                background:#d0d0d0
+            }
+        }
+        .upload{
+            border-bottom: solid 1px $grey-border;
+            padding: 20px 0px;
+            .upload-left{
+                float: left;
+                width: 100px;
+                height: 100px;
+                border:dashed 1px #b9cadb;
+                text-align: center;
+                overflow: hidden;
+                i{
+                    color:#c7def5;
+                    font-size: 36px;
+                    line-height: 100px;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+            .upload-right{
+                float: left;
+                width: calc(100% - 175px);
+                padding-left: 45px;
+                button{
+                    height:35px;
+                }
+                .upld-btn{
+                    background: $white;
+                    border: solid 1px #9abcdd;
+                    color: $Progress;
+                    padding:0px 40px
+                }
+                .upld-btn:hover{
+                    background:$Progress;
+                    border: solid 1px #9abcdd;
+                    color: $white
+                }
+            }
+
+        }
+
+    }
+    .upload-dp div.fancy-file{
+        margin-bottom: 20px;
+    }
+    .loading-section{
+        button{
+            margin-top:20px;
+            height: 45px;
+            border: none;
+            padding: 0 40px;
+
+            background: $navy-dark;
+            a{
+                color: $white!important;
+            }
+
+        }
+        width: 60%;
+        margin: 0 auto;
+        margin-top: 25vh;
+        background:$white;
+        text-align: center;
+        padding: 50px 20px;
+        .load{
+            width: 176px;
+            height: 85px;
+            margin:0 auto;
+            background:#fff;
+            img{
+                height: 85px;
+            }
+        }
+        h3{
+            color: #4f788a;
+            font-size: $font-16;
+            line-height:35px;
+            margin-top:0px;
+        }
+        h2{
+            color: $navy-dark;
+            font-family:$font-medium;
+            font-size: $font-22;
+            font-weight: 800;
+        }
+        //new-css
+        h4{ color: #4f788a;
+            font-size:18px;
+            font-family:$font-medium
+        }
+        //end-new-css
+    }
+
+
+}
+
+
+.slid-mob{
+    background:$bg;
+    position:relative;
+    z-index: 12;
+    margin: 10px;
+    .head{
+        background:$navy-dark;
+        text-align: center;
+        padding:20px 0px;
+        h2{
+            margin: 0px;
+            padding: 0px;
+            color: $white;
+            font-size:$font-24;
+            font-family:$font-medium;
+        }
+        h3{
+            color: #b1bfcf;
+            margin: 0px;
+            font-size:$font-14;
+            font-family: $font-medium;
+            margin-top:6px;
+            span{
+                color:#6cb2f6;
+                font-family:$font-medium;
+            }
+        }
+    }
+    .contant{
+        padding: 10px;
+        .contant-container{
+            background: $white;
+            border: solid 1px #e7e7e8;
+            .sign-nav{
+                padding: 10px;
+                padding-bottom: 15px;
+                width: 270px;
+                margin: 0px auto;
+            }
+            .steps{
+                float: left;
+                width:55px;
+                .active{
+                    background:$Progress;
+                    i{
+                        color: $white!important
+                    }
+                }
+                .round{
+                    height: 55px;
+                    width:55px;
+                    border-radius:50%;
+                    font-size:$font-28;
+                    text-align: center;
+                    line-height:55px;
+                    border:solid 2px $Progress;
+                    i{
+                        color:$Progress
+                    }
+                }
+                .step-tick{
+                    color:$successful;
+                    text-align: center;
+                    font-size:$font-22;
+                    height: 30px;
+                }
+
+            }
+            .steps-line{
+                float: left;
+                width:12%;
+                height: 2px;
+                background:$Progress;
+                margin:57px 6px 0px 6px;
+            }
+            .opacity{
+                opacity: 0.2
+            }
+
+            .sign-frm{
+                border-top: solid 2px $grey-border;
+                padding: 10px;
+                .loading{
+                    padding-top: 20%;
+                }
+                h3{
+                    color: $navy-dark;
+                    font-size: $font-20;
+                    text-align:center;
+                    border-bottom: solid 2px $grey-border;
+                    margin: 0px;
+                    font-family: $font-medium;
+                    padding: 10px 0px 15px 0px;
+                }
+                h4{
+                    font-size: $font-14;
+                    color: $navy-dark;
+                    font-family: $font-medium;
+                    padding: 15px 0px 10px 0px;
+                    margin: 0px;
+                    span{
+                        color: #b4c3ca;
+                        font-size: 12px;
+                    }
+                }
+
+                input, select, textarea{
+                    height: 35px!important;
+                }
+                .main-text{
+                    padding: 0px 10px;
+                }
+                //new-css
+                .reg-capcha-mob{
+                    background: #f9f9f9;
+                    margin:10px 0px 0px;
+                    text-align: center;
+                    .capch-mob{
+                        margin: 0 auto;
+                        width: 300px;
+                    }
+                }
+                .emp-cover-img{
+                    margin:20px 0px 20px 0px;
+                    img{
+                        width:100%
+                    }
+                }
+                //end-css
+
+
+            }
+            .mob-reg-btn{
+                text-align: center;
+                padding: 15px 0 10px;
+                button{
+                    height: 35px;
+                    border: none;
+                    padding: 0 10px;
+                    color: $white;
+                    width: 50%;
+                    text-align: center;
+                }
+                .nxt{
+                    background:$navy-dark
+                }
+                .nxt:hover{
+                    background:$navy-light
+                }
+                .bck{
+                    background:$grey-light;
+                    color: $navy-dark;
+                    float: left;
+                }
+                .bck:hover{
+                    background:#d0d0d0
+                }
+
+            }
+            h5{
+                color: $navy-dark;
+                font-size: $font-18;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .sk-radio{
+                display: inline-flex;
+                padding-right: 2px;
+                .clicks .radio{
+                    padding-top: 0px;
+                }
+                .radio, .checkbox{
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+            }
+            .spcil{
+                margin-top:80px;
+                margin-bottom: 10px;
+            }
+            .drving{
+                margin-top:15px;
+                .clicks{
+                    margin-bottom:5px;
+                }
+            }
+
+            .upload{
+                border-bottom: solid 1px $grey-border;
+                padding: 20px 0px;
+                .upload-left{
+                    float: left;
+                    width: 100px;
+                    height: 100px;
+                    border:dashed 1px #b9cadb;
+                    text-align: center;
+                    overflow: hidden;
+                    i{
+                        color:#c7def5;
+                        font-size: $font-46;
+                        line-height: 100px;
+                    }
+                    img{
+                        width: 100%;
+                    }
+                }
+                .upload-right{
+                    float: left;
+                    width: calc(100% - 135px);
+                    padding-left: 20px;
+                    button{
+                        height:35px;
+                    }
+                    .upld-btn{
+                        background: $white;
+                        border: solid 1px #9abcdd;
+                        color: $Progress;
+                        padding:0px 40px
+                    }
+                    .upld-btn:hover{
+                        background:$Progress;
+                        border: solid 1px #9abcdd;
+                        color: $white
+                    }
+                    h5{
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        font-size: 14px!important;
+                    }
+                    .italic{
+                        font-style: italic;
+                        font-size:$font-14;
+                        color:#b4c3ca
+                    }
+                }
+
+
+            }
+            .loading-section{
+                width: 100%;
+                margin: 0 auto;
+                background:$white;
+                text-align: center;
+                padding: 30px 20px;
+                .load{
+                    width: 176px;
+                    height: 161px;
+                    margin:0 auto
+                }
+                h3{
+                    color: #4f788a;
+                    font-size: $font-20;
+                    line-height:30px;
+                    margin-top:0px;
+                }
+                h2{
+                    color: $navy-dark;
+                    font-family:$font-medium;
+                    font-size: $font-24;
+                    font-weight: 800;
+                }
+                h4{
+                    color: #4f788a;
+                    font-family:$font-medium;
+                    font-size:$font-20;
+                    line-height:$font-22
+                }
+            }
+
+        }
+    }
+    //new-css
+    .slid-footer{
+        width: 100%;
+        text-align: center;
+        background:$navy-dark;
+        padding: 0 15px;
+        p{ color:$grey;
+            padding:8px 0px;
+            font-size:$font-14
+        }
+        a{ color: $white;
+            text-decoration: underline!important;
+        }
+        a:hover{color:$grey;}
+    }
+    //end-new-css
+}
+
+// mobile-registration
+
+.mob-registration-structure{
+    float: left;
+    width: 100%;
+    h5{
+        display:block;
+        width: 100%;
+        text-align: center;
+        padding:10px 0px!important;
+        font-size: $font-14!important;
+    }
+}
+
+.relative-input{
+    position:relative;
+    .calandy-bt{
+        position:absolute;
+        top: 8px;
+        right: 10px;
+    }
+}
+
+.reg-full-box{
+    display:block;
+    width: 100%;
+    float: left;
+    .alert{
+        margin-bottom: 0px!important;
+    }
+    .input-tag-common-width{
+        width: 100% !important;
+    }
+}
+
+.mg-top-reg2{
+    margin-top: 0px;
+}
+
+.sign-up-jboseeker-container{
+    max-width: 600px;
+    margin: 0px auto;
+}
+
+.icon-calendy-i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.sk-text-m-f{
+    width: 154px;
+    float: left;
+    line-height: 35px;
+    margin-top: 10px;
+    .radio{
+        margin-top: 0px!important;
+        margin-bottom: 0px!important;
+    }
+    .sk-radio{
+        margin-top: 0px!important;
+    }
+}
+.sk-text-m-f-text{
+    margin-top: 10px;
+    width: calc(100% - 154px);
+    float: left;
+    line-height: 35px;
+    .sk-radio{
+        margin-top: 0px!important;
+    }
+}
+.public-sign-up-both{
+    max-width: 600px;
+    margin: 0px auto;
+}
+.public-sign-in-both{
+    max-width: 500px;
+    margin: 0px auto;
+}
+
+.wrong-msg-popup{
+    min-height: 150px;
+}
+.wrong-msg{
+    text-align: center;
+    i{
+        font-size: 55px;
+        color: #e74c3c;
+        text-align: center;
+        margin: 30px 0px 20px 0px;
+        display: block;
+    }
+    .s-icon{
+        color: $successful!important;
+    }
+    h2{
+        color: $blue-bali;
+        font-size: 16px;
+        font-weight: normal;
+    }
+}
+
+.success-msg-popup{
+    min-height: 150px;
+    .wrong-msg{
+        text-align: center;
+        i{
+            font-size: 55px;
+            color: $successful;
+            text-align: center;
+            margin: 30px 0px 20px 0px;
+            display: block;
+        }
+        h2{
+            color: $blue-bali;
+            font-size: 16px;
+            font-weight: normal;
+        }
+    }
+}
+
+.wrong-icon-e{
+    i{
+        color: $unsuccessful;
+        font-size: 55px;
+        margin-bottom: 30px;
+        display: block;
+    }
+}
+
+.banner-up{
+    height: 35px;
+    overflow:hidden;
+}
+.box-frame{
+    height: calc(100% - 35px);
+    background:#fff;
+    span{
+        font-size: 60px;
+        color: #c7def5;
+    }
+}
+.pv-policy{
+    background-color: $navy-dark;
+    height: 25px;
+    color: #9ea2a8;
+    text-align: center;
+    font-size: 14px;
+    line-height: 25px;
+    a{
+        color: #fff;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.5;
+            color: #fff!important;
+        }
+    }
+}
+
+
+.skill-input{
+    width: calc(100% - 40px);
+    float: left;
+    .filter-option{
+        text-transform: capitalize!important;
+    }
+}
+.add-bt-skill{
+    float: left;
+    width: 40px;
+    button{
+        width: 40px;
+        height: 35px;
+        background:$navy-dark;
+        color: #fff;
+        line-height: 30px;
+        text-align: center;
+        border:none;
+    }
+    a{
+        width: 40px;
+        height: 35px;
+        background:$navy-dark;
+        color: #fff;
+        line-height: 30px;
+        text-align: center;
+        border:none;
+        display: block;
+    }
+}
+.beginner-s{
+    margin:10px 0px;
+    background:$blue-light;
+}
+.intermediate-s{
+    margin:10px 0px;
+    background:$blue-columbia;
+}
+.expert-s{
+    margin:10px 0px;
+    background:$navy-dark;
+    span{
+        color: #fff;
+    }
+}
+.mg-top-small{
+    margin-top: 25px!important;
+}
+.button-blank{
+    background-color:#f1f1f1!important;
+    color: #e1e1e1!important;
+}
+.jb-l-tag{
+    .no-code{
+        width: 160px!important;
+    }
+    .tag-new{
+        margin-bottom: 0px!important;
+    }
+}
+.no-border{
+    border:none!important;
+}
+.mg-top-jobseeker-last{
+    margin-top: 180px!important;
+}
+.success-video{
+    img{
+        height: 45px!important;
+        width: auto!important;
+    }
+}
+.slid-right{
+    background-color:#fff;
+    .loading{
+        padding-top:40%;
+        margin:0px auto;
+    }
+}
+
+.bt-3rd{
+    width: 33.33%!important;
+    float: left;
+    button{
+        width: 100%!important;
+    }
+}
+.gray-c{
+    button{
+        background-color:#d1d1d1!important;
+    }
+}
+
+.skill-mob{
+    h3{
+        font-size: 14px!important;
+        color: #374b61!important;
+        font-family: "helveticaneuemedium"!important;
+        padding: 15px 0px 10px 0px!important;
+        margin: 0px!important;
+        text-align: left!important;
+        border:none!important;
+        span{
+            color: #b4c3ca;
+            font-size: 12px;
+        }
+    }
+}
+
+.sign-job-bt{
+    margin: 0px auto;
+    display: block;
+    padding: 2px 30px;
+    height: 35px;
+    border: none;
+    background-color: #4585c2;
+    color: #fff;
+    margin-top: 23px;
+    font-family: $font-medium;
+}
+
+.mob-sp-jb{
+    min-height: 500px;
+}
+
+.sign-up-years{
+  .open > .dropdown-menu{
+      height: 140px !important;
+  }
+}

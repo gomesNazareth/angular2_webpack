@@ -1,0 +1,43 @@
+<div class=" main-tab load-data-js mobile-tab-top" *ngIf="(isAuthorized$ | async)">
+
+    <!-- Desktop-Tap -->
+    <ul class="nav nav-tabs hidden-xs" role="tablist">
+        <li role="presentation" [class.active]="allCompaniesFlag" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/companies']" [queryParams]="{page: '1'}" >
+                <i class="zmdi zmdi-city-alt"></i>  All Companies  </a>
+        </li>
+        <li role="presentation" [class.active]="mostFollowedCompaniesFlag" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/companies/top-followed-companies']" >
+                <i class="icon-top-companies"></i> Top Followed Companies
+            </a>
+        </li>
+    </ul>
+    <!-- ****** -->
+
+    <!-- Mobile-Tap -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="allCompaniesFlag" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/companies']" [queryParams]="{page: '1'}"  >
+                <i class="zmdi zmdi-city-alt"></i>  All Companies  </a>
+        </li>
+        <li role="presentation" [class.active]="mostFollowedCompaniesFlag" >
+            <a [routerLink]="['/'+_accountService.getPath()+'/companies']" [queryParams]="{order: 'followers'}" >
+                <i class="icon-top-companies"></i> Top Followed Companies
+            </a>
+        </li>
+    </ul>
+    <!-- ****** -->
+
+
+</div>
+
+<div class="tab-content job-bloovo">
+    <div role="tabpanel" class="tab-pane active" id="all-companies">
+        <div [class.commen-container]="(isAuthorized$ | async)"  [class.commen-container-public]="!(isAuthorized$ | async)">
+            <!--<company-filter ></company-filter>-->
+            <all-company-listing *ngIf="allCompaniesFlag || mostFollowedCompaniesFlag" [currentPageObs]="currentPageObs" (companyDetailsClick)="onClickCompanyDetail($event)"></all-company-listing>
+<!--             <top-follow-company-listing *ngIf="mostFollowedCompaniesFlag" [currentPageObs]="currentPageObs" (companyDetailsClick)="onClickCompanyDetail($event)"></top-follow-company-listing> -->
+            <company-details *ngIf="companyDetailsFlag" [companyId]="companyId" [fromPage]="fromPage" (backClick)="onClickBack($event)"></company-details>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="culture">
+    <up-load  *ngIf="fileNew" [mode]="'imageCrop'"  [file]="fileNew"  (onUpload)="onMainUploaded($event)"></up-load>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="block bottom-gap">
+            <div class="block-title-2 ">
+                <div class="pull-left"><h2 class="padding-top-10">Our Culture&nbsp;<span class="limit-text">*6 is the maximum Culture Image Limit.</span></h2></div>
+                <div class="pull-right btn-size">
+                    <a href="#" *ngIf="(companyCultureObs | async)?.length < 6"  data-toggle="modal" [attr.data-target]="'.'+fileNew?.classMap">
+                        <button><i class="zmdi zmdi-floppy"></i> Add New</button>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="block-contant padding-0">
+
+
+                    <!-- Empty Edit -->
+                        <div class="block-contant employer-empty-section" *ngIf="(companyCultureObs | async)?.length == 0">
+                            <div class="empty-prf">
+                                <a href="#" *ngIf="(companyCultureObs | async)?.length < 6"  data-toggle="modal" [attr.data-target]="'.'+fileNew?.classMap">
+                                    <i class="icon-empty-culture"></i>
+                                    <h5> Add Culture</h5>
+                                </a>
+                            </div>
+                         </div>
+
+
+
+                        <div class="our-team col-lg-6" *ngFor="let selCulture of (companyCultureObs | async),let cultureIndex = index">
+
+                            <div class="row" id="culture-hide">
+                                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                                    <div class="team-photo"> <img src="{{selCulture.image_url}}"> </div>
+                                    <div class="team-details">
+                                        <div class="navy padding-top-10">{{selCulture.name}} </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 block-title-2 border-none padding-0 ">
+                                    <a href="#" data-toggle="modal" [attr.data-target]="'.'+fileMainList[cultureIndex]?.classMap">
+                                        <button id="culture-click" ><i class="zmdi zmdi-edit"></i> Edit </button>
+                                    </a>
+                                    <a data-toggle="modal" [attr.data-target] = "'.delete-culture-member-'+cultureIndex" >
+                                    <span class="cancel padding-0"><button><i class="zmdi zmdi-delete"></i> Delete</button></span>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                        </div>
+                    
+                </div>
+
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div *ngFor="let selCulture of (companyCultureObs | async),let cultureIndex = index">
+                <up-load *ngIf="fileMainList[cultureIndex]" [mode]="'imageCrop'"  [file]="fileMainList[cultureIndex]"  (onUpload)="onMainUploaded($event)"></up-load>
+                <div class="popup">
+                    <div class="logout-pop">
+                        <div class="modal close_delete delete-culture-member-{{cultureIndex}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                        <h2>Delete Culture</h2>
+                                        <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                        <div class="pop-button">
+                                            <button (click)="onDelete(selCulture.id,cultureIndex)" type="button" class="btn postive">Delete</button>
+                                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                            <div class="clr"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+ <!-- Auto complete Spinner -->
+<div *ngIf="showSpinner" class="autocomplete_spinner">
+    <span><img src="images/balls.svg"></span>
+</div>
+<div [class.input-tag-common-width]="!fullWidth">
+ <ng2-select *ngIf="placeholder == null"
+         [items]="items"
+         [active]="initData"
+         [keepSelected]="keepSelected"
+         [resetOnSelect]="resetOnSelect"
+         [selectOneEnter]="selectOneEnter"
+         (data)="refreshValue($event)"
+         (selected)="selected($event)"
+         (removed)="removed($event)"
+         (typed)="typed($event)"
+         (keyup.enter)="selected($event)"
+         placeholder="Add {{recordType}}">
+
+ </ng2-select>
+ <ng2-select *ngIf="placeholder != null"
+         [items]="items"
+         [keepSelected]="keepSelected"
+         [active]="initData"
+         [resetOnSelect]="resetOnSelect"
+         [selectOneEnter]="selectOneEnter"
+         (data)="refreshValue($event)"
+         (selected)="selected($event)"
+         (removed)="removed($event)"
+         (typed)="typed($event)"
+         (keyup.enter)="selected($event)"
+         placeholder="{{placeholder}}">
+
+ </ng2-select>
+</div>
+

@@ -1,0 +1,60 @@
+<div class="summary">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="block bottom-gap">
+
+            <div [style.display]="summary_status == 'read' ?'block':'none'"> <!-- save -->
+                <div class="block-title">
+                    <div class="left"><h4>Summary</h4></div>
+                    <div class="right" *ngIf="summary"><a (click)="onEdit()"><span class="light"><i
+                            class="zmdi zmdi-edit"></i> Edit</span></a></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="block-contant">
+                    <div  *ngIf="!summary"  (click)="onEdit()" class="empty-prf empty-min1 cursor_pointer1">
+                        <i class="icon-empty-summery"></i>
+                        <h5> Add Your Profile Summary </h5>
+                    </div>
+                    <div *ngIf="summary"  class="txt">
+                        {{ summary }}
+                    </div>
+                </div>
+            </div>
+
+            <div [style.display]="summary_status == 'edit' ?'block':'none'"> <!-- Edit -->
+                <div class="block-title-2">
+                    <div class="left"><h4>Summary</h4></div>
+                    <div class="right">
+                        <button (click)="onSubmit()" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save</button>
+                        <span class="cancel padding-0"><button (click)="onRead()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="block-contant empty-min1">
+                    <i class="empty-min1-spinner" *ngIf="(summaryLoader$ | async)"></i> <spinner [visible]="(summaryLoader$ | async)"></spinner>
+
+                    <form [style.display]="!(summaryLoader$ | async) ?'block':'none'" [formGroup]="summary_form">
+
+
+                        <textarea
+                                    formControlName="summary"
+                                    name="first"
+                                    placeholder="You have to write a profile summary with a minimum of 30 and a maximum of 1,800 characters."
+                        >
+
+                        </textarea>
+
+                        <div *ngIf="
+                                    (summary_form.controls['summary'].touched &&  !summary_form.controls['summary'].valid) ||
+                                    (postFlag &&  !summary_form.controls['summary'].valid)"
+                             class="alert alert-danger alert-dismissible" role="alert">
+                            You have to write a profile summary with a minimum of 30 and a maximum of 1,800 characters.
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class=" clearfix"></div>
+</div>

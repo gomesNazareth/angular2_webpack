@@ -1,0 +1,124 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<blog-topmenu [activeFlag]="'manage'"></blog-topmenu>
+
+
+    <div role="tabpanel" class="tab-pane" id="manage-post">
+        <div class="commen-container">
+            <div class="col-lg-12 saved-searches">
+                <div class="white blog-spinner" *ngIf="(showSpinner$ | async)">
+                    <div class="loading-spinner-space empty-min3"><spinner></spinner></div>
+                </div>
+
+                <div class="block bottom-gap" *ngIf="!(showSpinner$ | async)">
+                    <div class="block-title-2">
+                        <h2> Manage Post </h2>
+                    </div>
+
+
+                    <div>
+
+                       <div class="tracking-title manage-post-title-area">
+                           <div class="blog-post-title-part">&nbsp;&nbsp;&nbsp;&nbsp;Posts</div>
+                           <div class="blog-post-action-part">
+                                <div class="equal-box-blog">No.of Comments</div>
+                                <div class="equal-box-blog">No.of Views</div>
+                                <div class="equal-box-blog border-none">Actions</div>
+                           </div>
+                       </div>
+
+
+                        <div class="row savedserch">
+
+                            <div *ngFor="let selBlog of (generalBlogs$ | async),let blogIndex= index" class="row">
+
+                            <div class="blog-manage-post-part">
+                                <div class="blog-img">
+                                    <a  [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id]" routerLinkActive="active" class="cursor_pointer1">
+                                        <div  *ngIf="!selBlog.bannerImage"></div>
+                                        <!-- Original List -->
+                                        <img *ngIf="selBlog.bannerImage" [src]="selBlog.bannerImage">
+                                    </a>
+                                </div>
+                                <div class="blog-detail">
+                                        <div class="navy">{{selBlog.name}}</div>
+                                        <div class="light"><span class="dark"><i class="zmdi zmdi-calendar-alt"></i></span> {{selBlog.postDate | date:'d MMM,  yyyy'}}</div>
+                                </div>
+                            </div>
+
+
+                           <div class="manage-post-title-area2 hidden-lg hidden-md">
+                               <div class="blog-post-action-part">
+                                    <div class="equal-box-blog">No.of Comments</div>
+                                    <div class="equal-box-blog">No.of Views</div>
+                                    <div class="equal-box-blog border-none">Actions</div>
+                               </div>
+                           </div>
+
+                            <div class="blog-manage-action-part">
+                                <div class="equal-manage-blog">
+                                    <span class="navy line-center"><i class="zmdi zmdi-comment-alt-text"></i> {{selBlog.totalComments || 0}}</span>
+                                </div>
+                                <div class="equal-manage-blog">
+                                    <span class="navy line-center"><i class="zmdi zmdi-eye"></i> {{selBlog.totalComments || 0}}</span>
+                                </div>
+                                <div class="equal-manage-blog">
+                                    <div class="button-b-center">
+                                        <a *ngIf="_accountService.getManageBlog()"  [routerLink]="['/'+_accountService.getPath()+'/blog/'+ selBlog.id + '/edit']" class="cursor_pointer1">
+                                            <button class="edit-mg"><i class="zmdi zmdi-edit"></i></button>
+                                        </a>
+                                        <a  *ngIf="!_accountService.getManageBlog()" >
+                                            <button class="edit-mg disabled_button"><i class="zmdi zmdi-edit"></i></button>
+                                        </a>
+                                        <span class="cancel">
+                                            <a *ngIf="_accountService.getManageBlog()"   data-toggle="modal" [attr.data-target]="'.delete-blog'+selBlog.id" >
+                                                <button class="delete-mg"><i class="zmdi zmdi-delete"></i></button>
+                                            </a>
+                                            <a *ngIf="!_accountService.getManageBlog()" >
+                                                <button class="delete-mg disabled_button"><i class="zmdi zmdi-delete"></i></button>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                                
+
+
+                                <div class="popup" *ngIf="_accountService.getManageBlog()" >
+                                    <div class="logout-pop">
+                                        <div class="modal close_delete delete-blog{{selBlog?.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                        <h2>Delete Blog</h2>
+
+                                                        <h4><span class="navy"> Sure you want to delete Blog  <b>{{selBlog?.name}}</b></span> </h4>
+                                                        <div class="pop-button">
+                                                            <button (click)="deleteBlog(selBlog.id, blogIndex)" type="button" class="btn postive">Delete</button>
+                                                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Pagination -->
+
+                <pagination-new [url]="'/'+_accountService.getPath()+'/blog/manage'" [totalRecords]="totalRecords$">
+                </pagination-new>
+
+            </div>
+        </div>
+    </div>
+
+
+
+

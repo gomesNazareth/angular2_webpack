@@ -1,0 +1,274 @@
+<job-menu  [activeFlag]="'saved'"></job-menu>
+<div class="tab-content  job-bloovo">
+<div role="tabpanel" class="tab-pane active load-data-js" id="saved-jobs">
+    <div class="commen-container">
+        <!--Saved Jobs-->
+        <div class="col-lg-12 saved-jobs">
+            <div class="block filter-jobs empty-min2">
+                <div class="row block-title-2  saved-searches padding-20 hidden-xs">
+                    <div class="left"><h2 class="padding-top-10">Saved Jobs</h2></div>
+                    <div class="right drop-jobs clicks hidden-xs hidden-sm">
+                        <form [formGroup]="form1">
+                            <div class="sort-drop">
+<span class="select-all">
+<input id="checkboxG30" class="css-checkbox" type="checkbox" name="checkboxG30" formControlName="check_all">
+<label class="css-label" for="checkboxG30">Select All</label>
+</span>
+                            </div>
+
+                            <div class="sort-drop">
+                                <div class="click-dropdown-sort">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="btn-group btn-input clearfix">
+                                                <button type="button"
+                                                        class="btn btn-default dropdown-toggle form-control"
+                                                        data-toggle="dropdown">
+                                                    <span data-bind="label">{{(order_name$ | async)}}</span>&nbsp;<span
+                                                        class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <div class="arow-dropdown zmdi zmdi-caret-up"></div>
+
+                                                    <li><a class="cursor_pointer1" (click)="onSelectOrder('created_at','Date Posted')">Date Posted</a></li>
+                                                    <li><a class="cursor_pointer1" (click)="onSelectOrder('matching_percentage','Matching Percentage')">Matching Percentage</a></li>
+                                                    <!--<li><a class="cursor_pointer1" (click)="onSelectOrder('','None')">None</a></li>-->
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="srt-feture">Sort By:</div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Saved Jobs items-->
+
+                <div class="row">
+                <div class="spinner-look" *ngIf="(displaySpinner$ | async)"><spinner [visible]="(displaySpinner$ | async)"></spinner></div>
+
+
+                    <div *ngIf="(jobs$ | async)?.length ==0"  class="row empty-min2">
+
+                        <div class="empty-prf ">
+                            <i class="icon-empty-saved-serch"></i>
+                            <h5>No Saved Search Available</h5>
+                        </div>
+
+                    </div>
+
+                    <span *ngIf="(jobs$ | async) != null && !(displaySpinner$ | async)">
+                    <div *ngFor="let selJob of (jobs$ | async),let jobcount =index" class="row featured-box">
+
+
+                    <!-- Desktop Job Listing -->
+                            <div class="saved-job-jobseeker padding-10 mob-bdr1 hidden-xs">
+                                <div class="saved-check clicks">
+                                    <span>
+                                        <input [id]="'checkboxGSavedJob'+jobcount" [checked]="selJob.checkedFlag"
+                                               class="css-checkbox" type="checkbox"
+                                               (click)="onSelectJob(jobcount)"
+                                               [name]="'checkboxGSavedJob'+jobcount">
+                                        <label class="css-label" [attr.for]="'checkboxGSavedJob'+jobcount"></label>
+                                    </span>
+                                </div>
+
+                                <div *ngIf="selJob.openFlag" class="open-hide">
+                                    <div class="open-jobs"></div>
+                                </div>
+                                <div *ngIf="!selJob.openFlag" class="open-hide">
+                                    <div class="close-jobs"></div>
+                                </div>
+                                 <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+
+                                <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage">
+                                    <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                </div>
+                                <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                    <span>
+                                        <img src="{{selJob.companyObj.profileImage}}">
+                                    </span>
+                                </div>
+                                 </a>
+                                <div class="feturd-compny-dtls">
+                                    <div class="txt-white"><a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">{{selJob.title}}</a></div>
+                                    <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i><a class="cursor_pointer1"   [routerLink]="['/'+_accountService.getPath()+'/companies/'+selJob.companyObj.id+'/'+_accountService.getSpaceToDash(selJob.companyObj.name)]">&nbsp;{{selJob.companyObj.name}}</a>
+                                    </div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}
+                                    </div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{selJob.sector}}</div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{selJob?.startDate | date:'d MMM, yyyy'}}</div>
+                                </div>
+
+                                <div class="feturd-matching-percentage">
+                                    <div class="prg-cercle">
+                                        <div [class]="'c100 p'+(selJob.matchingPercent | number:'1.0-0')+' small'">
+                                            <span>{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                            <div class="slice">
+                                                <div class="bar"></div>
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="percenge-txt">Matching Percentage</div>
+                                </div>
+
+
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+
+                    <!-- Mobile Job Listing -->
+
+
+
+                            <div class="featured-box joblisting hidden-lg hidden-md hidden-sm">
+
+                                <div class="job_mobile">
+
+                                 <div class="clicks">
+                                    <span>
+                                        <input [id]="'checkboxGSavedJob'+jobcount" [checked]="selJob.checkedFlag"
+                                               class="css-checkbox" type="checkbox"
+                                               (click)="onSelectJob(jobcount)"
+                                               [name]="'checkboxGSavedJob'+jobcount">
+                                        <label class="css-label" [attr.for]="'checkboxGSavedJob'+jobcount"></label>
+                                    </span>
+                                </div>
+                                <!-- company logo -->
+                                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                    <div class="company_logo">
+                                        <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage"><i
+                                            class="zmdi zmdi-city-alt empty-blank"></i>
+                                        </div>
+                                        <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                            <span>
+                                                <img src="{{selJob.companyObj.profileImage}}">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- Job title and company name -->
+                                    <div class="job_details">
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">
+                                            <div class="txt-white">{{selJob.title}}</div>
+                                            <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i>{{selJob.companyObj.name}}</div>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12">
+                                    <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                        <div class="row job_mobile-bottom">
+                                            <div class="col-xs-9 col-sm-9">
+                                                <div class="feturd-compny-dtls">
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-pin"></i>
+                                                        <span>{{selJob.city}}, {{selJob.countryCountry}}</span>
+                                                    </div>
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-chart-donut"></i>
+                                                        <span>{{selJob.sector}}</span>
+                                                    </div>
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                            <span>{{selJob?.startDate | date:'d MMM, yyyy'}}</span>
+                                                        </div>
+                                                    <div class="cmpny-txt">
+                                                        <div *ngIf="selJob.openFlag">
+                                                            <i class="open_job_mob"></i><span>Active Job</span>
+                                                        </div>
+                                                        <div *ngIf="!selJob.openFlag">
+                                                            <i class="expired_job_mob"></i><span>Expired Job</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3">
+                                                <div class="prg-cercle">
+                                                    <div [class]="'c100 p'+(selJob.matchingPercent | number:'1.0-0')+' small'">
+                                                        <span>{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                        <div class="slice">
+                                                            <div class="bar"></div>
+                                                            <div class="fill"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="saved-job-jobseeker-action">
+                                <div *ngIf="selJob.openFlag" class="open-closed">
+                                    <div class="active-label"> Active</div>
+                                </div>
+                                <div *ngIf="!selJob.openFlag" class="open-closed">
+                                    <div class="expired-label"> Expired</div>
+                                </div>
+                            </div>
+
+
+                    </div>
+                        </span>
+                </div>
+
+                <div class="row">
+                    <div class="block-footer border-none">
+                        <a  [style.display]="checkallFlag == true? 'block':'none'" data-toggle="modal" [attr.data-target] = "'.delete-saved-search'" ><button><i
+                                class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+
+
+
+                        <!--Delete Saved Search Pop up-->
+                        <div class="popup">
+                            <div class="logout-pop">
+                                <div class="modal close_delete delete-saved-search" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                <h2>Delete Saved Search</h2>
+                                                <h4><span class="light"> Are you sure want to delete '<b><span *ngFor="let selJob of (jobs$ | async),let jobIndex = index">
+                                                    <span *ngIf="selJob.checkedFlag"> {{selJob?.title}}
+                                                    <span *ngIf="jobIndex < ((jobs$ | async)?.length -1) ">,</span>
+                                                    </span>
+                                                </span></b>'?
+
+                                                </span>
+                                                </h4>
+                                                <div class="pop-button">
+                                                    <button (click)="onDeleteJobs()" type="button" class="btn postive">Delete</button>
+                                                    <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                    <div class="clr"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination-footer margin-top-5">
+                <pagination-new [url]="'/'+_accountService.getPath()+'/jobs/saved-jobs'" [totalRecords]="totalRecords$">
+                </pagination-new>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

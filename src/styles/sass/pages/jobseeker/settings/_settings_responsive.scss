@@ -1,0 +1,257 @@
+// Desktop
+@media (max-width: 1200px){
+
+    // settings
+    .settings{
+        .spacing-left{ 
+            margin-left:0px
+        }
+        span{ 
+            float:none
+        }
+        p{ 
+            text-align:left
+        }
+        h3{
+            display: block;
+            padding-bottom:10px;
+            border-bottom:1px solid #f1f1f1;
+        }
+        .skill-radio{
+            width: 100%;
+            .sk-radio{
+                display: inline-block;
+                width: 24%;
+                text-align:left;
+                span{
+                    font-weight: normal;
+                    font-size: $font-14;
+                    padding-left:0px 5px !important;
+                    color: $blue-bali;
+                    line-height: 18px!important;
+                }
+            }
+        }
+        .min-height-165{
+            min-height:auto;
+        }
+
+        .clicks{
+            .radio{
+                margin-top:5px!important;
+                margin-bottom:5px!important;
+                padding-top:0px;
+            }
+        }
+        
+    }
+   
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+
+    // Settings
+    .settings{
+        .spacing-left{
+            margin-left:0px
+        }
+        .half{ 
+            width:100% !important
+        }
+        .left{ 
+            margin-left:0px
+        }
+        .margin-left{ 
+            margin-left:0px
+        }
+        p{
+            margin: 10px 0px;
+        }
+        h3{
+            display: block;
+            padding-bottom:10px;
+            border-bottom:1px solid #f1f1f1;
+        }
+        .skill-radio{
+            width: 100%;
+            .sk-radio{
+                display: inline-block;
+                width: 23%;
+                text-align: left;
+                span{
+                    font-weight: normal;
+                    font-size: $font-14;
+                    padding-left:0px 5px !important;
+                    color: $blue-bali
+                }
+            }
+        }
+        .min-height{
+            min-height: auto;
+        }
+        
+    }
+
+    
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+
+   
+   // Settings
+    .settings{
+        .spacing-left{ 
+            margin-left:0px
+        }
+        .half{
+            width:100% !important
+        }
+        .left{
+            margin-left:0px;
+        }
+        .margin-left{
+            margin-left:0px
+        }
+        p{ 
+            margin: 10px 0px;
+        }
+        h3{
+            display: block;
+            padding-bottom:10px;
+            border-bottom:1px solid #f1f1f1;
+        }
+        h2{
+            display: block;
+            text-align: center;
+            padding-top:10px;
+        }
+        .skill-radio{
+            width: 100%;
+            .sk-radio{
+                display: inline-block;
+                width: 23%;
+                text-align: left;
+                span{
+                    font-weight: normal;
+                    font-size: $font-14;
+                    padding-left:0px 5px !important;
+                    color: $blue-bali;
+                    line-height: 18px;
+                }
+            }
+        }
+        .clicks{
+            .radio{
+                margin-top:5px!important;
+                margin-bottom:5px!important;
+                padding-top:0px;
+            }
+        }
+        input{
+            padding:0px 15px;
+        }
+    }
+    .mobile-padding{
+        padding:10px!important;
+    }
+
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+
+    // Settings
+    .settings{
+        .spacing-left{ 
+            margin-left:0px
+        }
+        span{ 
+            float:none;
+        }
+        p{ 
+            text-align:left;
+        }
+        .half{ 
+            width:100% !important
+        }
+        .left{ 
+            margin-left:0px;
+        }
+        .margin-left{ 
+            margin-left:0px
+        }
+        p{
+            margin: 5px 0px!important;
+        }
+        h2{
+            padding:0px
+        }
+        h3{
+            display: block;
+            padding-bottom:10px;
+            border-bottom:1px solid #f1f1f1;
+        }
+        .skill-radio{
+            width: 100%;
+            .sk-radio{
+                display: inline-block;
+                width: 48%;
+                text-align: left;
+                span{
+                    font-weight: normal;
+                    font-size: $font-14;
+                    padding-left:0px 5px !important;
+                    color: $blue-bali
+                }
+            }
+        }
+        .padding-20{
+            padding:10px 20px!important;
+        }
+        .clicks{
+            .radio{
+                margin-top:5px!important;
+                margin-bottom:5px!important;
+                padding-top:0px;
+            }
+        }
+        .padding-mobile{
+            padding-bottom:10px;
+        }
+    }
+    .settings{
+        .min-height{
+            min-height: auto;
+        }
+    }
+
+    .settings{
+        h2{
+          display: block;
+          text-align: center;
+          padding-top:10px;
+        }
+        .padding-20{
+            padding: 15px;
+        }
+    .set{ 
+        .set-lft{
+            width: 100%
+        }
+        .set-rgt{ 
+            width: 100% 
+        }
+    }  
+        
+    }
+    .mobile-padding{
+        padding:10px!important;
+    }
+
+}

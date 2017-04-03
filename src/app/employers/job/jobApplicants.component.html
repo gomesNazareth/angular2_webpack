@@ -1,0 +1,378 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div class="tab-content job-bloovo">
+    <!--------------------------- All Jobs ---------------------------------->
+
+    <div class="commen-container-less" >
+
+
+        <div class="row matching-candidates">
+
+            <!--SAIDEBAR-->
+
+            <div class="col-lg-3 refine-serch filter-hide " *ngIf="!showFilter">
+                <div class="block bottom-gap">
+                    <div class="row block-title">
+                        <h2>Filter Search Results by</h2>
+                    </div>
+
+                    <!--FILTER-->
+                    <filter-applied-candidate  *ngIf="jobId != null"
+                      [page]="'/'+_accountService.getPath()+'/jobs/'+jobId+'/'+_accountService.getSpaceToDash(jobTitle)+'/applicants'">
+                    </filter-applied-candidate>
+
+                </div>
+            </div>
+
+
+
+            <!--BODY-AREA-->
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" *ngIf="!showFilter">
+
+                <div class="row block">
+
+                    <div class="row block-title-2 padding-10">
+                         <div class="pull-left left-bx"><h2 class="padding-top-10 tex-left"><span class="light" >Job Title:</span>{{jobTitle}}</h2></div>
+                         <div class="pull-right right-bx"><button (click)="onBack()">Back</button></div>
+                    </div>
+                </div>
+
+
+                <div class="row jobs-employer hidden-xs">
+
+
+                    <div class="block bottom-gap margin-6 job-info">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 applications hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['all']"  (click)="setAnalysisFilter('all')">
+                            <h1> {{(jobSeekersAnalysis$ | async)?.applications_count | number }} </h1>
+                            <div class="light" *ngIf="(jobSeekersAnalysis$ | async)?.applications_count == 1"> Application </div>
+                            <div class="light" *ngIf="(jobSeekersAnalysis$ | async)?.applications_count != 1"> Applications </div>
+                        </div>
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.reviewed_applications_count >0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 reviewed hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['reviewed']" (click)="setAnalysisFilter('reviewed')">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.reviewed_applications_count | number }} </h1>
+                            <div class="light"> Reviewed </div>
+                        </div>
+                        <div  *ngIf="(jobSeekersAnalysis$ | async)?.reviewed_applications_count == 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 reviewed">
+                              <h1> {{(jobSeekersAnalysis$ | async)?.reviewed_applications_count | number }} </h1>
+                              <div class="light"> Reviewed </div>
+                        </div>
+
+
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.shortlisted_applications_count >0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 shortlisted hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['shortlisted']" (click)="setAnalysisFilter('shortlisted')">
+                            <h1> {{(jobSeekersAnalysis$ | async)?.shortlisted_applications_count | number }} </h1>
+                            <div class="light"> Shortlisted </div>
+                        </div>
+
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.shortlisted_applications_count == 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6  shortlisted ">
+                            <h1> {{(jobSeekersAnalysis$ | async)?.shortlisted_applications_count | number }} </h1>
+                            <div class="light"> Shortlisted </div>
+                        </div>
+
+
+
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.interviewed_applications_count >0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 interviewed hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['interviewed']" (click)="setAnalysisFilter('interviewed')">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.interviewed_applications_count | number }} </h1>
+                            <div class="light"> Interviewed </div>
+                        </div>
+
+                        <div  *ngIf="(jobSeekersAnalysis$ | async)?.interviewed_applications_count == 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 interviewed">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.interviewed_applications_count | number }} </h1>
+                            <div class="light"> Interviewed </div>
+                        </div>
+
+
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.successful_applications_count > 0"  class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 successful hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['successful']" (click)="setAnalysisFilter('successful')">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.successful_applications_count | number }} </h1>
+                            <div class="light">Successful </div>
+                        </div>
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.successful_applications_count == 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6  successful">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.successful_applications_count | number }} </h1>
+                            <div class="light">Successful </div>
+                        </div>
+
+
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.unsuccessful_applications_count > 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cursor_pointer1 unsuccessful hvr-shutter-out-vertical-blue" [class.select_active]="reviewFilterList['unsuccessful']" (click)="setAnalysisFilter('unsuccessful')">
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.unsuccessful_applications_count | number }} </h1>
+                            <div class="light"> Unsuccessful </div>
+                        </div>
+                        <div *ngIf="(jobSeekersAnalysis$ | async)?.unsuccessful_applications_count == 0" class="col-lg-2 col-md-2 col-sm-2 col-xs-6 unsuccessful" >
+
+                            <h1> {{(jobSeekersAnalysis$ | async)?.unsuccessful_applications_count | number }} </h1>
+                            <div class="light"> Unsuccessful </div>
+                        </div>
+                        <div class=" clearfix "></div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!--FILTER-->
+                <div class="row filter-jobs bottom-gap app-datail ">
+
+                    <div class="row feed-back-mg hidden-xs">
+                        <div class="bulk-fdb1">
+                            <a href="#" data-toggle="modal" data-target=".bulk-feedback"> <div class="bulk-btn"> Send Bulk Feedback </div></a>
+                        </div>
+                        <div class="bulk-fdb">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/jobs/'+jobId+'/'+this._accountService.getSpaceToDash(this.jobTitle)+'/suggest-candidates']">
+                                <div class="sugested-btn"> <i class="icon-job-post"></i>Check Out Our Suggested Candidates</div>
+                            </a>
+                        </div>
+                        <div class="bulk-fdb-sort">
+                            <div class="sort-drop" >
+                                <div class="click-dropdown-sort">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="btn-group btn-input clearfix">
+                                                <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                                                    <span data-bind="label">{{orderByName}}</span>&nbsp;<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <div class="arow-dropdown zmdi zmdi-caret-up"></div>
+                                                    <li><a (click)="sortBy('matching_percentage','Matching Percentage')">Matching Percentage</a></li>
+                                                    <li><a (click)="sortBy('years_of_experience','Years Experience')">Years Experience</a></li>
+                                                    <li><a (click)="sortBy('current_salary','Current Salary')">Current Salary</a></li>
+                                                    <li><a (click)="sortBy('expected_salary','Expected Salary')">Expected Salary</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="srt-feture">Sort By:</span>
+                        </div>
+                    </div>
+
+                    <div class="row feed-back-mg hidden-sm hidden-lg hidden-md">
+                        <div>
+                            <a href="#" data-toggle="modal" data-target=".bulk-feedback"> <div class="bulk-btn"> Send Bulk Feedback </div></a>
+                        </div>
+                        <div class="margin-top-5">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/jobs/'+jobId+'/'+this._accountService.getSpaceToDash(this.jobTitle)+'/suggest-candidates']">
+                                <div class="sugested-btn"> <i class="icon-job-post"></i>Check Out Our Suggested Candidates</div>
+                            </a>
+                        </div>
+                    </div>
+                    
+
+
+
+                    <!--ALL LISTING-->
+                    <div *ngIf="!loadedData" class="empty-min2">
+                        <i class="small_loading"><spinner></spinner></i>
+                    </div>
+
+                    <div *ngIf="loadedData && (jobSeekers$ | async)?.length == 0"  class="empty-min2 white">
+
+
+                        <div class="empty-prf">
+                            <i class="icon-empty-user"></i>
+                            <h5>No Search Results Found</h5>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="loadedData" class="row block invite">
+
+
+                        <div class="row" *ngFor="let selProfile of (jobSeekers$ | async)">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+selProfile?.user_id+'/'+this._accountService.getSpaceToDash(selProfile?.first_name+' '+selProfile?.last_name)+'/profile']" [queryParams]="{job_id:jobId}" >
+                                <div class="featured-box mob-bdr1 padding-10 hvr-shutter-out-vertical">
+
+
+                                        <div class="candi-detail-potion">
+                                            <!--Profile-->
+                                            <div class="invt mobile-invt">
+                                                <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                                <div class="invit-egg" *ngIf="selProfile?.avatar">
+                                                    <img  src="{{selProfile?.avatar}}">
+                                                </div>
+                                            </div>
+                                            <div class="feturd-compny-dtls">
+                                                <div class="txt-white">{{selProfile?.first_name}} {{selProfile?.last_name}}</div>
+                                                <div class="cmpny-txt">{{selProfile?.position}}</div>
+                                                <div class="cmpny-txt"><i class="zmdi zmdi-city-alt"></i><span class="bold">{{selProfile?.current_company_name}}</span> </div>
+                                                <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                                <div class="cmpny-txt" *ngIf="selProfile?.num_years_experience == 1"><i class="zmdi zmdi-case"></i>{{selProfile?.num_years_experience}} Year of Experience</div>
+                                                <div class="cmpny-txt" *ngIf="selProfile?.num_years_experience != 1"><i class="zmdi zmdi-case"></i>{{selProfile?.num_years_experience}} Years of Experience</div>
+                                                <!--Mobile-only-->
+                                                <div class="unsuccessful hidden-lg hidden-sm hidden-md" *ngIf="selProfile?.status == 'Unsuccessful'">{{selProfile?.status}} </div>
+                                                <div class="successful hidden-lg hidden-sm hidden-md" *ngIf="selProfile?.status == 'Successful'">{{selProfile?.status}} </div>
+                                                <div class="reviewed hidden-lg hidden-sm hidden-md" *ngIf="selProfile?.status == 'Interview'">{{selProfile?.status}} </div>
+                                                <div class="applied hidden-lg hidden-sm hidden-md" *ngIf="selProfile?.status == 'Applied'">{{selProfile?.status}} </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="feturd-matching-percentage candi-match">
+                                            <div class="prg-cercle">
+                                                <div class=" c100 p{{selProfile?.matching_percentage   | number:'1.0-0'}} small">
+                                                    <span>{{selProfile?.matching_percentage | number:'1.1-1'}}%</span>
+                                                    <div class="slice">
+                                                        <div class="bar"></div>
+                                                        <div class="fill"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="percenge-txt">Matching Percentage</div>
+                                        </div>
+
+                                        <div class="candidate-status">
+                                            <div class="unsuccessful hidden-xs" *ngIf="selProfile?.status == 'Unsuccessful'">{{selProfile?.status}} </div>
+                                            <div class="successful hidden-xs" *ngIf="selProfile?.status == 'Successful'">{{selProfile?.status}} </div>
+                                            <div class="reviewed hidden-xs" *ngIf="selProfile?.status == 'Interview'">{{selProfile?.status}} </div>
+                                            <div class="applied hidden-xs" *ngIf="selProfile?.status == 'Applied'">{{selProfile?.status}} </div>
+                                        </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div *ngIf="(totalRecords$ | async) > 0">
+                    <pagination-new [url]="'/'+_accountService.getPath()+'/jobs/'+jobId+'/applicants'" [totalRecords]="totalRecords$"></pagination-new>
+                </div>
+            </div>
+
+
+            <!--Mobile Only-->
+
+            
+
+            <div *ngIf="showFilter" class="col-lg-12 refine-serch">
+                <div class="block bottom-gap">
+                    <div class="row block-title-2">
+                        <h2 class="padding-top-10">Search By</h2>
+                        <a >
+                            <button (click)="showFilter = false"><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span></button>
+                        </a>
+                    </div>
+
+                    <filter-applied-candidate *ngIf="jobId != null"
+                    [page]="'/'+_accountService.getPath()+'/jobs/'+jobId+'/'+_accountService.getSpaceToDash(jobTitle)+'/applicants'" >
+
+                    </filter-applied-candidate>
+                </div>
+            </div>
+            <!-- Filter -->
+            <div class="row" id="filter">
+                <div class="filter-mobile">
+                    <a >
+                        <button *ngIf="!showFilter" (click)="showFilter = true">Filter</button>
+                        <button *ngIf="showFilter" (click)="showFilter = false">Apply</button>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Logout POPUP Content  -->
+<div class="popup">
+    <div class="logout-pop">
+        <div class="modal bulk-feedback" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-body ">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <div class="edit">
+                            <h2>Bulk Feedback</h2>
+                            <br>
+                            <form [formGroup]="bfeedForm">
+
+                                <div  *ngIf="bulkPostSuccess"  class="comen-alert alert-dismissible" role="alert">
+                                    <strong>Success</strong> Post Successful.
+                                </div>
+
+                                <div  *ngIf="bulkPostError"  class="alert alert-danger alert-dismissible" role="alert">
+                                    <strong>Error</strong> Post Failed.
+                                </div>
+                            <div class="light"> Candidates with a Matching Percentage </div>
+
+                            <div class="full-box">
+                                <div class="half-box">
+                                    <input formControlName="from" type="hidden">
+                                    <bootstrap-selectbox *ngIf="(mPList$ | async)" (selectedId)="bfeedForm.controls['from'].setValue($event.id);"  [selectedValue]="bfeedForm.controls['from'].value"  [placeholder]="'From'" [selectList]="(mPList$ | async)">
+                                    </bootstrap-selectbox>
+                                    <div  *ngIf="(bfeedForm.controls['from'].touched || !(pristineFlag$ | async)) && bfeedForm.controls['from'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                        Select Starting Range
+                                    </div>
+
+
+                                </div>
+                                <div class="half-box">
+                                    <input formControlName="to" type="hidden">
+                                    <bootstrap-selectbox *ngIf="(mPList$ | async)" (selectedId)="bfeedForm.controls['to'].setValue($event.id);"  [selectedValue]="bfeedForm.controls['to'].value"  [placeholder]="'To'" [selectList]="(mPList$ | async)">
+                                    </bootstrap-selectbox>
+                                    <div  *ngIf="(bfeedForm.controls['to'].touched || !(pristineFlag$ | async)) && bfeedForm.controls['to'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                        Select Ending Range
+                                    </div>
+
+
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="full-box">
+                                <div class="dark bold padding-top-10"> Move to</div>
+                                <div class="half-box-pop move-center">
+                                    <input formControlName="jobStatus" type="hidden">
+                                    <bootstrap-selectbox *ngIf="(appStatusList$ | async)" (selectedId)="bfeedForm.controls['jobStatus'].setValue($event.id);"  [selectedValue]="bfeedForm.controls['jobStatus'].value"  [placeholder]="'Select Status'" [selectList]="(appStatusList$ | async)">
+                                    </bootstrap-selectbox>
+
+                                    <div  *ngIf="(bfeedForm.controls['jobStatus'].touched || !(pristineFlag$ | async)) && bfeedForm.controls['jobStatus'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                        Select Candidates Status
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="pop-txtarea">
+                                <textarea class="feedback-text" placeholder="Feedback" formControlName="feedback"></textarea>
+
+                                <div  *ngIf="(bfeedForm.controls['feedback'].touched || !(pristineFlag$ | async)) && bfeedForm.controls['feedback'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                   Please enter a General Feedback
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+
+                        <div class="pop-button">
+
+                            <button type="button" class="btn postive" (click)="sendBulkMail()">Send Bulk Feedback</button>
+                            <button type="button" class="btn negative" data-dismiss="modal" >Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

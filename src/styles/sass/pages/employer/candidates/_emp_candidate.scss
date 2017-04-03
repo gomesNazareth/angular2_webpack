@@ -1,0 +1,269 @@
+.candidates{
+    .block-title{ 
+        text-align: center 
+    } 
+    .block-footer{ 
+        text-align: center 
+    } 
+    .clicks{ 
+            background:#d6ecfa;
+            .radio{ 
+                display:inline-block; 
+                padding-top:0px; 
+                padding-right:30px;   
+            }
+        input{ 
+            border: solid 1px #b1daf4; 
+            color: $blue-bali;
+            margin-bottom: 0px!important; 
+        }
+        .full-box{
+            position: relative; 
+     }
+        .serch-box{ 
+            background:$navy-dark; 
+            color:$white; position:
+             absolute;top: 0px; 
+             right:0px; 
+             height: 34px; 
+             width:35px; 
+             font-size:22px; 
+             line-height:35px; 
+             text-align:center;
+             i{
+                padding-right:0px;
+                }      }
+        .block-footer{
+            button{ width:100%;  
+            }
+        }
+    }
+    .col-lg-3{ 
+        border-right:solid 1px $grey-border; 
+        padding:0px!important; 
+        min-height:224px;     }
+    .search-candidates{ 
+        padding:0px 10px;
+        .candidate-txt{
+            color: $navy-dark; 
+            border-bottom: solid 1px $white-smoke; 
+            font-family:$font-medium;
+            padding-bottom:8px; 
+            margin-bottom:20px;    
+         }
+        .full-box{ 
+            margin-top:10px;
+            position:relative;  
+        }
+    }
+}
+.candidates-search{
+    .col-lg-1{ 
+        padding-left:0px!important;
+        }
+        .clicks{
+            .radio{ 
+                display:inline-block; 
+                padding-top:0px; 
+                padding-right:30px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                line-height: 35px; 
+            }
+            .full-box{ 
+                position: relative; 
+            }
+            .serch-box{ 
+                background:$navy-dark;
+                color:$white;
+                position: absolute;
+                top: 0px; 
+                right:0px;
+                height: 35px;
+                width:40px; 
+                font-size:22px; 
+                line-height:35px; 
+                text-align: center       }
+            .block-footer{
+                button{ 
+                    width:100%; 
+                    padding: 8px 0px  
+                }
+            }
+        }
+.candidates-image{ 
+    float: left; 
+    width:50px; 
+    background:#000}
+}
+.matching-candidates{
+    .filter-jobs .featured-box .feturd-compny-dtls .txt-white{ 
+        padding-bottom:0px;  
+    }
+    .invite{
+        .invt{
+         width:75px; 
+         padding: 0px; 
+         border:none; 
+         height:auto
+     }
+        .invit-egg{ 
+            width:75px; 
+            height:95px; 
+            margin-bottom:0px;
+
+        }
+        .invit-egg-default{ 
+            width:75px; 
+            height:95px; 
+            margin-bottom:0px; 
+            line-height:95px; 
+            i{
+                line-height: 95px;
+            }     
+        }
+    }
+    .feturd-compny-dtls{
+        width: calc(100% - 205px);
+        margin-left: 0px!important;
+        padding-left:10px;
+    }
+    .feturd-matching-percentage {
+        width: 80px;
+        margin-right: 0px!important;
+    }
+
+    #tag-job{
+        float: left;
+        width: 100%;
+    }
+}
+.candidates-search{
+    .resume{
+     margin-left:0px;
+      margin-right:0px; 
+       }
+    .profile-percentage{
+     padding:0 0 10px!important  
+    }
+
+    .icon-featured-serch{
+        padding-right:0px;
+        font-size: 18px;
+    }
+}
+.benefits {
+    .benafit-box{
+        float: left;
+        width: 14.28571%;
+        text-align: center;
+        padding: 20px 0px;
+    }
+}
+.click-dropdown-sort{
+    .open > .dropdown-menu{
+        height: auto!important;
+    }
+    button{
+        line-height: 15px;
+    }
+}
+#my-profile{
+    .display{
+        .candidate-dp{
+            width:135px;
+        }
+    }
+    
+    .video-sec{
+        height: 180px;
+    }
+}
+// Candidate Search Filter
+.filter{
+    .radio{
+        margin:0px!important;
+        padding-top:0px!important;
+        padding-bottom: 8px;
+        label{
+            font-size: $font-14;
+            padding-left: 8px;
+            color: $blue-dark;
+        }
+    }
+}
+
+// Candidate cv section
+.candidate-cv-em{
+    height:100%!important;
+    .cancel{
+        padding-right:0px!important;
+    }
+    .empty-prf{
+        i{
+            color: #3379bd!important;
+        }
+    }
+}
+
+.spinner-candi{
+    padding-top:10%;
+    display: block;
+    text-align: center;
+}
+.candi-search-part{
+    margin: 4px 0px;
+}
+.candi-search-bt{
+    top: 4px!important;
+    font-size: 18px!important;
+    i{
+        text-align: center;
+        line-height: 35px;
+    }
+}
+.candi-search-option{
+    .radio{
+        label{
+            line-height: 15px!important;
+        }
+    }
+}
+.matching-candidates{
+    .cmpny-txt{
+        i{
+            min-width: 20px!important;
+        }
+    } 
+}
+.candi-video{
+    .video_fix{
+        height: 110px!important;
+    }
+}
+
+.offer-l-download{
+    position:absolute;
+    z-index: 999;
+    background-color:rgba(255,255,255,0.5);
+    height: 74%;
+    width: 88%;
+    .loading{
+        margin-top: 30%;
+    }
+}
+.search-candidates{
+    .bootstrap-select{
+        .placeholder{
+            color: #C7C7CD !important;
+        }
+    }
+}
+.search-candidates-spinner{
+    min-height: 220px;
+    i{
+        line-height: 220px;
+        display: block;
+        padding-top:20%;
+    }
+}

@@ -1,0 +1,85 @@
+//base
+
+@import 'base/_base.scss';
+@import 'base/_mixins.scss';
+@import 'base/_normalize.scss';
+@import 'base/_variables.scss';
+@import 'base/_reset.scss';
+
+//layout
+
+@import 'layout/_commen.scss';
+@import 'layout/_header.scss';
+@import 'layout/_footer.scss';
+@import 'layout/_block.scss';
+@import 'layout/_menu.scss';
+@import 'layout/_common_responsive.scss';
+
+/*---------------------------------------------------JOBSEEKER-------------------------------------------------------*/
+// pages
+
+// dashboard
+@import 'pages/jobseeker/dashboard/_dashboard.scss';
+@import 'pages/jobseeker/dashboard/_dashboard_responsive.scss';
+
+// Profile
+@import 'pages/jobseeker/profile/_profile.scss';
+@import 'pages/jobseeker/profile/_profile_responsive.scss';
+
+// Jobs
+@import 'pages/jobseeker/jobs/_jobs.scss';
+@import 'pages/jobseeker/jobs/_jobs_responsive.scss';
+
+// companies
+@import 'pages/jobseeker/companies/_company.scss';
+@import 'pages/jobseeker/companies/_company_responsive.scss';
+
+// blog
+@import 'pages/jobseeker/blog/_blog.scss';
+@import 'pages/jobseeker/blog/_blog_responsive.scss';
+
+// settings
+@import 'pages/jobseeker/settings/_settings.scss';
+@import 'pages/jobseeker/settings/_settings_responsive.scss';
+
+/*---------------------------------------------------EMPLOYER-------------------------------------------------------*/
+
+// dashboard
+@import 'pages/employer/dashboard/_emp_dashboard.scss';
+@import 'pages/employer/dashboard/_emp_dashboard_responsive.scss';
+
+// // Profile
+@import 'pages/employer/profile/_emp_profile.scss';
+@import 'pages/employer/profile/_emp_profile_responsive.scss';
+
+// // Jobs
+@import 'pages/employer/candidates/_emp_candidate.scss';
+@import 'pages/employer/candidates/_emp_candidate_responsive.scss';
+
+// // companies
+@import 'pages/employer/jobs/_emp_job.scss';
+@import 'pages/employer/jobs/_emp_job_responsive.scss';
+
+// // blog
+@import 'pages/employer/blog/_emp_blog.scss';
+@import 'pages/employer/blog/_emp_blog_responsive.scss';
+
+// settings same styles jobseeker
+@import 'pages/employer/settings/_emp_settings.scss';
+@import 'pages/employer/settings/_emp_settings_responsive.scss';
+
+/*---------------------------------------------------HOMEPAGE-------------------------------------------------------*/
+
+// Home page and
+@import 'pages/home/_home.scss';
+@import 'pages/home/_home_responsive.scss';
+
+/*---------------------------------------------------REGISTRATION-------------------------------------------------------*/
+
+// registration
+@import 'pages/registration/_registration.scss';
+
+/*---------------------------------------------------MODULES-------------------------------------------------------*/
+//modules
+@import 'modules/_buttons.scss';
+@import 'modules/_plugin.scss';

@@ -1,0 +1,49 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="block bottom-gap min-full-h">
+        <div class="block-title-2">
+            <div class="pull-left"><h1 class="padding-top-10">{{'Job Applications Submitted by Sector'}}</h1></div>
+            <div class="pull-right hidden-xs hidden-sm">
+                <a [routerLink]="['/'+this._accountService.getPath()+'/dashboard']"><button>{{'Back'}}</button></a>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="block-contant padding-10">
+            <div class="prograss-section">
+                
+            <div class="loading-spinner-space min-full-h" *ngIf="isLoadingS">
+                <spinner [visible]="isLoadingS"></spinner>
+            </div>
+                <div class="col-lg-6"  *ngFor="let jobBySector of (jobsBySector$ | async)">
+
+                    <div class="progress-bloovo">
+                        <div class="prograss-title">
+                            <h5 class="prograss-txt pull-left">{{jobBySector?.sector}}</h5>
+                            <h5 class="prograss-txt pull-right percentage-color" >{{jobBySector?.percentage }}%</h5>
+                            <div class=" clr"></div>
+                        </div>
+                        <div class="progress">
+                            <div data-percentage="0%" [style.width.%]="jobBySector?.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="clr"></div>
+            </div>
+
+
+
+            <div class="clr"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 hidden-md hidden-lg">
+    <a [routerLink]="['/'+this._accountService.getPath()+'/dashboard']"><button class="full-width-button margin-bootom-5">{{'Back'}}</button></a>
+</div>
+<!--<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+<div *ngFor="let ad of ads,let i = index" class="advertisments">
+        <div class="advt"><a href="/ad/{{ad.id}}"><img src="{{ad.url}}" width="100%"> </a></div>
+    </div>
+</div>-->

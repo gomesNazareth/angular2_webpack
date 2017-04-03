@@ -1,0 +1,87 @@
+/*---------------------------------------------------1-------------------------------------------------------*/
+
+@media (max-width: 1200px){}
+
+/*---------------------------------------------------2-------------------------------------------------------*/
+
+@media (min-width: 768px) and (max-width: 1024px){
+
+    .slid-mob .contant .contant-container{
+        .steps-line{ 
+            width:36%;  
+        }
+        .sign-nav{ 
+            width:745px; margin: 0 auto; 
+        } 
+    }        
+   
+}
+
+
+
+/*---------------------------------------------------3-------------------------------------------------------*/
+
+@media (max-width: 767px) {
+
+    .slid-mob .contant .contant-container{
+        .steps-line{ 
+            width:27%;  
+        }
+        .sign-nav{ 
+            width: 460px; margin: 0 auto; 
+        } 
+    }
+
+    
+}
+
+/*---------------------------------------------------4-------------------------------------------------------*/
+
+@media (max-width: 480px) {
+
+    .slid-mob .contant .contant-container{
+        h5{ 
+            font-size:$font-16; 
+            line-height:$font-22; 
+            margin-top:10px!important;    
+        } 
+        .upload .upload-right .upld-btn{
+            padding: 0 15px;
+        }
+        .blck-2{ 
+            width:100%;   
+        }
+    }
+
+    .slid-mob{
+        .contant{
+            .contant-container{
+                .sign-nav{
+                    width: 310px;
+                    margin: 0 auto;
+                }
+                .steps-line{
+                    width: 17%;
+                }
+            }
+        }
+        .head{
+            h2{
+                font-size: $font-16;
+                font-family: $font-medium;
+                font-weight: normal!important;
+            }
+            h3{
+                font-size: $font-14;
+                font-family: $font-medium;
+                line-height:23px!important;
+            }
+        }
+    }
+
+    
+
+
+
+  
+}

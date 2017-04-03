@@ -1,0 +1,45 @@
+<div class="offer-letter-2 wrap_all">
+    <!--<div (click)="savePdf()">Save as pdf</div>-->
+    <!-- Header -->
+    <div class="header">
+        <div class="company-logo">
+            <img src="{{(employerObj | async)?.user?.company?.avatar}}">
+        </div>
+        <div class="candidate">
+            <h4>{{todayDate}}</h4>
+            <strong>{{(candidateDetailsObs | async)?.first_name}} {{(candidateDetailsObs | async)?.last_name}}</strong>
+            <span>{{(candidateDetailsObs | async)?.address?.city?.name}}, {{(candidateDetailsObs | async)?.address?.country?.name}}</span>
+            <span>{{(candidateDetailsObs | async)?.contact?.mobile_no}}</span>
+        </div>
+    </div>
+
+    <!-- body -->
+
+    <div class="body-text">
+        <div class="title"><h5>Offer Letter for post of {{jobTitle}}</h5></div>
+
+        <p>{{description}}</p>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>Best Wishes</p>
+        <br>
+        <br>
+        <br>
+        <strong>{{(employerObj | async)?.name}}</strong>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>Offer Accepted&nbsp;&nbsp;<i>------------------------------------------------------</i> Date&nbsp;&nbsp;<i>---------------------------------------------------------------</i></p>
+    </div>
+
+    <div class="offer-footer">
+        <p>{{(employerObj | async)?.user?.company?.address_line1}},{{(employerObj | async)?.user?.company?.address_line2}},{{(employerObj | async)?.user?.company?.phone}},{{(employerObj | async)?.user?.company?.website}}</p>
+    </div>
+
+</div>

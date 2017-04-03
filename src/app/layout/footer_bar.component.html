@@ -1,0 +1,84 @@
+
+<!-- Loading -->
+<div class="white static_container_empty" *ngIf="!(loadData$ | async) && (isAuthorized$ | async)">
+    <span><img src="images/balls.svg"></span>
+</div>
+
+<footer *ngIf="!(isHome$ | async)  && _accountService.getProfileComplete()">
+
+    <div>
+        <hr>
+        <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs hidden-sm hidden-md">
+
+            <div class="footer-links">
+                <a [routerLink]="'/'+_accountService.getPath()+'/about'" class="padding-left">{{'About BLOOVO'}}</a>
+                <a *ngIf="!_accountService.getCheckEmployer()"  [routerLink]="'/'+_accountService.getPath()+'/companies'">{{'Company'}}</a>
+                <a [routerLink]="'/'+_accountService.getPath()+'/terms'">{{'Terms & Conditions'}}</a>
+                <a [routerLink]="'/'+_accountService.getPath()+'/policy'">{{'Privacy Policy'}}</a>
+                <a [routerLink]="'/'+_accountService.getPath()+'/contactus'" class="no-border">Contact Us</a>
+            </div>
+
+            <div class="copyright">{{'Copyright &copy; 2016 BLOOVO, All Rights Reserved'}}</div>
+
+            <div class="clr"></div>
+        </div>
+        <div class="col-lg-4 hidden-xs hidden-sm hidden-md">
+               <!-- Social Media -->
+            <div class="social-media">
+                <a target="_blank" href="https://www.facebook.com/BloovoWorld/">
+                    <div class="s-media facebook"><i class="zmdi zmdi-facebook"></i></div>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/company/bloovo">
+                <div class="s-media linkdin"><i class="zmdi zmdi-linkedin"></i></div>
+                </a>
+                <a target="_blank" href="https://plus.google.com/+Bloovo">
+                <div class="s-media google-plus"><i class="zmdi zmdi-google-plus"></i>
+                    </div>
+                </a>
+                <a target="_blank" href="https://www.instagram.com/bloovo_/">
+                <div class="s-media google-plus"><i class="zmdi zmdi-instagram"></i>
+                    </div>
+                </a>
+                <a target="_blank" href="https://www.youtube.com/channel/UCuRLdElkaZaipKjKVJgICDQ">
+                <div class="s-media google-plus"><i class="zmdi zmdi-youtube"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden-lg">
+        <div class="mobile_footer">
+            <a [routerLink]="'/'+_accountService.getPath()+'/about'" class="padding-left">{{'About BLOOVO'}}</a>
+            <a *ngIf="!_accountService.getCheckEmployer()" [routerLink]="'/'+_accountService.getPath()+'/companies'">{{'Company'}}</a>
+            <a [routerLink]="'/'+_accountService.getPath()+'/terms'">{{'Terms & Conditions'}}</a>
+            <a [routerLink]="'/'+_accountService.getPath()+'/policy'">{{'Privacy Policy'}}</a>
+            <a [routerLink]="'/'+_accountService.getPath()+'/contactus'" class="no-border">Contact Us</a>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-media">
+            <a target="_blank" href="https://www.facebook.com/BloovoWorld/">
+                <div class="s-media facebook"><i class="zmdi zmdi-facebook"></i></div>
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/company/bloovo">
+            <div class="s-media linkdin"><i class="zmdi zmdi-linkedin"></i></div>
+            </a>
+            <a target="_blank" href="https://plus.google.com/+Bloovo">
+            <div class="s-media google-plus"><i class="zmdi zmdi-google-plus"></i>
+                </div>
+            </a>
+            <a target="_blank" href="https://www.instagram.com/bloovo_/">
+            <div class="s-media google-plus"><i class="zmdi zmdi-instagram"></i>
+                </div>
+            </a>
+            <a target="_blank" href="https://www.youtube.com/channel/UCuRLdElkaZaipKjKVJgICDQ">
+            <div class="s-media google-plus"><i class="zmdi zmdi-youtube"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="copyright-mobile">{{'Copyright &copy; 2016 BLOOVO, All Rights Reserved'}}</div>
+    </div>
+
+</footer>

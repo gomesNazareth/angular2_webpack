@@ -1,0 +1,880 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+
+<div class="tab-content job-bloovo">
+    <!--------------------------- All Jobs details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="post-job">
+
+
+        <div *ngIf="!loadedData" class="empty-min2">
+            <i class="small_loading"><spinner></spinner></i>
+        </div>
+
+
+
+        <div class="commen-container-less jobs-employer" *ngIf="loadedData">
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="block  background-blank">
+                        <div class="refine-serch">
+                            <div class="row block-title-2 padding-0 border-none">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                    <h2>Post Your Jobs Now & Get to Know Your Prospective Employees!</h2>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <a class="cursor_pointer1" (click)="onBack()"> <button> <span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span>  </button> </a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="block margin-top-10 mg-bottom-20 job-post">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 brg-lgt padding-top-10 border-right">
+                            <div class="post"> <i class="icon-post-job2"></i></div>
+                            <h3 class="hidden-xs"> Post a Job </h3>
+                            <div class="done"><i class="zmdi zmdi-check-circle"></i></div>
+                        </div>
+                        <!-- Current vertion we don't need this section -->
+                        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dim-lgt ">
+                            <div class="post"> <i class="icon-make-featured"></i></div>
+                            <h3 class="hidden-xs"> Make it Featured </h3>
+                            <div class="done"><i class="zmdi zmdi-circle"></i></div>
+                        </div> -->
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 dim-lgt padding-top-10">
+                            <div class="post"> <i class="icon-share-social"></i></div>
+                            <h3 class="hidden-xs">Share on Social Media </h3>
+                            <div class="done"><i class="zmdi zmdi-circle"></i></div>
+                        </div>
+
+
+                        <div class=" clearfix "></div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="row">
+                <form [formGroup]="jobForm">
+                <div class="row">
+
+
+                    <div class="col-lg-6">
+                        <div  *ngIf="(jobForm.controls['job_status'].touched || !(pristineFlag$ | async)) && jobForm.controls['job_status'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                            Please select Job Status
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div  *ngIf="(jobForm.controls['notification_type'].touched || !(pristineFlag$ | async)) && jobForm.controls['notification_type'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                           Please select notification Type
+                    </div>
+                </div>
+
+ <!-- hide the section -->
+                <div class="col-lg-4 col-md-4" *ngIf="jobForm.controls['id'].value != null">
+                        <div class="col-xs-12 white bottom-gap">
+                            <h3 class="text-st">Job Status</h3>
+                            <span class="active-st"  *ngIf="jobForm.controls['job_status'].value == 2 && !getIfExpired()">Active</span>
+                             <span class="draft-st"  *ngIf="jobForm.controls['job_status'].value == 1" >Draft</span>
+                            <span class="expired-st" *ngIf="getIfExpired()">Expired</span>
+                        </div>
+                        <div class=" clearfix"></div>
+                </div>
+
+                <div   [class.col-lg-8.col-md-8]="jobForm.controls['id'].value" [class.col-lg-12.col-md-12]="!jobForm.controls['id'].value">
+                    <div class="white bottom-gap clicks job-status labels">
+                        <div class="Notification-xt"><h3>Application Notifications</h3></div>
+                        <div class="notification-st">
+                            <div class="box-set">
+                                <div class="box-3-equal">
+                                    <div class="radio radio-primary">
+                                        <input id="radio8" type="radio" formControlName="notification_type" value="0">
+                                        <label for="radio8">
+                                            <span>None</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="box-3-equal">
+                                    <div class="radio radio-primary">
+                                        <input id="radio6" type="radio"  formControlName="notification_type" value="2">
+                                        <label for="radio6">
+                                            <span>Weekly</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="box-3-equal">
+                                    <div class="radio radio-primary">
+                                        <input id="radio7" type="radio" formControlName="notification_type" value="3">
+                                        <label for="radio7">
+                                            <span>Daily</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="box-3-equal">
+                                    <div class="radio radio-primary">
+                                        <input id="radio5" type="radio" formControlName="notification_type" value="1">
+                                        <label for="radio5">
+                                            <span>All Candidates</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Job Information-->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block bottom-gap">
+                        <div class="blu-bg">
+                            <div class="block-title"><h2>Job Information</h2></div>
+                        </div>
+
+                        <div class="job-post-box">
+
+                            <div class="row">
+
+                            <!-- Job Title -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="full-box">
+                                        <input type="text" formControlName="title" name="title" placeholder="Job Title"  >
+                                        <div  *ngIf="(jobForm.controls['title'].touched || !(pristineFlag$ | async)) && jobForm.controls['title'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please enter Job Title
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Job Type -->
+                                <div class="col-lg-4 col-md-4">
+                                    <!--Job Type is single selection-->
+                                    <div class="full-box">
+                                        <bootstrap-selectbox *ngIf="(jobTypeList$ | async)?.job_types" (selectedId)="jobForm.controls['job_type_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['job_type_id'].value"  [placeholder]="'Select Job Type'" [selectList]="(jobTypeList$ | async)?.job_types">
+                                        </bootstrap-selectbox>
+                                        <input  type="hidden" name="job_type_id"  formControlName="job_type_id" class="text" >
+
+                                        <div  *ngIf="(jobForm.controls['job_type_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['job_type_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select Job Type
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Date -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="full-box" id="my-profile">
+                                        <div class="post-date-pik">
+                                            <div class=" relative">
+                                                <input type="hidden"    placeholder="From" formControlName="start_date">
+                                                <datePicker-block [dp_placeholder]="'Job Publishing Date'"
+                                                                  (emitSelDate)="getStartDate($event)"
+                                                                  [sel_id]="'1'"
+                                                                  [minDate]="maxDate"
+                                                                  [dp_value]="jobForm.controls['start_date'].value">
+
+                                                </datePicker-block>
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="post-date-pik">
+                                            <div class="relative sp-pik">
+                                                <input type="hidden"  placeholder="To" formControlName="end_date">
+                                                <datePicker-block [dp_placeholder]="'Job Expiry Date'"
+                                                                  (emitSelDate)="jobForm.controls['end_date'].setValue($event['selDate'])"
+                                                                  [sel_id]="'2'"
+                                                                  [dateRangeFlag]="true"
+                                                                  [dp_startDate]="startDate"
+                                                                  [dp_value]="jobForm.controls['end_date'].value">
+
+                                                </datePicker-block>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="full-box">
+                                        <div  *ngIf="(jobForm.controls['start_date'].touched || !(pristineFlag$ | async)) && jobForm.controls['start_date'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select a valid Start Date
+                                        </div>
+                                    </div>
+
+                                    <div class="full-box">
+                                         <div  *ngIf="(jobForm.controls['end_date'].touched || !(pristineFlag$ | async)) && jobForm.controls['end_date'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                            Please select a valid End Date
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Devider -->
+                            <div class="col-lg-12 col-md-12"><hr></div>
+
+                                <!-- Country -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="full-box line-none">
+                                        <!--Country is search single selection-->
+                                        <div class="half-box-post">
+                                            <bootstrap-selectbox *ngIf="(countryList$ | async)?.countries" (selectedId)="country_id =$event.id;cityObj.id = null;cityObj.text = null; cityObj.name = null;cityObj.country_id =null;"  [selectedValue]="country_id"  [placeholder]="'Select Job Location'" [selectList]="(countryList$ | async)?.countries">
+                                            </bootstrap-selectbox>
+
+                                            <!-- just hide the section its no needed in design  -->
+                                            <input  type="hidden" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="text" >
+                                        </div>
+
+                                        <!--City is Auto complete-->
+                                        <div class="half-box-post border-left-no">
+                                            <input *ngIf="!country_id" type="text" name="city_temp" class="border-left-no-default m-mg-only" placeholder="Select a City" >
+                                            <div *ngFor="let sel_country of (countryList$ | async)?.countries">
+                                                <auto-comp1 *ngIf="sel_country.id == country_id"
+                                                            [countryId]="sel_country.id"
+                                                            [current_city]="cityObj"
+                                                            [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                                            (changeCityId)="cityObj.id = $event.id;">
+                                                </auto-comp1>
+                                            </div>
+                                            <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="full-box">
+                                        <div  *ngIf="(jobForm.controls['country_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['country_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select a Country
+                                        </div>
+                                    </div>
+                                    <div class="full-box">
+                                        <div  *ngIf="(jobForm.controls['city_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['city_id'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                            Please select a City
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- sector -->
+                                <div class="col-lg-4 col-md-4">
+                                    <!--Sector is  search with single selection-->
+                                    <div class="full-box">
+                                        <bootstrap-selectbox *ngIf="(sectors$ | async)" (selectedId)="jobForm.controls['sector_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['sector_id'].value"  [placeholder]="'Select Job Sector'" [selectList]="(sectors$ | async)">
+                                        </bootstrap-selectbox>
+                                        <input  type="hidden" name="sector_id"  formControlName="sector_id" class="text" >
+
+                                        <div  *ngIf="(jobForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select a Sector
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Functional Area -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="full-box">
+                                        <bootstrap-selectbox *ngIf="(functionalAreaList$ | async)" (selectedId)="jobForm.controls['functional_area_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['functional_area_id'].value"  [placeholder]="'Select a Functional Area'" [selectList]="(functionalAreaList$ | async)">
+                                        </bootstrap-selectbox>
+                                        <input  type="hidden" name="functional_area_id"  formControlName="functional_area_id" class="text" >
+
+                                        <div  *ngIf="(jobForm.controls['functional_area_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['functional_area_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select a Functional Area
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Devider -->
+                                <div class="col-lg-12 col-md-12"><hr></div>
+
+                                <!-- Education -->
+                                <div class="col-lg-4 col-md-4">
+                                    <!--Highest Education is search single selection-->
+                                    <div class="full-box">
+                                        <bootstrap-selectbox *ngIf="(educationList$ | async)?.education" (selectedId)="jobForm.controls['job_education_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['job_education_id'].value"  [placeholder]="'Please select Candidates Highest Education'" [selectList]="(educationList$ | async)?.education">
+                                        </bootstrap-selectbox>
+                                        <input  type="hidden" name="job_education_id"  formControlName="job_education_id" class="text" >
+
+                                        <div  *ngIf="(jobForm.controls['job_education_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['job_education_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select Candidates Highest Education
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience -->
+                                <div class="col-lg-4 col-md-4">
+                                    <!--Years of Experience from date To date-->
+                                    <div class="full-box" >
+                                        <div class="half-box-post"> <div class="light">Years of Experience </div> </div>
+                                        <div class="half-box-post">
+                                            <div class="mobile-full width-fifty mg-b-m">
+                                                <div class=" relative">
+                                                    <!--from years-->
+
+                                                    <bootstrap-selectbox   (selectedId)="jobForm.controls['experience_from'].setValue($event.id);updateExp($event.id)"  [selectedValue]="jobForm.controls['experience_from'].value"  [placeholder]="'From'"  [showSearch]="false" [selectList]="yearsExpList" >
+                                                    </bootstrap-selectbox>
+                                                    <input  type="hidden" name="experience_from"   placeholder="From" formControlName="experience_from" class="text" >
+
+                                                </div>
+                                            </div>
+                                            <div class="mobile-full sp-pik width-fifty">
+                                                <div class=" relative">
+                                                    <!--to years-->
+                                                    <bootstrap-selectbox   (selectedId)="jobForm.controls['experience_to'].setValue($event.id);"  [selectedValue]="jobForm.controls['experience_to'].value"  [placeholder]="'To'" [selectList]="yearsExpList" [showSearch]="false"  [excludeItems]="excludeToYears">
+                                                    </bootstrap-selectbox>
+                                                    <input  type="hidden" name="experience_to" placeholder="To"  formControlName="experience_to" class="text" >
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+
+                                    <div class="full-box">
+                                        <div  *ngIf="(jobForm.controls['experience_from'].touched || !(pristineFlag$ | async)) && jobForm.controls['experience_from'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please enter a Valid Number
+                                        </div>
+                                    </div>
+                                     <div class="full-box">
+                                        <div  *ngIf="(jobForm.controls['experience_to'].touched || !(pristineFlag$ | async)) && jobForm.controls['experience_to'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                            Please enter a Valid Number
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Experience Level -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="full-box">
+                                        <bootstrap-selectbox *ngIf="(expLevelList$ | async)" (selectedId)="jobForm.controls['job_experience_level_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['job_experience_level_id'].value"  [placeholder]="'Select Experience Level'" [selectList]="(expLevelList$ | async)">
+                                        </bootstrap-selectbox>
+                                        <input  type="hidden" name="sector_id"  formControlName="job_experience_level_id" class="text" >
+
+                                        <div  *ngIf="(jobForm.controls['job_experience_level_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['job_experience_level_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please select Experience Level
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Devider -->
+                                <div class="col-lg-12 col-md-12"><hr></div>
+
+                                <!-- Expected Salary -->
+                                <div class="col-lg-4 col-md-4">
+                                    <!--Salary is range in job posting section (Single selection)-->
+                                    <div class="full-box">
+                                        <div class="half-box-post mobile-full"><div class="light">Expected Salary (USD) </div> </div>
+                                        <div class="half-box-post-no-margin mobile-full">
+                                            <bootstrap-selectbox *ngIf="(salary_range$ | async)?.salary_range" (selectedId)="jobForm.controls['salary_range_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['salary_range_id'].value"  [placeholder]="'Select Expected Salary'" [selectList]="(salary_range$ | async)?.salary_range">
+                                            </bootstrap-selectbox>
+                                            <input  type="hidden" name="salary_range_id"  formControlName="salary_range_id" class="text" >
+
+                                            <div  *ngIf="(jobForm.controls['salary_range_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['salary_range_id'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                                Please select Expected Salary
+                                            </div>
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Joining Date -->
+                                <div class="col-lg-8 col-md-8">
+                                    <div class="full-box clicks">
+                                        <div class="half-box-post half-j2"> <div class="light">Joining Date</div> </div>
+
+                                        <div class="half-box-post half-j">
+                                            <!--When you select date then the checkbox section desabled-->
+                                            <div class="mobile-full half-j-date" *ngIf="!this.jobForm.controls['join_immediately'].value">
+                                                <div class="relative full-input">
+                                                    <input type="hidden"   placeholder="Join Date" formControlName="join_date">
+                                                    <datePicker-block [dp_placeholder]="'Date'"
+                                                                      [dp_startDate]="startDate"
+                                                                      (emitSelDate)="setJoinDate($event)"
+                                                                      [dateRangeFlag]="true"
+                                                                      [sel_id]="'3'"
+                                                                      [dp_value]="jobForm.controls['join_date'].value">
+
+                                                    </datePicker-block>
+
+                                                </div>
+                                            </div>
+                                        <!--When you check immediately then date section desabled-->
+                                            <div class="mobile-full half-j3">
+                                                <div class="requr">
+
+                                                    <input id="checkboxG8"  formControlName="join_immediately"  class="css-checkbox" type="checkbox" name="checkboxG8" >
+                                                    <label class="css-label"  for="checkboxG8"><span>Immediately </span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Certificate Need Auto complete-->
+                           <!-- Devider -->
+                            <div><hr></div>
+
+                            <div class="col-lg-12 edit">
+                                <div class="full-box-post">
+                                    <div class="skill-title-post">
+                                        <div class="light light-only" >Certificates Required </div>
+                                    </div>
+                                    <div class="skill-title-post-body">
+                                        <div class="tag-new" *ngFor="let selCert of certarry;let certIndex = index">
+
+                                            <div class="txt"> {{selCert.name}} </div>
+                                            <div class="close-tag" (click)="onRemoveElement(certIndex,'cert')">
+                                                <i class="zmdi zmdi-close-circle"></i></div>
+                                        </div>
+                                        <div class="tag-new border-none">
+                                            <auto-complete *ngIf="certarry.length < 3" [excludeItems]="certarry" [placeholder]="'Add a Certificate' " [selectOneEnter]="true"  [resetOnSelect]="true" [recordType]="'Certificate'" (changeRecords)="onAddElement($event,'cert')">
+                                            </auto-complete>
+                                        </div>
+
+                                    </div>
+
+                                    <div class=" clearfix"></div>
+                            </div>
+
+                            <!-- Devider -->
+                            <div><hr></div>
+
+                            </div>
+
+                            <!--Skills Need Autocomplete-->
+                            <div class="col-lg-12 edit">
+                                <div class="full-box-post">
+                                    <div class="skill-title-post">
+                                        <div class="light light-only" >Skills Required</div>
+                                    </div>
+                                    <div class="skill-title-post-body">
+                                        <div class="tag-new" *ngFor="let selSkills of skillsarry;let skillIndex = index"  >
+
+                                            <div class="txt"> {{selSkills.name}}</div>
+                                            <div class="close-tag" (click)="onRemoveElement(skillIndex,'skills')">
+                                                <i class="zmdi zmdi-close-circle"></i>
+                                            </div>
+                                    </div>
+                                    <div class="tag-new border-none">
+                                        <auto-complete  *ngIf="skillsarry.length < 5" [excludeItems]="skillsarry"  [selectOneEnter]="true" [resetOnSelect]="true"  [placeholder]="'Add a Skill' "  [recordType]="'Skill'" (changeRecords)="onAddElement($event,'skills')">
+                                        </auto-complete>
+                                    </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Candidate Information-->
+
+                <div class="row">
+                    <div class="col-lg-12 edit ">
+                        <div class="block bottom-gap">
+                            <div class="blu-bg">
+                                <div class="block-title"><h2>Candidate Information</h2></div>
+                            </div>
+
+                            <div class="job-post-box">
+
+                                <div class="row">
+
+                                    <div>
+
+                                        <!-- Nationality -->
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="full-box">
+                                                <bootstrap-multiselectbox *ngIf="(geoGroupList$ | async)?.geo_countries" (selectedIds)="jobForm.controls['geo_countries_ids'].setValue($event.id);"  [selectedValue]="jobForm.controls['geo_countries_ids'].value"  [placeholder]="'Select Nationality (Multiple Selection Allowed)'" [selectList]="(geoGroupList$ | async)?.geo_countries">
+                                                </bootstrap-multiselectbox>
+                                                <input  type="hidden" name="geo_countries_ids"  formControlName="geo_countries_ids" class="text" >
+
+                                                <div  *ngIf="(jobForm.controls['geo_countries_ids'].touched || !(pristineFlag$ | async)) && jobForm.controls['geo_countries_ids'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please select Candidates Nationality
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Marital Status -->
+                                        <div class="col-lg-4 col-md-4">
+                                             <div class="full-box">
+
+                                                <bootstrap-selectbox *ngIf="(maritalStatusList$ | async)" (selectedId)="jobForm.controls['marital_status_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['marital_status_id'].value"  [placeholder]="'Select Marital Status'" [selectList]="(maritalStatusList$ | async)">
+                                                </bootstrap-selectbox>
+                                                <input  type="hidden" name="marital_status_id"  formControlName="marital_status_id" class="text" >
+
+                                                <div  *ngIf="(jobForm.controls['marital_status_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['marital_status_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please select Marital Status
+                                                </div>
+                                            </div>
+
+
+                                    </div>
+                                        <!-- Age Group -->
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="full-box">
+
+                                                <bootstrap-selectbox *ngIf="(ageGroup$ | async)" (selectedId)="jobForm.controls['age_group_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['age_group_id'].value"  [placeholder]="'Select Age Group'" [selectList]="(ageGroup$ | async)">
+                                                </bootstrap-selectbox>
+                                                <input  type="hidden" name="age_group_id"  formControlName="age_group_id" class="text" >
+
+                                                <div  *ngIf="(jobForm.controls['age_group_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['age_group_id'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please select Age Group
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Devider -->
+                                        <div class="col-lg-12 col-md-12"><hr></div>
+
+                                        <!-- Visa Status -->
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="full-box">
+                                                <bootstrap-selectbox *ngIf="(visaStatusList$ | async)" (selectedId)="jobForm.controls['visa_status_id'].setValue($event.id);"  [selectedValue]="jobForm.controls['visa_status_id'].value"  [placeholder]="'Select Visa Status'" [selectList]="(visaStatusList$ | async)">
+                                                </bootstrap-selectbox>
+                                                <input  type="hidden" name="visa_status_id"  formControlName="visa_status_id" class="text" >
+
+                                                <div  *ngIf="(jobForm.controls['visa_status_id'].touched || !(pristineFlag$ | async)) && jobForm.controls['visa_status_id'].errors"  class="alert margin-top-5 alert-danger alert-dismissible" role="alert">
+                                                    Please select Visa Status
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Gender -->
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="full-box">
+                                                <bootstrap-selectbox *ngIf="(genderList$ | async)" (selectedId)="jobForm.controls['gender_type'].setValue($event.id);"  [selectedValue]="jobForm.controls['gender_type'].value"  [placeholder]="'Select Gender Preference'" [selectList]="(genderList$ | async)">
+                                                </bootstrap-selectbox>
+                                                <input  type="hidden" name="gender_type"  formControlName="gender_type" class="text" >
+
+                                                <div  *ngIf="(jobForm.controls['gender_type'].touched || !(pristineFlag$ | async)) && jobForm.controls['gender_type'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please select Gender
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Driving License -->
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="full-box clicks">
+                                                <div class="half-box-post">
+                                                    <div class="requr-full">
+                                                        <span class="light" >Driving License</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="half-box-post">
+                                                    <div class="mob-radi">
+                                                        <div class="radio radio-primary">
+
+                                                            <input id="radio12" type="radio" formControlName="license_required" value='true'>
+                                                            <label for="radio12">
+                                                                <span>Required</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-primary">
+                                                            <input id="radio13" type="radio"  formControlName="license_required" value='false'>
+                                                            <label for="radio13">
+                                                                <span>Not Required</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class=" clearfix "></div>
+                                </div>
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                    <!-- Devider -->
+                                    <div><hr></div>
+
+                                    <div class="full-box-post">
+                                    <div class="skill-title-post">
+                                        <div class="light light-only" >Languages Known</div>
+                                    </div>
+                                    <div class="skill-title-post-body">
+                                        <div class="tag-new" *ngFor="let selLanguage of languagearry;let lanIndex = index"  >
+
+                                            <div class="txt"> {{selLanguage.name}} </div>
+                                            <div class="close-tag" (click)="onRemoveElement(lanIndex,'language')">
+                                                <i class="zmdi zmdi-close-circle"></i>
+                                            </div>
+                                    </div>
+                                        <div class="tag-new border-none">
+                                            <auto-complete *ngIf="languagearry.length < 3"  [excludeItems]="languagearry"  [resetOnSelect]="true"  [recordType]="'Language'" [placeholder]="'Add a Language' "  (changeRecords)="onAddElement($event,'language')">
+                                            </auto-complete>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div *ngIf="(!(pristineFlag$ | async)) && languagearry.length ==0"
+                                         class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                        Please select Languages
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <!--Job Description-->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block bottom-gap">
+                        <div class="block-title"><h2>Job Description</h2></div>
+                        <div class="block-contant">
+                            <div class="textarea-hed">
+                                <i class="icon-view-list"></i>
+                            </div>
+
+                            <div>
+                                <textarea   formControlName="description" ></textarea>
+
+                                <div  *ngIf="(jobForm.controls['description'].touched || !(pristineFlag$ | async)) && jobForm.controls['description'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                    Please enter the Job Description
+                                </div>
+
+                                <div class="txt font-12">Maximum character limit is 1,800.</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block bottom-gap">
+                        <div class="block-title"><h2>Job Requirements</h2></div>
+                        <div class="block-contant">
+                            <div class="textarea-hed">
+                                <i class="icon-view-list"></i>
+                            </div>
+
+                            <div>
+                                <textarea   formControlName="requirements" ></textarea>
+
+                                <div  *ngIf="(jobForm.controls['requirements'].touched || !(pristineFlag$ | async)) && jobForm.controls['requirements'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                    Please enter the Job Requirements
+                                </div>
+                                <div class="txt font-12">Maximum character limit is 1,800.</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row benefits">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="block blu-bg margin-btm-10">
+                            <div class="block-title"><h2>Benefits</h2></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="benafit-box block"   [class.benafit-box-active]="jobForm.controls['benefit_ids'].value.indexOf(selBenefit.id) != -1" *ngFor="let selBenefit of (benefits$ | async) " (click)="getSetBenefit(selBenefit.id)">
+                            <div class="ben-icn"  ><i class="{{selBenefit.icon}}"></i> </div>
+                            <p>{{selBenefit.name}}</p>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+                </form>
+                <div class="row" *ngIf="(!jobForm.valid || languagearry.length == 0) && !(pristineFlag$ | async)">
+
+                    <div class="col-lg-12">
+                        <div class="full-box">
+                            <div  class="alert alert-danger alert-dismissible margin-top-10" role="alert">
+                                There are missing fields on the top. Please fill them before continuing.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="emp-jobs">
+                    <div class="nxt-job col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
+                        <button class="draft-bt" (click)="saveDraft()">Save as Draft</button>
+                        <a *ngIf="_accountService.getDestroyJob()" class="cursor_pointer1" > <button (click)="updateJob()"> Publish Job</button></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <!--<div *ngIf="(jobId$ | async) != null">-->
+    <div>
+    <div class="popup">
+        <div class="logout-pop">
+            <div class="modal post-published" tabindex="-1"  id="post-published" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button" (click)="onBack()">×</button>
+
+                            <div class="tick"> <i class="zmdi zmdi-check-circle"></i> </div>
+                            <div class="light">
+                                Your Job has been Sucessfully Published<br> and it is now live
+                            </div>
+                            <!-- current Version it no need -->
+                            <!-- <div class="make-feturd">
+                                <div class="feturd-i"> <i class="icon-make-featured"></i></div>
+                                <div class="navy">To make this job as a featured job on BLOOVO</div>
+                                <a> <button> Click Here </button></a>
+
+                            </div> -->
+                            <div class="pop-button">
+                                <a data-toggle="modal" data-target=".social-account" aria-hidden="true" data-dismiss="modal" href="#">   <button type="button" class="social-sahre-pop">Share on Social Media</button></a>
+
+                                <div class="clr"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--Saved Draft Pop up-->
+    <div class="popup">
+        <div class="logout-pop">
+            <div class="modal  post-published"  id="post-draft"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+
+                            <div class="tick"> <i class="zmdi zmdi-check-circle"></i> </div>
+                            <div class="light">
+                                Your Job has been saved as a Draft.
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div  *ngIf="_accountService.getDestroyJob()" class="popup">
+        <div class="logout-pop ">
+            <div class="modal social-account" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button" (click)="onBack()">×</button>
+
+                            <h2> Post This Job in Your Social Accounts  </h2>
+                            <div class="light">
+                                Select a Social platform to share this job
+
+                            </div>
+
+                            <div class="row display popup-social-m">
+                                <share-social-media-2 [url]="(url$ | async)+'/jobs/'+(jobId$ | async)" [title]="'Jobs'" [description]="'Jobs'"></share-social-media-2>
+                            </div>
+
+
+                            <div class="navy">
+                                Embed your Jobs
+
+                            </div>
+                            <div class="light">Copy this code and paste it on your website.</div>
+
+
+                            <div class="iframe" >
+
+                                <code>
+                                    <span class="tag">&lt;iframe</span>
+                                    <span class="atn">src</span>
+                                    <span class="pun">=</span>
+                                    <span class="atv">"https//www.bloovo.com/jobs/{{(jobId$ | async)}}"</span>
+                                    <span class="atn">width</span>
+                                    <span class="pun">=</span>
+                                    <span class="atv">"200"</span>
+                                    <span class="atn">height</span>
+                                    <span class="pun">=</span>
+                                    <span class="atv">"80"</span>
+                                    <span class="tag">&gt;&lt;/iframe&gt;</span>
+                                </code>
+
+                            </div>
+
+
+                            <div class="pop-button">
+
+                                <a aria-hidden="true" data-dismiss="modal"> <button type="button" class="btn postive" (click)="onBack()">Back</button></a>
+
+                                <div class="clr"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</div>

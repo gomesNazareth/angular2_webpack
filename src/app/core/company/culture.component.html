@@ -1,0 +1,54 @@
+<div class="block-contant padding-10" *ngIf="(culturesObs | async)?.length">
+    <div class="row" *ngIf="(culturesObs | async)">
+        <div class="col-lg-8 col-md-8" id="slider">
+            <div class="row">
+                <div class="col-sm-12" id="carousel-bounding-box">
+                    <div class="carousel slide" id="myCarousel">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner min-474">
+                            <div *ngFor="let selpic of (culturesObs |async),let pindex = index"
+                                 class="item" [class.active]="pindex == activeImag"
+                                 [attr.data-slide-number]="pindex">
+                                <img *ngIf="!selpic.image_url"  src="images/our-team-default.png">
+                                <img *ngIf="selpic.image_url" src="{{selpic.image_url}}">
+                                <div class="carousel-caption">
+                                    <h2>{{selpic.name}} </h2>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    
+                        <!-- Carousel nav -->
+                        <a class="right carousel-control right-adjst" href="#myCarousel"
+                           role="button" data-slide="prev">
+                            <i class="zmdi zmdi-chevron-left"></i>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button"
+                           data-slide="next">
+                            <i class="zmdi zmdi-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" id="slider-thumbs">
+            <ul>
+                <li class="col-lg-6 col-md-4 col-sm-4 col-xs-4"
+                    *ngFor="let selpic of (culturesObs |async),let pindex = index">
+                    <a class="thumbnail" [id]="'carousel-selector-'+pindex">
+                        <img *ngIf="!selpic.image_thumb_url"
+                             src="images/our-team-default.png">
+                        <img *ngIf="selpic.image_thumb_url"
+                             src="{{selpic.image_thumb_url}}">
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+

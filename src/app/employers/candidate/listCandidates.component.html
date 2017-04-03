@@ -1,0 +1,233 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div class="tab-content job-bloovo">
+    <!--------------------------- All Jobs ---------------------------------->
+    <div *ngIf="!loadedData" class="empty-min2">
+        <i class="small_loading"><spinner></spinner></i>
+    </div>
+
+    <div *ngIf="loadedData" class="commen-container-less">
+
+        <!--candidates serches-->
+        <div class="row" *ngIf="showFilter == false">
+
+            <div class="col-lg-12 candidates-search">
+                <div class="block bottom-gap">
+
+
+
+
+
+                    <div class="row clicks padding-10">
+                        <form [formGroup]="candidateNameForm">
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 hidden-xs hidden-sm">
+
+                            <div class="radio radio-primary">
+                                <input id="radio2" type="radio" name="search_mode" value="1" formControlName="search_mode" >
+                                <label for="radio2">
+                                    <span>All Words</span>
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <input id="radio3" type="radio" name="search_mode" value="2" formControlName="search_mode" >
+                                <label for="radio3">
+                                    <span>Any Word</span>
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <input id="radio4" type="radio" name="search_mode" value="3" formControlName="search_mode" >
+                                <label for="radio4">
+                                    <span>Exact Phrase</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-5 col-sm-12 col-xs-12">
+                            <div class="full-box">
+                                <input type="text" formControlName="cand_name"  placeholder="Serach by Keywords" name="cand_name" (keydown.enter)="searchCandidate()">
+                                <a (click)="searchCandidate()"  class="serch-box"><i class="icon-featured-serch"></i> </a>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="col-lg-1 col-md-2 col-sm-3 col-xs-3 hidden-xs hidden-sm  block-footer padding-0 border-none">
+                            <button (click)="onBack()"> Back </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row matching-candidates" *ngIf="showFilter == false">
+            <div class="col-lg-3 refine-serch filter-hide ">
+
+                <div class="block bottom-gap">
+                    <div class="row block-title">
+                        <h2>Filter Search Results by</h2>
+                    </div>
+
+                    <!--FILTER-->
+                    <div class="row filter clicks">
+                        <div id="main">
+                            <filter-area-candidate [page]="'/'+_accountService.getPath()+'/candidate/list'"></filter-area-candidate>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--BODY-AREA-->
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+                <!--FILTER-->
+                <div class="row block filter-jobs bottom-gap">
+                    <div class="row block-title-2 border-none">
+                        <div class="col-lg-6 col-sm-6 col-xs-12" *ngIf="(totalRecords$ | async) <= 1000">
+                            <h2 class="padding-top-10"> {{(totalRecords$ | async) | number}}
+                                <span class="light" >Matching Candidates	</span> </h2>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-12" *ngIf="(totalRecords$ | async) > 1000">
+                            <h2 class="padding-top-10">1,000+
+                                <span class="light" >Matching Candidates	</span> </h2>
+                        </div>
+                        <!--<div class="col-lg-6 col-sm-6  col-xs-12 drop-jobs hidden-xs hidden-sm">-->
+                            <!--<div class="sort-drop" >-->
+                                <!--<div class="click-dropdown-sort">-->
+                                    <!--<div class="panel panel-default">-->
+                                        <!--<div class="panel-body">-->
+                                            <!--<div class="btn-group btn-input clearfix">-->
+                                                <!--<button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">-->
+                                                    <!--<span data-bind="label">{{orderByName}}</span>&nbsp;<span class="caret"></span>-->
+                                                <!--</button>-->
+                                                <!--<ul class="dropdown-menu" role="menu">-->
+                                                    <!--<div class="arow-dropdown zmdi zmdi-caret-up"></div>-->
+                                                    <!--<li><a (click)="sortBy('viewers','No. of Viewers')">No. of Viewers</a></li>-->
+                                                    <!--<li><a (click)="sortBy('current_salary','Current Salary')">Current Salary</a></li>-->
+                                                    <!--<li><a (click)="sortBy('expected_salary','Expected Salary')">Expected Salary</a></li>-->
+                                                    <!--<li><a (click)="sortBy('years_of_experience','Years Experience')">Years Experience</a></li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<span class="srt-feture">Sort By:</span>-->
+                            <!--<div class="clearfix"></div>-->
+                        <!--</div>-->
+                    </div>
+
+
+                    <!--SEARCH TAGS-->
+                    <!--<search-tag-module *ngIf="(search_tags$ |async )!= null" [search_tagsObs]="search_tags$" [titleObs]="title$" >-->
+                    <search-tag-module *ngIf="(search_tags$ |async )!= null"  [search_tagsObs]="search_tags$"  [url]="'/'+_accountService.getPath()+'/candidate/list'">  </search-tag-module>
+
+
+                    <!--ALL LISTING-->
+
+                    <div class="row invite">
+
+
+                        <div class="row empty-min2">
+
+                            <div class="empty-prf" *ngIf="(showSpinner$ | async)">
+                                <spinner [visible]="(showSpinner$ | async)"></spinner>
+                            </div>
+
+
+                            <div *ngIf="!(showSpinner$ | async) && (jobSeekers$ | async)?.jobseekers.length ==0"  class="row empty-min2">
+
+                                <div class="empty-prf ">
+                                    <i class="icon-empty-user"></i>
+                                    <h5>No Candidates Available</h5>
+                                </div>
+
+                            </div>
+
+
+                            <div *ngIf="!(showSpinner$ | async)">
+                        <div class="row" *ngFor="let selProfile of (jobSeekers$ | async)?.jobseekers">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+selProfile?.user_id+'/profile']" >
+                                <div class="featured-box padding-15-10 mob-bdr1">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                        <div class="invt mobile-invt">
+                                            <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                            <div class="invit-egg" *ngIf="selProfile?.avatar">
+                                                <img  src="{{selProfile?.avatar}}">
+                                            </div>
+                                        </div>
+                                        <div class="feturd-compny-dtls mobile-dtls">
+                                            <div class="txt-white">{{selProfile?.first_name}} {{selProfile?.last_name}}</div>
+                                            <div class="cmpny-txt">{{selProfile?.position}}</div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-city-alt"></i><span class="bold">{{selProfile?.current_company_name}}</span> </div>
+                                            <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                            <div class="cmpny-txt" *ngIf="selProfile?.num_years_experience != 1"><i class="zmdi zmdi-case"></i>{{selProfile?.num_years_experience}} Years of Experience</div>
+                                            <div class="cmpny-txt" *ngIf="selProfile?.num_years_experience == 1"><i class="zmdi zmdi-case"></i>{{selProfile?.num_years_experience}} Year of Experience</div>
+                                        </div>
+                                        <div class="feturd-matching-percentage hide">
+                                            <div class="prg-cercle">
+                                                <div class=" c100 p{{selProfile?.matching_percentage}} small">
+                                                    <span>{{selProfile?.matching_percentage}}%</span>
+                                                    <div class="slice">
+                                                        <div class="bar"></div>
+                                                        <div class="fill"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="percenge-txt">Matching Percentage</div>
+                                        </div>
+                                        <div class=" clearfix"></div>
+
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="(totalRecords$ | async) > 0">
+                <pagination-new [hideLast]="true" [url]="'/'+_accountService.getPath()+'/candidate/list'" [totalRecords]="totalRecords$"></pagination-new>
+            </div>
+
+        </div>
+
+
+        </div>
+
+        <!-- Filter -->
+
+
+        <div *ngIf="showFilter" class="col-lg-12 refine-serch">
+            <div class="block bottom-gap">
+                <div class="row block-title-2">
+                    <h2 class="padding-top-10">Search By</h2>
+                    <a >
+                        <button (click)="showFilter = false"><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span></button>
+                    </a>
+                </div>
+                <filter-area-candidate [page]="'/'+_accountService.getPath()+'/candidate/list'"></filter-area-candidate>
+            </div>
+        </div>
+        <!-- Filter -->
+        <div class="row" id="filter">
+            <div class="filter-mobile">
+                <a >
+                    <button *ngIf="!showFilter" (click)="showFilter = true">Filter</button>
+                    <button *ngIf="showFilter" (click)="showFilter = false">Apply</button>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</div>

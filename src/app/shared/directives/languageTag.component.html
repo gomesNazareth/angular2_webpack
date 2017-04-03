@@ -1,0 +1,16 @@
+<div class="tag-new" *ngFor="let selLan of languageList;let lanIndex = index"  >
+    <div class="txt"> {{selLan.name}} </div>
+    <div class="close-tag" (click)="onRemoveElement(lanIndex)"><i class="zmdi zmdi-close-circle"></i></div>
+</div>
+
+<div class="pull-left" *ngIf="languageList.length < maxCount">
+    <bootstrap-selectbox *ngIf="(languages$ | async)"
+                         (selectedId)="onAddElement($event)"
+                         [placeholder]="'Add a Language'"
+                         [resetOnSelect]="true"
+                         [selectOneEnter]="false"
+                         [excludeItems]="languageList"
+                         [selectList]="(languages$ | async)">
+    </bootstrap-selectbox>
+	<!--<auto-complete  [resetOnSelect]="true" [placeholder]="'Add Language'" [recordType]="'Language'" *ngIf="languageList.length < maxCount" (changeRecords)="onAddElement($event)"></auto-complete>-->
+</div> 

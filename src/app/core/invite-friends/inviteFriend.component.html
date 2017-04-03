@@ -1,0 +1,141 @@
+<find-friends *ngIf="(findfriendFlag$ | async)" (backbuttonClick)="onBackClick($event)"
+              [socialMedia]="socialMedia" [friendsArr]="friendsArr"></find-friends>
+<div *ngIf="!(findfriendFlag$ | async)" class="commen-container invite invite-space">
+
+    <div>
+        <div>
+            <div class="block bottom-gap ">
+                <div class="block-title-2">
+                    <h2>Let Your Friends Know About BLOOVO With a Click</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div *ngIf="(sent$ | async)" class="invitation-alert padding-10 bottom-gap ">
+            <i class="zmdi zmdi-check-circle"></i> Your invitation has been sent successfully!
+        </div>
+    </div>
+
+    <div>
+        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+            <div class="invite-puller">
+
+
+                <div class="invite-box col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class=" block bottom-gap">
+                        <div class="block-title-2">
+                            <div class="in-gmail"><i class="zmdi zmdi-email"></i></div>
+                            <div class="dark padding-20">Gmail</div>
+                            <a (click)="onFindFriend('gmail')">
+                                <button class="margin-btm-10 mobile-font"> Find Friends</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invite-box col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class=" block bottom-gap">
+                        <div class="block-title-2">
+                            <div class="in-yahoo"><i class="zmdi icon-yahoo"></i></div>
+                            <div class="dark padding-20">Yahoo</div>
+                            <a (click)="onFindFriend('yahoo')">
+                                <button class="margin-btm-10 mobile-font"> Find Friends</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invite-box col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class=" block bottom-gap">
+                        <div class="block-title-2">
+                            <div class="in-hot-mail"><i class="zmdi icon-hot-mail"></i></div>
+                            <div class="dark padding-20">Hotmail</div>
+                            <a (click)="onFindFriend('hotmail')">
+                                <button class="margin-btm-10 mobile-font"> Find Friends</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invite-box col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class=" block bottom-gap">
+                        <div class="block-title-2">
+                            <div class="in-twitter"><i class="zmdi zmdi-twitter"></i></div>
+                            <div class="dark padding-20">Twitter</div>
+                            <a (click)="onFindFriend('twitter')">
+                                <button class="margin-btm-10 mobile-font"> Find Friends</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <div class="block bottom-gap empty-min3">
+
+                <form   [formGroup]="emailForm">
+                    <i class="empty-min3-spinner" *ngIf="loader"><spinner [visible]="loader"></spinner></i>
+                    <div  *ngIf="!loader"   class="block-contant relative">
+
+
+                        <!--                     <div class="invitation-alert padding-10 ">
+                                                <i class="zmdi zmdi-check-circle"></i> Your invitation sent successfully.
+                                            </div> -->
+
+
+                        <div class="invite-box">
+                            <div class="closed-mail"><i class="zmdi icon-mail-closed"></i></div>
+                            <div class="dark padding-20">Through Email Address</div>
+
+                        </div>
+
+
+                        <div class="full-box">
+                            <input type="text" placeholder="Email Address"
+                                   formControlName="email_name"
+                                   [(ngModel)]="emails_str"
+                                   name="email_name">
+
+                            <div *ngIf="(emailForm.controls['email_name'].touched || show_errors) && !emailForm.controls['email_name'].valid" class="alert alert-danger">Please enter a valid Email ID
+                            </div>
+
+                        </div>
+                        
+
+                        <div class="full-box margin-top-10">
+
+                               <textarea rows="5" name="#" wrap="hard"
+                                         formControlName="email_textbox"
+                                         [(ngModel)]="email_body"
+                                         name="email_textbox">
+Hi,
+You have received an invitation from sajeerali Arakka to join BLOOVO. Visit https://www.bloovo.com/
+
+Thank You
+BLOOVO Team
+</textarea>
+                            <div *ngIf="(emailForm.controls['email_textbox'].touched || show_errors) && !emailForm.controls['email_textbox'].valid" class="alert alert-danger">Please enter a valid Email Body
+                            </div>
+
+                        </div>
+
+
+                        <div class="block-title-2 padding-0 border-none">
+                            <button (click)="sendEmail()">Send Mail</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

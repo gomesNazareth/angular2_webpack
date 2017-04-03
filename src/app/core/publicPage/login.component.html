@@ -1,0 +1,89 @@
+<div class="sign-page back-bg">
+    <form [formGroup]="form1">
+ 
+    <div>
+        <div class="public-sign-in-both">
+            <div class="sign-logo"><a class="cursor_pointer1" [routerLink]="'/home'"> <img src="images/sign-logo.svg"> </a></div>
+
+        </div>
+        <div class="public-sign-in-both sign-in">
+
+
+            <div class="sign">
+                <h1 class="text-center">Sign In </h1>
+
+                <div *ngIf="errorFlag && errorMode == 1" class="alert alert-danger alert-dismissible" role="alert">
+                    Sorry! Authentication Failed
+                </div>
+                <div *ngIf="errorFlag && errorMode == 2" class="alert alert-danger alert-dismissible" role="alert">
+                    Your Account is Inactivate. To Activate it, please contact us at hello@bloovo.com
+                </div>
+
+                <div *ngIf="showErrorActivated" class="alert alert-danger alert-dismissible" role="alert">
+                    Sorry your account Activation Failed
+                </div>
+                <div *ngIf="showSuccessActivated" class="comen-alert" role="alert">
+                    Your account is Successfully Activated
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="home-full">
+                            <div  *ngIf="(form1.controls['username'].touched || !(pristineFlag$ | async)) && form1.controls['username'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                Please enter a valid username
+                            </div>
+
+                            <input type="text" formControlName="username" placeholder="Enter Your Email" (keydown.enter)="loginUser()">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="home-full">
+                            <div  *ngIf="(form1.controls['user_password'].touched || !(pristineFlag$ | async)) && form1.controls['user_password'].errors"  class="alert alert-danger alert-dismissible martop5-nagative" role="alert">
+                                Please enter a valid password
+                            </div>
+                            <input  type="password" name="user_password" formControlName="user_password" placeholder="Password" (keydown.enter)="loginUser()">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="home-full2">
+                    <div class="requr clicks pull-left">
+                        <input id="rememberme" class="css-checkbox" type="checkbox" name="rememberme"  formControlName="rememberme">
+                        <label class="css-label" for="rememberme">
+                            <span>Remember&nbsp;Me</span>
+                        </label>
+                    </div>
+                    <div class="pull-right">
+                        <a [routerLink]="'/home/forget-password'"> Forgot Password</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="pop-button">
+                    <button type="button" class="btn postive" (click)="loginUser()">Sign In</button>
+                    <div class="clr"></div>
+                </div>
+                <div>
+                    <h5 class="text-center">Don't have an Account? <a class="cursor_pointer1" [routerLink]="'/home/signup'">Sign Up Now</a> </h5>
+                </div>
+                <!--Existing-->
+                <div class="existing">
+                    We no longer support login via Social Accounts To recover your old account please <a [routerLink]="['/home/forget-password']" routerLinkActive="active">Click Here.</a>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3  col-sm-10 col-sm-offset-1 sign-ftr">
+            <h5 class="text-center">Copyright &copy; BLOOVO Middle East FZ LLC. All Rights Reserved.</h5>
+
+        </div>
+
+
+    </div>
+    </form>
+</div>
+

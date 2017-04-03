@@ -1,0 +1,288 @@
+<div class="col-lg-12 col-md-12 col-sm-12 tab-sizing">
+    <div class="block bottom-gap">
+        <div class="saved" [style.display]="work_exp_status == 'read' ?'block':'none'"> <!-- save -->
+            <div class="work-experience">
+                <div class="block-title">
+                    <div class="left"><h4>Work Experience</h4></div>
+                    <div class="right" *ngIf="(jobSeekerWorkList$ | async)?.length > 0">
+                        <a (click)="onEditWE()"><span class="light"><i class="zmdi zmdi-edit"></i> Edit</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="block-contant cursor_pointer1" *ngIf="(jobSeekerWorkList$ | async)?.length == 0" (click)="onAddWorkExp()">
+                    <div class="empty-prf empty-min1">
+                        <i class="icon-empty-experiance"></i>
+                        <h5> Add Your Work Experience</h5>
+                    </div>
+
+                </div>
+                <div class="block-contant" *ngFor="let work_experience of (jobSeekerWorkList$ | async),let i = index">
+                    <div class="work-logo">
+                        <div class="work-lg-defalt"><i class="zmdi zmdi-city-alt"></i></div>
+                    </div>
+                    <div class="work-exp-details">
+                        <div>
+                            <div class="hlaf-width-exp-left">
+                                <div class="dark bold">{{work_experience?.company?.name}}</div>
+                                <div class="work-light">{{work_experience.company_title}}</div>
+                                <div class="work-light">{{work_experience.company_sector?.name}}</div>
+                            </div>
+                            <div class="hlaf-width-exp-right">
+                                
+                                    <div class="inner-box-left-xp">
+                                        <div class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-pin"></i>
+                                            </div>
+                                            <div class="text-bx" *ngIf="work_experience.company_country?.name">
+                                                {{work_experience.company_city?.name}}, {{work_experience.company_country?.name}}
+                                            </div>
+                                            <div class="text-bx" *ngIf="!work_experience.company_country?.name">
+                                                {{work_experience.company_country?.name}}&nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="work-light" *ngIf="work_experience.company_end_date">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                            {{work_experience.company_start_date | date:'d MMM,  yyyy'}} - {{work_experience.company_end_date | date:'d MMM,  yyyy'}}
+                                            <span class="dark">&nbsp;({{work_experience.company_duration}})</span>
+                                            </div>
+                                        </div>
+                                        <div class="work-light" *ngIf="!work_experience.company_end_date">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                            {{work_experience.company_start_date | date:'d MMM,  yyyy'}} -
+                                            Present
+                                            <span class="dark">&nbsp;({{work_experience.company_duration}})</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-box-right-xp" *ngIf="work_experience.company_doc_upload_path">
+                                        <div class="work-light mobile-attachement">
+                                            <a href="{{work_experience.company_doc_upload_path}}"  target="_blank" class="d-up-b">
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    <span class="work-light">{{work_experience.company_doc_upload_name}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+
+                                
+
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="full-xp-left bullet" *ngIf="work_experience.company_roles_and_resp.length >0">
+                            <div class="dark bold"> Roles and Responsibilities</div>
+                            <ul>
+                                <li *ngFor="let role of work_experience.company_roles_and_resp">
+                                    <span class="work-light">{{role.name}} </span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="edit"  [style.display]="work_exp_status == 'edit' ?'block':'none'"> <!-- edit -->
+            <div class="work-experience clicks">
+                <div class="block-title-2">
+                    <div class="left"><h4>Work Experience</h4></div>
+                    <div class="right">
+                        <span class="cancel padding-0"><button (click)="onReadWE()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="block-contant"
+                     *ngFor="let work_experience of (jobSeekerWorkList$ | async),let wrk_exp_index = index">
+                    <div  *ngIf="companyEditList.indexOf(wrk_exp_index) == -1">
+                        <div class="work-logo">
+                            <div class="work-lg">
+                                <div class="work-lg-defalt"><i class="zmdi zmdi-city-alt"></i></div>
+                            </div>
+
+                        </div>
+                        <div class="work-exp-details">
+                            <div>
+                                <div class="hlaf-width-exp-left">
+                                    <div class="dark bold">{{work_experience?.company?.name}}</div>
+                                    <div class="work-light">{{work_experience.company_title}}</div>
+                                    <div class="work-light">{{work_experience.company_sector?.name}}</div>
+                                </div>
+                                <div class="hlaf-width-exp-right">
+                                    
+                                        <div class="inner-box-left-xp">
+                                            <div class="work-light">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                </div>
+                                                <div class="text-bx" *ngIf="work_experience.company_country?.name">
+                                                   {{work_experience.company_city?.name}}, {{work_experience.company_country?.name}}
+                                                </div>
+                                                <div class="text-bx" *ngIf="!work_experience.company_country?.name">
+                                                    {{work_experience.company_city?.name}}&nbsp;
+                                                </div>
+                                            </div>
+                                            <div class="work-light" *ngIf="work_experience.company_end_date">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{work_experience.company_start_date | date:'d MMM,  yyyy'}}-{{work_experience.company_end_date | date:'d MMM,  yyyy'}}
+                                                    <span class="dark">&nbsp;({{work_experience.company_duration}})</span>
+                                                </div>
+                                            </div>
+                                            <div class="work-light" *ngIf="!work_experience.company_end_date">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{work_experience.company_start_date | date:'d MMM,  yyyy'}} - Present
+                                                    <span class="dark">&nbsp;({{work_experience.company_duration}})</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner-box-right-xp" >
+                                            <div   class="work-light block-title-2 btn-clr border-none padding-0">
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    <span   *ngIf="display_mode == 'desktop' && !work_experience.company_doc_upload_path" >
+                                                    <a   href="#" data-toggle="modal"
+                                                         [attr.data-target]="'.'+work_experience.work_file_D.classMap">
+                                                        <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                    </a>
+                                                    </span>
+                                                    <span   *ngIf="display_mode == 'mobile' && !work_experience.company_doc_upload_path" >
+                                                    <a  href="#" data-toggle="modal"
+                                                        [attr.data-target]="'.'+work_experience.work_file_M.classMap">
+                                                        <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                    </a>
+                                                    </span>
+                                                    <span *ngIf="work_experience.company_doc_upload_path">
+                                                        <a href="{{work_experience.company_doc_upload_path}}" target="_blank"  class="navy">
+                                                            {{work_experience.company_doc_upload_name}}
+                                                        </a>
+                                                        <!--<i class="zmdi zmdi-close-circle-o"  (click)="onDeleteFile(work_experience.id,wrk_exp_index)" ></i>-->
+
+
+                                                       <a data-toggle="modal" [attr.data-target] = "'.delete-work-file-'+work_experience.id" >
+                                                            <i class="zmdi zmdi-close-circle-o"></i>
+                                                        </a>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                   
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="full-xp-left bullet">
+                                <div class="dark bold" *ngIf="work_experience.company_roles_and_resp?.length >0"> Roles and Responsibilities</div>
+                                <ul>
+                                    <li *ngFor="let role of work_experience.company_roles_and_resp"><span
+                                            class="work-light">{{role.name}} </span></li>
+                                </ul>
+                                <div class="margin-top-10">
+                                        <span class="cancel padding-0" (click)="onEditWE(wrk_exp_index)"><button>
+                                            <i class="zmdi zmdi-edit"></i> Edit</button>
+                                        </span>
+                                    <span class="cancel padding-0">
+                                        <!--<button (click)="onDelete(work_experience.id,wrk_exp_index)">-->
+                                        <!--<i class="zmdi zmdi-delete"></i> Delete</button>-->
+
+
+                                        <a data-toggle="modal" [attr.data-target] = "'.delete-work-'+work_experience.id" >
+                                        <button> <i class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+
+
+                                        </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <up-load  *ngIf="display_mode == 'desktop'" [file]="work_experience.work_file_D" (onUpload)="onUploadComplete($event)"></up-load>
+                        <up-load  *ngIf="display_mode == 'mobile'" [file]="work_experience.work_file_M" (onUpload)="onUploadComplete($event)"></up-load>
+
+                    </div>
+                    <div  *ngIf="companyEditList.indexOf(wrk_exp_index) != -1">
+                        <spinner [visible]="workSpinnerFlag"></spinner>
+                        <company-work-exp  [display_mode]="display_mode" (onUpdateProfileStatus)="updateProfile($event)" (cancelWE)="onCancelWE2($event)" (saveWE)="onSaveWE2($event)" [wrk_exp_index]="wrk_exp_index"  [sectorList]="sectorList"  [countryList]="countryList" [work_experience]="work_experience" >
+
+                        </company-work-exp>
+
+                    </div>
+
+                    <!--Delete education Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-work-{{work_experience.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" (click)="closeBox()" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Work Experience</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDelete(work_experience.id,wrk_exp_index)" type="button" class="btn postive">Delete</button>
+                                                <button (click)="closeBox()" type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Delete education file Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-work-file-{{work_experience.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" (click)="closeBox()" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Work Exp File</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDeleteFile(work_experience.id,wrk_exp_index)" type="button" class="btn postive">Delete</button>
+                                                <button  type="button" (click)="closeBox()" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="block-footer border-none">
+                    <button *ngIf="addNewWorkFlag" (click)="onAddWorkExp()">Add New Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class=" main-tab hidden-xs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'blog'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/blog']" class="cursor_pointer1" routerLinkActive="active">
+                <i class="zmdi zmdi-file-text"></i> Blogs
+            </a>
+        </li>
+
+        <li *ngIf="_accountService.getManageBlog()" role="presentation" [class.active]="activeFlag == 'manage'?true:false">
+            <a [routerLink]="['/'+_accountService.getPath()+'/blog/manage']" class="cursor_pointer1" routerLinkActive="active">
+                <i class="icon-manage-post"></i> Manage Blogs
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+<!-- mobile -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'blog'?true:false">
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/blog']"  routerLinkActive="active" >
+                    <i class="zmdi zmdi-file-text"></i> Blogs
+            </a>
+        </li>
+        <li *ngIf="_accountService.getManageBlog()"  role="presentation" [class.active]="activeFlag == 'manage'?true:false" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/blog/manage']" routerLinkActive="active" >
+
+                <i class="icon-manage-post"></i>
+                Manage Blogs
+            </a>
+        </li>
+    </ul>
+<!-- ***** -->

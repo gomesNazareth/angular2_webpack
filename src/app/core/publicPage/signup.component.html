@@ -1,0 +1,31 @@
+<div class="sign-page back-bg">
+
+    <div class="sign-cont">
+        <div class="public-sign-up-both">
+            <div class="sign-logo"><a class="cursor_pointer1" [routerLink]="'/home'"> <img src="images/sign-logo.svg"> </a></div>
+
+        </div>
+        <div class="public-sign-up-both sign-in">
+            <div class="sign sign-up">
+
+                <h1 class="text-center">Sign Up </h1>
+
+                <div class="row pop-button">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <a [routerLink]="['/home/signup_jobseeker']" routerLinkActive="active"> <button type="button" class="btn postive"><span class="hidden-xs"> Join as a </span>Job Seeker</button></a></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <a [routerLink]="['/home/signup_employer']" routerLinkActive="active"> <button type="button" class="btn employer"><span class="hidden-xs">Join as an </span>Employer</button></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-center">Already Registered?<a [routerLink]="['/home/signin']" routerLinkActive="active"> Sign In</a> </h5>
+                    <h5 class="text-center mg-0">By clicking ‘Sign Up’, you agree to BLOOVO’s Terms & Condtions and Privacy Policy. </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2  col-sm-10 col-sm-offset-1 sign-ftr">
+            <h5 class="text-center padding-20">Copyright &copy; BLOOVO Middle East FZ LLC. All Rights Reserved.</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<!-- Mobile Edit for employer profile -->
+<div *ngIf="pageMode == 'edit'" class="commen-container-less mobile-margin-less">
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h3>Edit Culture</h3>
+        </div>
+
+        <div class="mobile_profile_container">
+
+            <!-- alert success-->
+            <div class="alert comen-alert" *ngIf="postSuccessFull">
+                <i class="zmdi zmdi-check-circle"></i> Your information Successfully Changed.
+            </div>
+
+
+
+            <form [formGroup]="cultureForm">
+                <div>
+                    <span>Title</span>
+                    <input type="text" name="title" placeholder="Title" formControlName="title">
+                    <div  *ngIf="(cultureForm.controls['title'].touched || !(pristineFlag$ | async)) && cultureForm.controls['title'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                        Please enter Culture Title
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- border -->
+                <div><hr></div>
+
+
+                <div>
+                    <a class="save-changes" (click)="onCultureSave()">Save changes</a>
+                    <a class="cursor_pointer1 section_cancel" (click)="pageMode = 'list'" >Cancel</a>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<div *ngIf="pageMode == 'list'" class="commen-container-less mobile-margin-less">
+    <up-load *ngIf="fileNew"  [mode]="'imageCrop'" [file]="fileNew"  (onUpload)="onMainUploaded($event)"></up-load>
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h3>Our Culture</h3>
+            <p>*6 is the maximum Culture Image Limit.</p>
+        </div>
+
+        <div class="mobile_profile_container">
+
+            <!-- Empty Edit -->
+            <div class="block-contant employer-empty-section" *ngIf="(companyCultureObs | async)?.length == 0">
+                <div class="empty-prf">
+                    <a href="#"  (click)="addNewCulture()" data-toggle="modal" [attr.data-target]="'.'+fileNew.classMap">
+
+                        <i class="icon-empty-culture"></i>
+                        <h6> Add Culture</h6>
+                    </a>
+                </div>
+            </div>
+
+            <!-- team one -->
+            <div class="each-team-mob" *ngFor="let selCulture of (companyCultureObs | async),let cultureIndex = index">
+                <div class="col-xs-2 col-sm-2 padding-none">
+                    <div class="img-box">
+                        <img src="{{selCulture.image_url}}">
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-10 padding-none">
+                    <a data-toggle="modal" [attr.data-target] = "'.delete-culture-member-'+cultureIndex" >
+                        <button class="trash"><i class="zmdi zmdi-delete"></i></button>
+                    </a>
+
+
+                    <a href="#" data-toggle="modal" [attr.data-target]="'.'+fileMainList[cultureIndex].classMap">
+                        <button class="trash"><i class="zmdi zmdi zmdi-edit"></i></button>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-x-sm-12 padding-none">
+                    <strong>{{selCulture.name}}</strong>
+                </div>
+
+
+
+
+            </div>
+
+
+            <div *ngFor="let selCulture of (companyCultureObs | async),let cultureIndex = index">
+                <up-load *ngIf="fileMainList[cultureIndex]"  [file]="fileMainList[cultureIndex]"  (onUpload)="onMainUploaded($event)"></up-load>
+                <div class="popup">
+                    <div class="logout-pop">
+                        <div class="modal close_delete delete-culture-member-{{cultureIndex}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                        <h2>Delete Culture</h2>
+                                        <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                        <div class="pop-button">
+                                            <button (click)="onDelete(selCulture.id,cultureIndex)" type="button" class="btn postive">Delete</button>
+                                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                            <div class="clr"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- border -->
+            <div><hr></div>
+
+            <!-- add new button -->
+            <div class="plus" *ngIf="(companyCultureObs | async)?.length < 6">
+
+
+                <a href="#"  (click)="addNewCulture()" data-toggle="modal" [attr.data-target]="'.'+fileNew.classMap">
+                    <h4><i class="zmdi zmdi-plus"></i>Add New Culture</h4>
+                </a>
+
+
+            </div>
+
+            <!-- border -->
+            <div><hr></div>
+
+
+
+            <div>
+                <button class="save-changes button-full" (click)="backEmit.emit({operation:'back'})">
+                    <a >Cancel</a>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

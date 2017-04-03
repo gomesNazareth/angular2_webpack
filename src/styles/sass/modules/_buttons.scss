@@ -1,0 +1,162 @@
+
+.disabled_button{
+  background: #f1f1f1!important;
+  cursor: not-allowed;
+  color: #999!important;
+  border:1px solid #e1e1e1!important;
+  // line-height: 35px!important;
+  i{
+    color: #999!important;
+  }
+  .facebook,.twitter,.linkedin,.google-plus{
+    background-color:#f9f9f9!important;
+    cursor: not-allowed;
+  }
+
+}
+
+.disabled_button:hover{
+  color: #999!important;
+}
+
+.disabled_button_pagination{
+  cursor: not-allowed;
+  opacity: 0.8;
+  a{
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.bt-s-mobile{
+  background-color:$navy-dark;
+  width: 40px;
+  height: 35px;
+  border:none;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  i{
+    display: block!important;
+    color: $white!important;
+    font-size: 18px!important;
+    text-align: center;
+    margin: 0px auto;
+    padding-left: 3px;
+    width: 100%!important;
+  }
+
+}
+
+.applay-mob{
+  button{
+    display: block;
+    width: 48.9%;
+    border:none;
+    background-color:$navy-dark;
+    color: $white;
+    min-height: 35px;
+    float: left;
+    margin-right: 3px;
+    padding: 0px !important;
+    a{
+      color:#FFF !important;
+      display: block;
+      padding: 0em 1.25em !important;
+    }
+  }
+  strong{
+    display: block;
+    width: 48%;
+    float: left;
+    border: 1px solid #f1f1f1;
+    min-height: 34px;
+    margin-right: 3px;
+    line-height: 34px;
+    text-align: center;
+    color:$navy-dark;
+  }
+  .job-socail{
+    width: 100%;
+    border:none!important;
+    margin: 0px auto;
+
+  }
+  .rrssb-buttons{
+    margin: 0px auto;
+    display: block;
+    padding: 0px 86px;
+  }
+  .center{
+    margin: 0px auto;
+  }
+}
+
+.big-160{
+  width: 160px;
+}
+
+.border-w-l{
+  border-left:1px solid #fff!important;
+}
+.interview-download-bt{
+  width: 120px;
+  height: 35px;
+}
+.full-width-button{
+  width: 100%!important;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  background-color:$navy-dark;
+  border:none;
+}
+
+
+.bt-home-search {
+  background: #374b61 !important;
+  width: 100%;
+  height: 40px;
+  color: #ffffff !important;
+  margin-top: 26px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  font-family: "helveticaneuemedium";
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+}
+
+.bt-normal-all{
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  text-align: center;
+  background-color:$navy-dark;
+  font-size: $font-14;
+  font-family: $font-medium;
+  margin-top: 15px;
+  border:none;
+  &:hover{
+    opacity: 0.8;
+  }
+
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+  border: none;
+}
+.over-c{
+  &:hover{
+    color: $navy-dark!important;
+  }
+}

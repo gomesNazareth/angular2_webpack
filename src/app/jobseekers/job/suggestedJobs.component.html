@@ -1,0 +1,175 @@
+<job-menu  [activeFlag]="'suggested'"></job-menu>
+<div class="tab-content  job-bloovo">
+    <div role="tabpanel" class="tab-pane active load-data-js" id="suggested-jobs">
+        <div class="commen-container">
+            <!--FILTER-->
+            <div class="col-lg-12">
+                <div class="block filter-jobs bottom-gap">
+                    <div class="row block-title-2 padding-10 hidden-xs">
+                        <div class="col-lg-6 col-sm-6 col-xs-12"><h2 class="padding-top-10">Suggested Jobs</h2></div>
+                        <div class="col-lg-6 col-sm-6  col-xs-12 drop-jobs hidden-xs hidden-sm">
+                            <div class="sort-drop" >
+                                <div class="click-dropdown-sort">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="btn-group btn-input clearfix">
+                                                <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                                                    <span data-bind="label">{{(order_name$ | async)}}</span>&nbsp;<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <div class="arow-dropdown zmdi zmdi-caret-up"></div>
+                                                    <li><a class="cursor_pointer1" (click)="onSelectOrder('created_at','Date')">Date Posted</a></li>
+                                                    <li><a class="cursor_pointer1" (click)="onSelectOrder('matching_percentage','Matching Percentage')">Matching Percentage</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="srt-feture">Sort By:</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <!--Suggested Jobs-->
+                    <div class="row empty-min2" >
+                        <div class="empty-prf" *ngIf="(displaySpinner$ | async)"><spinner [visible]="(displaySpinner$ | async)"></spinner></div>
+                        <div *ngIf="(jobs$ | async)?.length ==0"  class="row empty-min2">
+
+                            <div class="empty-prf ">
+                                <i class="icon-empty-saved-serch"></i>
+                                <h5>No Suggested Jobs Available</h5>
+                            </div>
+
+                        </div>
+                        <span *ngIf="jobs$ != null && !(displaySpinner$ | async)">
+                                    <div class="row" *ngFor="let selJob of (jobs$ | async),let jobcount =index">
+
+
+                                            <!-- desktop-listing -->
+                                            <div class="featured-box hidden-xs">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-15 mob-bdr1">
+
+
+
+                                                 <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+
+                                                    <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage">
+                                                    <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                                    </div>
+                                                    <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                                        <span>
+                                                            <img src="{{selJob.companyObj.profileImage}}">
+                                                        </span>
+                                                    </div>
+
+                                                     </a>
+                                                    <div class="feturd-compny-dtls">
+                                                        <div class="txt-white">
+                                                        <a class="cursor_pointer1"[routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">{{selJob.title}}</a>
+                                                        </div>
+                                                        <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i><a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/companies/'+selJob.companyObj.id+'/'+_accountService.getSpaceToDash(selJob.companyObj.name)]">&nbsp;{{selJob.companyObj.name}}</a>
+                                                        </div>
+                                                        <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}</div>
+                                                        <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{selJob.companyObj.sector}}</div>
+                                                        <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{selJob?.startDate | date:'d MMM, yyyy'}}</div>
+                                                    </div>
+                                                    <div class="feturd-matching-percentage">
+                                                        <div class="prg-cercle">
+                                                                <div [class]="'c100 p'+(selJob.matchingPercent |  number:'1.0-0')+' small'">
+                                                                <span>{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                                <div class="slice">
+                                                                    <div class="bar"></div>
+                                                                    <div class="fill"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="percenge-txt">Matching Percentage</div>
+                                                    </div>
+                                                    <div class=" clearfix"></div>
+
+                                                </div>
+                                                <div class=" clearfix"></div>
+                                            </div>
+
+                                        <!-- Mobile Job listing -->
+                                            <div class="featured-box joblisting hidden-lg hidden-md hidden-sm">
+
+                                                <div class="job_mobile">
+
+                                                <!-- company logo -->
+                                                    <div class="company_logo">
+                                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                                        <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage">
+                                                        <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                                        </div>
+                                                        <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                                            <span>
+                                                                <img src="{{selJob.companyObj.profileImage}}">
+                                                            </span>
+                                                        </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Job title and company name -->
+                                                    <div class="job_details">
+                                                        <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">
+                                                            <div class="txt-white">{{selJob.title}}</div>
+                                                            <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i>{{selJob.companyObj.name}}
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">
+                                                    <div class="row job_mobile-bottom">
+                                                        <div class="col-xs-9 col-sm-9">
+                                                            <div class="feturd-compny-dtls">
+                                                                <div class="cmpny-txt">
+                                                                    <i class="zmdi zmdi-pin"></i>
+                                                                    <span>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}</span>
+                                                                </div>
+                                                                <div class="cmpny-txt">
+                                                                    <i class="zmdi zmdi-chart-donut"></i>
+                                                                    <span>&nbsp;{{selJob.sector}}</span>
+                                                                </div>
+                                                                <div class="cmpny-txt">
+                                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                                                <span>&nbsp;{{selJob?.startDate | date:'d MMM, yyyy'}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <div class="prg-cercle">
+                                                                <div [class]="'c100 p'+(selJob.matchingPercent |number:'1.0-0')+' small'">
+                                                                    <span>{{selJob.matchingPercent | number:'1.1-1'}}%</span>
+                                                                    <div class="slice">
+                                                                        <div class="bar"></div>
+                                                                        <div class="fill"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+
+                                    </div>
+                </span>
+                    </div>
+
+                </div>
+                <div class="pagination-footer">
+                    <pagination-new [url]="'/'+_accountService.getPath()+'/jobs/suggested-jobs'" [totalRecords]="totalRecords$">
+                    </pagination-new>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

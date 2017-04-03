@@ -1,0 +1,504 @@
+<div class="employers-details">
+    <div *ngIf="!(companyDetails$ | async)" class="empty-min2">
+            <i class="small_loading"><spinner></spinner></i>
+    </div>
+    <div class="row " *ngIf="(companyDetails$ | async)">
+        <div class="col-lg-12">
+            <div class="block bottom-gap">
+                <div class="row">
+                    <div class="cover-photo">
+
+
+
+                        <div class="company-cover" *ngIf="(companyDetails$ | async)?.coverImage"
+                            [ngStyle]="{'background-image': 'url(' +  (companyDetails$ | async)?.coverImage + ')'}">
+                        </div>
+
+                        <div class="company-cover" *ngIf="!(companyDetails$ | async)?.coverImage"
+                            [ngStyle]="{'background-image': 'url(' +  '../images/company_cover.png' + ')'}">
+                        </div>
+
+                    </div>
+                    <div *ngIf="!editMode && (isAuthorized$ | async)" class="cover-back block-title-2 border-none padding-0">
+                        <a (click)="onClickBack()">
+                            <button> Back</button>
+                        </a>
+                    </div>
+                    <div *ngIf="editMode && canEditCompany" class="cover-back block-title-2 border-none padding-0">
+                        <a [routerLink]="['/'+_accountService.getPath()+'/profile/edit']">
+                        <button> Edit</button>
+                    </a></div>
+                </div>
+                <div class="row padd-15">
+
+                    <div class="col-lg-8 col-md-8 col-xs-12">
+                        <div class="employers-logo">
+                            <i class="zmdi zmdi-city-alt blank-logo-employer empty-blank" *ngIf="!(companyDetails$ | async)?.profileImage">
+                            </i>
+                            <span>
+                                <img *ngIf="(companyDetails$ | async)?.profileImage" src="{{(companyDetails$ | async)?.profileImage}}">
+                            </span>
+                        </div>
+                        <div class="employers-detail block-title-2 padding-0 border-none  ">
+                            <div class="row"><h1 class="company-main-title-txt">{{(companyDetails$ | async)?.name}} </h1></div>
+                            <div class="row display">
+
+
+                                <div class="social-section rrssb-buttons">
+                                    <div class="social-media">
+                               <span class="rrssb-facebook" *ngIf="(companyDetails$ | async)?.facebookUrl" >
+                                    <a  class="soc-rounds linkedin popup"  target="_blank" href="{{(companyDetails$ | async)?.facebookUrl}}">
+                                        <div class="s-media facebook"><i class="zmdi zmdi-facebook"></i></div>
+                                    </a>
+                               </span>
+                                <span class="rrssb-facebook" *ngIf="!(companyDetails$ | async)?.facebookUrl" >
+                                    <a  class="soc-rounds linkedin">
+                                        <div class="s-media facebook social-desable"><i class="zmdi zmdi-facebook"></i></div>
+                                     </a>
+                               </span>
+                                 <span class="rrssb-twitter"  *ngIf="(companyDetails$ | async)?.twitterUrl">
+                                   <a class="soc-rounds linkedin popup" href="{{(companyDetails$ | async)?.twitterUrl}}" target="_blank">
+                                        <div class="s-media twitter"><i class="zmdi zmdi-twitter"></i></div>
+                                    </a>
+                                 </span>
+                                  <span class="rrssb-twitter" *ngIf="!(companyDetails$ | async)?.twitterUrl" >
+                                    <a  class="soc-rounds linkedin">
+                                        <div class="s-media twitter social-desable"><i class="zmdi zmdi-twitter"></i></div>
+                                     </a>
+                                   </span>
+                                   <span class="rrssb-linkedin" *ngIf="(companyDetails$ | async)?.linkedInUrl">
+                                    <a class="soc-rounds linkedin popup" href="{{(companyDetails$ | async)?.linkedInUrl}}" target="_blank">
+                                        <div class="s-media linkdin"><i class="zmdi zmdi-linkedin"></i></div>
+                                    </a>
+                                   </span>
+
+                                    <span class="rrssb-linkedin" *ngIf="!(companyDetails$ | async)?.linkedInUrl" >
+                                    <a  class="soc-rounds linkedin">
+                                        <div class="s-media linkdin social-desable"><i class="zmdi zmdi-linkedin"></i></div>
+                                     </a>
+                                   </span>
+                                    <span class="rrssb-googleplus"  *ngIf="(companyDetails$ | async)?.googlePlusUrl">
+                                   <a class="soc-rounds linkedin popup" href="{{(companyDetails$ | async)?.googlePlusUrl}}" target="_blank">
+                                        <div class="s-media google-plus"><i class="zmdi zmdi-google-plus"></i></div>
+                                    </a>
+                                   </span>
+
+                                     <span class="rrssb-googleplus" *ngIf="!(companyDetails$ | async)?.googlePlusUrl" >
+                                    <a  class="soc-rounds linkedin">
+                                        <div class="s-media linkdin google-plus social-desable"><i class="zmdi zmdi-google-plus"></i></div>
+                                     </a>
+                                   </span>
+
+                                        <div class=" clearfix"></div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div class="employers-information">
+                    <!---- Desktop ---->
+                    <div class="desktop">
+                        <!--Company Information-->
+                        <div class="row padding-0 employers-info">
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>Contact Details</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="block-contant">
+                                        <p><i class="zmdi zmdi-pin"></i>{{(companyDetails$ | async)?.city?.name}}, {{(companyDetails$ | async)?.country?.name}}</p>
+                                        <p *ngIf="(companyDetails$ | async)?.sector"><i class="zmdi zmdi-chart-donut"></i>{{(companyDetails$ | async)?.sector}}</p>
+                                        <p *ngIf="!(companyDetails$ | async)?.sector" class="light-color-text"><i class="zmdi zmdi-chart-donut"></i>N/A</p>
+                                        <p><i class="zmdi zmdi-phone"></i>{{(companyDetails$ | async)?.phoneNo}}</p>
+                                        <p *ngIf="(companyDetails$ | async)?.contactEmail"><i class="zmdi zmdi-email"></i>{{(companyDetails$ | async)?.contactEmail}}</p>
+                                        <p *ngIf="!(companyDetails$ | async)?.contactEmail" class="light-color-text"><i class="zmdi zmdi-email"></i>N/A</p>
+                                        <p *ngIf="(companyDetails$ | async)?.websiteUrl"><i class="zmdi zmdi-globe"></i>{{(companyDetails$ | async)?.websiteUrl}}</p>
+                                        <p *ngIf="!(companyDetails$ | async)?.websiteUrl" class="light-color-text"><i class="zmdi zmdi-globe"></i>N/A</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>Address</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="block-contant">
+
+                                        <p *ngIf="(companyDetails$ | async)?.addressLine">{{(companyDetails$ | async)?.addressLine}}</p>
+                                        <p *ngIf="!(companyDetails$ | async)?.addressLine" class="light-color-text">N/A</p>
+
+                                        <p *ngIf="(companyDetails$ | async)?.addressLine2">{{(companyDetails$ | async)?.addressLine2}}</p>
+                                        <p *ngIf="(companyDetails$ | async)?.poBox">{{(companyDetails$ | async)?.poBox}}</p>
+                                        <p *ngIf="!(companyDetails$ | async)?.poBox" class="light-color-text">N/A</p>
+                                        <p *ngIf="(companyDetails$ | async)?.city?.name">{{(companyDetails$ | async)?.city?.name}}, {{(companyDetails$ | async)?.country?.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>Location</h4>
+                                </div>
+                                <div class="block-contant empty-min5" *ngIf="!(companyDetails$ | async)?.lat">
+                                    <div class="empty-prf">
+                                        <i class="icon-empty-location"></i>
+                                        <h5> No Location Available</h5>
+                                    </div>
+                                </div>
+
+                                <div class="row padding-0-20" *ngIf="(companyDetails$ | async)?.lat">
+                                    <iframe [src]="locationOffice$.google_url | safe"
+                                            width="100%" height="150" frameborder="0" style="border:0"
+                                            allowfullscreen></iframe>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!---- Mobile ---->
+                    <div class="mobile employers-info">
+                        <div class="mobile-job-application">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                <a href="#company-contact" aria-controls="company-contact" role="tab" data-toggle="tab">
+                                    Contact <i class="hide-feedback">Details </i> </a></li>
+                                <li role="presentation"><a href="#company-address" aria-controls="company-address"
+                                                           role="tab" data-toggle="tab">Address</a></li>
+                                <li role="presentation"><a href="#company-location" aria-controls="company-location"
+                                                           role="tab" data-toggle="tab">Location</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="company-contact">
+                                    <div class="row">
+                                        <div class="block-contant">
+                                            <p><i class="zmdi zmdi-pin"></i>{{(companyDetails$ | async)?.city?.name}}, {{(companyDetails$ | async)?.country?.name}}</p>
+                                            <p *ngIf="(companyDetails$ | async)?.sector"><i class="zmdi zmdi-chart-donut"></i>{{(companyDetails$ | async)?.sector}}</p>
+                                            <p *ngIf="!(companyDetails$ | async)?.sector" class="light-color-text"><i class="zmdi zmdi-chart-donut"></i>N/A</p>
+                                            <p><i class="zmdi zmdi-phone"></i>{{(companyDetails$ | async)?.phoneNo}}</p>
+                                            <p *ngIf="(companyDetails$ | async)?.contactEmail"><i class="zmdi zmdi-email"></i>{{(companyDetails$ | async)?.contactEmail}}</p>
+                                            <p *ngIf="!(companyDetails$ | async)?.contactEmail" class="light-color-text"><i class="zmdi zmdi-email"></i>N/A</p>
+                                            <p *ngIf="(companyDetails$ | async)?.websiteUrl"><i class="zmdi zmdi-globe"></i>{{(companyDetails$ | async)?.websiteUrl}}</p>
+                                            <p *ngIf="!(companyDetails$ | async)?.websiteUrl" class="light-color-text"><i class="zmdi zmdi-globe"></i>N/A</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="company-address">
+                                    <div class="row">
+                                        <div class="block-contant">
+                                           <p *ngIf="(companyDetails$ | async)?.addressLine">{{(companyDetails$ | async)?.addressLine}}</p>
+                                            <p *ngIf="!(companyDetails$ | async)?.addressLine" class="light-color-text">N/A</p>
+
+                                            <p *ngIf="(companyDetails$ | async)?.addressLine2">{{(companyDetails$ | async)?.addressLine2}}</p>
+                                            <p *ngIf="(companyDetails$ | async)?.poBox">{{(companyDetails$ | async)?.poBox}}</p>
+                                            <p *ngIf="!(companyDetails$ | async)?.poBox" class="light-color-text">N/A</p>
+                                            <p *ngIf="(companyDetails$ | async)?.city?.name">{{(companyDetails$ | async)?.city?.name}}, {{(companyDetails$ | async)?.country?.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="company-location">
+                                    <div class="block-contant empty-min5" *ngIf="!(companyDetails$ | async)?.lat">
+                                        <div class="empty-prf">
+                                            <i class="icon-empty-location"></i>
+                                            <h5> No Location Available</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row padding-0-20"  *ngIf="(companyDetails$ | async)?.lat">
+                                        <iframe [src]="locationOffice$.google_url | safe"
+                                                width="100%" height="150" frameborder="0" style="border:0"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--requirement-->
+
+                    <div class="row requirement">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="req-1"><i class="zmdi zmdi-calendar-check"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Establishment Date</div>
+                                <div class="req-dark" *ngIf="(companyDetails$ | async)?.establishmentDate">{{(companyDetails$ | async)?.establishmentDate | date:'d MMM,  yyyy'}} </div>
+                                <div class="req-dark light-color-text" *ngIf="!(companyDetails$ | async)?.establishmentDate">N/A</div>
+
+                                </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="req-1"><i class="zmdi zmdi-view-dashboard"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Type</div>
+                                <div class="req-dark"  *ngIf="(companyDetails$ | async)?.companyType">{{(companyDetails$ | async)?.companyType}}</div>
+                                <div class="req-dark light-color-text" *ngIf="!(companyDetails$ | async)?.companyType">N/A</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="req-1"><i class="zmdi zmdi-accounts-outline"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Number of Employees</div>
+                                <div class="req-dark" *ngIf="(companyDetails$ | async)?.companySize">{{(companyDetails$ | async)?.companySize}}</div>
+                                <div class="req-dark light-color-text" *ngIf="!(companyDetails$ | async)?.companySize">N/A</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="req-1"><i class="zmdi zmdi-view-quilt"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Classification</div>
+                                <div class="req-dark" *ngIf="(companyDetails$ | async)?.classification">{{(companyDetails$ | async)?.classification}}</div>
+                                <div class="req-dark light-color-text" *ngIf="!(companyDetails$ | async)?.classification">N/A</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Company Tab -->
+    <div class="row employers-tab bottom-gap" *ngIf="(companyDetails$ | async)">
+        <div class="col-lg-12">
+            <div class="block">
+                <div class="mobile-job-application">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#about-company" aria-controls="about-company"
+                                                                  role="tab" data-toggle="tab"><span
+                                class="hide-feedback"> About</span> Company</a></li>
+                        <li role="presentation"><a href="#our-team" aria-controls="our-team" role="tab"
+                                                   data-toggle="tab"><span class="hide-feedback">Our</span> Team</a>
+                        </li>
+                        <li role="presentation"><a href="#our-culture" aria-controls="our-culture" role="tab"
+                                                   data-toggle="tab"><span class="hide-feedback">Our</span> Culture</a>
+                        </li>
+                        <li role="presentation" class="border-right-none"><a href="#our-jobs" aria-controls="our-jobs" role="tab"
+
+                                                   data-toggle="tab"><span class="hide-feedback">Our</span> Jobs</a>
+
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active padd-15" id="about-company">
+                            <div class="block-contant empty-min3" *ngIf="!(companyDetails$ | async)?.aboutUs">
+                                <div class="empty-prf">
+                                    <i class="icon-empty-summery"></i>
+                                    <h5> No Comapany Description</h5>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="(companyDetails$ | async)?.aboutUs">
+                                <p class="line-clamp" [innerHTML]="(companyDetails$ | async)?.aboutUs"></p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane padding-10" id="our-team">
+                            <div class="block-contant empty-min3"  *ngIf="!_accountService.getAuth()">
+                                <div class="error min-cmn">
+                                    <h3> Want to see  Our Culture and Our Jobs message?</h3>
+                                    <a [routerLink]="'/home/signup'"> <button> Sign Up Now</button></a>
+                                </div>
+                            </div>
+
+                            <div class="block-contant empty-min3" *ngIf="!(team$ | async)?.length && _accountService.getAuth()">
+                                <div class="empty-prf">
+                                    <i class="icon-empty-team"></i>
+                                    <h5>No Team Members Available</h5>
+                                </div>
+                            </div>
+                            <div class="block-contant padding-0" *ngIf="(team$ | async)?.length && _accountService.getAuth()">
+                                <div *ngFor="let selTeam of (team$ | async)" class="team-box-small">
+                                    <div class="team">
+                                        <div class="team-member">
+                                            <i *ngIf="!selTeam.profileImage" class="icon-profile defult-team"></i>
+                                            <img *ngIf="selTeam.profileImage" src="{{selTeam.profileImage}}">
+                                            <div class="team-details-over">
+                                                <div class="navy-dark"> {{selTeam.name}}</div>
+                                                <div class="light">{{selTeam.designation}}</div>
+                                                <div class=" clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="our-culture">
+
+                            <div class="block-contant empty-min3"  *ngIf="!_accountService.getAuth()">
+                                <div class="error min-cmn">
+                                    <h3> Want to see  All Company Details?</h3>
+                                    <a [routerLink]="'/home/signup'"> <button> Sign Up Now</button></a>
+                                </div>
+                            </div>
+
+                            <div class="block-contant empty-min3" *ngIf="!(cultures$ | async)?.length && _accountService.getAuth()">
+                                <div class="empty-prf">
+                                    <i class="icon-empty-culture"></i>
+                                    <h5>No Culture Available</h5>
+                                </div>
+                            </div>
+                            <company-culture *ngIf="_accountService.getAuth()" [culturesObs]="cultures$"> </company-culture>
+
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane" id="our-jobs">
+
+                            <div class="block-contant empty-min3"  *ngIf="!_accountService.getAuth()">
+                                <div class="error min-cmn">
+                                    <h3> Want to see  All Company Details?</h3>
+                                    <a [routerLink]="'/home/signup'"> <button> Sign Up Now</button></a>
+                                </div>
+                            </div>
+
+                            <div class="block-contant empty-min3" *ngIf="!(jobs$ | async)?.length && _accountService.getAuth()">
+                                <div class="empty-prf">
+                                    <i class="icon-empty-job"></i>
+                                    <h5>No Jobs Available</h5>
+                                </div>
+                            </div>
+                            <div *ngIf="(jobs$ | async)?.length && _accountService.getAuth()"
+                                 class="block-contant padd-15">
+                                <div class="row title-our-jobs hidden-sm hidden-xs ">
+                                    <div class="col-lg-4 col-md-4">&nbsp;&nbsp;Job Title</div>
+                                    <div class="col-lg-2 col-md-2">Date Posted</div>
+                                    <div class="col-lg-2 col-md-2">No. of Views</div>
+                                    <div class="col-lg-2 col-md-2">No.&nbsp;of&nbsp;Applications</div>
+                                    <div class="col-lg-2 col-md-2">Status</div>
+                                </div>
+                                <div class="row border-our-jobs"
+
+                                     *ngFor="let selJob of (jobs$ |async),let jobIndex = index">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mob-label-job">
+                                    <div *ngIf="_accountService.getCheckEmployer()" class="pull-left full-box">
+                                        <i class="label-draft mg-0 hidden-lg hidden-md hidden-sm pull-left" *ngIf="!selJob.deleted  && selJob.jobStatus == 'Draft'" >Draft</i>
+                                        <i class="label-active mg-0 hidden-lg hidden-md hidden-sm pull-left" *ngIf="!selJob.deleted  && !getIfExpired(selJob.endDate)  && selJob.jobStatus == 'Open'">Active</i>
+                                        <i class="label-expired mg-0 hidden-lg hidden-md hidden-sm pull-left" *ngIf="!selJob.deleted  && getIfExpired(selJob.endDate) && selJob.jobStatus != 'Draft'">Expired</i>
+                                        <i class="label-deleted mg-0 hidden-lg hidden-md hidden-sm pull-left" *ngIf="selJob.deleted">Deleted</i>
+                                    </div>
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]" routerLinkActive="active" >
+                                            <span class="light bold navy margin-top-10 d-block pull-left padding-left-10">{{selJob.title}}
+                                            </span>
+                                           
+                                  </a>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 lineheight-none hidden-sm hidden-md hidden-lg">
+                                        
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><span
+                                            class="navy hidden-sm hidden-md hidden-lg">&nbsp;&nbsp;<i
+                                            class="zmdi zmdi-calendar"></i></span><span class="light center-line">&nbsp;{{selJob.postDate | date:'d MMM,  yyyy'}}</span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 job-mobbrdr "><span class="light center-line ">{{selJob.viewCount}} </span>
+                                        <div class="navy hidden-sm hidden-md hidden-lg">No. of Views</div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 job-mobbrdr lineheight-none"><span
+                                            class="no-application ">{{selJob.numberApplicants}}</span>
+                                        <div class="navy hidden-md hidden-sm hidden-lg">Applications</div>
+                                    </div>
+
+                                    <!-- mobile -->
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 top-b hidden-lg hidden-md hidden-sm">
+                                        <div *ngIf="selJob.jobStatus == 'Open' &&  !editMode && !_accountService.getCheckEmployer() ">
+                                        <Button [routerLink]="['/'+_accountService.getPath()+'/jobs/apply/'+selJob.id]"  *ngIf="selJob.jobStatus == 'Open' && !selJob.appliedFlag" class="app-job-j">Apply</Button>
+                                        <Button *ngIf="selJob.jobStatus == 'Open' && selJob.appliedFlag" class="app-job-j app-job-d">Applied</Button>
+                                       </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 lineheight-none hidden-xs job-sec">
+
+
+                                        <div class="label-deleted" *ngIf="selJob.deleted && _accountService.getCheckEmployer()">Deleted</div>
+                                        <div class="label-draft" *ngIf="!selJob.deleted && _accountService.getCheckEmployer() && selJob.jobStatus == 'Draft'" >Draft</div>
+                                        <div class="label-expired" *ngIf="!selJob.deleted  && _accountService.getCheckEmployer() && getIfExpired(selJob.endDate) && selJob.jobStatus != 'Draft'">Expired</div>
+                                        <div class="label-active" *ngIf="!selJob.deleted && _accountService.getCheckEmployer()  && !getIfExpired(selJob.endDate)  && selJob.jobStatus == 'Open'">Active</div>
+
+
+                                        <div *ngIf="selJob.jobStatus == 'Closed' && !editMode && _accountService.getCheckEmployer() ">
+                                            <i class="zmdi zmdi-check-circle"></i>
+                                            <span class="expired-label">Expired</span>
+
+
+                                         </div>
+
+                                           <div *ngIf="selJob.jobStatus == 'Open' &&  !editMode && !_accountService.getCheckEmployer() ">
+                                            <!--<button [routerLink]="['/'+_accountService.getPath()+'/jobs/apply/'+selJob.id]"  *ngIf="selJob.jobStatus == 'Open' && !selJob.appliedFlag" class="app-job-j">-->
+                                                <!--Apply-->
+                                            <!--</button>-->
+                                            <a data-toggle="modal"    [attr.data-target] = "'.apply-job-'+selJob.id">
+                                                <button *ngIf="selJob.jobStatus == 'Open' && !selJob.appliedFlag" class="app-job-j">Apply
+                                                </button>
+                                            </a>
+                                            <button *ngIf="selJob.jobStatus == 'Open' && selJob.appliedFlag" class="app-job-j app-job-d">Applied</button>
+                                           </div>
+
+                                    </div>
+
+                                    <!--Apply Search Pop up-->
+                                    <div class="popup"  *ngIf="selJob?.appliedDate == null">
+                                        <div class="logout-pop">
+                                            <div class="modal close_delete apply-job-{{selJob.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                <div class="modal-dialog modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                            <div class="pad-5">
+                                                                <div *ngIf="(errrorFlag$ |async) == true" class="alert alert-danger alert-dismissible mar15" role="alert">
+                                                                    Error occurred while appling for the Job
+                                                                </div>
+                                                                <div *ngIf="(errrorMessage$ |async) != null " class="alert alert-danger alert-dismissible mar15" role="alert">
+                                                                    {{(errrorMessage$ |async)}}
+                                                                </div>
+                                                                <div *ngIf="(successFlag$ |async) == true"   class="comen-alert mar15">
+                                                                    <i class="zmdi zmdi-check-circle"></i>
+                                                                    Your application has been successfully submitted.
+                                                                </div>
+                                                            </div>
+                                                            <h2>Are you sure you want to apply to this job?</h2>
+
+                                                            <div class="pop-button">
+                                                                <button  type="button" class="btn postive" (click)="onApplyJob(selJob.id,jobIndex)">Apply</button>
+                                                                <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                                <div class="clr"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="margin-top-5">
+                                    <pagination-new *ngIf="_accountService.getCheckEmployer()"  [url]="'/'+_accountService.getPath()+'/profile'" [totalRecords]="totalRecords$"></pagination-new>
+                                    <pagination-new *ngIf="!_accountService.getCheckEmployer()"  [url]="'/'+_accountService.getPath()+'/companies/'+(companyDetails$ | async)?.id+'/'+(companyDetails$ | async)?.name_url" [totalRecords]="totalRecords$"></pagination-new>
+                                </div>
+                                
+
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

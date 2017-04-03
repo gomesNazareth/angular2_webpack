@@ -1,0 +1,208 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'followers'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+    <!---------------------------  Companies edit details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="followers">
+        <div class="commen-container">
+
+            <!--SAIDEBAR-->
+
+
+            <div  *ngIf="!showfilter" class="col-lg-3 refine-serch filter-hide">
+
+                <div class="block bottom-gap empty-min14">
+                    <div class="row block-title">
+                        <h2>Refine Your Search By</h2>
+                    </div>
+
+                    <!--FILTER-->
+                    <div class="filter-height">
+                            <filter-area-profiles [page]="'/'+_accountService.getPath()+'/profile/followers'"></filter-area-profiles>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--BODY-AREA-->
+            <div *ngIf="!showfilter" class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                
+                <!--TITTLE-->
+                <div class="row block margin-bootom-5 career hidden-xs hidden-sm">
+                    <!-- Desktop -->
+                    <div class="block-title">
+                        <h2>Who's Following Our Company</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row future-serch padding-10-15 hidden-xs">
+                        <form [formGroup]="form1">
+                        <div class="search-box-job-seeker">
+                            <div class="future-serch-icon">
+                                <i class="icon-profile"></i>
+                                <input type="text" placeholder="Search Candidates by Name"  [ngModel]="search_string"  name="search_string" formControlName="search_string" (keyup.enter)="onSearch()" >
+                            </div>
+                        </div>
+                        <div class=" block-footer border-none padding-0">
+                            <button class="serch-future" (click)="onSearch()"><i class="icon-featured-serch"></i>Search</button>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--SEARCH-->
+
+
+
+                    <div class="row block career hidden-md hidden-lg">
+                    <!-- mobile -->
+                    <div class="block-title">
+                        <h2>Who's Following Our Company</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <!--folowers-->
+
+                <div class="row empty-min2 white" *ngIf="(showSpinner$ | async)">
+                    <div class="empty-prf" >
+                    <spinner [visible]="(showSpinner$ | async)"></spinner>
+                </div>
+                </div>
+
+                <div class="row empty-min2 white" *ngIf="!(showSpinner$ | async) && !(followingProfiles$ | async)?.followers?.length">
+                    <div class="empty-prf" >
+                        <i class="icon-empty-candidates"></i>
+                        <h5>No Followers Found</h5>
+                </div>
+                </div>
+                <div class="row block" id="most-profile" *ngIf="!(showSpinner$ | async)">
+
+                    <div class="filter-jobs invite">
+
+
+                        <div class="row company"  *ngFor="let selProfile of (followingProfiles$ | async)?.followers,let selIndex = index">
+                            
+                            <!-- Desktop -->
+                            <div class="featured-box hidden-xs hidden-sm padding-15-10 hvr-shutter-out-vertical">
+
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                    <div class="invt">
+                                        <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                        <div class="invit-egg" *ngIf="selProfile?.avatar">
+                                            <img  src="{{selProfile?.avatar}}">
+                                        </div>
+                                    </div>
+                                    <div class="feturd-compny-dtls">
+                                        <div class="txt-white"><a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/profile/candidate_details']" [queryParams]="{id:selProfile?.user_id}">{{selProfile?.first_name}} {{selProfile?.last_name}}</a></div>
+                                        <div class="cmpny-txt">{{selProfile?.position}}</div>
+                                        <div class="cmpny-txt bold">
+                                        <i class="zmdi zmdi-city-alt"></i><span class="bold">{{selProfile?.company_name}}</span></div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="light"><span class="navy"><i class="zmdi zmdi-pin"></i></span>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                    <div class="light"><span class="navy"><i class="zmdi zmdi-case"></i></span>{{selProfile?.experience}} of Experience</div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <div class="align mg-0">
+
+                                        <a class="cursor_pointer1" class="company-following" [routerLink]="['/'+_accountService.getPath()+'/profile/candidate_details']" [queryParams]="{id:selProfile?.user_id}"><i class="zmdi zmdi-eye"></i>&nbsp;View</a>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <!-- Mobile -->
+                            <div class="row company hidden-md hidden-lg">
+                                <div class="featured-box">
+                                    <div class="mob-most-view">
+                                        <div class="invt">
+                                            <div *ngIf="!selProfile?.avatar"  class="invit-egg-default"><i class="icon-profile"></i> </div>
+                                            <div class="invit-egg" *ngIf="selProfile?.avatar">
+                                                <img  src="{{selProfile?.avatar}}">
+                                            </div>
+                                        </div>
+                                        <div class="feturd-compny-dtls">
+                                            <div class="txt-white"><a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/profile/candidate_details']" [queryParams]="{id:selProfile?.user_id}">{{selProfile?.first_name}} {{selProfile?.last_name}}</a></div>
+                                            <div class="cmpny-txt">{{selProfile?.position}}</div>
+
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                    <div class="mob-most-view">
+                                        <div class="light bold"><span class="navy zmdi zmdi-city-alt"></span>{{selProfile?.company_name}}</div>
+                                        <div class="light"><span class="navy zmdi zmdi-pin"></span>{{selProfile?.city?.name}}, {{selProfile?.country?.name}}</div>
+                                        <div class="light"><span class="navy zmdi zmdi-case"></span>{{selProfile?.experience}} of Experience</div>
+                                    </div>
+                                    <div class="mob-most-view">
+                                        <div>
+                                            <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/profile/candidate_details']" [queryParams]="{id:selProfile?.user_id}">
+                                                <div class="bt-full">
+                                                    <i class="zmdi zmdi-eye"></i>&nbsp;View Details
+                                                </div>
+                                             </a>  
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                        <div class=" clearfix"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="pagination-block margin-top-10">
+                    <pagination-new [url]="'/'+_accountService.getPath()+'/profile/followers'" [totalRecords]="totalRecords$"></pagination-new>
+                </div>
+
+
+            </div>
+
+            <div *ngIf="showfilter" class="col-lg-12 refine-serch">
+                <div class="block">
+
+                    <div class="row block-title-2">
+                        <h2>Refine Your Search By</h2>
+                       <!--  <a (click)="getToggleFilter()">
+                            <button><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span></button>
+                        </a> -->
+                    </div>
+                    <filter-area-profiles [page]="'/'+_accountService.getPath()+'/profile/followers'"></filter-area-profiles>
+                </div>
+            </div>
+
+            <!-- Filter -->
+            <div class="row" id="filter" >
+                <div class="filter-mobile">
+                    <a *ngIf="!showfilter" (click)="getToggleFilter()">
+                        <button>Filter</button>
+                    </a>
+
+                    <a *ngIf="showfilter" (click)="getToggleFilter()">
+                        <button>Apply</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

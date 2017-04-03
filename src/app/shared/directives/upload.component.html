@@ -1,0 +1,134 @@
+<div class="popup">
+    <div class="upload-pop">
+
+        <div class="file_upload_popup_close modal {{file.classMap}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+
+                    <div  *ngIf="(successFlag$| async) == false  &&  (errorFlag$| async) == false" class="modal-body upload-dp">
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button" (click)="resetUpload()">×</button>
+
+
+                            <div  *ngIf="mode == 'imageCrop'">
+
+                
+                            <h2>{{file.name}}</h2>
+
+                            <h4>We accept  <span class="dark">{{file.file_type_names}}.</span> Maximum Upload Size <span class="dark">{{file.file_size}} {{file.file_size_unit}}</span>. <span [innerHTML]="file.extraDesc"></span></h4>
+                            <div  *ngIf="(errorFileString$| async) != null"  class="alert alert-danger alert-dismissible" role="alert">
+                                {{errorFileString$ | async }}
+                            </div>
+
+
+                            <div *ngFor="let selInput of this.file.formParams,let selIndex = index" class="text-feild-emp">
+                                <input   [attr.placeholder]="selInput.placeholder" (keyup)="getValue(title)"  #title type="text" [attr.name]="selInput.title" placeholder="Title" [ngModel]="selInput.value" >
+                            </div>
+                            <img-cropper *ngIf="fileuploadFlag && (tagetFile!=null && !(errorFile$ | async))"   #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+
+
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                    {{(tagetFile?.name)?tagetFile?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class="input-container">
+                                    <input class="cursor_pointer1"  id="custom-input" type="file" (change)="fileChangeListener($event)">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="progress" style="">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" [style.width.%]="(progress$ | async)"></div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button *ngIf="tagetFile!=null && !(errorFile$ | async) || (file.file_optional == true)"   name="" (click)="uploadImage()" type="button" class="btn postive">   Save
+                                </button>
+                                <button *ngIf="(tagetFile==null || (errorFile$ | async)) && (file.file_optional == false)"  name=""   type="button" class="btn postive disabled_button">
+                                    Save
+                                </button>
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true" (click)="resetUpload()">Cancel</button>
+
+
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+
+                        <!-- Add New Culture -->
+                        <div  *ngIf="mode != 'imageCrop'">
+                        
+                            <h2>{{file.name}}</h2>
+
+
+                            <h4>We accept  <span class="dark">{{file.file_type_names}}.</span> Maximum Upload Size <span class="dark">{{file.file_size}} {{file.file_size_unit}}</span>.<span [innerHTML]="file.extraDesc"></span></h4>
+
+                            <div  *ngIf="(errorFileString$| async) != null"  class="alert alert-danger alert-dismissible" role="alert">
+                                {{errorFileString$ | async }}
+                            </div>
+                            <div *ngIf=" uploader.queue[0] && file.file_format_list.indexOf(uploader.queue[0]['file']['type']) == -1"  class="alert alert-danger alert-dismissible" role="alert">
+                                Invalid File Format
+                            </div>
+                            <div *ngIf=" uploader.queue[0] && (file.file_size*1048576)  < uploader.queue[0]['file']['size']"  class="alert alert-danger alert-dismissible" role="alert">
+                                File size is too large!
+                            </div>
+
+                            <div>
+                                <input *ngFor="let selInput of this.file.formParams,let selIndex = index" (keyup)="getValue(title)"  #title type="text" [attr.name]="selInput.title" placeholder="Title" [ngModel]="selInput.value"  >
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                     
+                                    {{(uploader.queue[0]?.file?.name)?uploader.queue[0]?.file?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class="input-container">
+                                    <input class="cursor_pointer1" id="uploading"  (click)="onSelectFile()" name="jobseeker_education[document]" type="file" ng2FileSelect [uploader]="uploader" />
+                                </div>
+                            </div>
+
+
+                            
+                            <div>
+                                <div class="progress" style="">
+                                    <div class="progress-bar progress-bar-striped" role="progressbar" [style.width.%]="(progress$ | async)"></div>
+                                </div>
+
+
+                                <div class="pop-button">
+                                    <button  name="jobseeker_education[document]" (click)="uploader.uploadAll()"
+                                             [disabled]="(successFlag$ | async) == true || ( uploader.queue[0] && file.file_format_list.indexOf(uploader.queue[0]['file']['type']) == -1) || (uploader.queue[0] && (file.file_size*1048576)  < uploader.queue[0]['file']['size']) "  type="button" class="btn postive">Upload</button>
+                                    <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true" (click)="resetUpload()">Cancel</button>
+                                    <div class="clr"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div  *ngIf="(successFlag$| async)" class="sucessnfail" >
+                    <button class="close" aria-hidden="true" data-dismiss="modal"  type="button" (click)="resetUploader()">×</button>
+                    <div class="ticksuccesful"><i class="zmdi zmdi-check-circle"></i></div>
+                    <div class="light">
+                        <h6>Upload Sucessful</h6>
+                        <P>Your file has been uploaded successfully</P>
+                    </div>
+                </div>
+                <div *ngIf="(errorFlag$| async)" class="sucessnfail">
+                    <button class="close" aria-hidden="true" data-dismiss="modal"  type="button"  (click)="resetUploader()">×</button>
+                    <div class="tickunsuccesful"><i class="zmdi zmdi-close-circle"></i></div>
+                    <div class="light">
+                        <h6>Upload Unsucessful</h6>
+                        <P>Your file has not been uploaded successfully. Please try agin!</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

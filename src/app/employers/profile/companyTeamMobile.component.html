@@ -1,0 +1,151 @@
+<div *ngIf="pageMode == 'edit'"  class="commen-container-less mobile-margin-less">
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h3>Edit Team</h3>
+        </div>
+        <div class="mobile_profile_container">
+
+            <!-- alert success-->
+            <div *ngIf="postSuccessFull" class="alert comen-alert">
+                <i class="zmdi zmdi-check-circle"></i>
+                Your Information Successfully changed.
+            </div>
+
+
+            <form [formGroup]="teamForm">
+            <div>
+                    <span>Name</span>
+                    <input type="text" name="name" placeholder="Team member name" formControlName="name">
+                <div  *ngIf="(teamForm.controls['name'].touched || !(pristineFlag$ | async)) && teamForm.controls['name'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                    <button aria-label="Close" class="close" data-dismiss="alert" type="button close-error">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    Please enter team member Name
+                </div>
+                </div>
+
+                <div>
+                    <span>Position</span>
+                    <input type="text" name="" placeholder="Designation" formControlName="designation">
+                    <div  *ngIf="(teamForm.controls['designation'].touched || !(pristineFlag$ | async)) && teamForm.controls['designation'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button close-error">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        Please enter team member Name
+                    </div>
+                </div>
+
+                <div><hr></div>
+
+                <div>
+                    <a class="save-changes" (click)="onTeamMemberSave()">Save changes</a>
+                    <a class="cursor_pointer1 section_cancel" (click)="pageMode = 'list'" >Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Mobile Edit for employer profile -->
+<div  *ngIf="pageMode == 'list'" class="commen-container-less mobile-margin-less">
+    <up-load [file]="file_team" [mode]="'imageCrop'" (onUpload)="onTeamPicUploaded($event)"></up-load>
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h3>Our Team </h3>
+        </div>
+
+        <div class="mobile_profile_container">
+
+            <!-- Empty Edit -->
+            <div class="block-contant employer-empty-section" *ngIf="(companyTeamObs | async)?.length == 0">
+                <div class="empty-prf">
+                    <a href="#" data-toggle="modal" [attr.data-target]="'.'+file_team.classMap">
+                        <i class="icon-empty-team"></i>
+                        <h6> Add Team</h6>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- team one -->
+
+            <div class="each-team-mob" *ngFor="let selTeam of (companyTeamObs | async),let teamIndex = index"  >
+                <div class="col-xs-2 col-sm-2 padding-none">
+                    <div class="img-box">
+                        <img [attr.src]="selTeam.profileImage">
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-10 padding-none">
+                    <a data-toggle="modal" [attr.data-target] = "'.delete-team-member-'+teamIndex" >
+                    <button class="trash"><i class="zmdi zmdi-delete"></i></button>
+                        </a>
+
+                    <a href="#" data-toggle="modal" [attr.data-target]="'.'+fileTeamList[teamIndex].classMap">
+                        <button class="remove" ><i class="zmdi zmdi-edit"></i></button>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-x-sm-12 padding-none">
+                    <strong>{{selTeam.name}}</strong>
+                    <p>{{selTeam.designation}}</p>
+                </div>
+
+                <div class="popup">
+                    <div class="logout-pop">
+                        <div class="modal close_delete delete-team-member-{{teamIndex}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                        <h2>Delete Team Member</h2>
+                                        <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                        <div class="pop-button">
+                                            <button (click)="onDelete(selTeam.id,teamIndex)" type="button" class="btn postive">Delete</button>
+                                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                            <div class="clr"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div *ngFor="let selTeam of (companyTeamObs | async),let teamIndex = index" >
+                <up-load [file]="fileTeamList[teamIndex]" [mode]="'imageCrop'" (onUpload)="onTeamPicUploaded($event)"></up-load>
+            </div>
+
+
+
+            <!-- border -->
+            <div><hr></div>
+
+            <!-- add new button -->
+            <div class="plus">
+                <a href="#" data-toggle="modal" [attr.data-target]="'.'+file_team.classMap">
+                    <h4><i class="zmdi zmdi-plus"></i>Add New Team</h4>
+                </a>
+
+
+            </div>
+
+            <!-- border -->
+            <div><hr></div>
+
+
+
+            <div>
+                <button class="save-changes button-full" (click)="backEmit.emit({operation:'back'})">
+                    <a >Cancel</a>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

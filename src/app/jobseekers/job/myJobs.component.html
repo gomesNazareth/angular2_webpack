@@ -1,0 +1,568 @@
+pagination<job-menu [activeFlag]="'myjobs'"></job-menu>
+<div class="tab-content job-bloovo">
+<div role="tabpanel" class="tab-pane active load-data-js" id="my-jobs">
+    <div class="commen-container">
+        <!--My Jobs-->
+        <div class="col-lg-12 my-job">
+            <div class="block filter-jobs bottom-gap">
+                <div class="row block-title-2 padding-10 border-none">
+                    <div class="col-lg-6 col-sm-6 col-xs-12"><h2>My Jobs</h2></div>
+
+                </div>
+                <div class="row">
+                    <div class=" total-applications mobile-sp-remove">
+                        <div class=" bottom-gap">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="cercle blue-light" *ngIf="(stats$ | async)?.total == 1">
+                                    <h3>{{(stats$ | async)?.total | number}}</h3>
+                                    <h6>Application</h6>
+                                </div>
+                                <div class="cercle blue-light" *ngIf="(stats$ | async)?.total != 1">
+                                    <h3>{{(stats$ | async)?.total | number}}</h3>
+                                    <h6>Applications</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="cercle blue">
+                                    <h3>{{(stats$ | async)?.in_progress | number}}</h3>
+                                    <h6>In&nbsp;Progress</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="cercle green">
+                                    <h3>{{(stats$ | async)?.successful | number}}</h3>
+                                    <h6>Successful</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="cercle red">
+                                    <h3>{{(stats$ | async)?.unsuccessful | number}}</h3>
+                                    <h6>Unsuccessful</h6>
+                                </div>
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Application Tracking-->
+
+                <div class="row">
+                    <div class="row tracking-title">
+                        <div class="application-detail-t-myjob"><span class="navy-dark"> Application Details</span>
+                        </div>
+                        <div class="application-tracking-t-myjob"><span class="navy-dark"> Application Tracking</span>
+                        </div>
+                        <div class="application-status-t-myjob"><span
+                                class="navy-dark"> Status</span></div>
+                    </div>
+
+
+                    <div class="row empty-min2">
+                    <div class="spinner-look" *ngIf="(displaySpinner$ | async)"><spinner [visible]="(displaySpinner$ | async)"></spinner></div>
+
+                        <div *ngIf="(jobs$ | async)?.length ==0"  class="row empty-min2">
+
+                            <div class="empty-prf ">
+                                <i class="icon-empty-saved-serch"></i>
+                                <h5>No Saved Search Available</h5>
+                            </div>
+
+                        </div>
+
+                    <div *ngFor="let selJob of (jobs$ | async),let jobcount = index" class="row myjob-border">
+                        <div class="row">
+
+                            <!-- desktop-listing -->
+                            <div class="application-detail-t-myjob-list featured-box mob-bdr1 hidden-xs">
+
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                            <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage">
+                                                <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                            </div>
+                                            <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                            <span>
+                                                <img src="{{selJob.companyObj.profileImage}}">
+                                            </span>
+                                            </div>
+                                        </a>
+
+                                        <div class="feturd-compny-dtls">
+                                            <div class="txt-white">
+                                                <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">{{selJob.title}}</a>
+                                            </div>
+                                            <div class="cmpny-txt bold"><i class="zmdi zmdi-city-alt"></i><strong class="navy-dark"><a class="cursor_pointer1"[routerLink]="['/'+_accountService.getPath()+'/company/details/'+selJob.companyObj.id]">&nbsp;{{selJob.companyObj.name}}</a></strong>
+                                            </div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}
+                                        </div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{selJob.sector}}
+                                        </div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{ selJob.appliedDate | date:'d MMM, yyyy' }}
+                                        </div>
+                                    </div>
+
+                                <div class=" clearfix"></div>
+                            </div>
+
+
+                            <!-- mobile-lisiting -->
+                            <div class="hidden-lg hidden-md hidden-sm">
+                                <div class="job_mobile">
+                                <!-- company logo -->
+                                    <div class="company_logo">
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                        <div class="feturd-compny mobile-without-matching" *ngIf="!selJob.companyObj.profileImage">
+                                        <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                        </div>
+                                        <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                            <span>
+                                                <img src="{{selJob.companyObj.profileImage}}">
+                                            </span>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                <!-- Job title and company name -->
+                                    <div class="job_details">
+                                    <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">
+                                        <div class="txt-white">{{selJob.title}}</div>
+                                        <div class="cmpny-txt bold">
+                                        <i class="zmdi zmdi-city-alt"></i>{{selJob.companyObj.name}}
+                                        </div>
+                                    </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12">
+                                    <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]">
+                                        <div class="row job_mobile-bottom my-job-mobile">
+                                            <div class="row">
+                                                <div class="feturd-compny-dtls">
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-pin"></i>
+                                                        <span>&nbsp;{{selJob.city}}, {{selJob.countryCountry}}</span>
+                                                    </div>
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-chart-donut"></i>
+                                                        <span>&nbsp;{{selJob.sector}}</span>
+                                                    </div>
+                                                    <div class="cmpny-txt">
+                                                        <i class="zmdi zmdi-calendar-alt"></i>
+                                                        <span>&nbsp;{{ selJob.appliedDate | date:'d MMM,  yyyy' }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- ***** -->
+
+
+                            <div class="application-tracking-t-myjob-icons">
+                                <div class="tracking">
+                                    <div class="success">
+                                        <div class="track">
+                                            <div class="sml-icn"><i class="zmdi zmdi-check-circle"></i></div>
+                                            <div class="big-icn"><i class="icon-applied"></i></div>
+                                            <div class="light app-light" style="left:-3px;">Applied</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div *ngIf="selJob.trackingId >= 1" class="success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="sml-icn"><i class="zmdi zmdi-check-circle"></i></div>
+                                            <div class="big-icn"><i class="icon-reviewed"></i></div>
+                                            <div class="light"> Reviewed</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="selJob.trackingId < 1" class="un-success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="big-icn"><i class="icon-reviewed"></i></div>
+                                            <div class="light "> Reviewed</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div *ngIf="selJob.trackingId >= 2" class="success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="sml-icn"><i class="zmdi zmdi-check-circle"></i></div>
+                                            <div class="big-icn"><i class="icon-short"></i></div>
+                                            <div class="light"> Shortlisted</div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="selJob.trackingId < 2" class="un-success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="big-icn"><i class="icon-short"></i></div>
+                                            <div class="light"> Shortlisted</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div *ngIf="selJob.trackingId >= 3" class="success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="sml-icn"><i class="zmdi zmdi-check-circle"></i></div>
+                                            <div class="big-icn"><i class="icon-interview "></i></div>
+                                            <div class="light app-interview"> Interview</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="selJob.trackingId < 3" class="un-success">
+                                        <div class="track">
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="track">
+                                            <div class="big-icn"><i class="icon-interview "></i></div>
+                                            <div class="light app-interview"> Interview</div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="application-status-t-myjob-action">
+                                <div *ngIf="selJob.statusId <= 3" class="tracking-status">
+                                    <i class="zmdi zmdi-trending-up"></i> In Progress
+                                </div>
+                                <div *ngIf="selJob.statusId == 5" class="tracking-status un-successful">
+                                    <i class="zmdi zmdi-close-circle"></i> Unsuccessful
+                                </div>
+
+                                <div *ngIf="selJob.statusId == 4" class="successful">
+                                    <i class="zmdi zmdi-check-circle"></i> Successful
+                                    <a *ngIf="selJob.offerLetter" target="_blank" href="{{selJob.offerLetter}}">
+                                    <span class="attach hide-feedback">
+                                            <i class="zmdi zmdi-attachment-alt"></i>
+                                    </span>
+                                    </a>
+                                </div>
+
+                                <div *ngIf="selJob.interviewDate || selJob.employersFeedbackList.length >0" class="feedback-btn"
+                                     id="feedback-applied-click" (click)="showFeedback(jobcount)">
+                                    <span class="hide-feedback">Check</span> Employers Feedback
+                                    <span class="hide-    feedback"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div  *ngIf="selJob.statusId < 3 || selJob.statusId == 4 || selJob.statusId == 5" class="row block-contant feedback-open"  [style.display]="selJob.showFeedbackFlag?'block':'none'">
+                            <div class="row">
+                                <div class="pull-right" id="feedback-applied-close" (click)="hideFeedback(jobcount)">
+                                <h5 class="zmdi zmdi-close-circle"></h5>
+                                </div>
+
+
+                                <div class="feed-b" >
+                                     <h4> Employer Feedback </h4>
+                                    <div *ngIf="selJob.employersFeedbackList.length >0" class="feedback-scroll">
+                                        <div *ngFor="let selFeedBack of selJob.employersFeedbackList,let feebackIndex = index" class="row feedback-box">
+
+
+                                            <!--Reviewed-->
+                                            <div *ngIf="selFeedBack?.job_application_status?.id == 1">
+                                                <p>
+                                                    <span class="light"> Your application to the post </span>{{selJob.title}}
+                                                    <span class="light"> has been</span> Reviewed <span class="light">on </span>
+                                                    {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                    <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                </p>
+                                            </div>
+
+
+                                       <!--Shortlisted-->
+                                            <div *ngIf="selFeedBack?.job_application_status?.id == 2">
+                                                <p>
+                                                    <span class="light"> Your have been </span>Shortlisted
+                                                    <span class="light">for the position of</span> {{selJob.title}} <span class="light">on </span>
+                                                    {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                    <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                </p>
+                                            </div>
+
+
+                                            <!--Interviewed-->
+                                            <div *ngIf="selFeedBack?.job_application_status?.id == 3">
+                                                <p>
+                                                    <span class="light"> Your Status has been changed to </span>Interview
+                                                    <span class="light">on </span>
+                                                    {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                    <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                </p>
+
+
+                                            </div>
+
+                                       <!--Successful-->
+                                            <div *ngIf="selFeedBack?.job_application_status?.id == 4">
+                                                <p>
+                                                    <span class="light"> Your Status has been changed to </span>Successful
+                                                    <span class="light">on </span>
+                                                    {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                    <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                    <span class="light">You may find the Offer Letter attached</span>
+                                                </p>
+                                                <div class="row featured-box margin-10-0 margin-top-10">
+                                                    <div class="offer-icon-small"><i class="zmdi zmdi-file-text"></i></div>
+                                                    <div class="feturd-compny-dtls">
+                                                        <div class="navy-dark">Offer Letter</div>
+                                                        <div class="block-title-2 padding-0">
+                                                            <a target="_blank" href="{{selJob.employersFeedbackOfferLetter?.document}}" download><button class="interview-download-bt"> Download </button></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" clearfix"></div>
+                                                </div>
+                                            </div>
+
+
+                                            <!--UnSuccessful-->
+                                            <div *ngIf="selFeedBack?.job_application_status?.id == 5">
+                                                <p>
+                                                    <span class="light"> Your Status has been changed to </span>Unsuccessful
+                                                    <span class="light">on </span>
+                                                    {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                    <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                </p>
+
+
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+
+
+                    </div>
+                        <div  *ngIf="selJob.statusId == 3" class="row block-contant feedback-open"  [style.display]="selJob.showFeedbackFlag?'block':'none'">
+                            <div class="row">
+
+                                <div *ngIf="successPost" class="comen-alert alert-dismissible" role="alert">
+                                    Your response was sent successfully.
+                                </div>
+                                <div *ngIf="failedPost" class="alert alert-danger alert-dismissible" role="alert">
+                                    Your response could not be sent.
+                                </div>
+
+                                <div class="pull-left"> <h4>Interview Call</h4></div>
+                                <div class="pull-right" id="feedback-interview-close" (click)="hideFeedback(jobcount)" >
+                                    <h5 class="zmdi zmdi-close-circle"></h5>
+                                </div>
+                                <div class=" clearfix"></div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="interview">
+                                            <span class="navy" ><i class="zmdi zmdi-calendar-alt"></i></span>
+                                            <span class="light" >Interview Date</span>
+                                            <span class="navy" >:&nbsp;{{selJob.employersFeedbackInterview?.appointment | date:'d MMM, yyyy'}}</span>
+                                        </div>
+
+                                        <div class="interview">
+                                            <span class="navy" ><i class="zmdi zmdi-time"></i></span>
+                                            <span class="light" >Interview Time</span>
+                                            <span class="navy" >:{{interviewTimeList[jobcount]}} ({{selJob.employersFeedbackInterview?.time_zone}})</span>
+
+                                        </div>
+                                        <div class="interview">
+                                            <span class="navy" ><i class="zmdi zmdi-phone"></i></span>
+                                            <span class="light" >Interview Venue</span>
+                                            <span class="navy" *ngIf="selJob.employersFeedbackInterview?.channel == 'Hangout'">:&nbsp;<i class="icon-hangout hangout"></i>{{selJob.employersFeedbackInterview?.contact}}</span>
+                                            <span class="navy" *ngIf="selJob.employersFeedbackInterview?.channel == 'Skype'">:&nbsp;<i class="zmdi zmdi-skype skype skype-color"></i>{{selJob.employersFeedbackInterview?.contact}}</span>
+                                            <span class="navy" *ngIf="selJob.employersFeedbackInterview?.channel == 'GoMeeting'">:&nbsp;<i><img src="images/go-meeting.png"></i>{{selJob.employersFeedbackInterview?.contact}}</span>
+                                            <span class="navy" *ngIf="selJob.employersFeedbackInterview?.channel == 'Phone'">:&nbsp;<i class="zmdi zmdi-smartphone-android phone"></i>{{selJob.employersFeedbackInterview?.contact}}</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <form [formGroup]="formhangout" *ngIf="selJob.employersFeedbackInterview?.channel == 'Hangout'">
+                                                <input type="text" formControlName="contact" placeholder="Enter your email Id" (keydown)="getActivateButton(selJob.employersFeedbackInterview.channel)">
+                                                <div  *ngIf="(formhangout.controls['contact'].touched || !(pristineFlag$ | async)) && formhangout.controls['contact'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please enter email ID
+                                                </div>
+                                            </form>
+                                            <form [formGroup]="formskype" *ngIf="selJob.employersFeedbackInterview?.channel == 'Skype'">
+                                                <input type="text" formControlName="contact" placeholder="Enter your skype id " (keydown)="getActivateButton(selJob.employersFeedbackInterview.channel)">
+                                                <div  *ngIf="(formskype.controls['contact'].touched || !(pristineFlag$ | async)) && formskype.controls['contact'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please enter skype ID
+                                                </div>
+                                            </form>
+                                            <form [formGroup]="formgomeet" *ngIf="selJob.employersFeedbackInterview?.channel == 'GoMeeting'">
+                                                <input type="text" formControlName="contact" placeholder="Enter your go meeting id" (keydown)="getActivateButton(selJob.employersFeedbackInterview.channel)">
+                                                <div  *ngIf="(formgomeet.controls['contact'].touched || !(pristineFlag$ | async)) && formgomeet.controls['contact'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please enter go meeting ID
+                                                </div>
+                                            </form>
+                                            <form [formGroup]="formphone" *ngIf="selJob.employersFeedbackInterview?.channel == 'Phone'" class="interview-phone">
+                                                <jquery-tel [placeholder]="'Enter Your Phono No'"  (getProcessedPhoneNo)="setPhoneNo($event.phone_no)"   [match]="'phone_no'" [phone_no]="formphone.controls['contact'].value" >
+                                                </jquery-tel>
+                                                <input type="hidden" formControlName="contact" placeholder="Enter your phone no">
+                                                <div  *ngIf="(formphone.controls['contact'].touched || !(pristineFlag$ | async)) && formphone.controls['contact'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                    Please enter phone Number
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                        <div class="navy margin-top-5 bold">Employer Comments</div>
+                                        <div class="interview feed-back margin-6">
+                                            <span>{{selJob.employersFeedbackInterview?.comment}}</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jobseeker_feedback_box">
+                                            <h4> Employer Feedback </h4>
+                                            <div class="interviw-scroll interview-sec-height">
+                                                <div *ngFor="let selFeedBack of selJob.employersFeedbackList,let feebackIndex = index"
+                                                     class="row feedback-box">
+
+                                                    <!--Reviewed-->
+                                                    <div *ngIf="selFeedBack?.job_application_status?.id == 1">
+                                                        <p>
+                                                            <span class="light"> Your application to the post </span>{{selJob.title}}
+                                                            <span class="light"> has been</span> Reviewed <span class="light">on </span>
+                                                            {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                            <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                        </p>
+                                                    </div>
+
+
+                                                    <!--Shortlisted-->
+                                                    <div *ngIf="selFeedBack?.job_application_status?.id == 2">
+                                                        <p>
+                                                            <span class="light"> Your have been </span>Shortlisted
+                                                            <span class="light">for the position of</span> {{selJob.title}} <span class="light">on </span>
+                                                            {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                            <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                        </p>
+                                                    </div>
+
+
+                                                    <!--Interviewed-->
+                                                    <div *ngIf="selFeedBack?.job_application_status?.id == 3">
+                                                        <p>
+                                                            <span class="light"> Your Status has been changed to </span>Interview
+                                                            <span class="light">on </span>
+                                                            {{selFeedBack?.created_at | date:'d MMM, yyyy'}}
+                                                            <span class="light">by </span>{{selJob.companyObj.name}}<span class="light">, with the following feedback: </span>"{{selFeedBack?.comment}}".
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+
+                                                <div *ngIf="selJob.employersFeedbackInterview?.status == 'accept'" class="row feedback-box success-feed">
+                                                    <p>
+                                                        You have accepted the Interview Request.
+                                                        Your {{selJob.employersFeedbackInterview.channel}} contact is "{{selJob.employersFeedbackInterview.jobseeker_contact}}"
+                                                    </p>
+                                                </div>
+                                                <div *ngIf="selJob.employersFeedbackInterview?.status == 'reject'" class="row feedback-box reject-feed">
+                                                    <p>
+                                                        You have rejected the Interview Request.
+                                                    </p>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div  [class.hidden]="postDone" [class.hidden]="selJob.employersInterviewComment?.status != 'invite'"  class="row block-title-2 padding-0 margin-top-5">
+                                    <a   [class.hidden]="!activateButton" data-toggle="modal" [attr.data-target] = "'.acceptInterview'+selJob.id" >
+                                        <button><i class="zmdi zmdi-phone"></i>&nbsp;Accept Interview Call  </button>
+                                    </a>
+
+                                    <button [class.hidden]="activateButton"   (click)="getActivateButton(selJob.employersFeedbackInterview.channel)" ><i class="zmdi zmdi-phone"></i> Accept Interview Call  </button>
+                                    <span class="cancel padding-0">
+                                       <a   data-toggle="modal" [attr.data-target] = "'.rejectInterview'+selJob.id" > <button><i class="zmdi zmdi-phone"></i>&nbsp;Reject Interview Call</button></a>
+                                        </span>
+                                </div>
+
+                                <div [class.hidden]="!postDone" [class.hidden]="selJob.employersInterviewComment?.status == 'invite'"  class="row block-title-2 padding-0 margin-top-10">
+
+                                    <button  class="disabled_button" ><i class="zmdi zmdi-phone"></i>&nbsp;Accept Interview Call</button>
+
+                                    <span class="padding-0">
+                                     <button class="disabled_button"><i class="zmdi zmdi-phone"></i>&nbsp;Reject Interview Call</button>
+                                        </span>
+                                </div>
+
+                                <div class="popup">
+                                    <div class="logout-pop">
+                                        <div class="modal close_popup acceptInterview{{selJob.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                        <h2>Accept Interview</h2>
+
+                                                        <h4><span class="navy"> Sure you want to accept the  Interview?</span> </h4>
+                                                        <div class="pop-button">
+                                                            <button   type="button" class="btn postive" (click)="acceptInterview(selJob.jobAppId,selJob.employersFeedbackInterview.id,selJob.employersFeedbackInterview.channel)">Yes</button>
+                                                            <button  type="button" class="btn negative" data-dismiss="modal">No</button>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="popup">
+                                    <div class="logout-pop">
+                                        <div class="modal close_popup rejectInterview{{selJob.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                        <h2>Reject Interview</h2>
+
+                                                        <h4><span class="navy"> Sure you want to reject the  Interview ?</span> </h4>
+                                                        <div class="pop-button">
+                                                            <button   type="button" class="btn postive" (click)="rejectInterview(selJob.jobAppId,selJob.employersFeedbackInterview.id)">Yes</button>
+                                                            <button  type="button" class="btn negative" data-dismiss="modal">No</button>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <br>
+            <div class="margin-top-10">
+                <pagination-new [url]="'/'+_accountService.getPath()+'/jobs/my-jobs'" [totalRecords]="totalRecords$"></pagination-new>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+

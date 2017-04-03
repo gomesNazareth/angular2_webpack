@@ -1,0 +1,198 @@
+footer{ 
+    padding: 0px 5px 0px 15px;
+    width:100%;
+    float: left;
+    .col-lg-12{ 
+        margin-bottom: 20px;
+    }
+    
+    .copyright{
+        color:$navy-dark; 
+        font-size:$font-14;
+    }
+    hr{ 
+        border-color:$grey-light; 
+        margin:0px 5px 10px 5px; 
+    }
+    .footer-links{
+        // float: left;
+        a{
+            color:$navy-dark; 
+            font-size:$font-14;
+            padding-right:10px; 
+            &:hover{ 
+                opacity: 0.8;
+            }
+        }
+    }
+    .copyright{
+        // float: right
+        color: #95a1af;
+        padding-top:5px;
+    }
+    .social-media{
+        text-align: center;
+        float: right;
+        .s-media{
+            width: 30px;
+            border-radius:160px;
+            -moz-border-radius:160px;
+            -webkit-border-radius:160px;
+            height: 30px;
+            background: rgba(180, 198, 216, 0.39);
+            color: #374b61;
+            display: inline-block;
+            float: right;
+            i{
+                line-height: 30px;
+                text-align: center;
+                font-size: 14px;
+            }
+            a{
+                padding:5px;
+                border-right:none!important;
+
+            }
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+        a{
+            float: left;
+            border:none;
+            padding: 0px 3px;
+        }
+
+    }
+}
+
+// mobile-footer
+.mobile_footer{
+    width: 100%;
+    padding:15px 20px;
+    text-align: center;
+    a{
+        padding:0px 5px 5px 5px;
+        &:hover{
+            opacity: 0.8;
+            color: #7ba1b2;
+        }
+    }
+}
+.copyright-mobile{
+    background-color:#2b3e52;
+    text-align: center;
+    color: #7ba1b2;
+    font-size: $font-12;
+    width: 100%;
+    padding:10px 0px;
+}
+.empty-blank{
+    display: block;
+    width: 100%;
+    background-color:$blue-light;
+}
+
+// MOBILE-PAGINATION
+.mob-pagination{
+    margin: 0px auto;
+    display: block;
+    width: 100%;
+    text-align: center;
+    float: left;
+    margin-bottom: 5px;
+    .page-text{
+        width: calc(100% - 160px)!important;
+    }
+    li{
+        display: inline-block;
+        text-align: center;
+        min-height: 40px;
+        line-height: 40px;
+        width: 40px!important;
+        border: 1px solid #f1f1f1;
+        color: $navy-dark;
+        background-color:$white;
+        float: left;
+        a{
+            font-size: 16px;
+            color: #374b61;
+            display: block;
+        }
+    }
+}
+
+// Responsive
+/*---------------------------------------------------1-------------------------------------------------------*/
+@media (max-width: 1200px){
+
+    footer {
+        padding:0px;
+        background-color:#374b61;
+        .footer-links{
+            float: none;
+            text-align: center
+        }
+        .copyright{
+            float: none;
+            text-align: center
+        }
+        a{
+            color: #7ba1b2;
+            display: inline-block;
+            padding:0px 3px 10px 3px
+        }
+        .social-media{
+            float: none;
+            .s-media{
+                float: none;
+            }
+            a{
+                float: none;
+                padding:0px 3px 10px 3px;
+            }
+        }
+    }
+
+}
+/*---------------------------------------------------1-------------------------------------------------------*/
+@media (min-width: 768px) and (max-width: 1024px){}
+/*---------------------------------------------------1-------------------------------------------------------*/
+@media (max-width: 767px) {
+
+    footer{
+        display: block;
+        float: left;
+        background-color:$navy-dark;
+
+          .right-center{
+            text-align:center; 
+            margin-top:5px; 
+            width:100%;
+        }
+    }
+}
+/*---------------------------------------------------1-------------------------------------------------------*/
+@media (max-width: 480px) {
+
+    footer {
+        background:#374b61;
+        color: #7ba1b2;
+        display: block;
+        width: 100%;
+        text-align:center;
+        .right-center{
+            text-align:center; 
+            margin-top:5px; 
+            width:100%;
+        }
+       
+            a{ 
+                padding: 0px 3px 10px 3px;
+                color: #7ba1b2;
+                text-align: center;
+            }
+        
+    }
+
+}

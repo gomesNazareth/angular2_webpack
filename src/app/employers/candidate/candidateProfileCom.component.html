@@ -1,0 +1,743 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div role="tabpanel" class="tab-pane active" >
+    <div class="commen-container-less" >
+        <div class="col-lg-12 tab-seperate" *ngIf="jobId != null && appliedFlag == true">
+            <div class="sec-area">
+                <div class="width-al">
+                    <ul>
+                        <li role="presentation">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+candidateId+'/'+this._accountService.getSpaceToDash((candidateDetailsObs | async)?.first_name+' '+(candidateDetailsObs | async)?.last_name)+'/'+'profile']"  [queryParams]="{job_id:jobId}"  role="tab" >Applicant Profile</a>
+                        </li>
+                        <li role="presentation"  class="active ">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/candidate/'+candidateId+'/'+this._accountService.getSpaceToDash((candidateDetailsObs | async)?.first_name+' '+(candidateDetailsObs | async)?.last_name)+'/'+'communication']"  [queryParams]="{job_id:jobId}" class="active-candidate">Communication with Applicant</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="width-small">
+                    <button (click)="onBack()" class="border-w-l">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active"  id="communication-applicant">
+                <div>
+                    <div class="col-lg-12">
+                        <div class="block bottom-gap">
+                            <div class="block-title">
+                                <h2>Communication with Applicant</h2>
+                            </div>
+
+                            <!--Communication with Applicant top section-->
+                            <div class="applicant-pro-detail-area" *ngIf="singleLoad">
+                                <div class="candi-detail-left">
+                                    <div class="applicant-profile-image">
+                                        <div class="invit-egg"  *ngIf="(candidateDetailsObs | async)?.avatar"><img [attr.src]="(candidateDetailsObs | async)?.avatar"  class="dp dp_egg"> </div>
+                                        <div class="invit-egg" *ngIf="!(candidateDetailsObs | async)?.avatar"><i class="icon-profile"></i></div>
+
+
+                                        <!--Matching jobs for mobile only-->
+                                        <div class="applicant-profile-matching hidden-lg hidden-md hidden-sm">
+                                            <div class="profile-percentage">
+                                                <div class="prg-cercle">
+                                                    <div class=" c100 p92 small blue">
+                                                        <span>{{(candidateDetailsObs | async)?.matching_percentage | number:'1.1-1'}}%</span>
+                                                        <div class="slice">
+                                                            <div class="bar"></div>
+                                                            <div class="fill"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <span class="text">Job Matching</span>
+                                        </div>
+
+                                    </div>
+                                
+
+
+                                <div class="applicant-profil-detail">
+                                    <h2>{{(candidateDetailsObs | async)?.first_name}} {{(candidateDetailsObs | async)?.last_name}}</h2>
+                                    <p><i class="zmdi zmdi-account"></i>{{(candidateDetailsObs | async)?.current_experience?.position}}</p>
+                                    <p class="navy-dark"><i class="zmdi zmdi-view-headline"></i>{{(candidateDetailsObs | async)?.current_experience?.company_name}}</p>
+                                    <p><i class="zmdi zmdi-chart-donut"></i>{{(candidateDetailsObs | async)?.general_info?.sector?.name}}</p>
+                                    <p><i class="zmdi zmdi-pin"></i>{{(candidateDetailsObs | async)?.address?.city?.name}}, {{(candidateDetailsObs | async)?.address?.country?.name}}</p>
+                                </div>
+
+                                </div>
+
+                                <div class="candi-detail-right">
+                                <div class="applicant-profile-matching hidden-xs">
+                                    <div class="profile-percentage">
+                                        <div class="prg-cercle" *ngIf="(candidateDetailsObs | async)?.matching_percentage">
+                                            <div class=" c100 p{{(candidateDetailsObs | async)?.matching_percentage  | number:'1.0-0'}} small blue">
+                                                <span>{{(candidateDetailsObs | async)?.matching_percentage | number:'1.1-1'}}%</span>
+                                                <div class="slice">
+                                                    <div class="bar"></div>
+                                                    <div class="fill"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <span class="text">Job Matching</span>
+                                </div>
+                            </div>
+                            </div>
+
+
+                            <div class="application">
+                                <div class="col-lg-9">
+
+                                    <div class="padding-0-10">
+
+
+                                        <div>
+                                            <div class="tab-application">
+
+                                                <ul class="nav nav-tabs" role="tablist">
+
+                                                    <li class="dummy_tab" *ngIf="jobAppStatusId>0"><a>
+                                                        <i class="icon-reviewed"></i>
+                                                        <h6 class="hidden-xs">Reviewed</h6>
+                                                    </a></li>
+                                                    <li role="presentation" *ngIf="jobAppStatusId<=0" [class.active]="jobAppStatusId == 0"   class="active"><a href="#reviewed" aria-controls="reviewed" role="tab" data-toggle="tab">
+                                                        <i class="icon-reviewed"></i>
+                                                        <h6 class="hidden-xs">Reviewed</h6>
+                                                    </a></li>
+
+                                                    <li class="dummy_tab" *ngIf="jobAppStatusId>1"><a>
+                                                        <i class="icon-short"></i>
+                                                        <h6 class="hidden-xs">Shortlisted</h6>
+                                                    </a></li>
+                                                    <li role="presentation"  *ngIf="jobAppStatusId<=1" [class.active]="jobAppStatusId == 1" ><a href="#shortlisted" aria-controls="mobile-sector" role="tab" data-toggle="tab">
+                                                        <i class="icon-short"></i>
+                                                        <h6 class="hidden-xs">Shortlisted</h6>
+                                                    </a></li>
+
+
+                                                    <li class="dummy_tab" *ngIf="jobAppStatusId>2"><a>
+                                                        <i class="icon-interview"></i>
+                                                        <h6 class="hidden-xs">Interview</h6>
+                                                    </a></li>
+                                                    <li role="presentation" *ngIf="jobAppStatusId<=2" [class.active]="jobAppStatusId == 2" ><a href="#interview" aria-controls="interview" role="tab" data-toggle="tab">
+                                                        <i class="icon-interview"></i>
+                                                        <h6 class="hidden-xs">Interview</h6>
+                                                    </a></li>
+
+
+                                                    <li class="dummy_tab" *ngIf="jobAppStatusId>3 && jobAppStatusId!=4 && jobAppStatusId!=5"><a>
+                                                        <i class="icon-job-post"></i>
+                                                        <h6 class="hidden-xs">Successful</h6>
+                                                    </a></li>
+                                                    <li role="presentation" *ngIf="jobAppStatusId<=3 || jobAppStatusId==4 || jobAppStatusId==5" [class.active]="jobAppStatusId == 3"><a href="#successful" aria-controls="successful" role="tab" data-toggle="tab">
+                                                        <i class="icon-job-post"></i>
+                                                        <h6 class="hidden-xs">Successful</h6>
+                                                    </a></li>
+
+
+
+                                                    <li class="dummy_tab" *ngIf="jobAppStatusId>4 && jobAppStatusId!=3 && jobAppStatusId!=5"><a>
+                                                        <i class="icon-job-post-close"></i>
+                                                        <h6 class="hidden-xs">Unsuccessful</h6>
+                                                    </a></li>
+                                                    <li role="presentation" *ngIf="jobAppStatusId<=4 || jobAppStatusId==3 || jobAppStatusId==5" [class.active]="jobAppStatusId == 4"><a href="#unsuccessful" aria-controls="unsuccessful" role="tab" data-toggle="tab">
+                                                        <i class="icon-job-post-close"></i>
+                                                        <h6 class="hidden-xs">Unsuccessful</h6>
+                                                    </a></li>
+                                                </ul>
+
+                                                <div class="tab-content bottom-gap">
+
+                                                    <div  *ngIf="postErrorFlag"  class="comen-alert alert-danger" role="alert">
+                                                       Feedback post Failed
+                                                    </div>
+                                                    <div  *ngIf="postSuccessFlag"  class="comen-alert alert-dismissable" role="alert">
+                                                        Your feedback has been successfully sent
+                                                    </div>
+
+
+                                                    <div role="tabpanel" class="tab-pane"  *ngIf="jobAppStatusId == 0" [class.active]="jobAppStatusId == 0"  id="reviewed">
+                                                        <div class="full-box">
+                                                            <form [formGroup]="formAppReviewed">
+                                                            <textarea wrap="hard" rows="5" formControlName="comment" class="review"  placeholder="Enter Feedback">
+
+                                                            </textarea>
+                                                            <div  *ngIf="(formAppReviewed.controls['comment'].touched || !(pristineReviewFlag$ | async)) && formAppReviewed.controls['comment'].errors"  class="alert alert-danger alert-dismissible martop5-nagative" role="alert">
+                                                                Please enter a Feedback
+                                                            </div>
+                                                            <input type="hidden" formControlName="status" >
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="block-footer border-none padding-0">
+                                                            <button *ngIf="_accountService.getJobApplicationStatus()" (click)="shareFeedbackApplied()"> Share Feedback with Applicant </button>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div role="tabpanel" class="tab-pane" *ngIf="jobAppStatusId <= 1" [class.active]="jobAppStatusId == 1"  id="shortlisted">
+                                                        <div class="full-box">
+                                                            
+                                                            <form [formGroup]="formAppShortListed">
+                                                            <textarea wrap="hard" rows="5" formControlName="comment"   placeholder="Enter Comment" class="review">
+
+                                                            </textarea>
+                                                                <div  *ngIf="(formAppShortListed.controls['comment'].touched || !(pristineShortedFlag$ | async)) && formAppShortListed.controls['comment'].errors"  class="alert alert-danger alert-dismissible martop5-nagative" role="alert">
+                                                                    Please enter a Feedback
+                                                                </div>
+                                                                <input type="hidden" formControlName="status"  >
+                                                            </form>
+                                                        </div>
+                                                        <div class="block-footer border-none padding-0">
+                                                            <button *ngIf="_accountService.getJobApplicationStatus()" (click)="shareFeedbackShortlisted()"> Share Feedback with Applicant </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div role="tabpanel" class="tab-pane" *ngIf="jobAppStatusId <= 2" [class.active]="jobAppStatusId == 2"  id="interview">
+
+                                                        <div  *ngIf="interviewStatus == 'accept'"  class="comen-alert alert-dismissable" role="alert">
+                                                            <i class="zmdi zmdi-check-circle"></i>&nbsp;<strong>Job Seeker</strong> has Accepted your interview request.
+                                                        </div>
+                                                        <div  *ngIf="interviewStatus == 'reject'"  class="comen-alert alert-danger" role="alert">
+                                                           <strong>Job Seeker</strong> has rejected your Interview Request
+                                                        </div>
+                                                        <form [formGroup]="formAppInterview">
+                                                        <div class="full-box">
+
+                                                            <input type="text" class="feld-url" formControlName="comment" placeholder="Enter Your Feedback">
+                                                            <div  *ngIf="(formAppInterview.controls['comment'].touched || !(pristineInterviewFlag$ | async)) && formAppInterview.controls['comment'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                Please enter a Feedback
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="settings-text-fix"> Interview Schedule Settings </div>
+                                                            <div>
+
+                                                                <div class="interview-feild">
+                                                                    <div class="" >
+                                                                        <div class="full-box relative">
+                                                                            <input type="hidden" id="datepicker1" formControlName="date"  placeholder="Date">
+                                                                            <datePicker-block [dp_placeholder]="'Date'"  [minDate]="minDate" (emitSelDate)="formAppInterview.controls['date'].setValue($event['selDate'])" [sel_id]="'1'" [dp_value]="formAppInterview.controls['date'].value"></datePicker-block>
+                                                                            <div class="absulute-btn-i block-title-2 padding-0 border-none">
+                                                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                                                            </div>
+                                                                            <div  *ngIf="(formAppInterview.controls['date'].touched || !(pristineInterviewFlag$ | async)) && formAppInterview.controls['date'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                                Please select a Date.
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="interview-feild margin-each">
+                                                                    <div class="">
+                                                                        <input type="hidden" class="feld-url"  placeholder="Time Zone" formControlName="timeZone">
+                                                                        <timezone (selectedId)="formAppInterview.controls['timeZone'].setValue($event.id)" [placeholder]="'Time Zone'"  ></timezone>
+                                                                    </div>
+                                                                    <div  *ngIf="(formAppInterview.controls['timeZone'].touched || !(pristineInterviewFlag$ | async)) && formAppInterview.controls['timeZone'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                                                        Please select Time Zone
+                                                                    </div>
+                                                                </div>
+                                                                <div class="interview-feild">
+                                                                    <div class="">
+                                                                        <div class="full-box relative">
+                                                                            <timePicker-block (selectedId)="formAppInterview.controls['time'].setValue($event.id)" [placeholder]="'Select Time'"></timePicker-block>
+                                                                            <input type="hidden" placeholder="Time" formControlName="time">
+                                                                            <div class="absulute-btn-i block-title-2 padding-0 border-none">
+                                                                                <i class="zmdi zmdi-time"></i>
+                                                                            </div>
+
+                                                                            <div  *ngIf="(formAppInterview.controls['time'].touched || !(pristineInterviewFlag$ | async)) && formAppInterview.controls['time'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                                Please select Time
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="full-box">
+                                                            <input type="text" class="feld-url margin-top-5"  placeholder="Additional comments" formControlName="additionalComment">
+
+                                                            <div  *ngIf="(formAppInterview.controls['additionalComment'].touched || !(pristineInterviewFlag$ | async)) && formAppInterview.controls['additionalComment'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                Please enter a Comment
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="full-box clicks" >
+
+                                                            <div class="settings-text-fix">Interview Channel</div>
+
+                                                            <div>
+                                                                <div class="box-full-fit">
+                                                                    <!--Google Hangout-->
+                                                                    <div class="box-for-channel">
+                                                                        <div class="radio radio-primary">
+                                                                            <input type="radio"  id="radio2" formControlName="mode" value="Hangout">
+                                                                            <label for="radio2">
+                                                                                <span><i class="icon-hangout hangout"></i>Google Hangout</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Skype-->
+                                                                    <div class="box-for-channel">
+                                                                        <div class="radio radio-primary">
+                                                                            <input type="radio" id="radio3"  formControlName="mode" value="Skype">
+                                                                            <label for="radio3">
+                                                                                <span><i class="zmdi zmdi-skype skype"></i>Skype</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Go-meeting-->
+                                                                    <div class="box-for-channel">
+                                                                        <div class="radio radio-primary">
+                                                                            <input type="radio"  id="radio4"  formControlName="mode" value="GoMeeting">
+                                                                            <label for="radio4">
+                                                                                <span><i><img src="images/go-meeting.png"></i>Go to meeting</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Phone-Number-->
+                                                                    <div class="box-for-channel">
+                                                                        <div class="radio radio-primary">
+                                                                            <input type="radio"  id="radio5" value="Phone"  formControlName="mode"  >
+                                                                            <label for="radio5">
+                                                                                <span><i class="zmdi zmdi-smartphone-android phone"></i>Contact Number</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="box-full-fit box-chanel-input" *ngIf="formAppInterview.controls['mode'].value == 'Hangout'">
+                                                                    <input type="text" placeholder="Enter Your Email id" formControlName="email" class="chanel-input">
+                                                                    <div  *ngIf="(formAppInterview.controls['email'].touched || !(pristineInterviewFlag$ | async)) && !validationList['email']"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                        Please enter a valid Email ID
+                                                                    </div>
+
+                                                                </div>
+                                                             <div class="box-full-fit box-chanel-input" *ngIf="formAppInterview.controls['mode'].value == 'Skype'">
+                                                                    <input type="text" placeholder="Enter Your Skype Id" formControlName="skype" class="chanel-input">
+                                                                    <div  *ngIf="(formAppInterview.controls['skype'].touched || !(pristineInterviewFlag$ | async)) && !validationList['skype']"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                        Please Enter a valid Skype ID
+                                                                    </div>
+
+                                                                </div>
+                                                             <div class="box-full-fit box-chanel-input" *ngIf="formAppInterview.controls['mode'].value == 'GoMeeting'">
+                                                                    <input type="text" placeholder="Enter Your GoMeeting Id" formControlName="goMeeting" class="chanel-input">
+                                                                    <div  *ngIf="(formAppInterview.controls['goMeeting'].touched || !(pristineInterviewFlag$ | async)) &&  !validationList['goMeeting']"  class="alert alert-danger alert-dismissible" role="alert">
+                                                                        Please enter a valid Go Meeting ID
+                                                                    </div>
+
+                                                                </div>
+                                                            <div class="box-full-fit box-chanel-input" *ngIf="formAppInterview.controls['mode'].value == 'Phone'">
+
+                                                                <jquery-tel [placeholder]="'Enter Your Phono No'"  (getProcessedPhoneNo)="formAppInterview.controls['phone'].setValue($event.phone_no)"  [match]="'phone_no'" [phone_no]="formAppInterview.controls['phone'].value" >
+                                                                </jquery-tel>
+                                                                    <input type="hidden" placeholder="Enter Your Phono No" formControlName="phone" class="chanel-input">
+                                                                    <div  *ngIf="(formAppInterview.controls['phone'].touched || !(pristineInterviewFlag$ | async)) &&  !validationList['phone']"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                        Please enter a valid Phone Number
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class=" clearfix "></div>
+                                                            </div>
+
+                                                        </div>
+                                                        </form>
+
+                                                        <div class="block-footer border-none padding-0">
+                                                            <button *ngIf="_accountService.getJobApplicationStatus()" (click)="shareFeedbackInterview()"> Share Feedback with Applicant </button>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div role="tabpanel" class="tab-pane" [class.active]="jobAppStatusId == 3"  id="successful">
+                                                        <form [formGroup]="formAppSuccess">
+                                                        <div class="full-box">
+                                                            <input formControlName="status" type="hidden">
+                                                            <textarea wrap="hard" formControlName="comment" rows="5" name="#" class="review">Your interview successfully finished, The offer letter will sent to you </textarea>
+                                                            <div  *ngIf="(formAppSuccess.controls['comment'].touched || !(pristineSuccessFlag$ | async)) && formAppSuccess.controls['comment'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                                                Please enter a Feedback
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="genarate upload-dp" *ngIf="!offerLetterSelectedFlag  && !generateOfferSelectedFlag" >
+                                                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+
+                                                                <div class="navy"> Upload Your Offer Letter </div>
+                                                                <div class='fancy-file'>
+                                                                    <div class='fancy-file-name'>&nbsp;</div>
+                                                                    <button class='fancy-file-button'>Browse</button>
+                                                                    <div class='input-container'>
+                                                                        <input type="file"  formControlName="fileName" (change)="selectFile($event)" placeholder="Upload Offer Letter" class="browser" accept=".txt,.doc,.pdf">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                                <div class="bar">
+                                                                    <div class="or"> or </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+
+                                                                <div class="navy"> Generate New Offer Letter </div>
+
+                                                                <a href="#" data-toggle="modal" data-target=".generate-offer"> <div class="genrt-btn"> Generate Offer letter </div></a>
+
+                                                            </div>
+                                                            <div class=" clearfix "></div>
+                                                        </div>
+                                                        </form>
+
+                                                        <!--After generate Offer letter     -->
+                                                        <div class="offer-generate" *ngIf="offerLetterSelectedFlag">
+                                                        <div class="left-offer-text">
+                                                            <h3><i class="zmdi zmdi-file-text"></i>Offer Letter</h3>
+                                                            <span> {{offerLetter?.name}}</span>
+                                                        </div>
+                                                        <div class="right-offer-text">
+                                                             <button (click)="removeOfferLetter('upload')"><i class="zmdi zmdi-delete"></i>Delete</button>
+                                                        </div>
+
+                                                        </div>
+                                                        <div  *ngIf="(formAppSuccess.controls['fileName'].touched || !(pristineSuccessFlag$ | async)) && !offerLetterSelectedFlag && !generateOfferSelectedFlag"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                            Please Upload the Offer Letter
+                                                        </div>
+
+                                                        <div class="offer-generate" *ngIf="generateOfferSelectedFlag">
+
+                                                            <div class="left-offer-text">
+                                                                <h3><i class="zmdi zmdi-file-text"></i>Offer letter will be generated by the system</h3>
+
+                                                            </div>
+                                                            <div class="right-offer-text">
+                                                                <button (click)="removeOfferLetter('generate')"><i class="zmdi zmdi-delete"></i>Delete</button>
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+                                                        <div class="block-footer border-none padding-0" *ngIf="jobAppStatusStatus == 'Interview' || jobAppStatusStatus == 'Unprocessed'">
+                                                            <button *ngIf="_accountService.getJobApplicationStatus()"  (click)="shareFeedbackSucess()"> Share Feedback with Applicant </button>
+                                                        </div>
+                                                        <div class="block-footer border-none padding-0" *ngIf="jobAppStatusStatus != 'Interview' && jobAppStatusStatus != 'Unprocessed'">
+                                                            <button class="disabled_button"> Share Feedback with Applicant </button>
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+
+                                                    <div role="tabpanel" class="tab-pane" [class.active]="jobAppStatusId == 4 || jobAppStatusId == 5"  id="unsuccessful">
+                                                        <div class="full-box">
+                                                            <form [formGroup]="formAppUnSuccess">
+                                                            <textarea wrap="hard" rows="5" formControlName="comment" class="review"  placeholder="Enter Comment">
+
+                                                            </textarea>
+                                                                <div  *ngIf="(formAppUnSuccess.controls['comment'].touched || !(pristineUnSuccessFlag$ | async)) && formAppUnSuccess.controls['comment'].errors"  class="alert alert-danger alert-dismissible martop5-nagative" role="alert">
+
+                                                                    Please enter a Feedback
+                                                                </div>
+                                                                <input type="hidden" formControlName="status"  >
+                                                            </form>
+                                                        </div>
+                                                        <div class="block-footer border-none padding-0" *ngIf="jobAppStatusStatus == 'Interview' || jobAppStatusStatus == 'Unprocessed'">
+                                                            <button *ngIf="_accountService.getJobApplicationStatus()" (click)="shareFeedbackUnSuccess()"> Share Feedback with Applicant </button>
+                                                        </div>
+                                                        <div class="block-footer border-none padding-0" *ngIf="jobAppStatusStatus != 'Interview' && jobAppStatusStatus != 'Unprocessed'" >
+                                                            <button class="disabled_button"> Share Feedback with Applicant </button>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-lg-3 ">
+
+
+                                    <div class="padding-10 ">
+
+                                        <div class="scrol-txt">
+                                            <h3> <i class="zmdi zmdi-comments"></i> Previous Comments </h3>
+                                        </div>
+                                        <div class="scrol">
+                                         <div *ngFor="let selList of (stausChangeListObs | async)">
+
+                                             <!--Reviewed-->
+                                             <div class="comments" *ngIf="selList?.job_application_status?.id == 1">
+                                             <span class="light">
+                                              Application has been
+                                                 <span class="navy">{{selList?.job_application_status?.status}} </span>
+                                                 on <span class="navy">{{selList?.created_at| date:'d MMM, yyyy'}} </span> by
+                                               <span class="navy">{{selList?.employer_name}} </span>with the following feedback:
+                                               <span class="navy">"{{selList?.comment}}".</span>
+                                             </span>
+                                             </div>
+
+
+                                             <!--Shortlisted-->
+                                             <div class="comments" *ngIf="selList?.job_application_status?.id == 2">
+                                             <span class="light">
+                                              Candidate has been
+                                                 <span class="navy">{{selList?.job_application_status?.status}} </span>
+                                                 on <span class="navy">{{selList?.created_at| date:'d MMM, yyyy'}} </span> by
+                                               <span class="navy">{{selList?.employer_name}} </span>with the following feedback:
+                                               <span class="navy">"{{selList?.comment}}".</span>
+                                             </span>
+                                             </div>
+
+
+                                             <!--Interviewe Accept-->
+                                             <div class="comments" *ngIf="selList?.job_application_status?.id == 3 && interviewStatus == 'accept'">
+                                             <span class="light"> Candidate has accepted your  <span class="navy">Interview Request</span>
+                                                 on <span class="navy">{{selList?.interview?.updated_at | date:'d MMM, yyyy'}} </span>
+                                                 and provided a  <span class="navy"> {{channelHash[selList?.interview?.channel]}}  "{{selList?.interview?.jobseeker_contact}}" </span>
+                                             </span>
+                                             </div>
+
+                                             <!--Interviewe Rejected-->
+                                             <div class="comments" *ngIf="selList?.job_application_status?.id == 3 && interviewStatus == 'reject'">
+                                             <span class="light"> Candidate has rejected your  <span class="navy">Interview Request</span>
+                                                 on <span class="navy">{{selList?.interview?.updated_at | date:'d MMM, yyyy'}} </span>
+                                             </span>
+                                             </div>
+                                             <!--Interview-->
+                                             <div class="comments " *ngIf="selList?.job_application_status?.id == 3">
+                                             <span class="light">
+                                              Candidate Status has been changed to
+                                                 <span class="navy">{{selList?.job_application_status?.status}} </span>
+                                                 on <span class="navy">{{selList?.created_at| date:'d MMM, yyyy'}} </span> by
+                                               <span class="navy">{{selList?.employer_name}}</span>.
+                                               <span class="navy">Interview Request </span> has been sent to the Candidate to take
+                                                 place on <span class="navy">{{selList?.interview?.appointment | date:'d MMM, yyyy'}}</span>
+                                                 at <span class="navy">{{ interviewTimeObs | async}}&nbsp;{{selList?.interview?.time_zone }} Time</span>
+                                                 through <span class="navy">{{selList?.interview?.channel }} "{{selList?.interview?.contact }}"</span>
+                                                 with the following feedback:
+                                               <span class="navy">"{{selList?.comment}}".</span>
+                                             </span>
+                                             </div>
+
+
+
+
+
+
+
+
+                                             <!--Successful-->
+                                             <div class="comments success-feed" *ngIf="selList?.job_application_status?.id == 4">
+                                             <span class="light">
+                                              Candidate Status has been changed to
+                                                 <span class="navy">{{selList?.job_application_status?.status}} </span>
+                                                 on <span class="navy">{{selList?.created_at| date:'d MMM, yyyy'}} </span> by
+                                               <span class="navy">{{selList?.employer_name}} </span>with the following feedback:
+                                               <span class="navy">"{{selList?.comment}}".</span>
+                                             </span>
+                                             </div>
+
+
+                                             <!--Unsuccessful-->
+                                             <div class="comments reject-feed" *ngIf="selList?.job_application_status?.id == 5">
+                                             <span class="light">
+                                              Candidate Status has been changed to
+                                                 <span class="navy">{{selList?.job_application_status?.status}} </span>
+                                                 on <span class="navy">{{selList?.created_at| date:'d MMM, yyyy'}} </span> by
+                                               <span class="navy">{{selList?.employer_name}} </span>with the following feedback:
+                                               <span class="navy">"{{selList?.comment}}".</span>
+                                             </span>
+                                             </div>
+
+
+
+
+
+
+                                         </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class=" clearfix "></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="block bottom-gap">
+                            <div class="block-title">
+                                <h2><i class="zmdi zmdi-calendar-note"></i> Internal Notes </h2>
+                            </div>
+
+
+                            <div class="application notes">
+
+                                <div class="col-lg-6 ">
+                                    <div class="padding-0-10">
+                                        <div class="scrol-note">
+                                            <div class="note" *ngFor="let selNote of (noteListObs | async)">
+                                                <div class="navy">{{selNote?.author_name}}</div>
+                                                <div class="navy">{{selNote?.created_at | date:'d MMM,  yyyy'}}</div>
+                                                <div class="light">{{selNote?.note}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+
+                                    <div class="padding-0-10">
+
+                                        <h5> Add New Notes</h5>
+                                        <form [formGroup]="formNote">
+                                        <div class="full-box">
+                                            <div class="comen-alert" *ngIf="notAddFlag"><strong>Success!</strong> Your note has been added Successfully.</div>
+                                            <div  *ngIf="(formNote.controls['note'].touched || !(pristineFlag$ | async)) && formNote.controls['note'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+
+                                                Please enter a Note
+                                            </div>
+                                            <textarea wrap="hard" formControlName="note" rows="5" >Note </textarea>
+
+                                        </div>
+                                        <div class="block-footer border-none padding-0">
+                                            <button *ngIf="!postProgress" (click)="postNote()" > Add </button>
+                                            <button *ngIf="postProgress"  class="disabled_button" (click)="postNote()" > Add </button>
+                                        </div>
+                                        </form>
+
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class=" clearfix "></div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<div class="popup"><!-- upload-dp  -->
+    <div class="logout-pop">
+        <div class="modal generate-offer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <form [formGroup]="formGenerateOffer">
+                    <div class="modal-body upload-dp">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <h2>Generate an Offer Letter</h2>
+                        <div><br></div>
+
+                        <div class="offer-box"><input type="text" formControlName="title"  placeholder="Title">
+                            <div  *ngIf="(formGenerateOffer.controls['title'].touched || !(pristineOfferFlag$ | async)) && formGenerateOffer.controls['title'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter a Title
+                            </div>
+                        </div>
+                        <div class="offer-box"> <textarea class="feedback-text mg-0" placeholder="Content" formControlName="content"></textarea>
+                            <div  *ngIf="(formGenerateOffer.controls['content'].touched || !(pristineOfferFlag$ | async)) && formGenerateOffer.controls['content'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                Please enter the content of the Offer Letter
+                            </div>
+                        </div>
+                        <div class="pop-button">
+
+                            <button type="button" class="btn postive" (click)="generateOffer()">Generate</button>
+
+                            <a  href="#" data-toggle="modal" data-target=".previw" [style.display]="formGenerateOffer.valid?'block':'none'" (click)="showofferletterFlag = true"> <button type="button" class="btn negative">Preview</button></a>
+                            <button type="button" class="btn negative" (click)="closeGenerateBox()">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="popup"><!-- Logout -->
+    <div class="logout-pop">
+        <div class="modal previw" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <h2>Preview</h2>
+
+                        <div class="ofr-letter">
+                        <div *ngIf="downloadingFlag"  class="offer-l-download"><spinner [visible]="downloadingFlag"></spinner></div>
+                         <offer-letter  *ngIf="showofferletterFlag" [jobTitle]="formGenerateOffer.controls['title'].value" [description]="formGenerateOffer.controls['content'].value" [candidateDetailsObs]="candidateDetailsObs" ></offer-letter>
+
+
+                        </div>
+
+
+                        <div class="pop-button">
+                            <button type="button" class="btn postive" (click)="onSaveOfferLetter()">Save As Draft</button>
+                            <button type="button" class="btn negative"  aria-hidden="true" data-dismiss="modal" >Back</button>
+                            <div class="clr"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+        <a class="bt-full-button" (click)="onBack()"> 
+            <button> Back </button>
+        </a>
+    </div>

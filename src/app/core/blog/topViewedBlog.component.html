@@ -1,0 +1,44 @@
+<div class="col-lg-4 col-md-4 hidden-xs hidden-sm">
+    <div class="blog_sidebar white">
+        <h2>Top Viewed Posts</h2>
+        <div class="top_viewed border-bottom empty-min6">
+
+            <div class="white">
+                <div class="loading-spinner-space" *ngIf="!(topViewedBlogs$| async)"><spinner [visible]="(loadingFlagList$ | async)"></spinner></div>
+            </div>
+            <ul>
+                <li *ngFor="let selBlog of (topViewedBlogs$| async)" >
+                        <div class="blog_post_thambnail_small">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active" class="cursor_pointer1">
+                                <div  *ngIf="!selBlog.bannerImage"></div>
+                                <!-- Top View -->
+                                <!-- <img *ngIf="selBlog.image || selBlog.image != ''" [src]="selBlog.image"> -->
+                                <img  *ngIf="selBlog.bannerImage" [src]="selBlog.bannerImage">
+
+                            </a>
+                        </div>
+                        <div class="blog_post_detail">
+                            <a [routerLink]="['/'+_accountService.getPath()+'/blog/'+selBlog.id+'/'+_accountService.getSpaceToDash(selBlog.name)]" routerLinkActive="active"    class="cursor_pointer1">
+                                <h1 class="line-clamp">
+                                    {{selBlog.name}}
+                                </h1>
+                            </a>
+                            <span><i class="zmdi zmdi-calendar-alt"></i>{{selBlog.postDate | date:'d MMM, yyyy'}}</span>
+                        </div>
+                </li>
+            </ul>
+        </div>
+        <!-- related Tags -->
+        <span *ngIf="(tags$ | async)?.length >0">
+            <h2>Tags</h2>
+            <div class="tag-section">
+                <ul>
+                    <li *ngFor="let selTag of (tags$ | async),let tagIndex = index">
+                        <a [routerLink]="['/'+_accountService.getPath()+'/blog']" [queryParams]="{tag: selTag.id}">{{selTag.name}}</a></li>
+                </ul>
+            </div>
+        </span>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

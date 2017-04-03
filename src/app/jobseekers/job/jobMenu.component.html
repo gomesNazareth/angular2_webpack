@@ -1,0 +1,77 @@
+<div class="main-tab mobile-tab-top load-data-js" *ngIf="!(isPublic$ | async)">
+
+    <!-- Desktop -->
+    <ul class="nav nav-tabs hidden-xs" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'all'">
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs']" routerLinkActive="active" >
+                <i class="zmdi zmdi-case"></i> All Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'suggested'" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/suggested-jobs']" routerLinkActive="active" >
+
+                <i class="icon-suggestedjobs"></i>
+                Suggested Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'myjobs'" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/my-jobs']" routerLinkActive="active" >
+
+                <i class="icon-my-jobs"></i>
+                My Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'search'">
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/saved-searches']" routerLinkActive="active" >
+
+                <i class="icon-saved-searches"></i>
+                Saved Searches
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'saved'" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/saved-jobs']" routerLinkActive="active" >
+
+                <i class="icon-saved-jobs"></i>
+                Saved Jobs
+            </a>
+        </li>
+    </ul>
+
+
+    <!-- mobile -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="allJobsFlag">
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs']" routerLinkActive="active" >
+                <i class="zmdi zmdi-case"></i> All Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="suggestJobsFlag" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/suggested-jobs']" routerLinkActive="active" >
+
+                <i class="icon-suggestedjobs"></i>
+                Suggested Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="myJobsFlag" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/my-jobs']" routerLinkActive="active" >
+
+                <i class="icon-my-jobs"></i>
+                My Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="savedSearchFlag" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/saved-searches']" routerLinkActive="active" >
+
+                <i class="icon-saved-searches"></i>
+                Saved Searches
+            </a>
+        </li>
+        <li role="presentation" [class.active]="savedJobsFlag" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/saved-jobs']" routerLinkActive="active" >
+
+                <i class="icon-saved-jobs"></i>
+                Saved Jobs
+            </a>
+        </li>
+    </ul>
+</div>

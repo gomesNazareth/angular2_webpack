@@ -1,0 +1,211 @@
+<div class="job-application">
+    <!---- Desktop ---->
+    <div class="desktop">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+            <div class="block bottom-gap">
+
+                <div class="block-title"><h1>{{ 'Job Applications Submitted by Country ' }}</h1></div>
+                <div class="block-contant empty-min15">
+
+
+                    <div class="empty-prf " *ngIf="(jobsByCountry$ | async)?.length ==0 || isLoadingC">
+                        <span *ngIf="!isLoadingC">  <i class="icon-empty-nodata"></i>  <h5>No Data Available</h5></span>
+                        <spinner [visible]="isLoadingC"></spinner>
+
+                    </div>
+
+                    <div class="prograss-section" *ngIf="(jobsByCountry$ | async)">
+                        <span  *ngFor="let jobByCountry of (jobsByCountry$ | async),let country_index = index">
+                            <div *ngIf="country_index <=4" class="progress-bloovo">
+                                <div class="prograss-title">
+                                    <h5 class="prograss-txt pull-left">{{jobByCountry?.country}}</h5>
+                                    <h5 class="prograss-txt pull-right percentage-color">{{jobByCountry?.percentage  | number:'1.1-1'}}%</h5>
+                                    <div class=" clr"></div>
+                                </div>
+                                <div class="progress">
+                                    <div data-percentage="0%" [style.width.%]="jobByCountry?.percentage"
+                                         class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0"
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="block-footer">
+                    <a *ngIf="(jobsByCountry$ | async)?.length > 5"  [routerLink]="['/'+this._accountService.getPath()+'/dashboard','jobs-by-country']">
+                        <button [ngClass]="{disabled_button: (jobsByCountry$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                    </a>
+                    <a *ngIf="(jobsByCountry$ | async)?.length <= 5">
+                        <button [ngClass]="{disabled_button: (jobsByCountry$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+            <div class=" block">
+                <div class="block-title">
+                    <h1>{{ 'Job Applications Submitted by Sector' }}</h1>
+                </div>
+
+                <div class="block-contant empty-min15">
+                    <div class="empty-prf" *ngIf="(jobsBySector$ | async)?.length ==0 || isLoadingS">
+                        <span *ngIf="!isLoadingS">  <i class="icon-empty-nodatasector"></i>  <h5>No Data Available</h5></span>
+                        <spinner [visible]="isLoadingS"></spinner>
+                    </div>
+
+
+                    <div class="prograss-section">
+                        <span *ngFor="let jobBySector of (jobsBySector$ | async),let sector_index = index">
+                            <div *ngIf="sector_index <=4" class="progress-bloovo">
+                                <div class="prograss-title">
+                                    <h5 class="prograss-txt pull-left">{{jobBySector.sector}}</h5>
+                                    <h5 class="prograss-txt pull-right percentage-color">{{jobBySector.percentage  | number:'1.1-1'}}%</h5>
+                                    <div class=" clr"></div>
+                                </div>
+                                <div class="progress">
+                                    <div data-percentage="0%" [style.width.%]="jobBySector.percentage"
+                                         class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0"
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="block-footer">
+                    <a *ngIf="(jobsBySector$ | async)?.length > 5" [routerLink]="['/'+this._accountService.getPath()+'/dashboard','jobs-by-sector']">
+                        <button [ngClass]="{disabled_button: (jobsBySector$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                    </a>
+
+                    <a *ngIf="(jobsBySector$ | async)?.length <= 5" >
+                        <button [ngClass]="{disabled_button: (jobsBySector$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class=" clr"></div>
+        </div>
+    </div>
+
+
+
+     <!---- Mobile ---->
+        <div class="mobile">
+            <div class=" col-xs-12 col-sm-12">
+                <div class=" block">
+                    <div class=" block-title">
+                        <h1>{{ 'Job Applications Submitted by' }}</h1>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class=" col-xs-12 col-sm-12">
+                <div class="mobile-job-application">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#mobile-country" aria-controls="mobile-country" role="tab" data-toggle="tab">
+                                {{ 'Country' }}
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#mobile-sector" aria-controls="mobile-sector" role="tab" data-toggle="tab">
+                                {{ 'Sector' }}
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="mobile-country">
+                            <div class="block">
+                                <div class="block-contant empty-min6">
+                                    <div class="prograss-section">
+                                        <spinner [visible]="isLoadingC"></spinner>
+                                        <div class="progress-bloovo"
+                                             *ngFor="let jobByCountry of (jobsByCountry$ | async)">
+                                            <div class="prograss-title">
+                                                <h5 class="prograss-txt pull-left">{{jobByCountry.country}}</h5>
+                                                <h5 class="prograss-txt pull-right percentage-color">
+                                                    {{jobByCountry.percentage}}%</h5>
+                                                <div class=" clr"></div>
+                                            </div>
+                                            <div class="progress">
+                                                <div data-percentage="0%" [style.width.%]="jobByCountry.percentage"
+                                                     class="progress-bar progress-bar-success" role="progressbar"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="block-footer">
+                                    <a [routerLink]="['/'+this._accountService.getPath()+'/dashboard','jobs-by-country']">
+                                        <button [ngClass]="{disabled_button: (jobsByCountry$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="mobile-sector">
+                            <div class="block">
+                                <div class="block-contant empty-min6">
+                                    <div class="prograss-section">
+                                        <spinner [visible]="isLoadingS"></spinner>
+                                        <div class="progress-bloovo"
+                                             *ngFor="let jobBySector of (jobsBySector$ | async)">
+                                            <div class="prograss-title">
+                                                <h5 class="prograss-txt pull-left">{{jobBySector.sector}}</h5>
+                                                <h5 class="prograss-txt pull-right percentage-color">
+                                                    {{jobBySector.percentage}}%</h5>
+                                                <div class=" clr"></div>
+                                            </div>
+                                            <div class="progress">
+                                                <div data-percentage="0%" [style.width.%]="jobBySector.percentage"
+                                                     style="width: 30%;" class="progress-bar progress-bar-success"
+                                                     role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-footer">
+                                    <a [routerLink]="['/'+this._accountService.getPath()+'/dashboard','jobs-by-sector']">
+                                        <button [ngClass]="{disabled_button: (jobsBySector$ | async)?.length <= 5}">{{ 'More' }}...</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    <div class="advertisement hide">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="images/advertisement/advt-1.png" width="100%">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="images/advertisement/advt-2.png" width="100%">
+        </div>
+        <div class=" clr"></div>
+    </div>
+
+

@@ -1,0 +1,25 @@
+<section class="commen-container-public country-inner">
+    <div class=" col-lg-12 padd-responsive">
+        <div class="inner-hed ">
+            <h2> Jobs by Country</h2>
+            <div class=" clearfix"></div>
+        </div>
+    </div>
+    <div class="all-area">
+        <div *ngFor="let sel_country of (countries$ | async)">
+
+            <a *ngIf="sel_country.jobs_count > 0"
+               [routerLink]="['/home/jobs/country/'+sel_country.id+'/'+accountService.getSpaceToDash(sel_country.name)]">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padd-responsive">
+                    <div class="home-contry">
+                        <h3>{{sel_country.name}}&nbsp;
+                            <span *ngIf="sel_country.jobs_count == 1">({{sel_country.jobs_count}}&nbsp;Job)</span><span *ngIf="sel_country.jobs_count != 1">({{sel_country.jobs_count}}&nbsp;Jobs)</span></h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</section>

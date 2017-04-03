@@ -1,0 +1,40 @@
+<div class=" main-tab hidden-xs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'stats'?true:false"><a [routerLink]="['/'+_accountService.getPath()+'/dashboard']" ><i class="icon-statistics"></i> My Statistics</a></li>
+        <li *ngIf="showFlag == true" role="presentation"[class.active]="activeFlag == 'mostViewProfiles'?true:false" ><a [routerLink]="['/'+_accountService.getPath()+'/dashboard/most-viewed-profiles']" ><i class="icon-profile-view"></i> Most Viewed Profiles
+        </a></li>
+        <li role="presentation" [class.active]="activeFlag == 'mostViewedJobs'?true:false"><a [routerLink]="['/'+_accountService.getPath()+'/dashboard/most-viewed-jobs']" ><i class="icon-viwed-jobs"></i> Most Viewed Jobs </a></li>
+        <li role="presentation" [class.active]="activeFlag == 'poll'?true:false" ><a [routerLink]="['/'+_accountService.getPath()+'/dashboard/polls']" ><i class="icon-thumbs-up"></i> Polls</a></li>
+    </ul>
+</div>
+
+<!-- mobile -->
+    <ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+        <li role="presentation" [class.active]="activeFlag == 'stats'?true:false">
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/dashboard']"  routerLinkActive="active" >
+                <i class="zmdi zmdi-case"></i> My Statistics
+            </a>
+        </li>
+        <li *ngIf="showFlag == true" role="presentation" [class.active]="activeFlag == 'mostViewProfiles'?true:false" >
+            <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/dashboard/most-viewed-profiles']" routerLinkActive="active" >
+
+                <i class="icon-suggestedjobs"></i>
+                Most Viewed Profiles
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'mostViewedJobs'?true:false" >
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/dashboard/most-viewed-jobs']" routerLinkActive="active" >
+
+                <i class="icon-my-jobs"></i>
+                    Most Viewed Jobs
+            </a>
+        </li>
+        <li role="presentation" [class.active]="activeFlag == 'poll'?true:false"  >
+                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/dashboard/polls']" routerLinkActive="active" >
+
+                <i class="icon-saved-searches"></i>
+                    Polls
+            </a>
+        </li>
+
+    </ul>

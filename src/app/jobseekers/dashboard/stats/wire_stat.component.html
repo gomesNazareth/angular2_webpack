@@ -1,0 +1,585 @@
+<div class="graph-tabs">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+        <div class="block bottom-gap">
+            <div class="dashboard-graph job-se-chart-bar">
+
+
+
+
+                <!---- Mobile ---->
+
+                <div class="mobile">
+                    <div class="col-lg-3 col-md-3 col-sm-3 padding-none">
+                        <nav class="nav-sidebar">
+                            <ul class="nav tabs">
+                                <li class="active">
+                                    <a href="#job-applications" data-toggle="tab"><i class="icon-job-application"></i>
+                                        &nbsp;{{ 'Applications'   }}
+                                    </a></li>
+                                <li class=""><a href="#profile-views" data-toggle="tab"><i class="icon-profile-view"></i>
+                                    &nbsp;{{ 'Profile Views'   }}
+                                </a></li>
+                                <li class=""><a href="#new-following" data-toggle="tab"><i class="zmdi zmdi-accounts"></i>
+                                    &nbsp;{{ 'Followings'   }}
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!----End Mobile ---->
+
+                <!---- Desktop ---->
+                <div class="col-lg-12 col-md-12 col-sm-12 padding-none tab-content">
+
+                <!-- New Tab -->
+                <div class="tab-menu-each hidden-xs">
+                    <ul>
+                        <li class="active">
+                            <a href="#job-applications" data-toggle="tab">
+                                <i class="icon-job-application"></i>
+                                &nbsp;{{'Job Applications'  }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#profile-views" data-toggle="tab">
+                                <i class="icon-profile-view"></i>
+                                &nbsp;{{'Profile Views'  }}
+                            </a>
+                        </li>
+                        <li class="border-none">
+                            <a href="#new-following" data-toggle="tab">
+                                <i class="zmdi zmdi-accounts"></i>
+                                &nbsp;{{'New Followings'  }}
+                            </a>    
+                        </li>
+                    </ul>
+                </div>
+
+                    <div *ngIf="isLoadingJ" class="job-applications-sub-tab empty-min3">
+                        <div class="empty-prf ">
+                            <i> <spinner [visible]="isLoadingJ"></spinner></i>
+
+                        </div>
+
+                        <div class=" clr"></div>
+                    </div>
+
+                    <div *ngIf="!isLoadingJ" class="tab-pane active text-style padd-15" id="job-applications">
+                        <div   class="job-applications-sub-tab">
+                            <div class="employer-heding pull-left"></div>
+                            <div class="employer-tab pull-right">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#job-daily" aria-controls="job-daily" role="tab" data-toggle="tab">
+                                            {{ 'Daily'   }}
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#job-weekly" aria-controls="job-weekly" role="tab" data-toggle="tab">
+                                            {{ 'Weekly'   }}
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#job-monthly" aria-controls="job-monthly" role="tab" data-toggle="tab">
+                                            {{ 'Monthly'   }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="job-daily">
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(lineChartDailyData$ | async)[0]?.data">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                        
+
+                                        <!-- daily -->
+                                        <div class="job-seeker-barchart-box" *ngFor="let selStat of (lineChartDailyData$ | async)[0]?.data">
+
+                                            <div class="tooltip-x">
+                                                <strong class="tooltiptext-x">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Applications</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class=" clearfix "></div>
+
+                                        </div>
+                                        <div class="bar-date">
+                                            <div class="job-seeker-barchart-box" *ngFor="let sellabels of (lineChartDailyLabels$ | async)">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="job-weekly">
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(lineChartWeeklyData$ | async)[0]?.data">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let selStat of (lineChartWeeklyData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Applications</p>
+                                                </strong>
+                                                <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Application</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let sellabels of (lineChartWeeklyLabels$ | async)">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="job-monthly">
+
+
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(lineChartMonthData$ | async)[0]?.data">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let selStat of (lineChartMonthData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Applications</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Application</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let sellabels of (lineChartMonthLabels$ | async)">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane text-style padding-20" id="profile-views">
+
+                        <div class="job-applications-sub-tab">
+                            <div class="employer-heding pull-left"></div>
+                            <div class="employer-tab pull-right">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#profile-daily" aria-controls="profile-daily" role="tab" data-toggle="tab"> {{ 'Daily'   }}</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#profile-weekly" aria-controls="profile-weekly" role="tab" data-toggle="tab"> {{ 'Weekly'   }}</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#profile-monthly" aria-controls="profile-monthly" role="tab" data-toggle="tab">{{ 'Monthly'   }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+                        <spinner [visible]="isLoadingP"></spinner>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="profile-daily" >
+
+
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(profileChartDailyData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+                                            <div class="job-seeker-barchart-box" *ngFor="let selStat of (profileChartDailyData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Views</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x"  *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>View</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="job-seeker-barchart-box" *ngFor="let sellabels of profileChartDailyLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile-weekly">
+
+
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(profileChartWeeklyData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let selStat of (profileChartWeeklyData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Views</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>View</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let sellabels of profileChartWeeklyLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile-monthly">
+
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(profileChartMonthData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+                                        <!--Number of Jobs Posted-->
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let selStat of (profileChartMonthData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Views</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>View</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let sellabels of profileChartMonthLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane text-style padding-20" id="new-following">
+
+
+                        <div class="job-applications-sub-tab">
+                            <div class="employer-heding pull-left"></div>
+                            <div class="employer-tab pull-right">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#following-daily" aria-controls="following-daily" role="tab" data-toggle="tab">{{ 'Daily'   }}</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#following-weekly" aria-controls="following-weekly" role="tab" data-toggle="tab">{{ 'Weekly'   }}</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#following-monthly" aria-controls="following-monthly" role="tab" data-toggle="tab">{{ 'Monthly'   }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+                        <spinner [visible]="isLoadingN"></spinner>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="following-daily">
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(nfChartDailyData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="job-seeker-barchart-box" *ngFor="let selStat of (nfChartDailyData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Followers</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Follower</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="job-seeker-barchart-box" *ngFor="let sellabels of nfChartDailyLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="following-weekly">
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(nfChartWeeklyData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let selStat of (nfChartWeeklyData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Followers</p>
+                                                </strong>
+                                                    <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Follower</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="job-seeker-barchart-box-weekly" *ngFor="let sellabels of nfChartWeeklyLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="following-monthly">
+
+
+                                <div class="tab-pane active text-style padding-20" *ngIf="(nfChartMonthData$ | async)?.length">
+
+                                    <div class="dash-center text-center">
+
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let selStat of (nfChartMonthData$ | async)[0]?.data">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat != 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Followers</p>
+                                                </strong>
+                                                <strong class="tooltiptext-x" *ngIf="selStat == 1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Follower</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let sellabels of nfChartMonthLabels">
+                                                <h5>{{sellabels}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" desktop hide">
+                    <div class="col-lg-3 col-md-3 col-sm-3 padding-none">
+                        <nav class="nav-sidebar">
+                            <ul class="nav tabs">
+                                <li class="active">
+                                    <a href="#job-applications" data-toggle="tab">
+                                        <i class="icon-job-application"></i>
+                                        &nbsp;{{'Job Applications'  }}
+                                    </a>
+                                </li>
+                                <li class=""><a href="#profile-views" data-toggle="tab"><i class="icon-profile-view"></i>&nbsp;{{'Profile view'  }}</a></li>
+                                <li class=""><a href="#new-following" data-toggle="tab"><i class="zmdi zmdi-accounts"></i>&nbsp;{{'New Following'  }}</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!---- End Desktop ---->
+                <div class=" clr"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

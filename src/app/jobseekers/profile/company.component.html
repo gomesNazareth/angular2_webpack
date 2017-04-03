@@ -1,0 +1,292 @@
+<form [formGroup]="work_experience.company_form">
+    <div class="work-logo">
+        <div class="work-lg-defalt"><i class="zmdi zmdi-city-alt"></i></div>
+    </div>
+    <div class="work-exp-details">
+        <i class="spinner-prf" *ngIf="(spinnerLoader$ | async)"><spinner></spinner></i>
+        <div *ngIf="!(spinnerLoader$ | async)">
+            <div class="col-lg-6">
+                <div class="work-exp-form">
+                    <div class="full-box">
+                        <div class="dark">Company</div>
+                        <!--<bootstrap-selectbox  *ngIf="conpanyList.length >0" (selectedId)="onSelectCompany($event)"  (selectedString)="onSelectCompany($event)"-->
+                                             <!--[selectedValue]="company_Obj.id"  [placeholder]="!company_Obj.name?'Select Company':company_Obj.name"-->
+                                             <!--[selectList]="conpanyList">-->
+                        <!--</bootstrap-selectbox>-->
+
+                        <auto-complete [keepSelected]="true" [initData]="[{text:company_Obj.name,id:company_Obj.id}]" [placeholder]="'Select Company'" [fullWidth]="true" [selectOneEnter]="true"
+                                       (changeRecords)="onSelectCompany($event)"   [recordType]="'Company'" >
+                        </auto-complete>
+
+                        <div class="full-box">
+                            <input type="hidden"
+                                   name="formCompany_company_id"
+                                   [ngModel]="company_Obj.id"
+                                   formControlName="company_id"
+
+                            >
+                            <input type="hidden"
+                                   name="formCompany_company_name"
+                                   [ngModel]="company_Obj.name"
+                                   formControlName="company_name"
+
+                            >
+                            <!--formControlName="company_name"-->
+                            <div  *ngIf="((formPostObj$ | async) && !work_experience.company_form.controls['company_name'].valid )||(work_experience.company_form.controls['company_name'].touched && !work_experience.company_form.controls['company_name'].valid)"
+                                  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter the Company Name
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="full-box">
+                        <div class="dark">Title</div>
+                        <div class="full-box">
+                            <input type="text" name="company_title"
+
+                                   name="formCompany_company_title"
+                                   formControlName="company_title"
+                                   placeholder="Job Title" 
+                            >
+                            <!--formControlName="company_title"-->
+                            <div *ngIf="((formPostObj$ | async) && ! work_experience.company_form.controls['company_title'].valid )||( work_experience.company_form.controls['company_title'].touched && ! work_experience.company_form.controls['company_title'].valid)" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Job Title
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="full-box">
+
+                        <div class="dark">Sector</div>
+                        <div class="full-box">
+                            <div class="btn-group">
+
+
+
+                                <input type="hidden" #workSectorInpt name="formCompany_company_sector_id"
+                                       formControlName="company_sector_id">
+                                <bootstrap-selectbox *ngIf="sectorList" (selectedId)="work_experience.company_form.controls['company_sector_id'].setValue($event.id)"
+                                                     [selectedValue]="workSectorInpt.value"  [placeholder]="'Select a Sector'"
+                                                     [selectList]="sectorList">
+                                </bootstrap-selectbox>
+
+
+
+
+                                <div *ngIf="((formPostObj$ | async) && !work_experience.company_form.controls['company_sector_id'].valid )||(work_experience.company_form.controls['company_sector_id'].touched && !work_experience.company_form.controls['company_sector_id'].valid)" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                    Please select a Sector
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="full-box">
+                    <div class="half-box-lft">
+                        <div class="full-box">
+                            <div class="dark">Country</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+
+
+
+                                    <input type="hidden" #workCountryInpt name="formCompany_company_country"
+                                           formControlName="company_country">
+                                    <bootstrap-selectbox *ngIf="countryList" (selectedId)="work_experience.company_form.controls['company_country'].setValue($event.id)"
+                                                         [selectedValue]="workCountryInpt.value"  [placeholder]="'Select a Country'"
+                                                         [selectList]="countryList">
+                                    </bootstrap-selectbox>
+
+
+
+
+
+                                    <div *ngIf=" ((formPostObj$ | async) && !work_experience.company_form.controls['company_country'].valid )|| (work_experience.company_form.controls['company_country'].touched && !work_experience.company_form.controls['company_country'].valid)" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select a Country
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="half-box-rgt" *ngIf="(country_Obj$ | async)?.id">
+                        <div class="full-box">
+                            <div class="dark">City</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+                                    <span *ngFor="let sel_country of countryList">
+                                      <auto-comp1 *ngIf="sel_country.id == (country_Obj$ | async)?.id" [countryId]="sel_country.id"  [current_city]="cityObj"
+                                                  [initData]="(sel_country.id == firstCountryId) ? [city_Obj]:[]"
+                                                  (changeCityId)=" onSelectCity($event)" >
+                                      </auto-comp1>
+                                    </span>
+
+
+
+                                    <input
+                                            type="hidden"
+                                            formControlName="company_city_id"
+                                            [ngModel]="city_Obj.id"
+                                            name="formCompany_company_city_id">
+
+
+
+                                    <div *ngIf="  ((formPostObj$ | async) && !work_experience.company_form.controls['company_city_id'].valid )|| (work_experience.company_form.controls['company_city_id'].touched && !work_experience.company_form.controls['company_city_id'].valid)"
+                                         class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select a City
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="half-box-rgt" *ngIf="!(country_Obj$ | async)?.id">
+                        <div class="full-box">
+                            <div class="dark">City</div>
+                            <div class="full-box">
+                                <div class="btn-group">
+                                    <input
+                                            placeholder="Select A City"
+                                            type="text"
+                                            name="formCompany_company_city_id">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div>
+
+                    <div class="full-box">
+                        <div class="third-box">
+                            <div class="full-box">
+                                <div class="dark">Start Date</div>
+                                <div class="full-box relative">
+                                    <input type="hidden"
+                                           placeholder="From"
+                                           name="formCompany_company_start_date"
+                                           formControlName="company_start_date"
+                                           [ngModel]="startDate | date:'d MMMM, yyyy'"
+                                           #workStartDate
+                                           (change)="selectStartDate(workStartDate)">
+
+                                    <datePicker-block
+                                            (emitSelDate)="work_experience.company_form.controls['company_start_date'].setValue($event['selDate']);
+                                            work_experience.company_form.controls['company_end_date'].setValue(null);
+                                            work_experience.company_form.controls['company_still_working'].setValue(true);
+                                            work_experience.company_still_working =true"
+                                            [dp_placeholder]="'From'"  [sel_id]="wrk_exp_index+'_'+display_mode+'34'" [toYear]="toYear"
+                                            [maxDate]="maxDate"
+                                            [dp_value]="work_experience.company_form.controls['company_start_date'].value" >
+                                    </datePicker-block>
+
+                                    <div *ngIf="((formPostObj$ | async) && !work_experience.company_form.controls['company_start_date'].valid )||(work_experience.company_form.controls['company_start_date'].valid.touched && !work_experience.company_form.controls['company_start_date'].valid)" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select Start Date
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="third-box">
+                            <div class="full-box"  [style.display]="work_experience.company_still_working?'none':'block'" >
+                                <div class="dark">End Date</div>
+                                <div class="full-box relative" >
+                                    <input type="hidden"
+                                           placeholder="To"
+                                           name="formCompany_company_end_date"
+                                           formControlName="company_end_date"
+                                           [ngModel]="endDate  | date:'d MMMM, yyyy'"
+                                           #workEndDate
+                                           (change)="selectEndDate(workEndDate)">
+
+                                    <datePicker-block (emitSelDate)="work_experience.company_form.controls['company_end_date'].setValue($event['selDate']);
+                                    company_end_date_req = false;
+                                     work_experience.company_form.controls['company_still_working'].setValue(false);
+                                     work_experience.company_still_working =false"
+                                                      [dp_placeholder]="'To'"  [sel_id]="wrk_exp_index+'_'+display_mode+'35'"
+
+                                                      [toYear]="toYear"
+                                                      [maxDate]="maxDate"
+                                                      [dp_startDate]="work_experience.company_form.controls['company_start_date'].value"
+                                                      [dp_value]="work_experience.company_form.controls['company_end_date'].value"></datePicker-block>
+
+                                    <div *ngIf="company_end_date_req" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                        Please select End Date
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="third-box margin-top-30">
+
+                            <input type="checkbox" [name]="'checkboxG11'+wrk_exp_index"
+                                   [id]="'checkboxG11'+wrk_exp_index" class="css-checkbox"
+                                   [checked]="work_experience.company_still_working"
+                                   formControlName="company_still_working"
+                                   (click)="onToggleCurrentlyWorking()"
+
+                            >
+                            <label [attr.for]="'checkboxG11'+wrk_exp_index" class="css-label">I
+                                currently work here</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="bullet col-lg-12">
+                <div class="dark bold"> Roles and Responsibilities</div>
+
+
+                <div class=" margin-bottom-10">
+                    <div class="full-box relative" *ngFor="let sel_rr of work_experience.company_roles_and_resp; let i= index">
+                        <input type="text" [name]="'formCompany_rr_name'+i"
+                               [value]="sel_rr.name"  disabled="disabled" class="margin-bootom-5">
+
+                        <div class="absulute-btn block-title-2 padding-0 border-none">
+                             <button  type="button"(click)="onRemoveRR(i)"> <i class="zmdi zmdi-delete"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="full-box relative" *ngIf="work_experience.company_roles_and_resp?.length <10">
+                        <input type="text" name="formCompany_new_rr"  [(ngModel)]="work_experience.temp_roles_resp" [ngModelOptions]="{standalone: true}"   placeholder="Roles and Responsibilities " >
+                        <div class="absulute-btn block-title-2 padding-0 border-none">
+                             <button type="button" (click)="onAddRR()"><i
+                                    class="zmdi zmdi-plus"></i> Add
+
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!work_experience.temp_roles_resp_valid" class="alert alert-danger alert-dismissible martop5" role="alert">
+                        Please enter a valid role or responsibility (minimum 5 characters)
+                    </div>
+                    <span class="txt font-12"> *10 is the maximum number of bullet points allowed</span>
+                    <div class="block-title-2 padding-0 border-none margin-top-10">
+                        <button type="button" (click)="onSaveWE(wrk_exp_index)">
+                            <i class="zmdi zmdi-floppy" ></i> Save
+                       </button>
+                        <button class="hidden"></button>
+                        <span class="span-button" (click)="onCancelWE(wrk_exp_index)">
+                          <i  class="zmdi zmdi-close"></i>
+                             Cancel
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class=" clearfix"></div>
+</form>

@@ -1,0 +1,87 @@
+
+<div class="desktop"> <!-- Desktop -->
+
+
+
+    <!---------- Work Experience Details Section ------------>
+    <work-block (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)" [display_mode]="'desktop'" [cachedProfile]="cachedProfile$"
+                [commonData]="commonData">
+
+    </work-block>
+
+
+    <!---------- Education Details Section ------------>
+
+    <edu-block (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)" [display_mode]="'desktop'" [cachedProfile]="cachedProfile$"
+               [commonData]="commonData">
+
+    </edu-block>
+
+
+    <!---------- Certificate Details Section ------------>
+    <cert-block (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)" [display_mode]="'desktop'" [cachedProfile]="cachedProfile$"
+                [commonData]="commonData">
+
+    </cert-block>
+
+</div>
+
+
+<div class="mobile"> <!-- mobile -->
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <div class="block bottom-gap">
+            <div class="dashboard-graph">
+
+                <div class="mobile">
+                    <div class="col-lg-3 col-md-3 col-sm-3 padding-none">
+                        <nav class="nav-sidebar">
+                            <ul class="nav tabs">
+                                <li class="active"><a href="#experience" data-toggle="tab">Experience</a></li>
+                                <li class=""><a href="#education" data-toggle="tab">Education</a></li>
+                                <li class=""><a href="#certificate" data-toggle="tab">Certificate</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                    <div class="padding-none tab-content">
+                        <!---------- Work Experience Details Section mobile ------------>
+                        <div class="tab-pane active text-style" id="experience">
+
+                            <work-block (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)" [display_mode]="'mobile'" [cachedProfile]="cachedProfile$"
+                                        [commonData]="commonData">
+
+                            </work-block>
+                        </div>
+
+                        <!---------- Education Details Section mobile ------------>
+                        <div class="tab-pane  text-style" id="education">
+
+                            <edu-block [display_mode]="'mobile'" [cachedProfile]="cachedProfile$"
+                                       [commonData]="commonData">
+
+                            </edu-block>
+                        </div>
+
+                        <div class="tab-pane text-style" id="certificate">
+                            <!---------- Certificate Details Section mobile ------------>
+
+                            <cert-block [display_mode]="'mobile'" [cachedProfile]="cachedProfile$"
+                                        [commonData]="commonData">
+
+                            </cert-block>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div> <!-- end mobile -->

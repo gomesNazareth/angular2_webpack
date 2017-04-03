@@ -1,0 +1,179 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<blog-topmenu [activeFlag]="'manage'"></blog-topmenu>
+
+
+<div role="tabpanel" class="tab-pane active" id="manage">
+    <div class="commen-container">
+        <div class="col-lg-12 blog-edit">
+
+            <!-- Edit Form -->
+
+            <div *ngIf="postSuccessFull" class="alert comen-alert">
+                <i class="zmdi zmdi-check-circle"></i>
+                Your Information Successfully changed.
+            </div>
+
+            <form [formGroup]="blogForm">
+                <div class="block bottom-gap">
+                    <div class=" col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+                        <spinner [visible]="(submitForm$ | async)"></spinner>
+
+                        <div class="block-title-2 border-none padding-15-5">
+                            <div class="col-lg-9 col-sm-9 col-xs-9 ">
+                                <h2 class="padding-top-10 text-left"> Edit Post </h2>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-3">
+                                <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/blog/manage']" routerLinkActive="active" >
+                                    <button>
+                                        <i class="zmdi zmdi-arrow-left hidden-lg visible-sm visible-xs"></i>
+                                        <span class="hidden-xs hidden-sm">Back</span>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        <div class="block-contant blog padding-10 padding-top-0">
+                            <div class="editor">
+                                <!-- Title -->
+                                <div>
+                                    <input type="text" name="title" placeholder="Title" formControlName="title">
+                                    <div  *ngIf="(blogForm.controls['title'].touched || !(pristineFlag$ | async)) && blogForm.controls['title'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                        Please enter a Title
+                                    </div>
+                                </div>
+                                <div>
+                                    <!--Blog Content-->
+                                    <div class="margin-top-10">
+                                        <textarea id="edit-blog-area" type="text" placeholder="Share your story..." name="description" formControlName="description"></textarea>
+
+                                        <div  *ngIf="(blogForm.controls['description'].touched || !(pristineFlag$ | async)) && blogForm.controls['description'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                            Please enter a Description (Minimum of 2,000 and maximum of 20,000 characters)
+                                        </div>
+                                    </div>
+                                    <span class="light font-12">Minimum of 2,000 and maximum of 20,000 characters.</span>
+                                </div>
+                                <div class="margin-top-10">
+                                    <h4>Tags</h4>
+                                </div>
+                                <div class="tag-secton">
+                                    <div class="blog-tags-se edit">
+                                        <div class="full-box-post">
+                                            <div  *ngIf="(blogForm.controls['tags'].touched || !(pristineFlag$ | async)) && blogForm.controls['tags'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                Please Add Tags
+                                            </div>
+                                            <div class="skill-title-post-body">
+                                                <div class="tag-new" *ngFor="let selCert of tagarry;let certIndex = index"  >
+
+                                                    <div class="txt"> {{selCert.name}} </div>
+                                                    <div class="close-tag" (click)="onRemoveElement(certIndex)">
+                                                        <i class="zmdi zmdi-close-circle"></i></div>
+                                                </div>
+                                                <div class="tag-new border-none">
+                                                    <auto-complete *ngIf="tagarry.length < 5" [excludeItems]="tagarry" [placeholder]="'Add Tags'" [selectOneEnter]="true" [resetOnSelect]="true" [recordType]="'Tag'" (changeRecords)="onAddElement($event)">
+                                                    </auto-complete>
+                                                </div>
+
+                                            </div>
+                                            <input type="hidden" formControlName="tags">
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                        <div class=" block-title-2 border-none padding-15-5">
+                            <div class="col-md-12">
+                                <h2> Upload Image</h2>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="block-contant padding-10 padding-top-0">
+                            <div class="row">
+                                <div class="blog-image"><i class="zmdi zmdi-image"></i></div>
+                                <div class="blog-txt">
+                                <p> Please choose an image that is at least <span class="navy">920 pixels wide.</span> File size should be less than 4MB.</p>
+
+                                    <input type="hidden" formControlName="avatar">
+                                </div>
+                            </div>
+                            <div  *ngIf="(blogForm.controls['avatar'].touched || !(pristineFlag$ | async)) && blogForm.controls['avatar'].errors"
+                                  class="alert alert-danger alert-dismissible" role="alert">
+                                Please upload an Image
+                            </div>
+                            <div class="row">
+                                <div *ngIf="(selectedImage$ | async)" class="edit-postimage">
+                                    <img [src]="(selectedImage$ | async)">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="block-footer padding-0 border-none margin-top-20" data-target=".blog-crop" data-toggle="modal">
+                                    <button><a class="browser"> Browse </a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding-10 cl-lg-12 col-md-12">
+                        <div class="block-footer padding-10">
+                            <button (click)="updateBlog()"> Update </button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup">
+    <div class="logout-pop">
+        <div class="file_upload_popup_close modal blog-crop" id="blog-crop"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body upload-dp">
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+
+                        <div>
+                            <h2>Blog Post Image</h2>
+                            <h4>We accept  <span class="dark">{{fileInfo.file_types}}.</span> Maximum Upload Size <span class="dark">{{fileInfo.size}} {{fileInfo.sizeUnit}}.</span> </h4>
+
+                            <div *ngIf=" (fileInfo.size * 1048576)  < tagetFile?.size"  class="alert alert-danger alert-dismissible" role="alert">
+                            File size too large!
+                            </div>
+
+                            <div *ngIf="tagetFile?.type && fileInfo.format_list.indexOf(tagetFile?.type) == -1" class="alert alert-danger alert-dismissible" role="alert">
+                                Invalid File Format
+                            </div>
+
+                            <div *ngIf="(selectImageDone$ | async)">
+                                <img-cropper  #cropper [image]="dataCrop" [settings]="cropperSettings"></img-cropper>
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                {{(tagetFile?.name)?tagetFile?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class='input-container'>
+                                    <input type="file" (change)="fileChange($event)" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg">
+                                </div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button (click)="selectImage()" data-dismiss="modal" type="button" class="btn postive"> Save </button>
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

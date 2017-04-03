@@ -1,0 +1,777 @@
+// Desktop
+@media (max-width: 1200px){
+
+    //Companies
+
+    .company{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .follow-following{ 
+            width:90%
+        }
+        .align{ 
+            text-align:right
+        }
+    }
+    .employers-details{
+
+         .employers-tab{
+            .block-contant{
+                .team{
+                    width: 100%;
+                    margin: 0px auto;
+                    margin: 5px 0px;
+                    .team-member{
+                        // height: 189px;
+                        .defult-team{
+                            line-height: 189px;
+                            height: 189px;
+                        } 
+                    }
+                }
+            }
+        }
+
+        .covr-size{ 
+            width: auto;
+            height: 100%;
+        }
+        .align-employer{ 
+            text-align: left;
+            margin-top:20px;
+
+            .company-following{ 
+                width:100%
+            }
+            .follow-following{ 
+                width:100%
+            }
+        }
+        .employers-information{
+            .requirement{
+                .req-1{ 
+                    width:20px;
+                }
+                .req-2{
+                    width:80%
+                }
+            }
+        }
+    }
+
+   .resume{
+ 
+        .cv-file{
+    
+        .follow-following{ 
+            margin-top:0px; 
+        }
+            .cv-lft{ 
+                width:100%;
+                padding-bottom: 10px;
+             }
+            .cv-rgt{ 
+                float:right; 
+                width:100% ;
+                .follow-following{ 
+                    width:100%;
+                    display:block;
+               
+                 }
+            }
+        }
+    }
+
+        //Following Button
+    .company-following.follow-following button.following .msg-following{
+        padding: 0px 20px;
+    }
+    .company-following.follow-following button .msg-follow{
+        padding: 0px 20px;    
+    }
+
+
+    .min-474{
+        .item{
+            height:299px!important;
+        }
+        .active > div{
+            display: inherit;
+        }
+    }
+    .employers-details .employers-tab #our-culture .thumbnail img{
+        width: auto!important;
+        height: 144px!important;
+    }
+
+    .employers-details .employers-tab #our-culture .carousel-inner > .item > img,{
+        width: 100%;
+        height: auto;
+    }
+
+    .team-box-small{
+        width: 25%;
+        float: left;
+    }
+   
+   
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 1200px) and (max-width: 1435px){
+
+    .employers-details .employers-tab #our-culture .thumbnail img{
+        width: auto!important;
+        height: 144px!important;
+    }
+
+    .team-description{
+        height: 80px;
+    }
+
+
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 990px) and (max-width: 1024px){
+  .display{
+    .vedio-box button{
+      width: 48%!important 
+    }
+  }
+
+   #all-companies{
+      .company-following{ 
+        width:32%
+      }
+      .follow-following{ 
+        width:32%
+      }
+   } 
+
+  .job-seekers,.home-Employers{
+    .col-lg-3{ 
+      border-right:solid 1px $grey-light;
+      border-bottom:none; 
+    }
+  }
+  .bdr-rgt-none{ 
+    border-right:solid 1px $grey-light!important;
+  }
+
+  .min-prf{
+    min-height: auto !important;
+    border-bottom: none!important;
+  }
+  
+    .team-box-small{
+        width: 25%;
+        float: left;
+    }
+
+
+    .employers-details .employers-tab #our-jobs .no-application{
+        border:none!important;
+        margin-top: 5px;
+    }
+
+
+  
+
+
+}
+
+@media (min-width: 767px) and (max-width: 768px){
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .col-lg-4{
+                    line-height: 20px;
+                    padding-top:10px;
+                }
+                .col-lg-2{
+                    line-height: 20px;
+                    padding-top:10px;
+                }
+                .job-sec{
+                    span{
+                        padding-top:0px;
+                    }
+                }
+            }
+        }
+    }
+    .bt-company-align{
+        float: left;
+    }
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+
+    //Companies
+    #all-companies{
+        .filter-jobs{
+            .featured-box{
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .company-following{ 
+            width:32.5%
+        }
+        .follow-following{ 
+            width:32.5%
+        }
+        .align{
+            text-align: left;
+        }
+    }
+    #followed-companies{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .company-following{ 
+            width:49%
+        }
+        .follow-following{ 
+            width:49%
+        }
+        .align{ 
+            text-align:left;
+            margin-top:-20px; 
+        }
+    }
+    .company{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .company-following{
+            width:49%
+        }
+        .follow-following{
+            width:48.5%
+        }
+        // .align{
+        //     text-align:left;
+        //     margin-left: 10px;
+        //     margin-right:0px; 
+        // }
+    }
+    .employers-details{
+        .employers-tab{
+            .block-contant{
+                .team{
+                    width: 100%;
+                    margin: 0px auto;
+                    .team-member{
+                        // height: 170px;
+                        .defult-team{
+                            line-height: 170px;
+                            height: 170px;
+                        } 
+                    }
+                    .team-description{
+                        min-height: 110px;
+                    }
+                }
+            }
+        }
+        .employers-logo{ 
+            width:132px;
+            height:132px;
+            margin-top:-133px;
+            span{
+                line-height: 132px;
+            }
+        }
+        .cover-back{
+            top:10px
+        }
+        .cover-photo{
+            height:200px
+        }
+        .employers-detail{ 
+            margin-left:0px
+        }
+        
+        .display{
+            .social-section{ margin-bottom:0px;  }
+            .social-media{ text-align:center;
+                             margin-top:0px}
+            } 
+ 
+        .align-employer{
+            margin-top: 10px;
+            text-align: left;
+            .company-following{ 
+                width:35%
+            }
+            .follow-following{ 
+                width:35%
+            }
+        }
+
+        
+        .employers-tab{
+            #our-jobs{
+                .border-our-jobs{ 
+                    border-top:solid 1px $grey-border;
+                    margin-top:-1px
+                }
+                .light{ 
+                    font-size:$font-12
+                }
+                .no-application{
+                    font-size:$font-12;
+                    border:none;
+                }
+                .open-jobs{
+                    font-size:$font-12
+                }
+                .close-jobs{
+                    font-size:$font-12
+                }
+            }
+        }
+
+
+
+
+    }
+    .side-advt{
+        width: 50%;
+        float: left;
+        padding-right: 20px;
+    }
+
+    .blank-logo-employer{
+        line-height: 132px!important;
+    }
+
+     .employers-details .employers-tab #our-culture .carousel-inner > .item > img,{
+        width: 100%;
+        height: auto;
+    }
+
+    .employers-details{
+        .employers-information{
+            .col-lg-4{
+                min-height: 144px
+            }
+        }
+    }
+
+    .team-box-small{
+        width: 33.33%;
+        float: left;
+    }
+
+    .employers-tab{
+        .mobile-job-application .nav-tabs > li{ 
+            font-size: $font-14;
+            .hide-feedback{
+                display: none;
+            }
+        }
+    }
+
+    .employers-details .employers-tab #our-jobs .no-application{
+        border:none!important;
+        margin-top: 5px;
+    }
+
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .col-lg-4{
+                    line-height: 20px;
+                    padding-top:10px;
+                }
+                .col-lg-2{
+                    line-height: 20px;
+                    padding-top:10px;
+                }
+                .job-sec{
+                    span{
+                        padding-top:0px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bt-company-align{
+        float: left;
+        margin-right: 5px;
+        margin-left: 0px;
+    }
+    
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+
+    #all-companies {
+        .follow-following{
+            width: 32.5%;
+        }
+    }
+
+    #all-companies{
+        .align{
+            text-align: left;
+            margin-top: -20px;
+        }
+    }
+
+    .employers-details{
+        .employers-logo{
+            width: 102px;
+            height: 102px;
+            margin: 0px auto;
+            margin-top: -100px;
+            float: none;
+        }
+    }
+
+    .employers-details{
+        .employers-detail{
+            width: 100%;
+            margin-left: 0px;
+            text-align: center;
+        }
+    }
+    .employers-details{
+        .employers-logo{
+            span{
+                line-height: 102px;
+            }
+        }
+    }
+
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .job-mobbrdr{
+                    border-top: solid 1px #f1f1f1;
+                    border-right: solid 1px #f1f1f1;
+                    text-align: center;
+                    line-height: 26px;
+                    padding: 10px 0px;
+                    right: -1px;
+                }
+                .col-lg-2{
+                    border: none;
+                    min-height: auto;
+                    line-height: 40px;
+                    text-align: left;
+                }
+                .job-mobbrdr{
+                    border-top: 1px solid #f1f1f1;
+                    border-right: 1px solid #f1f1f1;
+                    text-align: center;
+                    line-height: 26px;
+                    padding: 10px 0;
+                    right: -1px;
+                    min-height: 70px;
+                }
+            }
+        }
+    }
+
+    #our-culture{
+        .block-contant{
+            padding:0px;
+        }
+        .padding-0-20{
+            padding:0px 10px;
+        }
+    }
+
+    .blank-logo-employer{
+        line-height: 102px!important;
+    }
+
+     .employers-details .employers-tab #our-culture .carousel-inner > .item > img,{
+        width: 100%;
+        height: auto;
+    }
+
+    .team-box-small{
+        width: 50%;
+        float: left;
+    }
+
+    .employers-details .block .block-title-2 h2{
+        line-height: 20px;
+        margin-top: 0px;
+        padding-top: 10px;
+    }
+
+    .social-section{
+        .social-media{
+            span{
+                padding-right:0px;
+            }
+        }
+    }
+
+    .employers-detail{
+        .social-section{
+            margin-bottom: 0px;
+        }
+    }
+
+    .employers-tab{
+        .mobile-job-application .nav-tabs > li{ 
+            font-size: $font-14;
+            .hide-feedback{
+                display: none;
+            }
+            .center-line{
+                    font-weight:normal!important; 
+                    font-family:arial;
+                    color: #7ba1b2;  
+                }
+        }
+    }
+
+    .employers-details .employers-tab #our-jobs .no-application{
+        border:none!important;
+        margin-top: 0px;
+    }
+
+    #all-companies{
+        .feturd-compny{
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+            }
+        }
+    }
+
+    #invite-friends{
+        .padding-15{
+            padding:0px 5px!important;
+            margin-top: 117px;
+        }
+    }
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .light{
+                    color: $navy-dark;
+                    font-family: $font-medium;
+                }
+            }
+        }
+    }
+    .bt-company-align{
+        float: left;
+        margin-right: 5px;
+        margin-left: 0px;
+    }
+    .employers-details{
+        .employers-detail{
+            padding-left:0px!important;
+            .display{
+                margin-top: 0px;
+            }
+        }
+    }
+   
+
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+
+  #all-companies{
+    .follow-following{
+        width: 32%;
+        font-size: $font-14;
+    }
+    .company-following{
+        width: 32%;
+        font-size: $font-14;
+    }
+  }
+  .hide-feedback{
+        display: none;
+  }
+  #all-companies{
+    .align{
+        text-align: left;
+    }
+  }
+  .employers-details{
+    .employers-logo{
+        span{
+            line-height: 102px;
+        }
+    }
+    .social-media{
+        .social-section{
+            span{
+                padding-right: 0px;
+            }   
+        }
+    }
+  }
+
+  .employers-details{
+    .employers-tab{
+        #our-jobs{
+            .no-application{
+                border: none;
+                width: auto;
+                margin-top: auto;
+                line-height: 26px;
+                margin-top: 5px;
+            }
+        }
+    }
+  }
+
+  .employers-details{
+        .employers-tab{
+            .block-contant{
+                .team{
+                    width: 100%;
+                    .navy-dark{
+                        font-size:$font-14!important;
+                    }
+                    .light{
+                        font-size:$font-14!important;
+                    } 
+                    .padding-20{
+                        padding:10px!important;
+                    }
+
+                    .team-member{
+                        // height: 100px;
+                        background:#fff;
+                        .defult-team{
+                            line-height: 170px;
+                            height: auto;
+                        }
+                        img{
+                            width: auto;
+                            height: 100%;
+                        } 
+                    }
+                }
+            }
+        }
+    }
+
+    .feturd-compny-dtls{
+        .cmpny-txt{
+            text-align:left;
+        }
+   
+    }
+
+    .compny-percentage{
+        .feturd-compny-dtls{ 
+            width: 80%!important; 
+        }
+
+    }
+
+    .blank-logo-employer{
+        line-height: 102px!important;
+    }
+
+    .employers-details .employers-tab #our-culture .carousel-inner > .item > img,{
+        width: 100%;
+        height: 100%;
+    }
+
+    .team-box-small{
+        width: 50%;
+        float: left;
+    }
+    .social-section{
+        .social-media{
+            span{
+                padding-right:0px;
+            }
+        }
+    }
+
+    .employers-details .block .block-title-2 h2{
+        line-height: 20px;
+        margin-top: 0px;
+        padding-top: 10px;
+    }
+
+    .employers-detail{
+        .social-section{
+            margin-bottom: 0px;
+        }
+    }
+
+    #all-companies{
+        .feturd-compny{
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+            }
+        }
+    }
+
+    #invite-friends{
+        .padding-15{
+            padding:0px 5px!important;
+        }
+    }
+    .min-474{
+        .item{
+            height:245px!important;
+        }
+    }
+    .employers-details{
+        .employers-tab{
+            #our-jobs{
+                .light{
+                    color: $navy-dark;
+                    font-family: $font-medium;
+                }
+                .center-line{
+                    font-weight:normal!important; 
+                    font-family:arial;
+                    color: #7ba1b2;  
+                }
+            }
+        }
+    }
+    .bt-company-align{
+        float: left;
+        margin-right: 5px;
+        margin-left: 0px;
+    }
+    .employers-details{
+        .employers-detail{
+            padding-left:0px!important;
+            .display{
+                margin-top: 0px;
+            }
+        }
+    }
+
+}

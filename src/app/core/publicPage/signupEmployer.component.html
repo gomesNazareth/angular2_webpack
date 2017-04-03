@@ -1,0 +1,906 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+
+<!--Desktop sign up-->
+<div class="slid-frm hidden-sm hidden-xs" *ngIf="(current_step$ | async) != 4 && (current_step$ | async) != 5">
+    <div class="slid-container">
+        <div class="slid-head">
+            <h1>Technology at the Heart of Online Recruitment</h1>
+            <h2>BLOOVO.COM Offers a Variety of HR Solutions Based on Your Needs</h2>
+        </div>
+        <div class="slid-section">
+            <div class="slid-left">
+                <div class="logo-reg">
+                    <img src="images/logo3.svg">
+                </div>
+                <div class="reg-contnr">
+                    <div class="reg-step">
+                        <div class="step-lft">
+                            <i class="zmdi zmdi-city-alt"></i>
+                        </div>
+                        <div class="step-txt">Company Information
+                            <span><i class="zmdi zmdi-check"></i></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="reg-space"></div>
+
+                    <div class="reg-step opacity" [hidden]="(current_step$ | async) > 1">
+                        <div class="step-lft"><i class="zmdi zmdi-lock-open"></i></div>
+
+                        <div class="step-txt">Login Information </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="reg-step" [hidden]="(current_step$ | async) == 1">
+                        <div class="step-lft">
+                            <i class="zmdi zmdi-lock-open"></i>
+                        </div>
+                        <div class="step-txt">Login Information
+                            <span><i class="zmdi zmdi-check"></i></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="reg-space"></div>
+                    <div class="reg-step" [hidden]="(current_step$ | async) < 3">
+                        <div class="step-lft">
+                            <i class="zmdi zmdi-picture-in-picture"></i>
+                        </div>
+                        <div class="step-txt">Branding Image
+                            <span>
+									<i class="zmdi zmdi-check"></i>
+								</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="reg-step opacity" [hidden]="(current_step$ | async) == 3">
+                        <div class="step-lft">
+                            <i class="zmdi zmdi-picture-in-picture"></i>
+                        </div>
+                        <div class="step-txt">Branding Image</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form [formGroup]="signupFirstForm" [hidden]="(current_step$ | async) != 1">
+                <div class="slid-right">
+                    <div class="reg-full-box">
+                        <div class=" col-lg-12 col-md-12">
+                            <h6>Company Name</h6>
+                            <input type="text" placeholder="e.g. BLOOVO Middle East FZ LLC" formControlName="company_name">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupFirstForm.controls['company_name'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['company_name'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Company Name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Country</h3>
+                            <div class="home-full">
+                                <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectCountry($event)"  [selectedValue]="country_id"  [placeholder]="'e.g. United Arab Emirates'" [selectList]="(commonData$ | async)?.countries">
+                                </bootstrap-selectbox>
+
+                                <!-- just hide the section its no needed in design  -->
+                                <input  type="text" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="hide" >
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>City</h3>
+                            <input type="text" *ngIf="!country_id" placeholder="Select a City">
+                            <div *ngFor="let sel_country of (commonData$ | async)?.countries">
+                                <auto-comp1 *ngIf="sel_country.id == country_id"
+                                            [countryId]="sel_country.id"
+                                            [current_city]="cityObj"
+                                            [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                            (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;">
+                                </auto-comp1>
+                            </div>
+                            <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <!-- alert country -->
+                            <!-- just hide the section its no needed in design  -->
+                            <div  *ngIf="(signupFirstForm.controls['country_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['country_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert" >
+                                Please select a Country
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                        <!-- Alert City-->
+                        <div *ngIf="(signupFirstForm.controls['city_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['city_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please select a City
+                        </div>
+                        </div>
+
+                    </div>
+
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Sector</h3>
+                            <bootstrap-selectbox  (selectedId)="sector_id =$event.id"  [selectedValue]="sector_id"  [placeholder]="'e.g. Private / Public'" [selectList]="(sectors$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="sector_id"  [ngModel]="sector_id" formControlName="sector_id" class="hide" >
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+
+                            <h3>Establishment Date</h3>
+
+                            <div class="relative-input">
+                                <input type="hidden" [ngModel]="establishmentDate"   placeholder="From" formControlName="establishment_date">
+                                <datePicker-block (emitSelDate)="setDate($event)"
+                                                  [maxDate]="maxDate"
+                                                  [dp_placeholder]="'Date'"
+                                                  [sel_id]="'4'"
+                                                  [dp_value]="establishmentDate">
+
+                                </datePicker-block>
+                                <div class="calandy-bt block-title-2 padding-0 border-none color-gray">
+                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert -->
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <div *ngIf="(signupFirstForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible martop5 " role="alert">
+                                Please select a Sector
+                            </div>
+                        </div>
+                         
+                        <div class=" col-lg-6 col-md-6">
+                             <div *ngIf="(signupFirstForm.controls['establishment_date'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['establishment_date'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please enter the Establishment Date
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Type</h3>
+
+                            <bootstrap-selectbox  (selectedId)="type_id =$event.id"  [selectedValue]="type_id"  [placeholder]="'Select a Type'" [selectList]="(typeList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="type_id"  [ngModel]="type_id" formControlName="type_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['type_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['type_id'].errors"  class="alert alert-danger alert-dismissible martop5 " role="alert">
+                                Please select the Company's Type
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Classification</h3>
+                            <bootstrap-selectbox  (selectedId)="classification_id =$event.id"  [selectedValue]="classification_id"  [placeholder]="'e.g. Free Zone Company'" [selectList]="(classificationsList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="classification_id" [ngModel]="classification_id" formControlName="classification_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['classification_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['classification_id'].errors"  class="alert alert-danger alert-dismissible martop5 " role="alert">
+                                Please select a Classification
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reg-full-box">
+                        <div class="col-lg-6 col-md-6">
+                            <h3>Number of Employees</h3>
+
+                            <bootstrap-selectbox  (selectedId)="size_id =$event.id"  [selectedValue]="size_id"  [placeholder]="'Select No. of Employees'" [selectList]="(sizesList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="size_id" [ngModel]="size_id" formControlName="size_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['size_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['size_id'].errors"  class="alert alert-danger alert-dismissible martop5 " role="alert">
+                                Please select No. of Employees
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Website</h3>
+                            <input type="text" placeholder="Company Website URL" formControlName="company_website">
+                        </div>
+                    </div>
+                    <div class="reg-full-box reg-btn">
+                        <div class="col-lg-12 col-md-12">
+                            <a (click)="goToNextStep()"> <button class="nxt"> Next </button></a>
+                             <button class="bck" (click)="onBack()"> Back </button>
+                        </div>
+                    </div>
+                </div>
+                <div class=" clearfix"></div>
+            </form>
+
+            <form [formGroup]="signupSecondForm" [hidden]="(current_step$ | async) != 2">
+                <div class="slid-right pad-top-25">
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Contact Person Name</h3>
+                            <input type="text" placeholder="Contact Person Name" formControlName="contact_person">
+                        </div>
+                        <div class=" col-lg-6 col-md-6 ">
+                            <h3>Phone Number</h3>
+                            <jquery-tel [placeholder]="'Enter Your Phono No'"  (getProcessedPhoneNo)="signupSecondForm.controls['phone'].setValue($event.phone_no)"  [match]="'phone_no'" [phone_no]="signupSecondForm.controls['phone'].value" >
+
+                            </jquery-tel>
+                            <input type="hidden"  formControlName="phone">
+                        </div>
+                        <!-- alert -->
+                        <div class="col-lg-6 col-md-6">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['contact_person'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['contact_person'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Contact Person Name
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['phone'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['phone'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Contact Person Phone Number
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Address Line 1</h3>
+                            <input type="text" placeholder="e.g. Al Wafa Building" formControlName="address_line1">
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Address Line 2</h3>
+                            <input type="text" placeholder="Floor 2" formControlName="address_line2">
+                        </div>
+
+                        <!-- alert -->
+                        <div class="col-xs-12">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['address_line1'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['address_line1'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Address Line 1
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PO.BOX Number and feilds -->
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>P. O. Box</h3>
+                            <input type="text" placeholder="P. O. Box Number" formControlName="po_box">
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Company Email</h3>
+                            <input type="text" placeholder="e.g. company@bloovo.com" formControlName="company_email">
+                        </div>
+
+                        <!-- alert -->
+                        <div class="col-xs-12">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['company_email'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['company_email'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter the Company's Email
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="reg-full-box">
+                        <div class=" col-lg-12 col-md-12">
+                            <h3>Login Email
+                                <span class="italic">(This is the email address that you will use to login to your account)</span>
+                            </h3>
+                            <input type="text" placeholder="e.g. loging@bloovo.com" formControlName="email">
+
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['email'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['email'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Login Email
+                            </div>
+                            <div  *ngIf="(signupSecondForm.controls['email'].touched || !(pristineFlag$ | async)) && takenEmailError"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Sorry, this Login Email is already taken
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Password</h3>
+                            <input type="password" placeholder="********" formControlName="password">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3>Confirm Password</h3>
+                            <input type="password" placeholder="********" formControlName="confirm_password">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['password'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter a valid Password
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['confirm_password'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['confirm_password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please Confirm your Password
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box reg-capcha">
+                        <div class="capcha">
+                            <div class="g-recaptcha" data-sitekey="6Lc_-CgTAAAAAD2PyduTGBWfi1zmO7hP4sdMTUMa"></div>
+                        </div>
+                        <div class="reg-btn-emp mg-top-reg2">
+                            <a (click)="goToBackStep()">
+                                <button class="bck"> Back </button>
+                            </a>
+                            <a (click)="goToNextStep()">
+                                <button class="nxt"> Next </button>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+
+            <form [formGroup]="signupThirdForm" [hidden]="(current_step$ | async) != 3">
+                <div class="slid-right pad-top-25">
+                    <div class="reg-full-box">
+                        <div class="col-lg-12">
+                            <div class="emp-cover-img">
+                                <img src="images/Screen3-employer.png">
+                            </div>
+                            <div class="upload">
+                                <div class="upload-left" *ngIf="!(avatarImage$ | async)">
+                                    <i class="zmdi zmdi-city-alt"></i>
+                                </div>
+                                <div class="upload-left" *ngIf="(avatarImage$ | async)">
+                                    <img [src]="(avatarImage$ | async)">
+                                </div>
+                                <div class="upload-right">
+                                    <h5>Upload Company Profile Picture
+                                        <span class="italic">(172 x 172)</span>
+                                    </h5>
+                                    <a href="#" data-target="#company-avatar" data-toggle="modal">
+                                        <button class="upld-btn"> Upload </button>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="upload border-none">
+                                <div class="upload-left" *ngIf="!(coverImage$ | async)">
+                                    <i class="icon-cover"></i>
+                                </div>
+                                <div class="upload-left" *ngIf="(coverImage$ | async)">
+                                    <div class="banner-up"><img [src]="(coverImage$ | async)"></div>
+                                    <div class="box-frame"><span class="icon-upload-frame"></span></div>
+                                </div>
+                                <div class="upload-right">
+                                    <h5>Upload Company Cover Picture
+                                        <span class="italic">(1440 x 300)</span>
+                                    </h5>
+                                    <a href="#" data-target="#company-cover-uploader" data-toggle="modal">
+                                        <button class="upld-btn"> Upload </button>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="reg-full-box reg-btn margin-top-30">
+                        <div class="col-lg-12 col-md-12">
+                            <a (click)="signup_employer_with_image()">
+                                <button class="nxt"> Done </button>
+                            </a>
+                             <a (click)="signup_employer()">
+                                <button class="bck"> Upload Later </button>
+                            </a>
+                            <a (click)="goToBackStep()">
+                                <button class="bck"> Back </button>
+                            </a>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class=" clearfix"></div>
+                <!-- Privacypolycy -->
+                <div class="pv-policy">By Signing Up and clicking ‘Done’, you agree to BLOOVO’s <a [routerLink]="'/home/terms'">Terms & Condtions</a> and <a [routerLink]="'/home/policy'">Privacy Policy.</a></div>
+            </form>
+            <div class=" clearfix"></div>
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+<div class="slid-frm" *ngIf="(current_step$ | async) == 4">
+    <div class="loading-section">
+        <div class="load"><img src="images/loading.gif"></div>
+        <h4> Thank You for Creating your BLOOVO.COM Employer Account </h4>
+        <h3>Your account will be validated & activated within 2 hours, post which<br>
+            you can access your Employer Profile and start using our website</h3>
+        <h2> Happy Recruiting! </h2>
+    </div>
+</div>
+
+<div class="slid-frm" *ngIf="(current_step$ | async) == 5">
+    <div class="loading-section wrong-icon-e">
+        <i class="icon-wrong"></i>
+        <h4> Opps! Something went wrong!</h4>
+        <h3>{{err_msg}}</h3>
+        <button (click)="goToStep(1)">Please Try Again.</button>
+    </div>
+</div>
+
+
+
+<!-- <div class="gray-bg hidden-md hidden-lg"></div> -->
+<div class="blue-bg"></div>
+
+<div class="popup">
+    <div class="upload-pop">
+        <div class="file_upload_popup_close modal company-avatar" id="company-avatar"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body upload-dp">
+                        <h2>Company Logo</h2>
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+
+                        <div>
+                            
+                            <h4>We accept  <span class="dark">{{fileInfo.file_types}}</span>. Maximum Upload Size <span class="dark">{{fileInfo.size}} {{fileInfo.sizeUnit}}</span>.</h4>
+
+                            <div *ngIf=" (fileInfo.size * 1048576)  < tagetFileAvatar?.size"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                File size is too large!
+                            </div>
+
+                            <div *ngIf="tagetFileAvatar?.type && fileInfo.format_list.indexOf(tagetFileAvatar?.type) == -1" class="alert alert-danger alert-dismissible" role="alert">
+                                File type is not supported!
+                            </div>
+
+                            <div *ngIf="(selectImageDone$ | async)">
+                                <img-cropper  #cropperAvatar [image]="dataCropAvatar" [settings]="cropperSettings"></img-cropper>
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                    {{(tagetFileAvatar?.name)?tagetFileAvatar?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class='input-container'>
+                                    <input type="file" (change)="fileChange($event, 'avatar')" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg">
+                                </div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button (click)="selectImage('avatar')" data-dismiss="modal" type="button" class="btn postive"> Save </button>
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup">
+    <div class="upload-pop">
+        <div class="file_upload_popup_close modal company-cover-uploader" id="company-cover-uploader"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body upload-dp">
+                        <h2>Company Cover Picture</h2>
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+
+                        <div>
+                            <h4>We accept  <span class="dark">{{fileInfo.file_types}}</span>. Maximum Upload Size <span class="dark">{{fileInfo.size}} {{fileInfo.sizeUnit}}</span>.</h4>
+
+                             <div *ngIf=" (fileInfo.size * 1048576)  < tagetFileCover?.size"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                File size is too large!
+                            </div>
+
+                            <div *ngIf="tagetFileCover?.type && fileInfo.format_list.indexOf(tagetFileCover?.type) == -1" class="alert alert-danger alert-dismissible martop5" role="alert">
+                                File type is not supported!
+                            </div>
+                            
+                            <div *ngIf="(selectImageDone2$ | async)">
+                                <img-cropper  #cropperCover [image]="dataCropCover" [settings]="cropperSettings2"></img-cropper>
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                    {{(tagetFileCover?.name)?tagetFileCover?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class='input-container'>
+                                    <!--<input type="file" (change)="selectCoverImage($event)" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg">-->
+                                    <input type="file" (change)="fileChange($event, 'cover')" placeholder="Upload file" class="browser" accept=".png,.jpg,.jpeg">
+                                </div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button (click)="selectImage('cover')" data-dismiss="modal" type="button" class="btn postive"> Save </button>
+                                <!--<button (click)="confirmCover()" data-dismiss="modal" type="button" class="btn postive"> Save </button>-->
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Mobile sign up-->
+<div class="slid-mob hidden-md hidden-lg" *ngIf="(current_step$ | async) != 4 && (current_step$ | async) != 5">
+
+    <div class="head col-lg-12">
+        <h2>Build Your Team with the Aid of Algorithms</h2>
+        <h3>With BLOOVO.COM Talent Acquistion is Enjoyable</h3>
+    </div>
+    <div class="contant">
+        <div class="contant-container">
+            <div class="sign-nav">
+                <div class="steps active">
+                    <div class="step-tick">
+                        <i class="zmdi zmdi-check"></i>
+                    </div>
+                    <div class="round active">
+                        <i class="zmdi zmdi-city-alt"></i>
+                    </div>
+                </div>
+                <div class="steps-line"></div>
+
+
+                <div class="steps opacity" [hidden]="(current_step$ | async) > 1">
+                    <div class="step-tick"></div>
+                    <div class="round">
+                        <i class="zmdi zmdi-lock-open"></i>
+                    </div>
+                </div>
+
+                <div class="steps active" [hidden]="(current_step$ | async) == 1">
+                    <div class="step-tick"><i class="zmdi zmdi-check"></i></div>
+                    <div class="round active"><i class="zmdi zmdi-lock-open"></i></div>
+                </div>
+
+                <div class="steps-line opacity"></div>
+
+
+                <div class="steps opacity" [hidden]="(current_step$ | async) == 3">
+                    <div class="step-tick"></div>
+                    <div class="round">
+                        <i class="zmdi zmdi-picture-in-picture"></i>
+                    </div>
+                </div>
+
+                <div class="steps active" [hidden]="(current_step$ | async) < 3">
+                    <div class="step-tick"><i class="zmdi zmdi-check"></i></div>
+                    <div class="round active"><i class="zmdi zmdi-picture-in-picture"></i></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="sign-frm">
+                <form [formGroup]="signupFirstForm" [hidden]="(current_step$ | async) != 1">
+                    <div class="col-sm-12 col-xs-12 text-center">
+                        <h3>Company Information</h3>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Company Name</h4>
+                            <input type="text" placeholder="e.g. BLOOVO Middle East FZ LLC" formControlName="company_name">
+                            <!-- Alert -->
+                            <div  *ngIf="(signupFirstForm.controls['company_name'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['company_name'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Company Name
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Country</h4>
+                            <div class="home-full">
+                                <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectCountry($event)"  [selectedValue]="country_id"  [placeholder]="'e.g. United Arab Emirates'" [selectList]="(commonData$ | async)?.countries">
+                                </bootstrap-selectbox>
+
+                                <!-- just hide the section its no needed in design  -->
+                                <input  type="text" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="hide" >
+                            </div>
+
+
+                            <div  *ngIf="(signupFirstForm.controls['country_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['country_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select a Country
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>City</h4>
+                            <input type="text" *ngIf="!country_id" placeholder="Select a City">
+                            <div *ngFor="let sel_country of (commonData$ | async)?.countries">
+                                <auto-comp1 *ngIf="sel_country.id == country_id"
+                                            [countryId]="sel_country.id"
+                                            [current_city]="cityObj"
+                                            [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                            (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;">
+                                </auto-comp1>
+                            </div>
+                            <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+
+
+                            <div *ngIf="(signupFirstForm.controls['city_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['city_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select a City
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Sector</h4>
+                            <bootstrap-selectbox  (selectedId)="sector_id =$event.id"  [selectedValue]="sector_id"  [placeholder]="'e.g. Private / Public'" [selectList]="(sectors$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="sector_id"  [ngModel]="sector_id" formControlName="sector_id" class="hide" >
+
+                            <div *ngIf="(signupFirstForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select a Sector
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Establishment Date</h4>
+                            <div class="relative-input">
+                                <input type="hidden" [ngModel]="establishmentDate"   placeholder="From" formControlName="establishment_date">
+                                <datePicker-block (emitSelDate)="setDate($event)" [dp_placeholder]="'Date'"  [sel_id]="'5'" [dp_value]="establishmentDate"></datePicker-block>
+                                <div class="calandy-bt block-title-2 padding-0 border-none color-gray">
+                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="(signupFirstForm.controls['establishment_date'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['establishment_date'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter the Establishment Date
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Type</h4>
+
+                            <bootstrap-selectbox  (selectedId)="type_id =$event.id"  [selectedValue]="type_id"  [placeholder]="'e.g. Private / Public'" [selectList]="(typeList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="type_id"  [ngModel]="type_id" formControlName="type_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['type_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['type_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select the Company's Type
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Classification</h4>
+                            <bootstrap-selectbox  (selectedId)="classification_id =$event.id"  [selectedValue]="classification_id"  [placeholder]="'e.g. Free Zone Company'" [selectList]="(classificationsList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="classification_id" [ngModel]="classification_id" formControlName="classification_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['classification_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['classification_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select a Classification
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Number of Employees</h4>
+
+                            <bootstrap-selectbox  (selectedId)="size_id =$event.id"  [selectedValue]="size_id"  [placeholder]="'100 - 200'" [selectList]="(sizesList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- Hide these area -->
+                            <input type="text" name="size_id" [ngModel]="size_id" formControlName="size_id" class="hide">
+                            <div *ngIf="(signupFirstForm.controls['size_id'].touched || !(pristineFlag$ | async)) && signupFirstForm.controls['size_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select No. of Employees
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-12 col-xs-12">
+                            <h4>Website</h4>
+                            <input type="text" placeholder="Company Website URL" formControlName="company_website">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12  mob-reg-btn">
+                        <a (click)="goToNextStep()">
+                            <button class="nxt wid-100">Next</button>
+                        </a>
+                        <button class="bck" (click)="onBack()"> Back </button>
+                    </div>
+                    <div class=" clearfix"></div>
+                </form>
+
+
+                <form [formGroup]="signupSecondForm" [hidden]="(current_step$ | async) != 2">
+
+                    <div class="col-sm-12 col-xs-12 text-center">
+                        <h3>Login Information</h3>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Contact Person Name</h4>
+                            <input type="text" placeholder="Contact Person Name" formControlName="contact_person">
+
+
+                            <div  *ngIf="(signupSecondForm.controls['contact_person'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['contact_person'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Contact Person Name
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Phone</h4>
+                            <jquery-tel [placeholder]="'Enter Your Phono No'"
+                                        (getProcessedPhoneNo)="signupSecondForm.controls['phone'].setValue($event.phone_no)"
+                                        [match]="'phone_no'"
+                                        [phone_no]="signupSecondForm.controls['phone'].value" >
+
+                            </jquery-tel>
+                            <input type="hidden"  formControlName="phone">
+
+
+                            <div  *ngIf="(signupSecondForm.controls['phone'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['phone'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Contact Person Phone Number
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Address Line 1</h4>
+                            <input type="text" placeholder="e.g. Al Wafa Building" formControlName="address_line1">
+
+                            <div  *ngIf="(signupSecondForm.controls['address_line1'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['address_line1'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Address Line 1
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Address Line 2</h4>
+                            <input type="text" placeholder="Floor 2" formControlName="address_line2">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>P. O. Box</h4>
+                            <input type="text" placeholder="P. O. Box Number" formControlName="po_box">
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Email</h4>
+                            <input type="text" placeholder="e.g. company@bloovo.com" formControlName="company_email">
+
+                            <div  *ngIf="(signupSecondForm.controls['company_email'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['company_email'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter the Company's Email
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-12 col-xs-12">
+                            <h4>Login Email</h4>
+                            <input type="text" placeholder="e.g. loging@bloovo.com" formControlName="email">
+
+                            <!-- Alert -->
+                            <div  *ngIf="(signupSecondForm.controls['email'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['email'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Login Email
+                            </div>
+                            <div  *ngIf="(signupSecondForm.controls['email'].touched || !(pristineFlag$ | async)) && takenEmailError"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Sorry, this Login Email is already taken
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Password</h4>
+                            <input type="password" placeholder="********" formControlName="password">
+
+                            <div  *ngIf="(signupSecondForm.controls['password'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter a valid Password
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Confirm Password</h4>
+                            <input type="password" placeholder="********" formControlName="confirm_password">
+
+                            <div  *ngIf="(signupSecondForm.controls['confirm_password'].touched || !(pristineFlag$ | async)) && signupSecondForm.controls['confirm_password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please Confirm your Password
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 mob-reg-btn">
+                        <a (click)="goToBackStep()">
+                            <button class="bck wid-50"> Back </button>
+                        </a>
+                        <a (click)="goToNextStep()">
+                            <button class="nxt wid-50">Next</button>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+
+
+                <form [formGroup]="signupThirdForm" [hidden]="(current_step$ | async) != 3">
+                    <!--Mobile sign up-->
+                    <div class="main-text">
+                        <h3>Brand Information</h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <div class="col-sm-6 col-xs-12 col-sm-offset-3 ">
+                                <div class="emp-cover-img">
+                                    <img src="images/Screen3-employer.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload">
+                            <div class="upload-left" *ngIf="!(avatarImage$ | async)">
+                                <i class="zmdi zmdi-city-alt"></i>
+                            </div>
+                            <div class="upload-left" *ngIf="(avatarImage$ | async)">
+                                <img [src]="(avatarImage$ | async)">
+                            </div>
+                            <div class="upload-right">
+                                <h5> Upload Company Profile Picture
+                                    <span class="italic">(172 x 172) </span>
+                                </h5>
+                                <a href="#" data-target="#company-avatar" data-toggle="modal">
+                                    <button class="upld-btn"> Upload </button>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="upload border-none">
+                            <div class="upload-left" *ngIf="!(coverImage$ | async)">
+                                <i class="icon-cover"></i>
+                            </div>
+                            <div class="upload-left" *ngIf="(coverImage$ | async)">
+                                <div class="banner-up"><img [src]="(coverImage$ | async)"></div>
+                                <div class="box-frame"><span class="icon-upload-frame"></span></div>
+                            </div>
+                            <div class="upload-right">
+                                <h5>Upload Company Cover Picture
+                                    <span class="italic">(1380 x 300)</span>
+                                </h5>
+                                <a href="#" data-target="#company-cover-uploader" data-toggle="modal">
+                                    <button class="upld-btn"> Upload </button>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mob-reg-btn">
+                        <a (click)="goToBackStep()" class="bt-3rd">
+                            <button class="bck wid-50"> Back </button>
+                        </a>
+
+                        <a (click)="signup_employer()" class="bt-3rd gray-c"  >
+                            <button class="bck" [class.disabled_button]="postInProgress">Later </button>
+                        </a>
+                        <a (click)="signup_employer_with_image()" class="bt-3rd ">
+                            <button class="nxt wid-50" [class.disabled_button]="postInProgress">Done</button>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="pv-policy">By Signing Up and clicking ‘Done’, you agree to BLOOVO’s <a href="/home/terms">Terms &amp; Condtions</a> and <a href="/home/policy">Privacy Policy.</a></div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

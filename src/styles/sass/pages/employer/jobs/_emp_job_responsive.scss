@@ -1,0 +1,1543 @@
+// Desktop
+@media (max-width: 1200px){
+  #emp-jobs{
+    .post-table{
+        .job-left{ 
+             span{
+                line-height: 40px!important;
+                img{
+                    vertical-align: top;
+                }
+            }
+        }   
+    }
+    .job-serch{
+        button{ 
+            margin-top:0px;    
+        }
+    }
+    .job-left{ 
+        float: left; 
+        width:40px!important;
+        height:40px!important;  
+        line-height:40px!important; 
+        i{
+            line-height:40px!important; 
+            font-size: $font-16!important;
+        }
+    }
+    .job-right{ 
+        width: calc(100% - 60px)!important;
+        .navy{ 
+        }
+        font-size: $font-16;
+        .light{
+            font-size: $font-14;
+        }
+
+    }
+    .post-table{
+        .structr-app{
+            border-bottom:solid 1px $white;
+        }
+       .block-title-2{ 
+            text-align: center; 
+            margin: 0 auto;  
+        }
+    }
+}
+    #emp-jobs{
+   .job-serch{
+        button{ 
+            margin-top:0px;    
+        }
+    }
+    .job-left{ 
+        float: left; 
+        width:40px; 
+        height:40px;  
+        line-height:40px;      
+    }
+    .post-table{
+        .col-lg-4{
+            border-top:solid 0px $bg  
+        }
+        .structr-app{
+            border-bottom:solid 1px $white;
+        }
+       .block-title-2{ 
+        text-align: center; 
+        margin: 0 auto; 
+            button{ 
+                margin-top:0px;
+            }
+        }
+    }
+}
+.suggest-invt{
+   .block-title-2{ 
+       h2{ 
+          text-align: left;
+        }
+    }
+}
+#employer-rofile{
+        .company-following{ 
+            width:32.5%
+        }
+        .follow-following{ 
+            width:32.5%
+        }
+        .align{
+            text-align: left;
+            margin-top:-30px
+        }
+    } 
+//New interview section
+    .box-for-channel{
+        width: 50%;
+    }
+    .chanel-input{
+        width: 100%;
+    }
+    #post-job{
+        .benefits{
+            .benafit-box{
+                width: 25%!important;
+                margin: 0px!important;
+            }
+        }
+    }
+    .app-datail{
+    .col-lg-4{ 
+        padding:10px!important  
+    }
+}
+// Job New Align
+    .box-job-post-left-area{
+        width: calc(100% - 600px);
+    }
+    .box-job-post-right-area{
+        width: 600px;
+    }
+    .headding-box-job{
+        width: calc(100% - 600px);
+    }
+    .heading-box-job-action{
+        width: 600px;
+    }
+    .notification-st{
+      
+        .box-3-equal{
+          width: 25%!important;
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+    #interview{
+        .active > div{display: block!important;}
+    }
+//New interview section
+    .box-for-channel{
+        width: 50%;
+    }
+    .chanel-input{
+        width: 100%;
+    }
+    #post-job{
+        .benefits{
+            .benafit-box{
+                width: 33.333%!important;
+                margin: 0px!important;
+            }
+        }
+        .full-box{
+            margin-bottom: 5px;
+        }
+    }
+//Job detail
+    #jobs-details-employer{
+        .benafit-box{
+            width: 33.33%!important;
+            margin-right: 0px!important;
+            margin-bottom: 0px;
+        }
+    }
+    .mobile-margin-less{
+        margin-top: 105px;
+    }
+    #emp-jobs{
+        .post-table-hedding{
+            font-size: 12px;
+            line-height: inherit;
+        }
+    }
+    .post-table-hedding{
+        .navy-dark{
+            padding-top:10px;
+            display: block;
+        }
+    }
+// Job New Align
+    .box-job-post-left-area{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+        min-height: auto;
+    }
+    .box-job-post-right-area{
+        width: 100%;
+        .aplictn-txt{
+            font-size: 12px;
+        }
+        .box-equal-job-action2{
+            min-height: 90px;
+        }
+    }
+    .headding-box-job{
+        display: none
+    }
+    .heading-box-job-action{
+         display: none
+    }
+    .post-table-hedding{
+        display: none
+    }
+    #emp-jobs{
+        .job-serch{
+            border-bottom:1px solid #f1f1f1;
+            .bootstrap-select{
+                margin-bottom: 5px;
+            }
+        }
+    }
+    .job-logo{
+        .compny-logo{
+            height: 60px!important;
+            overflow:hidden;
+            width: 70px!important;
+            span{
+                line-height: 60px!important;
+            }
+            i{
+                line-height: 60px!important;
+                display: block;
+                background-color:$blue-light;
+            }
+        }
+    }
+    .jobs-employer{
+        .job-info{
+            h1{
+                font-size: 22px!important;
+            }
+        }
+    }
+    .bulk-fdb-sort{
+        display: none;
+    }
+    .bulk-fdb1{
+        width: 50%;
+        margin-right: 0px;
+        border-right:1px solid #f1f1f1;
+    }
+    .bulk-fdb{
+        width: 50%;
+        margin-right: 0px;
+    }
+    .candi-detail-potion{
+        .feturd-compny-dtls{
+            width: calc(100% - 65px)!important;
+        }
+    }
+    #communication-applicant{
+        .genrt-btn{
+            margin-bottom: 10px;
+        }
+    }
+
+    .savedjob_title_part{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+    }
+
+    .savedjob_date_part{
+        width: 33.33%
+    }
+    .savedjob_alert_part{
+        width: 33.33%
+    }
+    .savedjob_action_part{
+        width: 33.33%
+    }
+    .savedjob_date{
+        width: 33.33%
+    }
+    .savedjob_alert{
+        width: 33.33%
+    }
+    .savedjob_action{
+        width: 33.33%
+    }
+    #apply-job{
+        .border-mob-bt-side{
+            border-bottom:1px solid #f1f1f1;
+        }
+        .col-lg-6{
+            min-height: auto!important;
+            border:none;
+        }
+    }
+    .benefits{
+        .benafit-box{
+            width: 33.33%;
+            margin-right: 0px;
+        }
+    }
+    
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+    #manage-post{
+       .saved-searches{
+           .savedserch{
+               .col-lg-5{ 
+                    padding-top:15px; 
+                    padding-bottom:5px;   
+                }
+               .col-lg-2{ 
+                    min-height:auto; 
+                    line-height:30px;  
+                } 
+               .col-lg-3{ 
+                    padding-top:5px;  
+                }
+           } 
+        } 
+    } 
+    #most-profile{
+   .align{
+        .company-following{ 
+            width:47.5%; 
+            margin-bottom:0px; 
+        }
+    } 
+    .padding-20{ 
+        padding:20px 20px;  
+    }
+   .padding-20-0{ 
+        padding:0px 20px!important;  
+    }
+} 
+
+#emp-jobs{
+    .post-table{
+        .col-lg-4{
+            border-bottom:solid 1px $grey-border; 
+            border-top:solid 5px $bg  
+        }
+        .structr-app{
+            border-bottom:solid 1px $white;
+        }
+        .block-title-2{  
+            margin-top: 0px; 
+            margin-bottom:0px;  
+            padding-top:10px; 
+            button{
+                margin-top:0px;
+            }
+        }
+   } 
+}  
+.jobs-employer{
+        .refine-serch .block-title-2 h2{  
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 320px;
+        } 
+    .edit-job .job-socail{ 
+        margin-top:5px; 
+        margin-left:0px;   
+    }
+   .block{
+        .block-footer{
+            button{ 
+                width:120px;  
+            }
+       } 
+   } 
+
+} 
+.app-datail{
+    .reviewed,.successful,.unsuccessful,.applied{
+        margin:10px 0px 0px;
+        float: none;
+    }
+    .invite-apply{
+        margin:0px;
+        margin-top: 10px;
+    }
+    .col-lg-4{ 
+        padding:10px!important  
+    }
+}
+.suggest-invt{
+    .block-title-2{ 
+        .pull-right{ 
+            float: left!important; 
+        }
+    }
+}
+#post-job{
+    .job-post{
+        h3{ 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width:auto; 
+        }
+    } 
+    .job-status{ 
+        padding:10px; 
+        h3{ 
+            padding-right:20px; 
+            padding-top:0px;
+            margin-top: 0px; 
+        }
+        .pull-right{ 
+            float:left!important 
+        }
+        .radio{  
+            margin-left:0px; 
+            margin-right:10px;
+            margin-top: 0px;
+            margin-bottom: 0px;    
+        }
+    }
+}
+#communication-applicant{
+    .tab-application{
+        .inline-ph{ 
+            display:block; 
+            width:100%; 
+            position: inherit; 
+            margin-top: 10px; 
+        }  
+    }
+}
+.featured-job{ 
+        .bg-feturd{
+            .box-60{ 
+                width: 100% 
+            }
+           .box-40{ 
+                width: 100%; 
+                margin-left:0%  
+            }
+       }
+    }
+    .addnew{ 
+        display: block; 
+        width: 100%
+    }   
+    #most-profile{
+        .light{
+            padding-left: 10px;
+        }
+    } 
+    #interview{
+        .active > div{display: block!important;}
+    }
+//New interview section
+    .box-for-channel{
+        width: 100%;
+    }
+    .chanel-input{
+        width: 100%;
+    }
+    #post-job{
+        .benefits{
+            .benafit-box{
+                width: 50%!important;
+                margin: 0px!important;
+            }
+        }
+        .half-box{
+            margin-left:0px;
+            width: 50%;
+            .light{
+                padding: 10px 0px!important;
+            }
+        }
+        .full-box{
+            margin-bottom: 5px;
+        }
+        
+        .benefits{
+            .benafit-box{
+                width: 50%!important;
+                margin: 0px!important;
+            }
+        }
+        .btn{
+            margin-bottom: 0px!important;
+        }
+        .half-box-post{
+            line-height: 25px;
+        }
+
+        .light-only{
+            color: $navy-dark
+        }
+
+        .light{
+            color: $navy-dark
+        }
+        .tag-new{
+            margin-bottom: 5px!important;
+        }
+    }
+//applicant profile
+    .tab-seperate{
+        ul{
+            float: left;
+            width: 100%;
+            display: block;
+            margin-bottom: 0px!important;
+            li{
+                width: 100%;
+                border-right:none;   
+            }
+        }
+        .width-al{
+            width: 100%;
+            background-color: $white;
+        }
+        .width-small{
+            width: 100%;
+            button{
+                display: none;
+            }
+        }
+        .sec-area{
+            margin: 0px;
+            margin-top: 57px!important;
+        }      
+    }
+    .applicant-pro-detail-area{
+        .applicant-profile-image{
+            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f1f1;
+            margin-bottom: 20px
+        }
+        .invit-egg{
+            float: left;
+        }
+        
+        .applicant-profile-matching{
+            width: 50%;
+        }
+    }
+    #my-profile{
+       .applicant-profile{
+            .commen-container-less{
+                margin-top: 45px!important;
+            }
+        } 
+    }
+//applicant profile
+    .tab-seperate{
+        ul{
+            float: left;
+            width: 100%;
+            display: block;
+            margin-bottom: 0px!important;
+
+            li{
+                width: 100%;
+                border-right:none; 
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+        .width-al{
+            width: 100%;
+            background-color: $white;
+        }
+        .width-small{
+            width: 100%;
+            button{
+                display: none;
+            }
+        }
+        .sec-area{
+            margin: 0px;
+            height: 65px;
+            margin-bottom: 10px;
+        }    
+    }
+    .applicant-pro-detail-area{
+        .applicant-profile-image{
+            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f1f1;
+            margin-bottom: 20px
+        }
+        .invit-egg{
+            float: left;
+        }
+        
+        .applicant-profile-matching{
+            width: 50%;
+        }
+    }
+    #my-profile{
+       .applicant-profile{
+            .commen-container-less{
+                margin-top: 45px!important;
+            }
+        } 
+    }
+    #applicant-profile{
+        .dp-lft{
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 15px;
+        }
+        .dp-txt{
+            font-size: $font-14;
+        }
+        .social-section{
+            border-top: 1px solid #f1f1f1;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+    }
+    //    Job detail
+    #jobs-details-employer{
+        .benafit-box{
+            width: 50%!important;
+            margin-right: 0px!important;
+            margin-bottom: 0px;
+        }
+    }
+    #emp-jobs .nxt-job{
+        button{
+            margin: 10px 0px!important;
+            width: 100%;
+        }
+    }
+    #emp-jobs{
+        .post-table{
+            .job-left{ 
+                float: left;
+                width:40px; 
+                height:40px; 
+                line-height:0px;   
+                i{ 
+                    line-height:40px;
+                    font-size: $font-16!important;
+                }
+                span{
+                    line-height: 40px!important;
+                }
+            }
+            .job-right{ 
+                .light{
+                   font-size: $font-14;
+                }
+            }
+            .standard{
+                margin-top: 5px;
+            }
+            .feature{
+                margin-top: 5px;
+            }
+            button{
+                margin-top: 5px!important;
+            }
+        }
+    }
+    .employers-details .employers-tab #our-jobs .col-lg-4{
+        min-height: auto;
+        line-height: 20px;
+        padding:10px;
+    }
+    .btn-group > .btn:first-child {
+        margin-bottom: 3px;
+    }
+    .spinner-blank-job{
+        padding:80px 0px;
+        .empty-prf{
+            padding-top:0px;
+        }
+    }
+    #emp-jobs{
+        .post-table{
+            .structr-app{
+                border-bottom:solid 1px $grey-border;
+            }
+        }
+        .commen-container-less{
+            margin-top: 0px;
+        }
+        .mob-sp-s{
+            margin-bottom: 5px;
+        }
+    }
+    // Job New Align
+    .box-job-post-left-area{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+        min-height: auto;
+    }
+    .box-job-post-right-area{
+        width: 100%;
+        border-bottom:3px solid #f1f1f1;
+        .box-equal-job-action2{
+            width: 50%;
+            .bg-special{
+                padding:5px 0px;
+            }
+        }
+    }
+    // Job New Align
+    .box-job-post-left-area{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+        min-height: auto;
+    }
+    .box-job-post-right-area{
+        width: 100%;
+        .box-equal-job-action2{
+            width: 50%;
+            .bg-special{
+                padding:5px 0px;
+            }
+        }
+    }
+    #emp-jobs{
+        .job-serch{
+            border-bottom:1px solid #f1f1f1;
+        }
+    }
+    .skill-title-post-body{
+        width: 100%;
+    }
+    .skill-title-post{
+        width: 100%;
+    }
+    .action-btns{
+        margin-top: 0px!important;
+    }
+    .job-logo{
+        .compny-logo{
+            height: 60px!important;
+            overflow:hidden;
+            width: 70px!important;
+            span{
+                line-height: 60px!important;
+
+            }
+            i{
+                line-height: 60px!important;
+                display: block;
+                background-color:$blue-light;
+            }
+        }
+        .compny-details{
+            width: calc(100% - 70px);
+            padding-left:10px;
+        }
+        .width-full{
+            width: 100%;
+        }
+    }
+    .small-screen-only-resp{
+        display: block;
+    }
+    .smart-screen-only-resp{
+        display: none;
+    }
+    .job-logo{
+        button{
+            margin-right: 5px;
+        }
+        .job-socail{
+            margin-bottom: 5px;
+            float: left;
+            margin: 0px;
+            margin-top: 0px!important;
+        }
+        .opn-cls{
+            width: 33.33%;
+            margin-right:0px!important;
+        }
+    }
+    .jobs-employer{
+        .job-info{
+            h1{
+                font-size: 22px!important;
+            }
+        }
+    }
+    .bulk-fdb-sort{
+        display: none;
+        .srt-feture{
+            display: none;
+        }
+    }
+     .bulk-fdb1{
+        width: 50%;
+        margin-right: 0px;
+        border-right:1px solid #f1f1f1;
+    }
+    .bulk-fdb{
+        width: 50%;
+        margin-right: 0px;
+    }
+    .feed-back-mg{
+        margin-top: 5px;
+    }
+    .candi-detail-potion{
+            width: calc(100% - 130px)!important;
+        .feturd-compny-dtls{
+            width: calc(100% - 65px)!important;
+            .cmpny-txt{
+                padding:0px!important;
+            }
+        }
+        .invit-egg-default{
+            i{
+                line-height: 40px!important;
+            }
+        }
+        .matching-candidates{
+            .invite{
+                .invit-egg-default{
+                    width: 36px!important;
+                    height: 45px!important;
+                }
+            }
+        }
+    }
+     .candi-detail-left{
+        width: 100%;
+        .applicant-profile-matching{
+            float: right;
+        }
+    }
+    .candi-detail-right{
+        width: 100%;
+    }
+    #communication-applicant{
+        .tab-application{
+            #successful{
+                .bar{
+                    height: 54px;
+                    margin-top: 0px;
+                    .or{
+                        top: 0px;
+                    }
+                }
+            }
+        }
+    }
+    .interview-feild{
+        width: 100%;
+        margin:0px!important;
+        #datepicker_cert_1{
+            margin-bottom: 5px;
+        }
+    }
+     .ofr-letter{
+        height: 260px;
+    }
+    #communication-applicant{
+        .tab-application{
+            #successful{
+                .navy{
+                    text-align: center;
+                    padding-top:10px;
+                }
+            }
+        }
+        .genrt-btn{
+            margin-bottom: 10px;
+        }
+    }
+    .box-chanel-input{
+        .int-tel-phoneNum{
+            width: 100%!important;
+        }
+    }
+
+     .resume-txt{
+        .radio{
+            line-height: 50px!important;
+        }
+    }
+    #apply-job{
+        .border-mob-bt-side{
+            border-bottom:1px solid #f1f1f1;
+        }
+        .col-lg-6{
+            min-height: auto!important;
+        }
+    }
+    .benefits{
+        .benafit-box{
+            width: 50%;
+            margin-right: 0px;
+        }
+    }
+    .filter-jobs{
+        .featured-box{
+            .candi-detail-potion{
+                .feturd-compny-dtls{
+                    width: calc(100% - 65px) !important;
+                }
+                
+            }
+            .feturd-matching-percentage{
+                .percenge-txt{
+                    display: none!important;
+                }
+            }
+        }
+    }
+     .Notification-xt{
+        float: none;
+        width: 100%;
+    }
+
+    .notification-st{
+        float: none;
+        width: 100%;
+        .box-3-equal{
+           margin-top: 5px;
+           width: 100%!important;
+           border-left:none!important;
+           height: auto!important;
+            line-height: 20px!important;
+        }
+    }
+    #emp-jobs{
+        .post-table{
+            .draft-job{
+                margin-top:5px;    
+            }
+            .active-job{ 
+                margin-top:5px;    
+            }
+
+            .draft-job{ 
+                margin-top:5px;    
+            }
+
+            .expired-job{ 
+               margin-top:5px;    
+            }
+
+            .delete-job{ 
+               margin-top:5px;    
+            }
+        }
+    }
+    .mob-label-job{
+        .navy{
+            float: left;
+        }
+    }
+    #post-job .half-j2{
+        width: 100%!important;
+    }
+    #post-job .half-j-date{
+        width: 100%!important;
+    }
+    #post-job .half-j{
+        width: 100%!important;
+    }
+
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+    #manage-post{
+        .blog-detail{
+            .navy {
+                white-space: nowrap;    
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 210px
+            }
+        }
+        .saved-searches{
+            .savedserch{
+                .col-lg-5{ 
+                    padding-top:15px; 
+                    padding-bottom:5px;   
+                }
+                .col-lg-2{ 
+                    min-height:auto; 
+                    line-height:30px;  
+                } 
+                .col-lg-3{ 
+                    padding-top:5px;  
+                }
+            } 
+        } 
+    } 
+    #emp-jobs{
+    .post-table{
+        .col-lg-4{
+            border-bottom:solid 1px $grey-border; 
+            border-top:solid 5px $bg  
+        }
+        .col-lg-2{ 
+            border-right:solid 1px $grey-border; 
+            padding:10px; 
+            min-height:90px;  
+        }
+        .job-left{ 
+            float: left;
+            width:40px; 
+            height:40px; 
+            line-height:0px;   
+            i{ 
+                line-height:40px;
+                font-size: $font-16!important;
+            }
+        }
+        .job-right{ 
+            .light{
+               font-size: $font-14;
+            }
+        }
+        .structr-app{
+            border-bottom:solid 1px $grey-border;
+        }
+        .block-title-2{ 
+            text-align: center; 
+            margin-top: 0px; 
+            margin-bottom:0px;  
+            padding-top:10px; 
+            button{ 
+                margin-top:0px;  
+            }
+        }
+        .standard{
+            margin-top: 5px;
+        }
+        .feature{
+            margin-top: 5px;
+        }
+        button{
+            margin-top: 5px!important;
+        }
+    }
+}  
+.jobs-employer{
+    .edit-job .job-socail{ 
+        margin-top:5px; 
+        margin-left:0px;   
+    }
+    .block{
+        .block-footer{
+            button{ 
+                width: 120px; 
+            }
+        }
+    } 
+}
+.app-datail{
+    .reviewed,.successful,.unsuccessful,.applied,.invite-apply{
+        margin-top:8px!important;
+        float: none;
+    }
+    .col-lg-4{ 
+        padding:10px!important  
+    } 
+}
+#post-job{
+    .job-post{
+        h3{ 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width:auto; 
+        }
+    } 
+    .job-status{ 
+        padding:10px; 
+       .pull-right{ 
+            float:left!important 
+        }
+        .radio{  
+            margin-left:0px; 
+            margin-right:10px;    
+        }
+        .box-set{
+            width: 100%;
+            float: left;
+        }
+        .half-box-post-no-margin{
+            float: none;
+            width: 100%;
+        }
+        h3{
+            display: block;
+            width: 100%;
+            padding:5px;
+        }
+    }
+    .requr-full{ 
+        width:100%; 
+        margin-bottom:5px;  
+    }  
+    .half-box-post{
+        width: 100%;
+    }
+}
+.suggest-invt{
+    .block-title-2{ 
+    .pull-right{ float: left!important; }
+    }
+} 
+.social-account{
+   .display .social-section .social-media .s-media{ 
+        margin-right:0px;  
+    }
+}
+#communication-applicant{
+    .tab-application{
+    .inline-ph{ 
+        display:block; 
+        width:100%; 
+        position: inherit; 
+        margin-top: 10px; 
+    }  
+        #successful{
+        .bar{ 
+            .or{ 
+                top: 0px; 
+            }
+        }
+    }               
+    }
+ }
+.featured-job{ 
+    .bg-feturd{
+        padding:15px;
+        .box-60{ 
+            width: 100%
+        }
+        .box-40{ 
+            width: 100%;
+            margin-left:0%
+        }
+    }
+}
+#viewed-Profile{
+    .filter-jobs{
+        .featured-box{
+            .feturd-compny{
+                span{ 
+                    line-height:40px;  }
+                i{ 
+                    line-height: 40px;
+                }
+            } 
+        } 
+    } 
+}
+//New interview section
+    .box-for-channel{
+        width: 100%;
+    }
+    .chanel-input{
+        width: 100%;
+    } 
+//Job Posting
+    .mobile-full{
+        width: 100%!important;
+        margin-left: 0px!important;
+    }
+    #my-profile{
+        .half-box{
+            .light{
+                padding: 10px 0px!important;
+            }
+        }
+    }
+    #post-job{
+        .half-box{
+            margin-left:0px;
+            width: 50%;
+            .light{
+                padding: 10px 0px!important;
+            }
+        }
+        .full-box{
+            margin-bottom: 5px;
+        }
+        .benefits{
+            .benafit-box{
+                width: 50%!important;
+                margin: 0px!important;
+            }
+        }
+        .btn{
+            margin-bottom: 0px!important;
+        }
+        .half-box-post{
+            line-height: 25px;
+        }
+
+        .light-only{
+            color: $navy-dark
+        }
+        .light{
+            color: $navy-dark
+        }
+        .tag-new{
+            margin-bottom: 5px!important;
+        }
+        .mob-radi{
+            padding:0px 16px;
+        }
+    } 
+//    applicant profile
+    .tab-seperate{
+        ul{
+            float: left;
+            width: 100%;
+            display: block;
+            margin-bottom: 0px!important;
+            li{
+                width: 100%;
+                border-right:none; 
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+        .width-al{
+            width: 100%;
+            background-color: $white;
+        }
+        .width-small{
+            width: 100%;
+            button{
+                display: none;
+            }
+        }
+        .sec-area{
+            margin: 0px;
+            height: 65px;
+            margin-bottom: 10px;
+            margin-top: 57px;
+        }     
+    }
+    .applicant-pro-detail-area{
+        .applicant-profile-image{
+            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f1f1;
+            margin-bottom: 20px
+        }
+        .invit-egg{
+            float: left;
+        }
+        .applicant-profile-matching{
+            width: 50%;
+        }
+    }
+    #my-profile{
+       .applicant-profile{
+            .commen-container-less{
+                margin-top: 45px!important;
+            }
+        } 
+    }
+    #applicant-profile{
+        .dp-lft{
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 15px;
+        }
+        .social-section{
+            border-top: 1px solid #f1f1f1;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+    }
+    .matching-candidates{
+        .invite{
+            .invt{
+                width: 65px;
+            }
+            .invit-egg{
+                margin: 0px!important;
+                width: 30px!important;
+                height: 36px!important;
+                img{
+                    vertical-align: top!important;
+                }
+            }
+            .invit-egg-default{
+                margin: 0px!important;
+                width: 30px!important;
+                height: 36px!important;
+                line-height: 36px!important;
+                i{
+                    line-height: 40px!important;
+                    font-size: $font-16!important;
+                }
+            }
+        }
+    }    
+//    Job detail
+    #jobs-details-employer{
+        .benafit-box{
+            width: 50%!important;
+            margin-right: 0px!important;
+            margin-bottom: 0px;
+        }
+    }
+    #emp-jobs .nxt-job{
+        button{
+            margin: 10px 0px!important;
+            width: 100%;
+        }
+    }
+    .employers-details .employers-tab #our-jobs .col-lg-4{
+        min-height: auto;
+        line-height: 20px;
+        padding:10px;
+    }
+    .spinner-blank-job{
+        padding:80px 0px;
+        .empty-prf{
+            padding-top:0px;
+        }
+    }
+    #emp-jobs{
+        .commen-container-less{
+            margin-top: 0px;
+        }
+        .mob-sp-s{
+            margin-bottom: 5px;
+        }
+    }
+    // Job New Align
+    .box-job-post-left-area{
+        width: 100%;
+        border-bottom:1px solid #f1f1f1;
+        min-height: auto;
+    }
+    .box-job-post-right-area{
+        width: 100%;
+        border-bottom:3px solid #f1f1f1;
+        .box-equal-job-action2{
+            width: 50%;
+            .bg-special{
+                padding:5px 0px;
+            }
+            .aplictn-txt{
+                font-size: 14px;
+            }
+        }
+    }
+    #emp-jobs{
+        .job-serch{
+            border-bottom:1px solid #f1f1f1;
+        }
+    }
+    .skill-title-post-body{
+        width: 100%;
+    }
+    .skill-title-post{
+        width: 100%;
+    }
+    .action-btns{
+        margin-top: 0px!important;
+    }
+    .small-screen-only-resp{
+        display: block;
+    }
+    .smart-screen-only-resp{
+        display: none;
+    }
+    .job-logo{
+        button{
+            margin-right: 5px;
+        }
+        .job-socail{
+            width: 100%;
+            margin-top: 5px!important;
+            margin-bottom: 5px;
+            float: left;
+            margin: 0px;
+        }
+        .opn-cls{
+            width: 33.33%;
+            margin-right:0px!important;
+        }
+    }
+    .candi-detail-potion{
+        width: calc(100% - 65px)!important;
+        .feturd-compny-dtls{
+            width: calc(100% - 30px)!important;
+        }
+        .matching-candidates{
+            .invite{
+                .invit-egg-default{
+                    width: 36px;
+                    height: 45px;
+                }
+            }
+        }
+    }
+    .candi-match{
+        width: 65px!important;
+    }
+    .candi-detail-left{
+        width: 100%;
+        .applicant-profile-matching{
+            float: right;
+        }
+    }
+    .candi-detail-right{
+        width: 100%;
+    }
+
+    .interview-feild{
+        width: 100%;
+        margin:0px!important;
+        #datepicker_cert_1{
+            margin-bottom: 5px;
+        }
+    }
+    .ofr-letter{
+        height: 260px;
+    }
+    #communication-applicant{
+        .tab-application{
+            #successful{
+                .navy{
+                    text-align: center;
+                    padding-top:10px;
+                }
+            }
+        }
+        .genrt-btn{
+            margin-bottom: 10px;
+        }
+    }
+    .box-chanel-input{
+        .int-tel-phoneNum{
+            width: 100%!important;
+        }
+    }
+    .resume-txt{
+        .radio{
+            line-height: 50px!important;
+        }
+    }
+    #communication-applicant{
+        .country-list{
+            width: 220px;
+        }
+    }
+    #apply-job{
+        .col-lg-6{
+            min-height: auto!important;
+        }
+    }
+    .border-mob-bt-side{
+        border-bottom:1px solid #f1f1f1;
+    }
+    .benefits{
+        .benafit-box{
+            width: 50%;
+            margin-right: 0px;
+        }
+    }
+    .filter-jobs{
+        .featured-box{
+            .candi-detail-potion{
+                .feturd-compny-dtls{
+                    width: calc(100% - 30px) !important;
+                }
+                
+            }
+            .feturd-matching-percentage{
+                .percenge-txt{
+                    display: none!important;
+                }
+            }
+        }
+    }
+    .Notification-xt{
+        float: none;
+        width: 100%;
+    }
+
+    .notification-st{
+        float: none;
+        width: 100%;
+        .box-3-equal{
+            margin-top: 5px;
+            width: 100%!important;
+            border-left:none!important;
+            height: auto!important;
+            line-height: 20px!important;
+        }
+    }
+    #emp-jobs{
+        .post-table{
+            .draft-job{
+                margin-top:5px;    
+            }
+            .active-job{ 
+                margin-top:5px;    
+            }
+
+            .draft-job{ 
+                margin-top:5px;    
+            }
+
+            .expired-job{ 
+               margin-top:5px;    
+            }
+
+            .delete-job{ 
+               margin-top:5px;    
+            }
+        }
+    }
+    .mob-label-job{
+        .navy{
+            float: left;
+        }
+    }
+    #post-job .half-j2{
+        width: 100%!important;
+    }
+    .m-mg-only{
+        margin-top: 5px;
+    }
+    #post-job .half-j-date{
+        width: 100%!important;
+    }
+    #post-job .half-j{
+        width: 100%!important;
+    }
+    .mg-b-m{
+        margin-bottom: 5px;
+    }
+}
+
+
+

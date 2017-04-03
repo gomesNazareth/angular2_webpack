@@ -1,0 +1,93 @@
+<div [style.display]="status1 == 'read' ?'block':'none'"> <!-- save -->
+    <div class="block-title">
+        <div class="left"><h4>Contact Details</h4></div>
+        <div class="right"><a (click)="onEdit()"><span class="light"><i class="zmdi zmdi-edit"></i> Edit</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="block-contant contact-icon-align-fx">
+        <i class="min-prf-spinner" *ngIf="(contactusLoader$ | async)"> <spinner></spinner></i>
+        <span *ngIf="!(contactusLoader$ | async)">
+            <div class="txt"><i class="zmdi zmdi-email"></i>{{(jobSeekerContact | async)?.email_address}}</div>
+            <div class="txt" *ngIf="(jobSeekerContact | async)?.phone_no"><i class="zmdi zmdi-smartphone-android"></i>{{(jobSeekerContact | async)?.phone_no_country_code}}{{(jobSeekerContact | async)?.phone_no}}
+            </div>
+            <div class="txt" *ngIf="(jobSeekerContact | async)?.mobile_no"><i class="zmdi zmdi-smartphone-android"></i>{{(jobSeekerContact | async)?.mobile_no_country_code}}{{(jobSeekerContact | async)?.mobile_no}}
+            </div>
+        </span>
+    </div>
+</div>
+<div [style.display]="status1 == 'edit' ?'block':'none'"> <!-- edit -->
+
+    <div class="block-title-2">
+        <div class="left"><h4>Contact Details</h4></div>
+        <div class="right">
+            <button (click)="saveContactDetails()" [disabled]="(contactusLoader$ | async)" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save
+            </button>
+            <span class="cancel padding-0">
+                <button (click)="onRead()"> <i class="zmdi zmdi-close"></i> Cancel</button>
+            </span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="block-contant">
+        <i class="min-prf-spinner" *ngIf="(contactusLoader$ | async)"><spinner [visible]="(contactusLoader$ | async)"></spinner></i>
+        <form *ngIf="!(contactusLoader$ | async) && activeForm" [formGroup]="contact_form">
+            <div>
+                <input type="text"
+                       readonly
+                       class="disabled-input"
+                       formControlName="email_address"
+                       placeholder="Email Address"
+                       name="contact_form_email_address">
+            </div>
+
+            <div *ngIf="(contact_form.controls['email_address'].touched &&  !contact_form.controls['email_address'].valid) ||
+                        (postFlag &&  !contact_form.controls['email_address'].valid)"
+                 class="alert alert-danger alert-dismissible marbtm5" role="alert">
+                Email address is Invalid
+            </div>
+
+            <div>
+                <div class="contry-numbers">
+
+                    <jquery-tel   (getProcessedPhoneNo)="getProcessedPhoneNo($event)"  [match]="'phone_no'" [phone_no]="((jobSeekerContact | async)?.phone_no)?(jobSeekerContact | async)?.phone_no:''" ></jquery-tel>
+                    <input id="contactus_phone_no" name="contactus_phone_no" type="hidden"
+                           [(ngModel)]="phoneNo"
+                           formControlName="phone_no"
+                           >
+
+                    <div *ngIf="
+                            (contact_form.controls['phone_no'].touched &&  !contact_form.controls['phone_no'].valid) ||
+                            (postFlag &&  !contact_form.controls['phone_no'].valid)"
+                         class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                        The Mobile Number 1 is Invalid
+                    </div>
+
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+            <div>
+
+                <div class="contry-numbers">
+                    <jquery-tel (getProcessedPhoneNo)="getProcessedPhoneNo($event)"  [phone_no]="((jobSeekerContact | async)?.mobile_no)?(jobSeekerContact | async)?.mobile_no:''" [match]="'mobile_no'"  ></jquery-tel>
+                    <input name="contact_form_mobile_no" type="hidden" [(ngModel)]="mobileNo"
+                           formControlName="mobile_no"
+                           placeholder="Mobile No">
+
+                    <div *ngIf="
+                            (contact_form.controls['mobile_no'].touched &&  !contact_form.controls['mobile_no'].valid) ||
+                            (postFlag &&  !contact_form.controls['mobile_no'].valid)"
+                         class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                        The Mobile Number 2 is Invalid
+                    </div>
+
+                </div>
+
+                <div class=" clearfix"></div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

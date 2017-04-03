@@ -1,0 +1,899 @@
+
+<div *ngIf="!applyJobFlag" role="tabpanel" class="tab-pane active" id="all-jobs">
+    <div *ngIf="!(selJob$ | async)" class="empty-min2">
+            <i class="small_loading"><spinner></spinner></i>
+    </div>
+    <div [class.commen-container]="(isAuthorized$ | async)"  [class.commen-container-public]="!(isAuthorized$ | async)" *ngIf="(selJob$ | async)">
+        <div class="row">
+
+            <div class="first-section">
+                <div class="col-md-12 col-sm-12 col-xs-12" [class.col-lg-9]="(similarJob$ | async)?.length >0" [class.col-lg-12]="(similarJob$ | async)?.length ==0">
+                    <div  class="block  bottom-gap">
+                    <!--title-->
+                    <div class="refine-serch">
+                        <div class="row block-title-2">
+                            <h2 class="padding-top-10 left-text-with-full">{{(selJob$ | async)?.title}}</h2>
+                            <a  *ngIf="(isAuthorized$ | async)" (click)="onClickBack()"> <button> <span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span>  </button> </a>
+                        </div>
+                    </div>
+
+                            <div *ngIf="savedFlag" class="comen-alert mg-0">
+                                    <i class="zmdi zmdi-check-circle"></i> Job Successfully Saved.
+                            </div>
+                            <div *ngIf="unSavedFlag" class="comen-alert mg-0">
+                                <i class="zmdi zmdi-check-circle"></i> Job Successfully Unsaved.
+                            </div>
+
+                    <!--company details-->
+
+                    <!--Desktop-->
+                    <div class="row padding-15-10 company-details desktop"> 
+                        <div class="detail-jobseeker-job">
+                            <div class="compny-logo mob-c-l-only" *ngIf="(selJob$ | async)?.companyObj?.profileImage">
+                                <span>
+                                    <img src="{{(selJob$ | async)?.companyObj?.profileImage}}">
+                                </span>
+                            </div>
+                            <div class="compny-logo mob-c-l-only" *ngIf="!(selJob$ | async)?.companyObj?.profileImage">
+                            <i class="zmdi zmdi-city-alt empty-blank"></i>
+                            </div>
+
+                            <div class="compny-details">
+                                <div class="row">
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-city-alt"></i><span class="dark bold padding-0">&nbsp;{{(selJob$ | async)?.companyObj?.name}}</span></div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{(selJob$ | async)?.city}}, {{(selJob$ | async)?.countryCountry}}</div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>&nbsp;{{(selJob$ | async)?.sector}}</div>
+                                    <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>&nbsp;{{(selJob$ | async)?.createdDate | date:'d MMM, yyyy'}}</div>
+                                </div>
+
+                                <div class="row block-title-2 padding-0 border-none pading-top-10 hidden-sm">
+                                    <div class="left">
+                                        <!--<button (click)="onApplyJob()" *ngIf="(isAuthorized$ | async) && (selJob$ | async)?.appliedDate == null" class="float-left-detail-only"> Apply Now</button>-->
+
+                                                <a data-toggle="modal"    [attr.data-target] = "'.apply-job'">
+                                                    <button  *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)" class="float-left-detail-only">
+                                                        Apply Now
+                                                    </button>
+                                                </a>
+
+
+                                        <button *ngIf="!(isAuthorized$ | async)"  [routerLink]="'/'+_accountService.getPath()+'/signup_jobseeker'" class="float-left-detail-only"> Apply Now</button>
+                                        <span *ngIf="(isAuthorized$ | async) && (selJob$ | async)?.appliedDate != null"><i class="zmdi zmdi-check-circle applied"></i>Applied</span>
+
+                                        <button class="cancel line-h-35" [class.hide]="!(isAuthorized$ | async)"  *ngIf="!(selJob$ | async)?.isSaved" (click)="onSaveJob()">Save Job</button>
+                                        <button class="cancel unsave line-h-35" [class.hide]="!(isAuthorized$ | async)"  *ngIf="(selJob$ | async)?.isSaved" (click)="onUnSaveJob()">Unsave Job</button>
+
+                                        <div class="job-socail">Share
+                                            <share-social-media *ngIf="(jobUrl$ | async)" [url]="(jobUrl$ | async)" [title]="(jobUrlDesc$ | async)" [description]="(jobUrlDesc$ | async)"></share-social-media>
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- smartscreen only -->
+                            <div class="row block-title-2 compny-details margin-top-10 width-100 padding-0 border-none hidden-lg hidden-md hidden-xs">
+                                    <div class="left">
+                                        <!--<button (click)="onApplyJob()" *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)" class="float-left-detail-only"> Apply Now</button>-->
+
+                                                <a data-toggle="modal"    [attr.data-target] = "'.apply-job'"  *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)" >
+                                                    <button class="float-left-detail-only">
+                                                    Apply Now
+                                                    </button>
+                                                </a>
+
+
+                                        <button *ngIf="!(isAuthorized$ | async)"  [routerLink]="'/'+_accountService.getPath()+'/signup_jobseeker'" class="float-left-detail-only"> Apply Now</button>
+                                        <span *ngIf="(isAuthorized$ | async) && (selJob$ | async)?.appliedDate != null"><i class="zmdi zmdi-check-circle applied"></i>Applied</span>
+                                        <!-- <button class="cancel" *ngIf="!(selJob$ | async)?.companyObj?.followingFlag" (click)="onFollowCompany()"><i class="zmdi zmdi-plus-circle"></i> Follow</button>
+                                        <button class="cancel" *ngIf="(selJob$ | async)?.companyObj?.followingFlag" (click)="onUnFollowCompany()"><i class="zmdi zmdi-plus-circle"></i> UnFollow</button> -->
+
+                                        <button class="cancel line-h-35"  [class.hide]="!(isAuthorized$ | async)" *ngIf="!(selJob$ | async)?.isSaved" (click)="onSaveJob()" >Save Job</button>
+                                        <button class="cancel unsave line-h-35"  [class.hide]="!(isAuthorized$ | async)"  *ngIf="(selJob$ | async)?.isSaved" (click)="onUnSaveJob()">Unsave Job</button>
+
+                                        <div class="job-socail">Share
+
+                                            <share-social-media *ngIf="(jobUrl$ | async)" [url]="(jobUrl$ | async)" [title]="(jobUrlDesc$ | async)" [description]="(jobUrlDesc$ | async)"></share-social-media>
+
+                                        </div>
+                                        <div class=" clearfix"></div>
+                                    </div>
+                                </div>
+
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!-- matching percentage -->
+                        <div class="maching-jobseeker-job-detail">
+                            <div class="row">
+                                <div class="tooltip-x" *ngIf="isPublic">
+                                  <!--Tool Tip-->
+                                <strong class="tooltiptext-xv">
+                                    <p>Sign Up Now to Check Your Matching Percentage<br>with this Job!</p>
+                                </strong>
+
+                                    <div class="prg-cercle">
+                                        <div [class]="'c100 p'+(((selJob$ | async)?.matchingPercent) | number:'1.0-0')+' small'" >
+                                            <span *ngIf="isPublic">?%</span>
+                                            <div class="slice">
+                                                <div class="bar"></div>
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="matching">
+                                    <div class="req-dark">Matching with your Profile</div>
+                                </div>
+                                <div class="clearfix"></div>
+                                </div>
+
+                                <div  *ngIf="!isPublic">
+                                  <!--Tool Tip-->
+
+
+                                    <div class="prg-cercle">
+                                        <div [class]="'c100 p'+(((selJob$ | async)?.matchingPercent) | number:'1.0-0')+' small'" >
+                                            <span>{{(selJob$ | async)?.matchingPercent | number:'1.1-1'}}%</span>
+                                            <div class="slice">
+                                                <div class="bar"></div>
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="matching">
+                                    <div class="req-dark">Matching with your Profile</div>
+                                </div>
+                                <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row padding-15-10 company-details mobile"><!--Mobile-->
+
+                        <div class="row detail">
+                            <div class="col-xs-12 border-bottom">
+
+
+                                <div class="compny-logo" *ngIf="(selJob$ | async)?.companyObj?.profileImage">
+                                <span>
+                                    <img src="{{(selJob$ | async)?.companyObj?.profileImage}}">
+                                </span>
+                            </div>
+                            <div class="compny-logo" *ngIf="!(selJob$ | async)?.companyObj?.profileImage">
+                            <i class="zmdi zmdi-city-alt empty-blank"></i>
+                            </div>
+
+
+                            </div>
+
+
+                            <div class="col-xs-12">
+                            <div class="tooltip-x" *ngIf="isPublic">
+
+                                   <!--Tool Tip-->
+                                <strong class="tooltiptext-xv">
+                                    <p>Sign Up Now to Check Your Matching Percentage<br>with this Job!</p>
+                                </strong>
+
+
+                                <div class="prg-cercle">
+                                    <div [class]="'c100 p'+(((selJob$ | async)?.matchingPercent) | number:'1.0-0')+' blue small'" >
+                                        <span>?%</span>
+                                        <div class="slice">
+                                            <div class="bar"></div>
+                                            <div class="fill"></div>
+                                        </div>
+                                    </div>
+                                    <div class="req-dark mob-match-right">Matching with your Profile</div>
+                                </div>
+                            </div>
+
+                            <div  *ngIf="!isPublic">
+                                <div class="prg-cercle">
+                                    <div [class]="'c100 p'+(((selJob$ | async)?.matchingPercent) | number:'1.0-0')+' blue small'" >
+                                        <span>{{(selJob$ | async)?.matchingPercent | number:'1.1-1'}}%</span>
+                                        <div class="slice">
+                                            <div class="bar"></div>
+                                            <div class="fill"></div>
+                                        </div>
+                                    </div>
+                                    <div class="req-dark mob-match-right">Matching with your Profile</div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="compny-details">
+                                    <div class="row detailborder">
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-city-alt"></i><span class="dark padding-0">{{(selJob$ | async)?.companyObj?.name}}</span></div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{(selJob$ | async)?.city}}, {{(selJob$ | async)?.countryCountry}}</div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{(selJob$ | async)?.sector}}</div>
+                                        <div class="cmpny-txt"><i class="zmdi zmdi-calendar-alt"></i>{{(selJob$ | async)?.startDate | date:'d MMM, yyyy'}}</div>
+                                    </div>
+
+                                    <!-- mobile-buttons -->
+                                    <div class="row applay-mob hidden-sm hidden-lg hidden-md">
+
+                                        <div class="row job-socail">
+                                            <div class="center">
+                                                <share-social-media [url]="(jobUrl$ | async)" [title]="(jobUrlDesc$ | async)" [description]="(jobUrlDesc$ | async)"></share-social-media>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <!--<button (click)="onApplyJob()"   *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)" > Apply Now</button>-->
+
+                                                <a data-toggle="modal"    [attr.data-target] = "'.apply-job'"  *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)" >
+                                                    <button>
+                                                    Apply Now
+                                                    </button>
+
+                                                </a>
+
+                                            <button *ngIf="!(isAuthorized$ | async)" class="apply-job-bt-full" [routerLink]="'/'+_accountService.getPath()+'/signup_jobseeker'"  > Apply Now</button>
+                                            <strong *ngIf="(isAuthorized$ | async) && (selJob$ | async)?.appliedDate != null">
+                                                <i class="zmdi zmdi-check-circle applied"></i>
+                                                Applied
+                                            </strong>
+
+                                            <button class="cancel over-c"  [class.hide]="!(isAuthorized$ | async)" *ngIf="!(selJob$ | async)?.isSaved" (click)="onSaveJob()">Save Job</button>
+                                            <button class="cancel unsave" [class.hide]="!(isAuthorized$ | async)" *ngIf="(selJob$ | async)?.isSaved" (click)="onUnSaveJob()">Unsave Job</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--requirement-->
+                    <div class="row requirement">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-chart-donut"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Sector</div>
+                                <div class="req-dark">{{(selJob$ | async)?.sector}}</div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-view-dashboard"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Functional Area</div>
+                                <div class="req-dark">{{(selJob$ | async)?.companyObj?.functionalArea}}</div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-case"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Years of Experience</div>
+                                <div class="req-dark">{{(selJob$ | async)?.experienceFrom}} <span *ngIf="(selJob$ | async)?.experienceTo"> - {{(selJob$ | async)?.experienceTo}}</span>  Years </div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-experience"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Experience Level </div>
+                                <div class="req-dark">{{(selJob$ | async)?.experienceLevel}}</div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-money-box"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Monthly Salary Range (USD)</div>
+                                <div class="req-dark" *ngIf="(selJob$ | async)?.salaryFrom">{{(selJob$ | async)?.salaryFrom | number}} - {{(selJob$ | async)?.salaryTo | number}}</div>
+                                <div class="req-dark light-color-text" *ngIf="!(selJob$ | async)?.salaryFrom">N/A</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-graduation-cap"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Education Requirement</div>
+                                <div class="req-dark">{{(selJob$ | async)?.educationLevel}}</div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+                        
+                       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-notice-period"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Certificates Required </div>
+                                <!--<div class="req-dark" *ngIf="(selJob$ | async)?.certificates?.length == 0">Not Required</div>-->
+                                <div class="req-dark" *ngIf="(selJob$ | async)?.certificates?.length > 0" >
+                                    <span *ngFor="let selCert of (selJob$ | async)?.certificates,let certIndex = index">{{selCert?.name}}
+                                        <span  *ngIf="certIndex <= ((selJob$ | async)?.certificates?.length-2)">,</span>
+                                    </span>
+                                </div>
+                                    <div class="req-dark light-color-text" *ngIf="(selJob$ | async)?.certificates && (selJob$ | async)?.certificates?.length ==0 ">
+                                        N/A
+                                    </div>
+
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-language"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Languages</div>
+                                <!--<div class="req-dark" *ngIf="(selJob$ | async)?.languageList">-->
+                                    <!--<span   *ngFor="let selLang of (selJob$ | async).languageList ">{{selLang.name}}</span>-->
+                                <!--</div>-->
+                                <!--<div class="req-dark light-color-text" *ngIf="(selJob$ | async)?.languageList && (selJob$ | async)?.languageList?.length ==0 ">N/A</div>-->
+
+                                <div class="req-dark" *ngIf="(selJob$ | async)?.languageList">
+                                    <span *ngFor="let selLan of (selJob$ | async)?.languageList,let certIndex = index">{{selLan?.name}}
+                                        <span  *ngIf="certIndex <= ((selJob$ | async)?.languageList?.length-2)">,</span>
+                                    </span>
+
+                                    <div class=" clearfix"></div>
+                                </div>
+
+                                <div class="req-dark light-color-text" *ngIf="(selJob$ | async)?.languageList && (selJob$ | async)?.languageList?.length ==0 ">
+                                    &nbsp;N/A
+                                </div>
+
+
+
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-gender"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Gender Preference</div>
+                                <div class="req-dark" *ngIf="(selJob$ | async)?.genderType">{{genderHash[(selJob$ | async)?.genderType]}}</div>
+                                <div class="req-dark light-color-text"  *ngIf="!(selJob$ | async)?.genderType">Any</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-current-Job font-12"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Job Type</div>
+                                <div class="req-dark">{{(selJob$ | async)?.jobTypeName}}</div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="zmdi zmdi-calendar-alt"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Joining Date</div>
+                                <div class="req-dark" *ngIf="(selJob$ | async)?.join_date">{{(selJob$ | async)?.join_date | date:'d MMM, yyyy'}}</div>
+                                <div class="req-dark" *ngIf="!(selJob$ | async)?.join_date">Immediately</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                            <div class="req-1"><i class="icon-License"></i></div>
+                            <div class="req-2">
+                                <div class="txt">Driving License </div>
+                                <div class="req-dark">
+                                    <span *ngIf="(selJob$ | async)?.drivingLicense">Required</span>
+                                    <span *ngIf="!(selJob$ | async)?.drivingLicense">Not Required</span>
+                                </div></div>
+                            <div class=" clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+                <div *ngIf="(similarJob$ | async)?.length >0" class="similar-jobs col-lg-3 col-md-12 col-sm-12 col-xs-12 filter-hide">
+                    <!--Similar Jobs-->
+                    <div class="row">
+                        <div class="block bottom-gap">
+                            <div class="block-title-2"><h2>Similar Jobs</h2></div>
+                            <div class="scroll">
+                                <ul>
+                                    <li class="filter-jobs"  *ngFor="let selJob of (similarJob$ | async),let jobcount =index">
+                                        <!--<a class="cursor_pointer1" (click)="onClickJobDetail(selJob.id)">-->
+
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"  >
+                                            <div class="featured-box">
+                                                <div class="box-company">
+                                                    <div class="feturd-compny" *ngIf="!selJob.companyObj.profileImage">
+                                                        <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                                    </div>
+                                                    <div class="feturd-compny" *ngIf="selJob.companyObj.profileImage">
+                                                        <span>
+                                                            <img src="{{selJob.companyObj.profileImage}}">
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="feturd-compny-dtls">
+                                                        <div class="txt-white">{{selJob.title}}</div>
+                                                        <div class="cmpny-txt">
+                                                            <i class="zmdi zmdi-city-alt"></i>
+                                                            <span>{{selJob.companyObj.name}}</span>
+
+                                                        </div>
+                                                        <div class="cmpny-txt">
+                                                            <i class="zmdi zmdi-pin"></i>
+                                                            <span>{{selJob.city}}, {{selJob.countryCountry}}</span>
+                                                        </div>
+                                                        <div class="cmpny-txt">
+                                                            <i class="zmdi zmdi-chart-donut"></i>
+                                                            <span>{{selJob.sector}}</span>
+                                                        </div>
+                                                    </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="second-section">
+                <div class="col-md-12 col-sm-12 col-xs-12"  [class.col-lg-9]="(similarCompanies$ | async)?.length >0" [class.col-lg-12]="(similarCompanies$ | async)?.length ==0">
+                    <!--Probability of Success-->
+                    <div class="row block bottom-gap veiw-secton">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 probability padd-15">
+                            <i class="icon-views blue-silver-txt"></i>
+                            <div class="applicants-numbers blue-silver" *ngIf="(jobCounts$ | async)?.job?.views_count">
+                                {{(jobCounts$ | async)?.job?.views_count | number}}
+                            </div>
+                            <div class="applicants-numbers blue-silver" *ngIf="!(jobCounts$ | async)?.job?.views_count">
+                               0
+                            </div>
+                            <div class="applicants-txt blue-silver-txt bold">No. of Views</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 probability padd-15">
+                            <i class="icon-applicants blue-dark-txt"></i>
+                            <div class="applicants-numbers blue-dark" *ngIf="(jobCounts$ | async)?.job?.count_applications">
+                                {{(jobCounts$ | async)?.job?.count_applications  | number}}
+                            </div>
+                            <div class="applicants-numbers blue-dark" *ngIf="!(jobCounts$ | async)?.job?.count_applications">
+                                0
+                            </div>
+                            <div class="applicants-txt blue-dark-txt bold">No. of Applicants</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 probability padd-15">
+                            <i class="icon-rank navy-light-txt"></i>
+                            <div class="applicants-numbers navy-light" *ngIf="(jobCounts$ | async)?.job?.current_user_rank">
+                                <div *ngIf="(selJob$ | async)?.appliedDate == null">
+                                {{(jobCounts$ | async)?.job?.current_user_rank | number }}/{{((jobCounts$ | async)?.job?.count_applications + 1) | number }}
+                                </div>
+                                <div *ngIf="(selJob$ | async)?.appliedDate != null">
+                                {{(jobCounts$ | async)?.job?.current_user_rank | number }}/{{((jobCounts$ | async)?.job?.count_applications) | number }}
+                                </div>
+
+                                </div>
+                            <div class="applicants-numbers navy-light" *ngIf="!(jobCounts$ | async)?.job?.current_user_rank && _accountService.getAuth()">
+                               N/A
+                            </div>
+                            <div class="applicants-numbers navy-light" *ngIf="!(jobCounts$ | async)?.job?.current_user_rank && !_accountService.getAuth()">
+                               ?
+                            </div>
+                            <div class="applicants-txt navy-light-txt bold" *ngIf="(selJob$ | async)?.appliedDate == null">Your Rank if you Apply</div>
+                            <div class="applicants-txt navy-light-txt bold" *ngIf="(selJob$ | async)?.appliedDate != null">Your Current Rank</div>
+                        </div>
+
+                        <!--In Future Probability of success will be added back-->
+
+                        <!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 navy-dark probability padd-15">-->
+                            <!--<i class="icon-probability-success"></i>-->
+                            <!--<div class="applicants-numbers" *ngIf="(jobCounts$ | async)?.job?.probability_success">-->
+                                <!--{{(jobCounts$ | async)?.job?.probability_success | number }}%-->
+                            <!--</div>-->
+                            <!--<div class="applicants-numbers" *ngIf="!(jobCounts$ | async)?.job?.probability_success">-->
+                               <!--N/A-->
+                            <!--</div>-->
+                            <!--<div class="applicants-txt">Probability of Success</div>-->
+                        <!--</div>-->
+                    </div>
+                    <!--Applicant Analysis-->
+                    <div class="row block bottom-gap analysis hidden-xs hidden-sm">
+                        <div class="row block-title"><h2>Applicant Analysis</h2></div>
+
+
+                        <div class="row blue-rel" *ngIf="isPublic">
+                            <div class="blur-txt">
+                                <div class="block-contant">
+                                    <div class="error">
+                                        <h3> Want to See  How You Compare to Other Applicants?</h3>
+                                        <a [routerLink]="'/home/signup'"> <button> Sign Up Now</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blue-blur"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 fade_ele">
+                                <div class="row block-title padding-10-20">
+                                    <h4>By Country</h4>
+                                </div>
+                                <div class="row padding-20 ">
+                                    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5"> <img src="images/applicant.png" width="80%"> </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#0b4882" ></div><div class="light">United State</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#1560a8" ></div><div class="light">United Arab Emirites</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#2c6cb5" ></div><div class="light">Kuwait</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#3379bd" ></div><div class="light">Saudi Arabia</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#f1f1f1" ></div><div class="light">Others</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 fade_ele">
+                                <div class="row block-title padding-10-20">
+                                    <h4>By Educational Level</h4>
+                                </div>
+                                <div class="row padding-20">
+                                    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5"> <img src="images/applicant1.png" width="80%"> </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#142130" ></div><div class="light">Bachelor Degree</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#26384c" ></div><div class="light">Masters Degree</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#374b61" ></div><div class="light">Bachelor & Masters Degrees</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#4b6076" ></div><div class="light">Diploma</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#f1f1f1" ></div><div class="light">Others</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 fade_ele">
+                                <div class="row block-title padding-10-20">
+                                    <h4>By Sector</h4>
+                                </div>
+                                <div class="row padding-20">
+                                    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5"> <img src="images/applicant2.png" width="80%"> </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#31596c" ></div><div class="light">Human Resourses</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#40697d" ></div><div class="light">Mechanical Engineering</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#507a8e" ></div><div class="light">Mechanical Engineering</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#648b9d" ></div><div class="light">Recruitment Services
+                                        </div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#f1f1f1" ></div><div class="light">Others</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 fade_ele">
+                                <div class="row block-title padding-10-20">
+                                    <h4>By Age Group</h4>
+                                </div>
+                                <div class="row padding-20">
+                                    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5"> <img src="images/applicant3.png" width="80%"> </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#629ad1" ></div><div class="light">18-22</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#87b6e4" ></div><div class="light">23-30</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#9fc9f2" ></div><div class="light">31-35</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#badcfd" ></div><div class="light">36-45</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                        <div class="side-colors">
+                                            <div class="analy" style="background:#f1f1f1" ></div><div class="light">Above 45</div>
+                                            <div class=" clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="!isPublic">
+
+                            <div *ngIf="(jobCharts$ | async)?.country" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>{{(jobCharts$ | async)?.country.mainLabel}}</h4>
+                                </div>
+
+                                <!-- Empty-Design Country-->
+                                <div *ngIf="!(jobCharts$ | async)?.country?.data[1]?.length || (jobCharts$ | async)?.country?.data[1]?.length == 0" class="row h-230" >
+                                    <div class="empty-prf ">
+                                        <i class="icon-empty-app-cntry"></i>
+                                        <h5>No Application by Country Available</h5>
+                                    </div>
+
+                                </div>
+
+                                <div *ngIf="(jobCharts$ | async)?.country?.data[1]?.length >0" class="row padd-15 hidden-sm hidden-xs">
+                                    <google-donut-chart [mode]="'desktop'"  [options]="(jobCharts$ | async)?.country?.options" [data]="(jobCharts$ | async)?.country?.data"></google-donut-chart>
+                                </div>
+
+                                <div *ngIf="(jobCharts$ | async)?.country?.data[1]?.length >0" class="row padd-15 hidden-md hidden-lg">
+                                    <google-donut-chart [mode]="'mobile'"  [options]="(jobCharts$ | async)?.country?.options" [data]="(jobCharts$ | async)?.country?.data"></google-donut-chart>
+                                </div>
+                            </div>
+
+                            <div *ngIf="(jobCharts$ | async)?.education" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>{{(jobCharts$ | async)?.education.mainLabel}}</h4>
+                                </div>
+
+                                <!-- Empty Design Education -->
+                                <div *ngIf="!(jobCharts$ | async)?.education?.data[1]?.length || (jobCharts$ | async)?.education?.data[1]?.length == 0" class="row h-230">
+                                    <div class="empty-prf">
+                                        <i class="icon-empty-app-education"></i>
+                                        <h5>No Application by Education Available</h5>
+                                    </div>
+                                </div>
+
+
+                                <div *ngIf="(jobCharts$ | async)?.education?.data[1]?.length >0" class="row padd-15 hidden-sm hidden-xs">
+                                    <google-donut-chart  [mode]="'desktop'" [options]="(jobCharts$ | async)?.education?.options" [data]="(jobCharts$ | async)?.education?.data"></google-donut-chart>
+                                </div>
+                                <div *ngIf="(jobCharts$ | async)?.education?.data[1]?.length >0" class="row padd-15 hidden-md hidden-lg">
+                                    <google-donut-chart [mode]="'mobile'"  [options]="(jobCharts$ | async)?.education?.options" [data]="(jobCharts$ | async)?.education?.data"></google-donut-chart>
+                                </div>
+                            </div>
+
+                            <div *ngIf="(jobCharts$ | async)?.sector" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>{{(jobCharts$ | async)?.sector.mainLabel}}</h4>
+                                </div>
+
+
+                                <!-- Empty Design Sector -->
+                                <div class="row h-230" *ngIf="!(jobCharts$ | async)?.sector?.data[1]?.length || (jobCharts$ | async)?.sector?.data[1]?.length == 0">
+                                    <div class="empty-prf ">
+                                        <i class="icon-empty-app-sector"></i>
+                                        <h5>No Application by Sector Available</h5>
+                                    </div>
+                                </div>
+
+
+                                <div *ngIf="(jobCharts$ | async)?.sector?.data[1]?.length >0"  class="row padd-15 hidden-sm hidden-xs">
+                                    <google-donut-chart  [mode]="'desktop'" [options]="(jobCharts$ | async)?.sector?.options" [data]="(jobCharts$ | async)?.sector?.data"> </google-donut-chart>
+                                </div>
+
+
+                                <div *ngIf="(jobCharts$ | async)?.sector?.data[1]?.length >0"   class="row padd-15 hidden-md hidden-lg">
+                                    <google-donut-chart  [mode]="'mobile'" [options]="(jobCharts$ | async)?.sector?.options" [data]="(jobCharts$ | async)?.sector?.data"> </google-donut-chart>
+                                </div>
+
+
+
+                            </div>
+                            <div *ngIf="(jobCharts$ | async)?.age" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="row block-title padding-15">
+                                    <h4>{{(jobCharts$ | async)?.age.mainLabel}}</h4>
+                                </div>
+
+                                <!-- Empty Design Age Group -->
+                                <div class="row h-230" *ngIf="!(jobCharts$ | async)?.age?.data[1]?.length || (jobCharts$ | async)?.age?.data[1]?.length == 0" >
+                                    <div class="empty-prf ">
+                                        <i class="icon-empty-app-group"></i>
+                                        <h5>No Application by Age Group Available</h5>
+                                    </div>
+                                </div>
+
+                                <div  *ngIf="(jobCharts$ | async)?.age?.data[1]?.length >0"  class="row padd-15 hidden-sm hidden-xs">
+                                    <google-donut-chart [mode]="'desktop'" [options]="(jobCharts$ | async)?.age?.options" [data]="(jobCharts$ | async)?.age?.data"></google-donut-chart>
+                                </div>
+                                <div   *ngIf="(jobCharts$ | async)?.age?.data[1]?.length >0"  class="row padd-15 hidden-md hidden-lg">
+                                    <google-donut-chart  [mode]="'mobile'" [options]="(jobCharts$ | async)?.age?.options" [data]="(jobCharts$ | async)?.age?.data"></google-donut-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="(similarCompanies$ | async)?.length >0" class="similar-jobs col-lg-3 col-md-12 col-sm-12 col-xs-12 filter-hide">
+                    <div class="row">
+                        <div class="block bottom-gap">
+                            <div class="block-title-2"><h2>Similar Employers</h2></div>
+                            <div class="scroll-employer">
+                                <ul>
+                                    <li class="filter-jobs" *ngFor="let selCom of (similarCompanies$ | async),let comcount =index" >
+                                        <a class="cursor_pointer1"  [routerLink]="['/'+_accountService.getPath()+'/companies/details/'+selCom.id]"  >
+
+                                            <div class="featured-box similar-employers ">
+                                                <div class="row">
+
+                                                   <div class="box-company">
+                                                        <div class="feturd-compny" *ngIf="!selCom.profileImage">
+                                                            <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                                        </div>
+                                                        <div class="feturd-compny" *ngIf="selCom.profileImage">
+                                                            <span>
+                                                                <img src="{{selCom.profileImage}}">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="feturd-compny-dtls">
+                                                        <div class="txt-white">{{selCom.name}}</div>
+                                                        <div class="cmpny-txt">
+                                                            <i class="zmdi zmdi-pin"></i>
+                                                            <span>{{selCom.city?.name}}, {{selCom.city?.country?.name}}</span>
+                                                        </div>
+                                                        <div class="cmpny-txt">
+                                                            <i class="zmdi zmdi-chart-donut"></i>
+                                                            <span>{{selCom.sector}}</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!--Job Description-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="block bottom-gap">
+                    <div class="block-title"><h2>Job Description</h2></div>
+                    <div class="block-contant job_description_spacing">
+                        <div class="bullet description">
+                            <ul>
+                                <li>
+
+                                    <span class="light fit-content" [innerHTML]="(selJob$ | async)?.jobDescription"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="block bottom-gap">
+                    <div class="block-title"><h2>Job Requirements</h2></div>
+                    <div class="block-contant">
+                        <div class="bullet description">
+                            <ul>
+                                <li>
+                                    <span class="light" [innerHTML]="(selJob$ | async)?.jobRequirement"></span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div  *ngIf="(selJob$ | async)?.jobBenefitList?.length >0"  class="row benefits">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block">
+                        <div class="block-title"><h2>Benefits</h2></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottom-gap">
+                <div class="col-lg-12">
+                    <div  *ngFor="let selbenefit of (selJob$ | async)?.jobBenefitList,let i =index" class="benafit-box block" [class.margin-rgt-0]="i >= ((selJob$ | async)?.jobBenefitList?.length - 1) " >
+                        <div class="ben-icn"><i  [class]="selbenefit.icon_code" class="icon-medical-insurance"></i> </div>
+                        <p>{{selbenefit.name}}</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<apply-jobs *ngIf="applyJobFlag"
+            [jobTitle]="(selJob$ | async)?.title"
+            [jobId]=" (selJob$ | async)?.id">
+</apply-jobs>
+<div class="clearfix"></div>
+
+<!--Apply Search Pop up-->
+<div class="popup"  *ngIf="(selJob$ | async)?.appliedDate == null && (isAuthorized$ | async)">
+    <div class="logout-pop">
+        <div class="modal close_delete apply-job" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <div class="pad-5">
+                            <div *ngIf="(errrorFlag$ |async) == true" class="alert alert-danger alert-dismissible mar15" role="alert">
+                                Error occurred while appling for the Job
+                            </div>
+                            <div *ngIf="(errrorMessage$ |async) != null " class="alert alert-danger alert-dismissible mar15" role="alert">
+                                {{(errrorMessage$ |async)}}
+                            </div>
+                            <div *ngIf="(successFlag$ |async) == true"   class="comen-alert mar15">
+                                <i class="zmdi zmdi-check-circle"></i>
+                                Your application has been successfully submitted.
+                            </div>
+                        </div>
+                        <div *ngIf="(errrorFlag$ |async) != true && (errrorMessage$ |async) == null && (successFlag$ |async) != true" >
+                        <!--<h2>Apply for the post of a {{(selJob$ | async)?.title}}</h2>-->
+                        <h2>Are you sure you want to apply to this job?</h2>
+
+                        <div class="pop-button">
+                            <button  type="button" class="btn postive" (click)="onApplyJob()">Apply</button>
+                            <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                            <div class="clr"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

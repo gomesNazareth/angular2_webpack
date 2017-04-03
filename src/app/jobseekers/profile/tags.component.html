@@ -1,0 +1,72 @@
+<div class="tag-secton bottom-gap ">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="block empty-min11">
+            <div [style.display]="(tags_status == 'read')  ?'block':'none'"> <!-- save -->
+
+                <div class="block-title">
+                    <div class="left"><h4>#Tag Yourself</h4></div>
+                    <div class="right" *ngIf="(tags | async)?.length >0">
+                        <a (click)="onEdit()"><span class="light"><i class="zmdi zmdi-edit"></i> Edit</span></a></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="empty-min11" *ngIf="(showSpinnerFlag$ | async)">
+                    + <i class="empty-min11-spinner">
+                    <spinner [visible]="(showSpinnerFlag$ | async)"></spinner>
+                </i>
+                </div>
+                <div *ngIf="!(showSpinnerFlag$ | async)" class="block-contant">
+                    <div class="tagss" *ngFor="let tag of (tags | async);trackBy: tag?.id">
+                        <span *ngIf="tag" class="tag-main"><span class="hash">#</span><span class="tag-txt">{{tag?.name}}</span>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div  [style.display]="!(showSpinnerFlag$ | async) ?'block':'none'"  class="block-contant" *ngIf="(tags | async)?.length == 0">
+
+                    <div class="empty-prf empty-min1 cursor_pointer1" (click)="onEdit()">
+                        <i class="icon-empty-tag"></i>
+                        <h5> Add Tags</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div [style.display]="(tags_status == 'edit' ) ?'block':'none'"> <!-- edit -->
+                <div class="block-title-2">
+                    <div class="left"><h4>#Tag Yourself</h4></div>
+                    <div class="right">
+                        <a href="#" class="hide-mobile"> <span class="light"><i class="zmdi zmdi-help"></i> Help </span></a>
+                        <button (click)="onSave()" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save</button>
+                        <span class="cancel padding-0"><button (click)="onRead()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="block-contant ">
+                    <div class="empty-min11" *ngIf="(showSpinnerFlag$ | async)">
+                        <i class="empty-min11-spinner">
+                            <spinner [visible]="(showSpinnerFlag$ | async)"></spinner>
+                        </i>
+
+                    </div>
+                    <span *ngIf="!(showSpinnerFlag$ | async)" class="edit">
+                    <div class="tag-new" *ngFor="let selTag of tagsarry;let tagIndex = index">
+
+                        <div class="txt"> {{selTag.name}} </div>
+                        <div class="close-tag" (click)="onRemoveElement(tagIndex)">
+                            <i class="zmdi zmdi-close-circle"></i></div>
+                    </div>
+                    <span class="new-tag-jobseeker only-tag-input">
+                    <div *ngIf="tagsarry.length < maxCount">
+                        <auto-complete *ngIf="tagsarry.length < maxCount" [recordType]="'Tag'" [resetOnSelect]="true" [selectOneEnter]="true" [placeholder]="'Add Tags'"
+                                       (changeRecords)="onAddElement($event)">
+                        </auto-complete>
+                    </div>
+                    </span>
+                </span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" clearfix"></div>
+</div>

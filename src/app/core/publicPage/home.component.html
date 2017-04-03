@@ -1,0 +1,792 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div class="banner">
+    <!--------------header---------->
+    <!-- Header Second its coming after scroll website 25%-->
+    <header id="header_two">
+        <div class="header-two-style">
+
+            <div class="home-lg col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-left">
+                <i><img src="images/logo-horizontal.svg"></i>
+            </div>
+
+            <div class="menu col-lg-3 col-md-6 col-sm-6 col-xs-12 pull-right">
+                <a class="signin" (click)="openSignin()">Sign In</a>
+                <a class="signup" (click)="openSignup()">Sign Up</a>
+            </div>
+
+
+        </div>
+    </header>
+
+    <!-- Header Firest this is the main header of the website-->
+    <header id="header_one">
+        <div class="header-home-page">
+
+            <div class="home-lg col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-left"><img src="images/home-logo.svg"> </div>
+
+            <div class="menu col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right">
+                <a class="signin" (click)="openSignin()">Sign In</a>
+                <a class="signup" (click)="openSignup()">Sign Up</a>
+            </div>
+
+
+        </div>
+    </header>
+
+    <!-- Home Banner -->
+    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="6000" id="bs-carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item slides active">
+                <div class="slide-1">
+                    <div class="overlay"></div>
+                </div>
+                <div class="hero">
+                    <h1>Where jobs are born</h1>
+                    <h3>Search for Jobs in the Middle East</h3>
+                    <button class="btn btn-hero btn-lg" role="button" (click)="openSignup()">
+                        <a class="signup">
+                            Get Started
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--desktop Search-->
+        <div class="main-serch hidden-xs">
+            <div class=" container">
+                <div class="">
+                    <div class="col-lg-12">
+                        <form [formGroup] = "form2">
+                            <div class="adjs">
+                                <div class="col-lg-5 col-md-5 col-sm-5 jobpost">
+                                    <div class="txt"> Job Title </div>
+                                    <div class="home-relativ">
+                                        <div class="ab-icon"> <i class="icon-jobs-posted"></i> </div>
+                                        <input type="text"  placeholder="e.g. Graphic Designer" (keydown.enter)="searchJobs()" formControlName="title">
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 ">
+                                    <div class="txt"> Location </div>
+                                    <div class="home-relativ">
+                                        <div class="ab-icon"> <i class="zmdi zmdi-pin"></i> </div>
+                                        <input type="text" formControlName="location"  (keydown.enter)="searchJobs()" placeholder="e.g. Dubai or United Arab Emirates">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+
+                                    <a (click)="searchJobs()" class="bt-home-search"> <i class="icon-featured-serch"></i> Find Jobs </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--mobile Search-->
+        <div class="main-serch  hidden-sm hidden-md hidden-lg">
+            <div class=" container">
+                <form [formGroup] = "form2">
+                    <div class="">
+                        <div class="col-lg-12">
+                            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 jobpost">
+                                <div class="home-relativ">
+                                    <div class="ab-icon"> <i class="icon-jobs-posted"></i> </div>
+                                    <input type="text"  placeholder="eg. Job title" (keydown.enter)="searchJobs()" formControlName="title">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                <div class="home-relativ">
+                                    <div class="ab-icon"> <i class="zmdi zmdi-pin"></i> </div>
+                                    <input type="text" formControlName="location"  (keydown.enter)="searchJobs()" placeholder="e.g. Dubai or United Arab Emirates">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <a (click)="searchJobs()" class="bt-home-search"> <i class="icon-featured-serch"></i> Find Jobs </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!------- Fetured logo ---------->
+
+<!--Desktop    -->
+
+<!-- spinner -->
+<div class="spinner_home" *ngIf="!(featuredCompanyList$ | async) && (featuredCompanyList$ | async) != null">
+    <i><img src="images/balls.svg"></i>
+</div>
+
+<section class="ftrd-slider hidden-xs hidden-sm" *ngIf="(featuredCompanyList$ | async)">
+    <div class=" container ">
+        <div>
+            <div class="slider">
+                <div class="carousel slider-ftr slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+                    <div class="border-hide"></div>
+                    <div class="carousel-inner" style="position:relative;">
+                        <div class="item active">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"
+                                 *ngFor="let featured_com of (featuredCompanyList$ | async), let i = index">
+                                <a *ngIf="i < 4" [routerLink]="['/home/companies/details/'+featured_com.first.company.id]">
+                                    <div class="view">
+                                        <div class="bdr">
+                                            <img [src]="featured_com.first.company.avatar">
+                                        </div>
+                                    </div>
+                                </a>
+                                <a *ngIf="i < 4 && featured_com.second" [routerLink]="['/home/companies/details/'+featured_com.second.company.id]">
+                                    <div class="view">
+                                        <div class="f-logo-cont">
+                                            <img [src]="featured_com.second.company.avatar">
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="item ">
+                            <div *ngFor="let featured_com of (featuredCompanyList$ | async), let i = index">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" *ngIf="i > 1">
+                                    <a  *ngIf="i < 6"  [routerLink]="['/home/companies/details/'+featured_com.first.company.id]">
+                                        <div class="view">
+                                            <div class="bdr">
+                                                <img [src]="featured_com.first.company.avatar">
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a *ngIf="i < 6 && featured_com.second" [routerLink]="['/home/companies/details/'+featured_com.second.company.id]">
+                                        <div class="view">
+                                            <div class="f-logo-cont">
+                                                <img [src]="featured_com.second.company.avatar">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control border-fix-home" href="#myCarousel" data-slide="prev"><i class="zmdi zmdi-chevron-left"></i></a>
+                    <a class="right carousel-control border-fix-home-right" href="#myCarousel" data-slide="next"><i class="zmdi zmdi-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Featured Logo Section mobile-->
+<section class="mob-ftrd-bnr hidden-md hidden-lg">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="col-xs-12 ">
+                    <div *ngFor="let featured_com of (featuredCompanyList$ | async), let i = index">
+                        <div class="ftr" *ngIf="i < 6">
+                            <a [routerLink]="['/home/companies/details/'+featured_com.first.company.id]">
+                                <img [src]="featured_com.first.company.avatar">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="col-xs-12 ">
+                    <div *ngFor="let featured_com of (featuredCompanyList$ | async), let i = index">
+                        <div class="ftr" *ngIf="i < 6 && featured_com.second">
+                            <a [routerLink]="['/home/companies/details/'+featured_com.second.company.id]">
+                                <img [src]="featured_com.second.company.avatar">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon"> <i class="zmdi zmdi-chevron-left"></i></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon"> <i class="zmdi zmdi-chevron-right"></i></span>
+        </a>
+    </div>
+</section>
+
+<!------- job-seekers ---------->
+<section class="job-seekers">
+    <div class=" container">
+        <div class="row section-title">
+            <div class=" col-lg-12">
+                <h2>Job Seekers</h2>
+                <h5>Job Opportunities Matching Your Profile Using Advanced Algorithms</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="round"> <i class="icon-matching-percentage"></i> </div>
+                <div class="round-bld">
+                    Scientific <br>
+                    Matching Percentages
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6  border-right-mob">
+                <div class="round"> <i class="icon-Candidate-video"></i> </div>
+                <div class="round-bld">
+                    30-Second Video<br>
+                    Pitches
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bdr-btm-non">
+                <div class="round"> <i class="icon-Advance-tracking"></i> </div>
+                <div class="round-bld">
+                    Advanced <br>
+                    Tracking System
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 border-none ">
+                <div class="round"> <i class="icon-Insightful-Jobs"></i> </div>
+                <div class="round-bld">
+                    Insightful  <br>
+                    Jobs Dashboard
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>
+
+<!------- Employers ---------->
+<section class="home-Employers">
+    <div class=" container ">
+        <div class="row section-title">
+            <div class=" col-lg-12 ">
+                <h2>Employers</h2>
+                <h5>Innovative Recruitment Solutions Using the Power of "Data Science" and "Algorithms"</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 ">
+                <div class="round"> <i class="icon-percentage-applicant"></i> </div>
+                <div class="round-bld">
+                Applicants Ranked By <br>Matching Percentages
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 border-right-mob">
+                <div class="round"> <i class="icon-algorithm"></i> </div>
+                <div class="round-bld">
+                    Recommended Candidates <br>Using Algorithms
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6  bdr-btm-non">
+                <div class="round"> <i class="icon-monitoring-soft"></i> </div>
+                <div class="round-bld">
+                    Advanced Recruitment <br>Monitoring Software
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 border-none ">
+                <div class="round"> <i class="icon-Candidate-video2"></i> </div>
+                <div class="round-bld">
+                    30-Second <br>Candidate Videos
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>
+<!------- Country ---------->
+
+<!-- Find Jobs by Country Desktop -->
+<section class="country hidden-xs" *ngIf="(!_accountservice.getCheckEmployer() &&!_accountservice.getCheckEmployer() && _accountservice.getAuth()) ||  ! _accountservice.getAuth() ">
+    <div class=" container ">
+        <div class="row section-title">
+            <h2>Find Jobs by Country</h2>
+        </div>
+
+        <!-- spinner -->
+        <div class="spinner_home" *ngIf="!(commonData$ | async)?.countries" >
+            <i><img src="images/balls.svg"></i>
+        </div>
+
+        <!-- Country Start -->
+        <div *ngIf="(commonData$ | async)?.countries" >
+            <div class="row">
+                <a *ngFor="let sel_country of (commonData$ | async)?.countries"
+                   [routerLink]="['/home/jobs/country/'+sel_country.id+'/'+_accountservice.getSpaceToDash(sel_country.name)]" class="cursor_pointer1">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+                        <div class="home-contry">
+                            <h3>{{sel_country.name}}&nbsp;
+                            <span *ngIf="sel_country.jobs_count == 1">({{sel_country.jobs_count}}&nbsp;Job)</span>
+                                <span *ngIf="sel_country.jobs_count != 1">({{sel_country.jobs_count}}&nbsp;Jobs)</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a [routerLink]="'/home/country'"><div class="more-btn"> More </div></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Find Jobs by Country mobile -->
+<section class="country hidden-sm hidden-md hidden-lg" *ngIf="(!_accountservice.getCheckEmployer() &&!_accountservice.getCheckEmployer() && _accountservice.getAuth()) ||  ! _accountservice.getAuth() ">
+    <div class="section-title ">
+        <h2>Find Jobs by Country</h2>
+    </div>
+
+    <!-- spinner -->
+    <div class="spinner_home" *ngIf="!(commonData$ | async)?.countries">
+        <i><img src="images/balls.svg"></i>
+    </div>
+
+    <div class="swiper-container" *ngIf="(commonData$ | async)?.countries">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+
+                <a *ngFor="let sel_country of (commonData$ | async)?.countries,let cIndex = index"
+                   [routerLink]="['/home/jobs/country/'+sel_country.id+'/'+_accountservice.getSpaceToDash(sel_country.name)]" class="cursor_pointer1">
+                    <div class=" col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngIf="cIndex < 2">
+                        <div class="home-contry">
+                            <h3>{{sel_country.name}}
+                            <span *ngIf="sel_country.jobs_count == 1">({{sel_country.jobs_count}}&nbsp;Job)</span>
+                            <span *ngIf="sel_country.jobs_count != 1">({{sel_country.jobs_count}}&nbsp;Jobs)</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class=" clearfix "></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="col-lg-12">
+        <a [routerLink]="'/home/country'"> <div class="more-btn"> More </div></a>
+    </div>
+</section>
+<!------- Sector ---------->
+
+
+<!-- Find Jobs by Sector Desktop -->
+<section class="home-sector hidden-xs" *ngIf="(!_accountservice.getCheckEmployer() &&!_accountservice.getCheckEmployer() && _accountservice.getAuth()) ||  ! _accountservice.getAuth() ">
+    <div class=" container ">
+        <div class="row section-title">
+            <h2>Find Jobs by Sector</h2>
+        </div>
+
+        <!-- spinner -->
+        <div class="spinner_home" *ngIf="!(sectors$ | async)">
+            <i><img src="images/balls.svg"></i>
+        </div>
+
+        <!-- Sector start -->
+        <div *ngIf="(sectors$ | async)">
+            <div class="row">
+                <a *ngFor="let sel_sector of (sectors$ | async)"
+                   [routerLink]="['/home/jobs/sector/'+sel_sector.id+'/'+_accountservice.getSpaceToDash(sel_sector.name)]" class="cursor_pointer1">
+                    <div class=" col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="home-contry">
+                            <div class="hme-txt"><h3>{{sel_sector.name}}
+                                <span *ngIf="sel_sector.jobs_count == 1">({{sel_sector.jobs_count}}&nbsp;Job)</span>
+                                <span *ngIf="sel_sector.jobs_count != 1">({{sel_sector.jobs_count}}&nbsp;Jobs)</span>
+                            </h3></div>
+
+                            <div class=" clearfix "></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a [routerLink]="'/home/sector'"> <div class="more-btn"> More </div></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Find Jobs by Sector mobile -->
+<section class="home-sector hidden-sm hidden-md hidden-lg" *ngIf="(!_accountservice.getCheckEmployer() &&!_accountservice.getCheckEmployer() && _accountservice.getAuth()) ||  ! _accountservice.getAuth() ">
+    <div class="section-title ">
+        <h2>Find Jobs by Sector</h2>
+    </div>
+
+    <!-- spinner -->
+    <div class="spinner_home" *ngIf="!(sectors$ | async)">
+        <i><img src="images/balls.svg"></i>
+    </div>
+
+    <div class="swiper-container" *ngIf="(sectors$ | async)">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                    <a *ngFor="let sel_sector of (sectors$ | async),let sectoreIndex = index"
+                   [routerLink]="['/home/jobs/sector/'+sel_sector.id+'/'+_accountservice.getSpaceToDash(sel_sector.name)]" class="cursor_pointer1">
+                    <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="sectoreIndex < 2">
+                        <div class="home-contry">
+                            <div class="hme-txt"><h3>{{sel_sector.name}}
+                            <span *ngIf="sel_sector.jobs_count == 1">({{sel_sector.jobs_count}}&nbsp;Job)</span>
+                            <span *ngIf="sel_sector.jobs_count != 1">({{sel_sector.jobs_count}}&nbsp;Jobs)</span>
+                            </h3></div>
+
+                            <div class=" clearfix "></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class=" clearfix "></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="col-lg-12">
+        <a [routerLink]="'/home/sector'"> <div class="more-btn"> More </div></a>
+    </div>
+</section>
+
+<!------- home blog---------->
+
+<section class="home-blog country">
+    <div class=" container ">
+        <div class="row section-title">
+            <h2>Latest Blog Posts</h2>
+        </div>
+
+        <!-- spinner -->
+        <div class="spinner_home" *ngIf="!(generalBlogs$ | async)">
+            <i><img src="images/balls.svg"></i>
+        </div>
+
+        <!-- Blog Start -->
+        <div  *ngIf="(generalBlogs$ | async)">
+            <div class="row">
+                <div class="slider">
+                    <div class="carousel slider-blog slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel1">
+                        <div class="border-hide"></div>
+                        <div class="carousel-inner" style="position: relative;">
+                            <div *ngFor="let selBlog of (generalBlogs$ | async); let e = even; let o = odd; let f = first; let i = index;"
+                                 class="item" [ngClass]="{'active': f}">
+                                <div *ngIf="selBlog.first" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                    <a  *ngIf="!_accountservice.getAuth()" [routerLink]="['/home/blog/' + selBlog.first.id+'/'+_accountservice.getSpaceToDash(selBlog.first.name)]">
+                                        <div class="blg">
+                                            <div class="blg-img">
+                                                <div class="shade-btm"></div>
+                                                <img [src]="selBlog.first.bannerImage">
+                                                <div class="date">
+                                                    <h3> {{selBlog.first.postDate | date:'MMM'}}</h3>
+                                                    <h5> {{selBlog.first.postDate | date:'dd'}}</h5>
+                                                </div>
+                                                <div class="blg-txt">
+                                                    <h3> {{selBlog.first.name}} </h3>
+                                                    <h4> POSTED BY {{selBlog.first.postedUserName}} </h4>
+                                                </div>
+                                            </div>
+                                            <div class="home-txt">
+                                                <p [innerHTML]="selBlog.first.description"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a *ngIf="_accountservice.getAuth()" [routerLink]="['/'+_accountservice.getPath()+'/blog/' + selBlog.first.id+'/'+_accountservice.getSpaceToDash(selBlog.first.name)]">
+                                        <div class="blg">
+                                            <div class="blg-img">
+                                                <div class="shade-btm"></div>
+                                                <img [src]="selBlog.first.bannerImage">
+                                                <div class="date">
+                                                    <h3> {{selBlog.first.postDate | date:'MMM'}}</h3>
+                                                    <h5> {{selBlog.first.postDate | date:'dd'}}</h5>
+                                                </div>
+                                                <div class="blg-txt">
+                                                    <h3> {{selBlog.first.name}} </h3>
+                                                    <h4> POSTED BY {{selBlog.first.postedUserName}} </h4>
+                                                </div>
+                                            </div>
+                                            <div class="home-txt">
+                                                <p [innerHTML]="selBlog.first.description"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div *ngIf="selBlog.second" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                    <a *ngIf="!_accountservice.getAuth()" [routerLink]="['/home/blog/' + selBlog.second.id+'/'+_accountservice.getSpaceToDash(selBlog.second.name)]">
+                                        <div class="blg">
+                                            <div class="blg-img">
+                                                <div class="shade-btm"></div>
+                                                <img [src]="selBlog.second.bannerImage">
+                                                <div class="date">
+                                                    <h3> {{selBlog.second.postDate | date:'MMM'}}</h3>
+                                                    <h5> {{selBlog.second.postDate | date:'dd'}}</h5>
+                                                </div>
+                                                <div class="blg-txt">
+                                                    <h3> {{selBlog.second.name}} </h3>
+                                                    <h4> POSTED BY {{selBlog.second.postedUserName}} </h4>
+                                                </div>
+                                            </div>
+                                            <div class="home-txt">
+                                                <p [innerHTML]="selBlog.second.description"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a *ngIf="_accountservice.getAuth()" [routerLink]="['/'+_accountservice.getPath()+'/blog/' + selBlog.second.id+'/'+_accountservice.getSpaceToDash(selBlog.second.name)]">
+                                        <div class="blg">
+                                            <div class="blg-img">
+                                                <div class="shade-btm"></div>
+                                                <img [src]="selBlog.second.bannerImage">
+                                                <div class="date">
+                                                    <h3> {{selBlog.second.postDate | date:'MMM'}}</h3>
+                                                    <h5> {{selBlog.second.postDate | date:'dd'}}</h5>
+                                                </div>
+                                                <div class="blg-txt">
+                                                    <h3> {{selBlog.second.name}} </h3>
+                                                    <h4> POSTED BY {{selBlog.second.postedUserName}} </h4>
+                                                </div>
+                                            </div>
+                                            <div class="home-txt">
+                                                <p [innerHTML]="selBlog.second.description"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel1" data-slide="prev"><i class="zmdi zmdi-chevron-left"></i></a>
+                        <a class="right carousel-control" href="#myCarousel1" data-slide="next"><i class="zmdi zmdi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a *ngIf="!_accountservice.getAuth()" [routerLink]="'/home/blog'"> <div class="more-btn"> More </div></a>
+                    <a *ngIf="_accountservice.getAuth()" [routerLink]="'/'+_accountservice.getPath()+'/blog'"> <div class="more-btn"> More </div></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!------- footer---------->
+<div class="homefooter">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="ftr-bdr">
+                        <h4>BLOOVO.COM </h4>
+                        <p>
+                            The Company is an online recruitment platform offering employers the opportunity to post jobs and job  seekers to apply for jobs on the same platform. In addition, BLOOVO will also provide.
+                            <a [routerLink]="'/home/about'"> Read More...</a>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="ftr-bdr footer-pad-home">
+                        <h4>Quick Links </h4>
+                        <ul>
+                            <li *ngIf="!_accountservice.getAuth()"><a [routerLink]="'/home/blog'">Blog</a></li>
+                            <li *ngIf="_accountservice.getAuth()"><a [routerLink]="'/'+_accountservice.getPath()+'/blog'">Blog</a></li>
+                            <li *ngIf="(!_accountservice.getCheckEmployer() &&!_accountservice.getCheckEmployer() && _accountservice.getAuth()) ||  ! _accountservice.getAuth() "><a [routerLink]="'/home/companies'">Company Directory</a></li>
+                            <li><a [routerLink]="'/home/candidate-elevator'">Candidate Elevator Pitch</a></li>
+                            <li><a [routerLink]="'/home/terms'">Terms and Conditions</a></li>
+                            <li><a [routerLink]="'/home/policy'">Privacy Policy</a></li>
+                            <li><a [routerLink]="'/home/site-map'">Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 border-none">
+                    <div class="ftr-bdr footer-pad-home">
+                        <h4>Contact Us</h4>
+                        <p> Dubai Internet City, Building 1, Third
+                            Floor, Office 307
+                        </p>
+                        <p> <i class="zmdi zmdi-phone"></i> +971 (0) 4 452 8108</p>
+                        <p> <i class="zmdi zmdi-email"></i> hello@bloovo.com</p>
+                    </div>
+                    <div class="social">
+                            <a href="https://www.facebook.com/BloovoWorld/"> <div class="soc facebook"> <i class="zmdi zmdi-facebook"></i> </div></a>
+                            <a href="https://twitter.com/Bloovo"><div class="soc twitter"> <i class="zmdi zmdi-twitter"></i> </div></a>
+                            <a href="https://www.linkedin.com/company/bloovo"><div class="soc linkdin"> <i class="zmdi zmdi-linkedin"></i> </div></a>
+                            <a href="https://plus.google.com/+Bloovo"><div class="soc google-plus"> <i class="zmdi zmdi-google-plus"></i> </div></a>
+                            <a href="https://www.youtube.com/channel/UCuRLdElkaZaipKjKVJgICDQ"><div class="soc youtube"> <i class="zmdi zmdi-youtube"></i> </div></a>
+                            <a href="https://www.instagram.com/bloovo_/"><div class="soc instagram"> <i class="zmdi zmdi-instagram"></i> </div></a>
+                        </div>
+                </div>
+                <!-- Not Required Now -->
+                <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 border-none">
+                    <div class="ftr-bdr border-none footer-pad-left-home">
+                        <h4>Subscribe Our Newsletters </h4>
+                        <div class="full-box"><input type="text" placeholder="Your e-mail" name="phn"></div>
+                        <button> Subscribe <i class="zmdi zmdi-mail-send"></i> </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <div class="container">
+            <div class="col-lg-12">
+                <p> Copyright &copy; BLOOVO Middle East FZ LLC.All Rights Reserved. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------ popup -------->
+<!--Sign In -->
+<!--Sign In -->
+<div class="popup">
+    <div class="pop">
+        <div class="modal close_popup sign-in-home sign-in" id="sign-in-home" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button" (click)="resetSignForm()">×</button>
+                        <h1 class="text-center">Sign In</h1>
+                        <form [formGroup]="form1">
+                            <div *ngIf="errorFlag && errorMode == 1" class="alert alert-danger alert-dismissible" role="alert">
+                                Sorry! Authentication Failed
+                            </div>
+                            <div *ngIf="errorFlag && errorMode == 2" class="alert alert-danger alert-dismissible" role="alert">
+                                Your Account is Inactivate. To Activate it, please contact us at hello@bloovo.com
+                            </div>
+                            <div class="home-full">
+                                <div  *ngIf="(form1.controls['username'].touched || !(pristineFlag$ | async)) && form1.controls['username'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                    Please enter a valid username
+                                </div>
+
+                                <input type="text" formControlName="username" placeholder="Enter Your Email" (keydown.enter)="loginUser()">
+                            </div>
+                            <div class="home-full">
+                                <div  *ngIf="(form1.controls['user_password'].touched || !(pristineFlag$ | async)) && form1.controls['user_password'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                    Please enter a valid password
+                                </div>
+                                <input  type="password" name="user_password" formControlName="user_password" placeholder="Password" (keydown.enter)="loginUser()">
+                            </div>
+                            <div class="home-full2">
+                                <div class="requr clicks pull-left">
+                                    <input id="rememberme" class="css-checkbox" type="checkbox" name="rememberme"  formControlName="rememberme">
+                                    <label class="css-label" for="rememberme">
+                                        <span>Remember&nbsp;Me</span>
+                                    </label>
+                                </div>
+                                <div class="pull-right" (click)="goForgetPassword()">
+                                    <a> Forgot Password</a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="pop-button">
+                                <button type="button" class="btn postive" (click)="loginUser()">Sign In</button>
+                                <div class="clr"></div>
+                            </div>
+                            <div>
+                                <h5 class="text-center">Don't have an Account?  <a class="cursor_pointer1" (click)="openSignup()">Sign Up Now</a>
+                                </h5>
+                                <!--Existing-->
+                                <div class="existing">
+                                    We no longer support login via Social Accounts. To recover your old account, please <a
+                                        (click)="goForgetPassword()">Click Here.</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Sign Up Popup Employer Job Seeker-->
+
+<div class="popup">
+    <div class="pop">
+        <div class="modal" id="sign-up-home" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content sign-page">
+                    <div class="">
+                        <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                        <div class="sign sign-up">
+                            <h1 class="text-center">Sign Up</h1>
+                            <div class="row pop-button">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <a >
+                                        <button (click)="redirectPage('/home/signup_jobseeker')" type="button" class="btn postive">
+                                            <span class="hidden-xs"> Join as a </span>Job Seeker
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <a (click)="redirectPage('/home/signup_employer')">
+                                        <button type="button" class="btn employer">
+                                            <span class="hidden-xs">Join as an </span>Employer
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="text-center">Already Registered? <a class="cursor_pointer1" (click)="openSignin()"> Sign In</a> </h5>
+                                <h5 class="text-center mg-0">By clicking ‘Sign Up’, you agree to BLOOVO’s Terms & Conditions and <br> Privacy Policy. </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job Seeker Vedio -->
+<!--<div class="popup">-->
+<!--<div class="pop">-->
+<!--<div class="modal fade jobseeker-vedio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">-->
+<!--<div class="modal-dialog modal-lg ">-->
+<!--<div class="modal-content background-blank">-->
+<!--<button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>-->
+<!--<video width="100%" controls="">-->
+<!--&lt;!&ndash;<source src="media/cars.mp4" type="video/mp4">&ndash;&gt;-->
+<!--<source src="media/cars.png" type="video/png">-->
+<!--Your browser does not support HTML5 video.-->
+<!--</video>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!-- Job Seeker Vedio -->
+<!--<div class="popup">-->
+<!--<div class="pop">-->
+<!--<div class="modal fade employers-vedio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">-->
+<!--<div class="modal-dialog modal-lg ">-->
+<!--<div class="modal-content background-blank">-->
+<!--<button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>-->
+<!--<video width="100%" controls="">-->
+<!--<source src="media/cars.mp4" type="video/mp4">-->
+<!--<source src="media/cars.png" type="video/png">-->
+<!--Your browser does not support HTML5 video.-->
+<!--</video>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+

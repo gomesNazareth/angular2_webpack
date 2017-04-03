@@ -1,0 +1,242 @@
+<div class="row">
+    <div  *ngIf="errorFlag"  class="alert alert-danger alert-dismissible" role="alert">
+        {{errorMessage}}
+    </div>
+    <div class="alert comen-alert" *ngIf="popupMode == false && successFlag == true">
+        <i class="zmdi zmdi-check-circle"></i>
+        Your Account has been created successfully. Please check your Inbox & confirm your Email.
+    </div>
+    <form [formGroup]="signupForm">
+        <div class="home-full">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <input type="text" name="first_name" placeholder="First Name" formControlName="first_name">
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <input type="text" name="last_name" placeholder="Last Name" formControlName="last_name">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+            <!-- Alert -->
+                <div  *ngIf="(signupForm.controls['first_name'].touched || !(pristineFlag$ | async)) && signupForm.controls['first_name'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please enter your First Name
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+            <!-- Alert -->
+                <div  *ngIf="(signupForm.controls['last_name'].touched || !(pristineFlag$ | async)) && signupForm.controls['last_name'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please enter your Last Name
+                </div>
+            </div>
+        </div>
+                    
+
+        <div class="fully-area hidden-xs hidden-sm">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectCountry($event)"  [selectedValue]="country_id"  [placeholder]="'Select a Country'" [selectList]="(commonData$ | async)?.countries">
+                    </bootstrap-selectbox>
+
+                    <!-- just hide the section its no needed in design  -->
+                    <input  type="text" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="hide" >
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <div *ngFor="let sel_country of (commonData$ | async)?.countries">
+                        <auto-comp1 *ngIf="sel_country.id == country_id"
+                                    [countryId]="sel_country.id"
+                                    [current_city]="cityObj"
+                                    [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                    (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;">
+                        </auto-comp1>
+                    </div>
+                    <input type="text" placeholder="Select a City" *ngIf="!country_id">
+                    <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden-lg hidden-md">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectCountry($event)"  [selectedValue]="country_id"  [placeholder]="'Select a Country'" [selectList]="(commonData$ | async)?.countries">
+                    </bootstrap-selectbox>
+
+                    <!-- just hide the section its no needed in design  -->
+                    <input  type="text" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="hide" >
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="home-full">
+                    <div *ngFor="let sel_country of (commonData$ | async)?.countries">
+                        <auto-comp1 *ngIf="sel_country.id == country_id"
+                                    [countryId]="sel_country.id"
+                                    [current_city]="cityObj"
+                                    [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                    (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;">
+                        </auto-comp1>
+                    </div>
+                    <input type="text" placeholder="Select a City" *ngIf="!country_id">
+                    <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <!-- just hide the section its no needed in design  -->
+                    <div  *ngIf="(signupForm.controls['country_id'].touched || !(pristineFlag$ | async)) && signupForm.controls['country_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert" >
+                        Please select a Country
+                    </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <!-- Alert -->
+                    <div *ngIf="(signupForm.controls['city_id'].touched || !(pristineFlag$ | async)) && signupForm.controls['city_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                        Please select a City
+                    </div>
+            </div>
+        </div>
+
+        <!-- Nationality -->
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="home-full">
+                <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectNationality($event)"  [selectedValue]="nationality_id"  [placeholder]="'Select Nationality'" [selectList]="(commonData$ | async)?.countries">
+                </bootstrap-selectbox>
+
+                <!-- just hide the section its no needed in design  -->
+                <input  type="text" name="nationality_id"  [ngModel]="nationality_id" formControlName="nationality_id" class="hide" >
+
+                <!-- just hide the section its no needed in design  -->
+                <div  *ngIf="(signupForm.controls['nationality_id'].touched || !(pristineFlag$ | async)) && signupForm.controls['nationality_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert" >
+                    Please select your Nationality
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Date -->
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="home-full relative">
+                <input type="hidden" [ngModel]="birthDate"   placeholder="From" formControlName="birth_date">
+                <datePicker-block (emitSelDate)="setDate($event)"
+                                  [setDefaultDate]="defaultBirthDate"
+                                  [sel_id]="'1'"
+                                  [dp_value]="birthDate"
+                                  [toYear]="toYear"
+                                  [maxDate]="maxDate"
+                                  [dp_placeholder]="'Date of Birth'">
+
+                </datePicker-block>
+
+                <div class="block-title-2 padding-0 border-none color-gray icon-calendy-i">
+                    <i class="zmdi zmdi-calendar-alt"></i>
+                </div>
+                <div *ngIf="(signupForm.controls['birth_date'].touched || !(pristineFlag$ | async)) && signupForm.controls['birth_date'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please select your Birth Date
+                </div>
+            </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="col-lg-6 col-sm-6 col-xs-12 clicks">
+            <div class="sk-text-m-f-text">
+                <div class="sk-radio"><div class="gnder-title"><span>Gender</span></div></div>
+            </div>
+            <div class="sk-text-m-f">
+                <div class="sk-radio">
+                    <div class="radio radio-primary">
+                        <input id="radio5" type="radio" value="1" name="gender" formControlName="gender">
+                        <label for="radio5">
+                            <span>Male</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sk-radio">
+                    <div class="radio radio-primary">
+                        <input id="radio6" type="radio" value="2" name="gender" formControlName="gender">
+                        <label for="radio6">
+                            <span>Female</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- email -->
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="home-full">
+                <input type="text" name="email" placeholder="Enter Your Email" formControlName="email">
+
+                <div  *ngIf="(signupForm.controls['email'].touched || !(pristineFlag$ | async)) && signupForm.controls['email'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please enter your Email
+                </div>
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="home-full">
+                <input type="password" name="password" placeholder="Password" formControlName="password">
+                <div  *ngIf="(signupForm.controls['password'].touched || !(pristineFlag$ | async)) && signupForm.controls['password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please enter a Password
+                </div>
+            </div>
+        </div>
+
+        <!-- confirm Password -->
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="home-full">
+                <input type="password" name="confirm_pssword" placeholder="Confirm Password" formControlName="confirm_password">
+
+                <div  *ngIf="(signupForm.controls['confirm_password'].touched || !(pristineFlag$ | async)) && signupForm.controls['confirm_password'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                    Please confirm your Password
+                </div>
+            </div>
+        </div>
+
+        <div class="row" class="col-lg-12 col-sm-12 col-xs-12" *ngIf="!this.signupForm.valid && !(this.pristineFlag$ | async)">
+
+            <div class="home-full">
+                    <div  class="alert alert-danger alert-dismissible margin-top-10" role="alert">
+                        There are missing fields on the top. Please fill them before continuing.
+                    </div>
+            </div>
+        </div>
+
+        <!-- Captche -->
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <br>
+        </div>
+    </form>
+</div>
+
+<!-- Button -->
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="pop-full-btn">
+            <a (click)="signup_jobseeker()">
+                <button type="button" class="btn normal " [class.disabled_button]="postinProgress"> Sign Up </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="pop-button">
+    <div class="clr"></div>
+</div>
+
+<div>
+    <h5 class="text-center">Already Registered?<a [routerLink]="'/home/login'"> Sign In</a> </h5>
+    <h5 class="text-center mg-0">By clicking ‘Sign Up’, you agree to BLOOVO’s Terms & Condtions and Privacy Policy. </h5>
+</div>

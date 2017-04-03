@@ -1,0 +1,51 @@
+<div class="main-tab load-data-js mobile-tab-top">
+	<!-- Dashboard main tabs for desktop -->
+	<ul class="nav nav-tabs hidden-xs" role="tablist">
+
+		<li role="presentation" [class.active]="isStatsActive" >
+		    <a  [routerLink]="['/'+_accountService.getPath()+'/dashboard','my_stats']" aria-controls="statistics" routerLinkActive="active">
+				<i class="icon-statistics"></i> {{ 'My Statistics' }}
+		    </a>
+		</li>
+
+		<li role="presentation" [class.active]="isWvmpActive" >
+		    <a  aria-controls="viewed-Profile" [routerLink]="['/'+_accountService.getPath()+'/dashboard','who-viewed-my-profile']" routerLinkActive="active">
+			<i class="zmdi zmdi-eye"></i> {{ 'Who Viewed My Profile' }}</a>
+		</li>
+
+		<li role="presentation" [class.active]="isPollActive" >
+		    <a  aria-controls="poll" [routerLink]="['/'+_accountService.getPath()+'/dashboard','polls']" routerLinkActive="active">
+			<i class="icon-thumbs-up"></i> {{ 'Polls'}}</a>
+		</li>
+	</ul>
+	<!-- ****** -->
+
+	<!-- Mobile -->
+	<ul class="mobile-scroll-tab hidden-lg hidden-md hidden-sm" role="tablist">
+
+		<li role="presentation" [class.active]="isStatsActive" >
+		    <a  [routerLink]="['/'+_accountService.getPath()+'/dashboard','my_stats']" aria-controls="statistics" routerLinkActive="active">
+				<i class="icon-statistics"></i> {{ 'My Statistics' }}
+		    </a>
+		</li>
+
+		<li role="presentation" [class.active]="isWvmpActive" >
+		    <a  aria-controls="viewed-Profile" [routerLink]="['/'+_accountService.getPath()+'/dashboard','who-viewed-my-profile']" routerLinkActive="active">
+			<i class="zmdi zmdi-eye"></i> {{ 'Who Viewed My Profile' }}</a>
+		</li>
+
+		<li role="presentation" [class.active]="isPollActive" >
+		    <a  aria-controls="poll" [routerLink]="['/'+_accountService.getPath()+'/dashboard','polls']" routerLinkActive="active">
+			<i class="icon-thumbs-up"></i> {{ 'Polls'}}</a>
+		</li>
+	</ul>
+	<!-- ****** -->
+
+
+
+
+</div>
+
+<stat-component  *ngIf="isStatsActive" [isStatsActive]="isStatsActive"></stat-component>
+<who-view-prof *ngIf="isWvmpActive" [isWvmpActive]="isWvmpActive" ></who-view-prof>
+<bl-poll  *ngIf="isPollActive"  [isPollActive]="isPollActive"  [allPollFlag]="allPollFlag"></bl-poll>

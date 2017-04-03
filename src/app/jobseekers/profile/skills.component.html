@@ -1,0 +1,277 @@
+<div class="skill">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="block bottom-gap">
+            <div *ngIf="(errorflag$ | async)" class="alert alert-danger alert-dismissible" role="alert">
+                <strong>Error!</strong> Sorry could not Save Skills.
+            </div>
+
+
+
+
+
+
+            <div class="saved" [style.display]=" skills_status == 'read' ?'block':'none'"> <!-- save -->
+                <!--<div *ngIf="!cancelmode">-->
+                <div class="block-title desktop">
+
+                    <div class="left"><h4>Skills</h4></div>
+
+
+                    <div class="right" *ngIf="(skills$ | async)?.length > 0">
+                        <span class="beg"> <i class="icon-round"></i> Beginner </span>
+
+                        <span class="int"> <i class="icon-round"></i> Intermediate </span>
+
+                        <span class="exp"> <i class="icon-round"></i> Expert </span>
+
+                        <a (click)="onEdit()"><span class="light"><i
+                                class="zmdi zmdi-edit"></i>&nbsp;Edit</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="mobile">
+                    <div class="block-title">
+                        <div class="left"><h4>Skill</h4></div>
+                        <div class="right" *ngIf="(skills$ | async)?.length > 0"><a (click)="onEdit()"><span class="light"><i class="zmdi zmdi-edit"></i>&nbsp;Edit</span></a>
+                        </div>
+                        <div class=" clearfix"></div>
+                    </div>
+
+                    <div class="right-skill" *ngIf="(skills$ | async)?.length > 0">
+                        <span class="beg"> <i class="icon-round"></i> Beginner </span>
+                        <span class="int"> <i class="icon-round"></i> Intermediate </span>
+                        <span class="exp"> <i class="icon-round"></i> Expert </span>
+                    </div>
+                </div>
+
+                <!--</div>-->
+
+                <div class="empty-min1" *ngIf="(savingmode$ | async)">
+                    <i class="empty-min1-spinner2"> <spinner [visible]="(savingmode$ | async)"></spinner> </i>
+                </div>
+
+
+                <div  [style.display]="!(savingmode$ | async) ?'block':'none'"  class="block-contant" *ngIf="(skills$ | async)?.length == 0">
+
+                    <div class="empty-prf empty-min1 cursor_pointer1" (click)="onEdit()">
+                        <i class="icon-empty-skill"></i>
+                        <h5> Add Your Skills</h5>
+                    </div>
+                </div>
+
+
+                <div  [style.display]="!(savingmode$ | async)?'block':'none'" class="block-contant padding-10 " *ngIf="(skills$ | async)?.length > 0">
+                    <div>
+                        <div *ngFor="let skill of (skills$ | async)" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div>
+                                <div class="skill-txt">
+                                    <div class="pull-left">
+                                        <div class="light">{{skill.name}}</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="light bold navy"> {{skill.level == 1 ? "Beginner":skill.level == 2 ?
+                                            "Intermediate" :"Expert"}}
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="skill-category">
+                                    <div class="skill-box">
+                                        <div *ngIf="skill.level >= 1" class="beginner"></div>
+                                        <div *ngIf="skill.level >= 2" class="intermediate"></div>
+                                        <div *ngIf="skill.level >= 3" class="expert"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="edit" [style.display]="skills_status == 'edit' ?'block':'none'"> <!-- Edit -->
+                <div class="block-title-2">
+                    <div class="left"><h4>Skill</h4></div>
+                    <div class="right">
+                        <button (click)="onSave()" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save</button>
+                        <!--<button (click)="onAdd()"><i class="zmdi zmdi-floppy"></i> Add</button>-->
+                        <span class="cancel padding-0"><button (click)="onCancel()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                    <div class="right-skill padding-10 hidden-lg hidden-md" *ngIf="(skills$ | async)?.length > 0">
+                        <span class="beg"> <i class="icon-round"></i> beginner </span>
+                        <span class="int"> <i class="icon-round"></i> Intermediate </span>
+                        <span class="exp"> <i class="icon-round"></i> Expert </span>
+                    </div>
+
+                <div  [style.display]="!(savingmode$ | async) ?'block':'none'" class="block-contant padding-skill-edit ">
+
+
+
+
+
+
+                    <div *ngFor="let skill of (skills$ | async),let skill_index=index" class="col-lg-6">
+
+
+                        <div class="skill-category-radio">
+
+                            <div class="full-box relative">
+                                <input type="text" [(ngModel)]="skill.name" readonly>
+                                <div class="absulute-btn block-title-2 padding-0 border-none">
+                                    <button (click)="onDel(skill_index)"><i
+                                            class="zmdi zmdi-delete"></i><span>Delete</span></button>
+                                </div>
+                            </div>
+
+
+                            <div class="skill-radio clicks">
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" (change)="skill.level =1"
+                                               [checked]="skill.level ==1" name="radio{{skill_index}}"  [id]="'radio1'+skill_index" value="1">
+                                        <label [attr.for]="'radio1'+skill_index">
+                                            <span>Beginner</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input type="radio" (change)="skill.level =2"  [checked]="skill.level ==2" name="radio{{skill_index}}"
+                                               [id]="'radio2'+skill_index" value="2">
+                                        <label [attr.for]="'radio2'+skill_index">
+                                            <span>Intermediate</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary ">
+                                        <input type="radio" (change)="skill.level =3" [checked]="skill.level ==3" name="radio{{skill_index}}"
+                                               [id]="'radio3'+skill_index" value="3">
+                                        <label [attr.for]="'radio3'+skill_index">
+                                            <span>Expert</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="skill-category">
+                                <div class="skill-box">
+                                    <div [class.beginner] = "skill.level >=1" ></div>
+                                    <div [class.intermediate] = "skill.level >=2" ></div>
+                                    <div [class.expert] = "skill.level >=3" ></div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class=" clearfix"></div>
+                </div>
+
+                <div class="block-contant padding-10  padding-top-0 addskill">
+                    <div class="col-lg-12"> <h4>Add New Skill</h4></div>
+
+                    <div class="right-skill hidden-lg hidden-md" *ngIf="(skills$ | async)?.length > 0">
+                        <span class="beg"> <i class="icon-round"></i> beginner </span>
+                        <span class="int"> <i class="icon-round"></i> Intermediate </span>
+                        <span class="exp"> <i class="icon-round"></i> Expert </span>
+                    </div>
+                    <br>
+                    
+                    <div class="col-lg-6">
+                        <div class="full-box border-full">
+                            <auto-complete [recordType]="'Skill'"  [resetOnSelect]="false"  [selectOneEnter]="true" [placeholder]="'Add a Skill'"  (changeRecords)="addNewSkillName($event)" ></auto-complete>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 skill-pad">
+
+                        <div class="skill-80">
+                            <div class="skill-category-radio">
+                                <div class="skill-radio clicks">
+                                    <div class="sk-radio">
+                                        <div class="radio radio-primary">
+                                            <input type="radio"  value="1" [id]="'radio_add1'"
+                                                   [checked]="(newSkill.level == 1)?true:false"
+                                                   (click)="addNewSkillLevel(1)"
+                                                   name="radio_add">
+                                            <label [attr.for]="'radio_add1'">
+                                                <span>Beginner</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="sk-radio">
+                                        <div class="radio radio-primary">
+                                            <input type="radio"   value="2" [id]="'radio_add2'"
+                                                   (click)="addNewSkillLevel(2)"
+                                                   [checked]="(newSkill.level == 2)?true:false"
+
+                                                   name="radio_add">
+                                            <label [attr.for]="'radio_add2'">
+                                                <span>Intermediate</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="sk-radio">
+                                        <div class="radio radio-primary ">
+                                            <input type="radio"   value="3" [id]="'radio_add3'"
+                                                   (click)="addNewSkillLevel(3)"
+                                                   [checked]="(newSkill.level == 3)?true:false"
+                                                   name="radio_add">
+                                            <label [attr.for]="'radio_add3'">
+                                                <span>Expert</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+
+                                <div class="skill-category">
+                                    <div class="skill-box">
+
+                                        <div [class.beginner] = "newSkill.level >=1" ></div>
+                                        <div [class.intermediate] = "newSkill.level >=2" ></div>
+                                        <div [class.expert] = "newSkill.level >=3" ></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-20">
+                            <button (click)="onAdd()"><i class="zmdi zmdi-floppy"></i> <span class="hidden-xs" >Add </span> </button>
+                        </div>
+                        <div class=" clearfix"></div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class=" clearfix"></div>
+</div>

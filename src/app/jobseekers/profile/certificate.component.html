@@ -1,0 +1,275 @@
+<div class="col-lg-12 col-md-12 col-sm-12 tab-sizing">
+    <div class="block bottom-gap">
+        <div class="saved" *ngIf="cert_status == 'read'"> <!-- save -->
+            <div class="certificate work-experience">
+                <div class="block-title">
+                    <div class="left"><h4>Certificates</h4></div>
+                    <div class="right" *ngIf="(jobSeekerCertList$ | async)?.length > 0">
+                        <a (click)="onEditCERT()">
+                            <span class="light"><i class="zmdi zmdi-edit"></i> Edit</span>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="block-contant cursor_pointer1" *ngIf="(jobSeekerCertList$ | async)?.length == 0" (click)="onAddCERT()">
+                    <div class="empty-prf empty-min1">
+                        <i class="icon-empty-cover"></i>
+                        <h5> Add Your Certificates </h5>
+                    </div>
+                </div>
+
+
+                <div class="block-contant"
+                     *ngFor="let certificate of (jobSeekerCertList$ | async),let cert_index = index">
+                    <div class="work-logo">
+                        <div class="work-lg-defalt"><i class="zmdi zmdi-file-text"></i></div>
+                    </div>
+                    <div class="work-exp-details">
+                        <div>
+                            <div class="hlaf-width-exp-left">
+                                <div class="dark bold"> {{certificate.cert_name}}</div>
+                                <div class="work-light">{{certificate.cert_university}}</div>
+
+                            </div>
+                            <div class="hlaf-width-exp-right">
+                                
+                                    <div class="inner-box-left-xp">
+                                        <div class="work-light">
+                                             <div class="icon-bx">
+                                                <i class="zmdi zmdi-badge-check"></i>
+                                            </div>
+                                             <div class="text-bx">
+                                                Grade: {{certificate.cert_grade}}
+                                            </div>
+                                        </div>
+                                        <div *ngIf="certificate.cert_end_date" class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                            {{certificate.cert_start_date | date:'d MMM,  yyyy'}} - {{certificate.cert_end_date | date:'d MMM,  yyyy'}}
+                                            <span class="dark">&nbsp;({{certificate.cert_duration}})</span>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!certificate.cert_end_date" class="work-light">
+                                            <div class="icon-bx">
+                                                <i class="zmdi zmdi-calendar-alt"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                            {{certificate.cert_start_date | date:'d MMM,  yyyy'}} - Present
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-box-left-xp">
+
+                                        <div *ngIf="certificate.cert_doc_upload_path"
+                                             class="work-light mobile-attachement">
+                                            <a href="{{certificate.cert_doc_upload_path}}" target="_blank"  class="navy d-up-b">
+                                            <div class="icon-bx">
+                                                <i class="icon-resume"></i>
+                                            </div>
+                                            <div class="text-bx">
+                                                <span class="work-light"> {{certificate.cert_doc_upload_name}}</span>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                               
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="edit" *ngIf="cert_status == 'edit'"> <!-- edit -->
+            <div class="work-experience clicks">
+                <div class="block-title-2">
+                    <div class="left"><h4>Certificates</h4></div>
+                    <div class="right">
+                            <span class="cancel padding-0">
+                                <button (click)="onReadCERT()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="block-contant"
+                     *ngFor="let certificate of (jobSeekerCertList$ | async),let cert_index = index">
+                    <div *ngIf="certificateEditList.indexOf(cert_index) == -1">
+                        <div class="work-logo">
+                            <div class="work-lg-defalt"><i class="zmdi zmdi-file-text"></i></div>
+                        </div>
+                        <div class="work-exp-details">
+
+                            <div>
+                                <div class="hlaf-width-exp-left">
+                                    <div class="dark bold">{{certificate.cert_name}}</div>
+                                    <div class="work-light">{{certificate.cert_university}}</div>
+
+                                </div>
+                                <div class="hlaf-width-exp-right">
+                                  
+                                        <div class="inner-box-left-xp">
+                                            <div class="work-light">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-badge-check"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    Grade: {{certificate.cert_grade}}
+                                                </div>
+                                            </div>
+
+                                            <div class="work-light" *ngIf="certificate.cert_end_date">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{certificate.cert_start_date | date:'d MMM,  yyyy'}} - {{certificate.cert_end_date | date:'d MMM,  yyyy'}}
+                                                    <span class="dark">&nbsp;({{certificate.cert_duration}})</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="work-light" *ngIf="!certificate.cert_end_date">
+                                                <div class="icon-bx">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div class="text-bx">
+                                                    {{certificate.cert_start_date | date:'d MMM,  yyyy'}} - Not complete
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner-box-right-xp">
+
+                                            <div class="work-light block-title-2 btn-clr border-none padding-0">
+
+                                                <div class="icon-bx">
+                                                    <i class="icon-resume"></i>
+                                                </div>
+
+                                                <div class="text-bx">
+                                                    <span *ngIf="display_mode == 'desktop' && !certificate.cert_doc_upload_path " >
+                                                    <a href="#" data-toggle="modal"
+                                                       [attr.data-target]="'.'+certificate.cert_file_D.classMap">
+                                                        <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                    </a>
+                                                    </span>
+                                                    <span *ngIf="display_mode == 'mobile' && !certificate.cert_doc_upload_path" >
+                                                    <a href="#" data-toggle="modal"
+                                                       [attr.data-target]="'.'+certificate.cert_file_M.classMap">
+                                                        <button><i class="zmdi zmdi-upload"></i> Upload</button>
+                                                    </a>
+                                                    </span>
+                                                    <span *ngIf="certificate.cert_doc_upload_path">
+                                                    <a href="{{certificate.cert_doc_upload_path}}" target="_blank"  class="navy">
+                                                        {{certificate.cert_doc_upload_name}}
+                                                    </a>
+
+
+                                                    <a data-toggle="modal" [attr.data-target] = "'.delete-certificate-file-'+certificate.id" >
+                                                    <i class="zmdi zmdi-close-circle-o"   ></i>
+                                                    </a>
+
+                                                        <!--<i class="zmdi zmdi-close-circle-o"  (click)="onDeleteFile(certificate.id,cert_index)" ></i>-->
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                   
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="full-xp-left">
+                                <div class="margin-top-10">
+                                        <span class="cancel padding-0"><button
+                                                (click)="onEditCERT(cert_index)"><i
+                                                class="zmdi zmdi-edit"></i> Edit</button></span>
+                                    <span class="cancel padding-0">
+                                        <!--<button (click)="onDelete(certificate.id)"><i class="zmdi zmdi-delete"></i> Delete</button>-->
+
+                                    <a data-toggle="modal" [attr.data-target] = "'.delete-certificate-'+certificate.id" >
+                                        <button> <i class="zmdi zmdi-delete"></i>&nbsp;Delete</button></a>
+                                                                            </span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div *ngIf="certificateEditList.indexOf(cert_index) != -1">
+
+                        <sel-certificate (cancelCERT)="onCancelCERT2($event)"
+                                         (saveCERT)="onSaveCERT2($event)"
+                                         [display_mode]="display_mode"
+                                         (onUpdateProfileStatus)="onUpdateProfileStatus.emit($event)"
+                                         [cert_index]="cert_index"
+                                         [certificate]="certificate">
+
+                        </sel-certificate>
+
+
+                    </div>
+                    <up-load *ngIf="certificate.cert_file_D.id && display_mode == 'desktop'" [file]="certificate.cert_file_D" (onUpload)="onSaveCERT2($event)"></up-load>
+                    <up-load *ngIf="certificate.cert_file_D.id && display_mode == 'mobile'" [file]="certificate.cert_file_M" (onUpload)="onSaveCERT2($event)"></up-load>
+
+
+                    <!--Delete certificate Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-certificate-{{certificate.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Certificate</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDelete(certificate.id)" type="button" class="btn postive">Delete</button>
+                                                <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Delete certificate file Pop up-->
+                    <div class="popup">
+                        <div class="logout-pop">
+                            <div class="modal close_delete delete-certificate-file-{{certificate.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                            <h2>Delete Certificate</h2>
+                                            <h4><span class="navy"> Are you sure to delete?  </span> </h4>
+                                            <div class="pop-button">
+                                                <button (click)="onDeleteFile(certificate.id,cert_index)" type="button" class="btn postive">Delete</button>
+                                                <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                <div class="clr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="block-footer border-none">
+                    <button *ngIf="(addNewCertFlag$ | async)" (click)="onAddCERT()">Add New Certificate</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

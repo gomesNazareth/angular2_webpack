@@ -1,0 +1,243 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<div class="tab-content">
+    <!--------------------------- My Profile ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="emp-jobs">
+        <div class="commen-container-less" >
+            <div class=" col-lg-12">
+                <div class=" nxt-job" *ngIf="_accountService.getCreateJob()">
+                        <h3 class="top-space-job-post">Post Your Jobs Now & Get to Know Your Prospective Employees!</h3>
+                        <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/jobs/add']">
+                            <button><i class="icon-post-job"></i> Post a New Job Now</button>
+                        </a>
+                </div>
+            </div>
+
+
+            <div class=" col-lg-12">
+
+                <div class=" block bottom-gap ">
+
+                    <div class="job-serch edit padding-15-10">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="full-box">
+                                    <bootstrap-selectbox *ngIf="(sectorListObs | async)"  (selectedId)="sectorId =$event.id"  [selectedValue]="sectorId"  [placeholder]="'Select a Sector'" [selectList]="(sectorListObs | async)">
+                                    </bootstrap-selectbox>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="full-box">
+
+                                    <bootstrap-selectbox *ngIf="(fareaListObs | async)" (selectedId)="fareaId =$event.id"  [selectedValue]="fareaId"  [placeholder]="'Select a Functional Area'" [selectList]="(fareaListObs | async)">
+                                    </bootstrap-selectbox>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="full-box">
+                                    <bootstrap-selectbox *ngIf="(jobTypeListObs | async)" (selectedId)="jobTypeId =$event.id"  [selectedValue]="jobTypeId"  [placeholder]="'Select Job Type'" [selectList]="(jobTypeListObs | async)">
+                                    </bootstrap-selectbox>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 ">
+                            <input type="text"  (keyup)="setSearchString(titleSearch.value)"  #titleSearch name="phn"placeholder="Search for Jobs / Keywords" class="mob-sp-s">
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 block-title-2 border-none padding-0 ">
+                                <button (click)="searchFilter()"> <i class="icon-featured-serch"></i> Search </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class=" clearfix"></div>
+                    </div>
+
+
+                    <div class="post-table-hedding hidden-xs hidden-sm">
+                        <div class="headding-box-job"><span class="navy-dark">&nbsp;&nbsp;&nbsp;Job </span></div>
+                        <div class="heading-box-job-action">
+                            <div class="box-equal-job-action">No.of Views</div>
+                            <div class="box-equal-job-action">No.of Applications</div>
+                            <div class="box-equal-job-action">Job Status</div>
+                            <div class="box-equal-job-action border-none">Actions</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="spinner-blank-job" *ngIf="!(jobListObs | async) || (jobListObs | async)?.length == 0">
+
+                        <div class="empty-prf" *ngIf="!(jobListObs | async)">
+                            <spinner [visible]="true"></spinner>
+                        </div>
+
+
+                        <div *ngIf="(jobListObs | async) && (jobListObs | async)?.length == 0">
+
+                            <div class="empty-prf">
+                                <i class="icon-empty-job"></i>
+                                <h5>No Search Results Found</h5>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div *ngIf="(jobListObs | async)?.length > 0">
+                    <div class="post-table" *ngFor="let selJob of (jobListObs | async),let jobIndex = index ">
+                        <div>
+                            <div class="box-job-post-left-area">
+                                <a
+                                   [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)]"
+                                   class="cursor_pointer1">
+                                    <div class="job-left" *ngIf="!selJob.avatar"><i class="icon-jobs-posted "></i></div>
+                                    <div class="job-left" *ngIf="selJob.avatar">
+                                        <span><img src="{{selJob.avatar}}"></span>
+                                    </div>
+                                    <div class="job-right">
+                                        <div class="navy">{{selJob.title}} </div>
+                                        <div class="light"> <i class="zmdi zmdi-chart-donut"></i>{{selJob.sector}} </div>
+                                        <div class="light"> <i class="zmdi zmdi-pin"></i>{{selJob.city}}, {{selJob.countryCountry}}</div>
+                                        <span *ngIf="!selJob.is_featured" class="stand-jobs">Standard</span>
+                                        <span *ngIf="selJob.is_featured" class="featu-jobs">Featured</span>
+
+                                    </div>
+                                </a>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div class="box-job-post-right-area">
+
+                            <!-- Only Mobile Area -->
+                                <div class="col-md-12 col-sm-12 tablet-men">
+                                    <div class="col-sm-3">No. of Views</div>
+                                    <div class="col-sm-3">No. of Application</div>
+                                    <div class="col-sm-3">Job Status</div>
+                                    <div class="col-sm-3">Actions</div>
+                                </div>
+
+
+                                <div class="box-equal-job-action2">
+                                    <div class="str-viwes structr-app">
+                                        <i class="icon-applicants"></i>
+                                        <div class="aplictn"> {{selJob.viewCount | number}}</div>
+                                        <div class="aplictn-txt hidden-lg hidden-md hidden-sm "> No.of Views </div>
+                                    </div>
+                                </div>
+
+                                <div class="box-equal-job-action2 padding-0">
+                                <a [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/'+_accountService.getSpaceToDash(selJob.title)+'/applicants']">
+                                    <div class="bg-special str-app structr-app hvr-shutter-out-vertical">
+                                        <i class="icon-applicants"></i>
+                                        <div class="aplictn"> {{selJob.numberApplicants | number}}</div>
+                                        <div class="aplictn-txt" *ngIf="selJob.numberApplicants != 1"> View Candidates </div>
+                                        <div class="aplictn-txt" *ngIf="selJob.numberApplicants == 1"> View Candidate </div>
+                                    </div>
+                                </a>
+                                </div>
+                                <div class="box-equal-job-action2">
+                                    <div>
+                                        <div class="light text-center hidden-lg hidden-md hidden-sm"> Job Status </div>
+                                        <!-- <div *ngIf="!selJob.is_featured" class="standard">standard</div>
+                                        <div *ngIf="selJob.is_featured" class="feature">featured</div> -->
+                                        <div class="delete-job" *ngIf="selJob.deleted">Deleted</div>
+                                        <div class="draft-job" *ngIf="!selJob.deleted  && selJob.jobStatus == 'Draft'" >Draft</div>
+                                        <div class="expired-job" *ngIf="!selJob.deleted  && getIfExpired(selJob.endDate) && selJob.jobStatus != 'Draft'">Expired</div>
+                                        <div class="active-job" *ngIf="!selJob.deleted  && !getIfExpired(selJob.endDate)  && selJob.jobStatus == 'Open'">Active</div>
+
+
+                                    </div>
+                                </div>
+                                <div class="box-equal-job-action2">
+                                    <div class="block-title-2 padding-0 action-btns border-none">
+                                    <div class="light text-center hidden-lg hidden-md hidden-sm"> Actions</div>
+
+                                        <!--When deleted-->
+                                        <a class="cursor_pointer1 " *ngIf="selJob.deleted">
+                                            <button class="small-edit disabled_button"> <i class="zmdi zmdi-edit"></i> </button>
+                                        </a>
+                                        <a *ngIf="selJob.deleted">
+                                        <span class="cancel padding-0">
+                                        <button class="small-delete disabled_button"><i class="zmdi zmdi-delete"></i></button>
+                                        </span>
+                                        </a>
+
+                                        <!--When not deleted-->
+                                     <a class="cursor_pointer1" *ngIf="!selJob.deleted"  [routerLink]="['/'+_accountService.getPath()+'/jobs/'+selJob.id+'/edit']" >
+                                        <button class="small-edit"> <i class="zmdi zmdi-edit"></i> </button>
+                                     </a>
+                                    <a *ngIf="!selJob.deleted &&  _accountService.getDestroyJob() " data-toggle="modal" [attr.data-target] = "'.delete-user'+selJob.id" >
+                                        <span class="cancel padding-0">
+                                        <button class="small-delete"><i class="zmdi zmdi-delete"></i></button>
+                                        </span>
+                                    </a>
+                                    <a *ngIf="!selJob.deleted &&  !_accountService.getDestroyJob()"  >
+                                        <span class="cancel padding-0">
+                                        <button class="small-delete disabled_button"><i class="zmdi zmdi-delete"></i></button>
+                                        </span>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Mobile -->
+                            <div class="">
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+
+                        <div class="clearfix"></div>
+                        </div>
+
+                        <!--Delete Pop up-->
+                        <div class="popup" *ngIf="_accountService.getDestroyJob()">
+                            <div class="logout-pop">
+                                <div class="modal close_delete delete-user{{selJob?.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close following" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                                                <h2>Delete Job</h2>
+
+                                                <h4><span class="navy"> Sure you want to delete Job  <b>{{selJob?.title}}</b></span> </h4>
+                                                <div class="pop-button">
+                                                    <button (click)="deleteJob(selJob.id,jobIndex)" type="button" class="btn postive">Delete</button>
+                                                    <button  type="button" class="btn negative" data-dismiss="modal">Cancel</button>
+                                                    <div class="clr"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+
+
+
+                    <div class="margin-top-10">
+                        <pagination-new [url]="'/'+_accountService.getPath()+'/jobs'" [totalRecords]="totalJobsObs"></pagination-new>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,436 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu></emp-profile-topmenu>
+<div class="tab-content job-bloovo hidden-xs hidden-sm">
+    <div role="tabpanel" class="tab-pane active">
+        <div class="commen-container employers-details emplyer-edit" id="emp-rofile">
+            <!--Job Description-->
+            <div class="row ">
+                <div class="col-lg-12">
+                    <div *ngIf="(loadingCommonData$ | async)" class="empty-min2">
+                        <i class="small_loading"><spinner></spinner></i>
+                    </div>
+                    <div class="block bottom-gap" *ngIf="!(loadingCommonData$ | async)">
+                        <form [formGroup]="commonForm"  (keydown)="keyDownFunction($event)" >
+
+
+                        <div class="row">
+                            <div class="company-cover" *ngIf="companyObj.coverImage"
+                                 [ngStyle]="{'background-image': 'url(' +  companyObj.coverImage + ')'}">
+                            </div>
+
+                            <div class="company-cover" *ngIf="!companyObj.coverImage"
+                                 [ngStyle]="{'background-image': 'url(' +  '../images/company_cover.png' + ')'}">
+                            </div>
+
+                            <div class="cover-back block-title-2 border-none padding-0"> <a class="cursor_pointer1">
+                                <button (click)="onCompanySave()">
+                                    <i class="zmdi zmdi-floppy"></i><strong class="hidden-xs"> Save All Changes </strong>
+                                </button> </a>
+                            </div>
+
+                            <div class="cover-back-change cancel border-none padding-0">
+                                <a href="#" data-toggle="modal" [attr.data-target]="'.'+file_cover.classMap"><button><i class="zmdi zmdi-image-alt"></i><strong class="hidden-xs"> Change Cover Photo</strong></button></a>
+                            </div>
+                        </div>
+                        <div class="row padding-10">
+                            <div class="col-lg-12">
+                                <div class="employers-logo">
+                                    <div class="employers-logo-sec">
+                                    <span>
+                                       <img *ngIf="companyObj.profileImage" [attr.src]="companyObj.profileImage">
+
+                                        <div *ngIf="!companyObj.profileImage" class="dp-empty">
+                                            <i class="zmdi zmdi-camera-add empty-blank"></i>
+                                        </div>
+                                    </span>
+                                    </div>
+                                    <div class="employers-logo-edit">
+                                        <a href="#" data-toggle="modal" [attr.data-target]="'.'+file_profile.classMap"><i class="zmdi zmdi-camera-add"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="employers-detail">
+                                    <div class="row block-title-2 padding-0 border-none "> <h2> Company Name</h2></div>
+                                    <div class="row">
+
+                                        <div class="full-box">
+                                            <input type="text" name="company_name"  placeholder="Company Name" formControlName="company_name">
+
+                                            <div  *ngIf="(commonForm.controls['company_name'].touched || !(pristineFlag$ | async)) && commonForm.controls['company_name'].errors"  class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                                                Please enter the Company's Name
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row display">
+                                        <div class="soc" >
+                                            <div class="social-section">
+                                                <div class="social-media desktop"><!-- desktop -->
+
+                                                    <div class="fb">
+                                                        <div  *ngIf="(commonForm.controls['facebook'].touched || !(pristineFlag$ | async)) && commonForm.controls['facebook'].errors"   class="alert alert-danger alert-dismissible" role="alert">
+                                                            Invalid Facebook Url
+                                                        </div>
+                                                        <div  *ngIf="(commonForm.controls['twitter'].touched || !(pristineFlag$ | async)) && commonForm.controls['twitter'].errors"   class="alert alert-danger alert-dismissible" role="alert">
+                                                            Invalid Twitter Url
+                                                        </div>
+                                                        <div  *ngIf="(commonForm.controls['linked_in'].touched || !(pristineFlag$ | async)) && commonForm.controls['linked_in'].errors"   class="alert alert-danger alert-dismissible" role="alert">
+                                                            <button aria-label="Close" class="close" data-dismiss="alert" type="button close-error">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            Invalid LinkedIn Url
+                                                        </div>
+                                                        <div  *ngIf="(commonForm.controls['google_plus'].touched || !(pristineFlag$ | async)) && commonForm.controls['google_plus'].errors"   class="alert alert-danger alert-dismissible" role="alert">
+                                                            Invalid Google Plus Url.
+                                                        </div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="s-media facebook " id="fb" (click)="activeSocialMedial ='facebook'"><i class="zmdi zmdi-facebook"></i></span>
+                                                                <div id="fb-section" class="social-area" *ngIf="activeSocialMedial =='facebook'" >
+                                                                    <input  type="text" class="feld-url"  placeholder="url" name="facebook_link" formControlName="facebook">
+                                                                </div>
+                                                                <div class=" clearfix"></div>
+                                                            </li>
+
+                                                            <li>
+                                                                <span class="s-media twitter " id="tw" (click)="activeSocialMedial ='twitter'"><i class="zmdi zmdi-twitter"></i></span>
+                                                                <div id="tw-section" class="social-area" *ngIf="activeSocialMedial =='twitter'" >
+                                                                    <input type="text" class="feld-url" placeholder="url" name="twitter_link" formControlName="twitter">
+                                                                </div>
+                                                                <div class=" clearfix"></div>
+
+                                                            </li>
+                                                            <li>
+                                                                <span class="s-media linkdin " id="in" (click)="activeSocialMedial ='linked_in'">
+                                                                    <i class="zmdi zmdi-linkedin" ></i></span>
+                                                                <div id="in-section" class="social-area" *ngIf="activeSocialMedial =='linked_in'" >
+                                                                    <input type="text" class="feld-url" placeholder="url"  name="linked_in"  formControlName="linked_in">
+                                                                </div>
+                                                                <div class=" clearfix"></div>
+
+                                                            </li>
+
+                                                            <li>
+                                                                <span class="s-media google-plus " id="gp" (click)="activeSocialMedial ='google_plus_in'"><i class="zmdi zmdi-google-plus"></i></span>
+                                                                <div id="gp-section" class="social-area" *ngIf="activeSocialMedial =='google_plus_in'">
+                                                                    <input type="text" class="feld-url" placeholder="url"  name="google_plus_in"  formControlName="google_plus"> </div>
+                                                                <div class=" clearfix"></div>
+
+                                                            </li>
+                                                            <div class=" clearfix"></div>
+                                                        </ul>
+                                                    </div>
+                                                    <div class=" clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="employers-information edit">
+                            <!---- Desktop ---->
+                            <div class="desktop">
+                                <!--Company Information-->
+                                <div class="row padding-0 employers-info">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row block-title padding-15">
+                                            <h4>Company Information</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="block-contant">
+
+                                                <div class="ab-box">
+                                                    <b><i class="zmdi zmdi-pin"></i> </b>
+                                                    <div class="half-box">
+                                                        <bootstrap-selectbox *ngIf="(commonData$ | async)?.countries" (selectedId)="onSelectCountry($event)"  [selectedValue]="contact_country_id"  [placeholder]="'Select a Country'" [selectList]="(commonData$ | async)?.countries">
+                                                        </bootstrap-selectbox>
+
+                                                        <!-- just hide the section its no needed in design  -->
+                                                        <input  type="text" name="contact_country_id"  [ngModel]="contact_country_id" formControlName="contact_country_id" class="hide" >
+
+                                                        <!-- just hide the section its no needed in design  -->
+                                                        <div  *ngIf="(commonForm.controls['contact_country_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['contact_country_id'].errors"  class="alert alert-danger alert-dismissible" role="alert" class="hide">
+                                                            Please select a Country
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="half-box margin-none">
+                                                     <div *ngFor="let sel_country of (commonData$ | async)?.countries">
+                                                            <auto-comp1 *ngIf="sel_country.id == contact_country_id"
+                                                                        [countryId]="sel_country.id"
+                                                                        [current_city]="cityObj"
+                                                                        [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                                                        (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;getCoOrdinates(2)">
+                                                            </auto-comp1>
+                                                      </div>
+                                                        <input  type="hidden" name="contact_city_id"  [ngModel]="cityObj.id" formControlName="contact_city_id" >
+
+                                                        <div *ngIf="(commonForm.controls['contact_city_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['contact_city_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                            Please select a City
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class=" clearfix"></div>
+                                                </div>
+                                                <div class="ab-box">
+                                                    <b><i class="zmdi zmdi-chart-donut"></i></b>
+                                                    <div class="full-box">
+                                                        <bootstrap-selectbox *ngIf="(sectors$ | async)" (selectedId)="sector_id =$event.id"  [selectedValue]="sector_id"  [placeholder]="'Select a Sector'" [selectList]="(sectors$ | async)">
+                                                        </bootstrap-selectbox>
+
+                                                        <!-- just hide this section we no need this -->
+                                                        <input type="text" name="sector_id"  [ngModel]="sector_id" formControlName="sector_id" class="hide" >
+                                                        <div *ngIf="(commonForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible martop5 hide" role="alert">
+                                                            Please select a Sector
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="ab-box">
+                                                    <b><i class="zmdi zmdi-phone"></i></b>
+
+                                                    <!-- Phone Number -->
+                                                    <div class="box-74 margin-none">
+                                                        <div class="contry-numbers">
+                                                            <jquery-tel   (getProcessedPhoneNo)="getProcessedPhoneNo($event)"
+                                                                          [match]="'phone_no'"
+                                                                          [phone_no]="phoneNo" >
+
+                                                            </jquery-tel>
+                                                            <input name="phn" type="hidden" [(ngModel)]="phoneNo" placeholder="Enter Phone Number" formControlName="phone_no">
+
+                                                            <div *ngIf="(commonForm.controls['phone_no'].touched || !(pristineFlag$ | async)) && commonForm.controls['phone_no'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                                Please enter Phone Number
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class=" clearfix"></div>
+                                                </div>
+                                                <div class="ab-box">
+                                                    <b><i class="zmdi zmdi-email"></i></b>
+                                                    <input type="text" name="email_id" placeholder="Email ID" formControlName="email_address">
+                                                    <div *ngIf="(commonForm.controls['email_address'].touched || !(pristineFlag$ | async)) && commonForm.controls['email_address'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                        Please enter the Company's generic Email ID
+                                                    </div>
+                                                </div>
+                                                <div class="ab-box">
+                                                    <b><i class="zmdi zmdi-globe"></i> </b>
+                                                    <input type="text" name="website" placeholder="Website" formControlName="website_url">
+                                                </div>
+                                                <div class=" clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row block-title padding-15">
+                                            <h4>Address</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="block-contant sp-input">
+                                                <!-- Address Edit Section -->
+                                                <div>
+                                                    <div class="full-box margin-5">
+                                                        <input (change)="getCoOrdinates()" type="text" name="addressline1 "placeholder="Address Line" formControlName="address_line1" >
+                                                        <div *ngIf="(commonForm.controls['address_line1'].touched || !(pristineFlag$ | async)) && commonForm.controls['address_line1'].errors"  class="alert alert-danger alert-dismissible" role="alert">
+                                                            Please enter Address 1
+                                                        </div>
+                                                    </div>
+                                                    <div class="full-box margin-5">
+                                                        <input (change)="getCoOrdinates(3)" type="text" name="addressline2" placeholder="Addres Line" formControlName="address_line2">
+
+                                                    </div>
+                                                    <div class="full-box margin-5">
+                                                        <input (change)="getCoOrdinates(3)" type="text" name="po_box" placeholder="Post Box " formControlName="po_box">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="row block-title padding-15">
+                                            <h4>Location</h4>
+                                        </div>
+                                        <div class="row padding-20">
+                                            <div>
+                                                <!-- map -->
+                                                <iframe *ngIf="locationOffice$?.google_url"   [src]="locationOffice$.google_url | safe"
+                                                        width="100%" height="150" frameborder="0" style="border:0"
+                                                        allowfullscreen>
+
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--requirement-->
+
+                            <div class="row requirement" id="my-profile">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="req-1"><i class="zmdi zmdi-calendar-check"></i></div>
+                                    <div class="req-2">
+                                        <div class="txt">Establishment Date</div>
+                                        <div class="full-box">
+                                            <div class="full-box relative">
+                                                <input type="hidden" [ngModel]="establishmentDate"   placeholder="From" formControlName="establishment_date">
+                                                <datePicker-block (emitSelDate)="setDate($event)"
+                                                                  [sel_id]="'1'"
+                                                                  [maxDate]="maxDate"
+                                                                  [dp_value]="establishmentDate">
+
+                                                </datePicker-block>
+
+                                                <div class="absulute-btn-i block-title-2 padding-0 border-none color-gray">
+                                                    <i class="zmdi zmdi-calendar-alt"></i>
+                                                </div>
+                                                <div *ngIf="(commonForm.controls['establishment_date'].touched || !(pristineFlag$ | async)) && commonForm.controls['establishment_date'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                                    Please enter Establishment Date
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="req-1"><i class="zmdi zmdi-view-dashboard"></i></div>
+                                    <div class="req-2">
+                                        <div class="txt">Type</div>
+                                        <div class="full-box">
+
+                                            <bootstrap-selectbox *ngIf="(typeList$ | async)" (selectedId)="type_id =$event.id"  [selectedValue]="type_id"  [placeholder]="'Select Company Type'" [selectList]="(typeList$ | async)">
+                                            </bootstrap-selectbox>
+
+                                            <!-- Hide these area -->
+                                            <input type="text" name="type_id"  [ngModel]="type_id" formControlName="type_id" class="hide">
+                                            <div *ngIf="(commonForm.controls['type_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['type_id'].errors"  class="alert alert-danger alert-dismissible martop5 hide" role="alert">
+                                                Please select Type of Company
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="req-1"><i class="zmdi zmdi-accounts-outline"></i></div>
+                                    <div class="req-2">
+                                        <div class="txt">Number of Employees</div>
+                                        <div class="full-box">
+
+                                            <div class="full-box">
+
+                                                <bootstrap-selectbox *ngIf="(sizesList$ | async)" (selectedId)="size_id =$event.id"  [selectedValue]="size_id"  [placeholder]="'Select No. of Employees'" [selectList]="(sizesList$ | async)">
+                                                </bootstrap-selectbox>
+
+                                                <!-- Hide these area -->
+                                                <input type="text" name="size_id" [ngModel]="size_id" formControlName="size_id" class="hide">
+                                                <div *ngIf="(commonForm.controls['size_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['size_id'].errors"  class="alert alert-danger alert-dismissible martop5 hide" role="alert">
+                                                    Please select No. of Employees
+                                                </div>
+                                            </div>
+
+                                        </div></div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="req-1"><i class="zmdi zmdi-view-quilt"></i></div>
+                                    <div class="req-2">
+                                        <div class="txt">Classification</div>
+                                        <div class="full-box">
+                                            <bootstrap-selectbox *ngIf="(classificationsList$ | async)" (selectedId)="classification_id =$event.id"  [selectedValue]="classification_id"  [placeholder]="'Select a Classification'" [selectList]="(classificationsList$ | async)">
+                                            </bootstrap-selectbox>
+
+                                            <!-- Hide these area -->
+                                            <input type="text" name="classification_id" [ngModel]="classification_id" formControlName="classification_id" class="hide">
+                                            <div *ngIf="(commonForm.controls['classification_id'].touched || !(pristineFlag$ | async)) && commonForm.controls['classification_id'].errors"  class="alert alert-danger alert-dismissible martop5 hide" role="alert">
+                                                Please select Classification
+                                            </div>
+
+                                        </div></div>
+                                    <div class=" clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                            <input type="text" name="latitude" [ngModel]="lat"   formControlName="latitude" class="hide">
+                            <input type="text" name="longitude" [ngModel]="lng"   formControlName="longitude" class="hide">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!---------- Company Details Details Section ------------>
+            <div class="summary">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div *ngIf="postAboutSuccessFull" class="alert comen-alert">
+                        <i class="zmdi zmdi-check-circle"></i>
+                        Your Profile Summary has been successfully Updated.
+                    </div>
+
+                    <div class="block bottom-gap" *ngIf="(companyObj$ | async)">
+                        <form [formGroup]="aboutForm">
+
+
+                        <div class="block-title-2">
+                            <div class="pull-left"><h2 class="padding-top-10">About Company</h2></div>
+                            <div class="pull-right">
+                                <button (click)="onAboutSave()"><i class="zmdi zmdi-floppy"></i> Save</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- Edit Section -->
+                        <div class="block-contant">
+                            <textarea class="about_company_mob" name="summary"  placeholder="Write a Profile Summary on the Company (minimum 30 and maximum 1,800 characters)" formControlName="summary"></textarea>
+                            <div class="alert alert-danger" *ngIf="(aboutForm.controls['summary'].touched || !(pristineAboutFlag$ | async)) && aboutForm.controls['summary'].errors" >
+                                Write a Profile Summary on the Company (minimum 30 and maximum 1,800 characters)
+                            </div>
+                        </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!---------- Our Team Details  ------------>
+            <company-team-desktop  *ngIf="(companyTeamObs | async) != null"  [companyTeamObs]="companyTeamObs" [companyId]="companyId"></company-team-desktop>
+
+            <!---------- Our Culture Details  ----------  -->
+            <company-culture-desktop  *ngIf="(companyCultureObs | async) != null"  [companyCultureObs]="companyCultureObs" [companyId]="companyId"></company-culture-desktop>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="visible-xs visible-sm hidden-lg hidden-md">
+
+    <company-edit-mobile [companyObs]="companyObj$"
+                         [companyTeamObs]="companyTeamObs"
+                         [companyCultureObs]="companyCultureObs"
+                         [companyId]="companyId"
+                         [commonDataObs]="commonData$"
+                         [sectorObs]="sectors$"
+                         [companyTypesObs]="typeList$"
+                         [companySizesObs]="sizesList$"
+                         [file_profile]="file_profile"
+                         [file_cover]="file_cover"
+                         [classificationsListObs]="classificationsList$"
+                         [logoUpdatedObs]="logoUpdated$"
+                         [coverUpdatedObs]="coverUpdated$"
+                         [typeListObs]="typeList$"
+                         [sizesListObs]="sizesList$">
+
+    </company-edit-mobile>
+</div>
+
+<up-load [mode]="'imageCrop'" [file]="file_profile" (onUpload)="onAvatarUploaded($event)" ></up-load>
+<up-load [mode]="'imageCrop'" [file]="file_cover" (onUpload)="onCoverUploaded($event)"></up-load>

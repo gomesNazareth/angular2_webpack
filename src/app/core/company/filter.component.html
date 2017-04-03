@@ -1,0 +1,193 @@
+<!--FILTER-->
+<div class="row filter clicks">
+    <div id="main">
+
+        <div class="panel-group border-bottom" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsenine" aria-expanded="false" aria-controls="collapsenine">
+                            Company
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsenine" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div class="empty-min4 " *ngIf="((companies$ | async)?.elements?.length >0)? false:true">
+                            <div class="empty-prf">
+                                <spinner  [visible]="true"></spinner>
+                            </div>
+                        </div>
+
+                        <div class="fltr-check" *ngFor="let companyType of (companies$ | async)?.elements,let companyType_index =index" >
+                            <input [id]="'checkboxCompanyType'+companyType_index" value="{{companyType.id}}" class="css-checkbox"
+                                   type="checkbox"
+                                   [attr.name]="'checkboxCompanyType'+companyType_index"
+                                   [checked]="companyType.selectedFlag"
+                                   (click)="onSelectElement(companyType.id,'companies')">
+                            <label class="css-label" [attr.for]="'checkboxCompanyType'+companyType_index">{{companyType.name}}</label>
+                        </div>
+
+
+
+                        <div  *ngIf="(companies$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(companies$ | async)?.expendAddmoreFlag" [class.filter-open]="(companies$ | async)?.expendAddmoreFlag" (click)="customAdd('companies')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(companies$ | async)?.expendAddmoreFlag" [class.filter-open]="!(companies$ | async)?.expendAddmoreFlag">
+
+                                <auto-complete [placeholder]="'Add Company'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'Company'" (changeRecords)="onAddElement($event,'companies')" [excludeItems]="(companies$ | async)?.elements"></auto-complete>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                           aria-expanded="true" aria-controls="collapseOne">
+                            Location
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+
+                        <div class="empty-min4 " *ngIf="((locations$ | async)?.elements?.length >0)? false:true">
+                            <div class="empty-prf">
+                                <spinner  [visible]="true"></spinner>
+                            </div>
+                        </div>
+                        <!--{{(cities$ | async) | json}}-->
+                        <div class="fltr-check" *ngFor="let country of (locations$ | async)?.elements,let country_index =index" >
+                            <input    [id]="'checkboxCountry'+country_index"
+                                      value="{{country.id}}"
+                                      (click)="onSelectElement(country.id,'locations')"
+                                      class="css-checkbox" type="checkbox"
+                                      [attr.name]="'checkboxCountry'+country_index"
+                                      [checked]="country.selectedFlag"
+                            >
+                            <label class="css-label" [attr.for]="'checkboxCountry'+country_index">{{country.name}}</label>
+                        </div>
+                        <div *ngIf="(locations$ | async)?.showAddmoreFlag" class="edit">
+                            <div  [class.filter-add]="!(locations$ | async)?.expendAddmoreFlag" [class.filter-open]="(locations$ | async)?.expendAddmoreFlag" (click)="customAdd('locations')" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(locations$ | async)?.expendAddmoreFlag" [class.filter-open]="!(locations$ | async)?.expendAddmoreFlag">
+                                <auto-complete [placeholder]="'Add a Country'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'Country'" (changeRecords)="onAddElement($event,'locations')" [excludeItems]="(locations$ | async)?.elements"></auto-complete>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="(locations$ | async)?.elementsChecked.length >0" class="panel panel-default">
+                <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            City
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div class="empty-min4 " *ngIf="((cities$ | async)?.elements?.length >0)? false:true">
+                            <div class="empty-prf">
+                                <spinner  [visible]="true"></spinner>
+                            </div>
+                        </div>
+                        <div class="fltr-check" *ngFor="let city of (cities$ | async)?.elements,let city_index =index" >
+                            <input [id]="'checkboxCity'+city_index"
+                                   value="{{city.id}}"
+                                   (click)="onSelectElement(city.id,'cities')"
+                                   class="css-checkbox"
+                                   type="checkbox" [attr.name]="'checkboxCity'+city_index"
+                                   [checked]="city.selectedFlag"
+                            >
+                            <label class="css-label" [attr.for]="'checkboxCity'+city_index">{{city.name}}</label>
+                        </div>
+
+
+                        <div   *ngIf="(cities$ | async)?.showAddmoreFlag" class="edit">
+                            <div [class.filter-add]="!(cities$ | async)?.expendAddmoreFlag" [class.filter-open]="(cities$ | async)?.expendAddmoreFlag" (click)="customAdd('cities')">
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+                            <div [class.filter-add]="(cities$ | async)?.expendAddmoreFlag" [class.filter-open]="!(cities$ | async)?.expendAddmoreFlag" >
+                                <auto-comp-city [fullWidth]="true" [resetOnSelect]="true" [recordType]="'City'" (changeRecords)="onAddElement($event,'cities')" [sortOrder]="''"  [countryList]="(locations$ | async)?.elementsChecked" [excludeItems]="(cities$ | async)?.elements"></auto-comp-city>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+                            Sector
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+
+
+                    <div class="panel-body">
+
+
+                        <div class="fltr-check" *ngFor="let sector of (sectors$ | async)?.elements,let sector_index =index;trackBy:sector?.id" >
+                            <input [id]="'checkboxSector'+sector_index" value="{{sector.id}}" class="css-checkbox"
+                                   type="checkbox" [attr.name]="'checkboxSector'+sector_index"
+                                   [checked] = "sector.selectedFlag"
+                                   (click)="onSelectElement(sector.id,'sectors')">
+                            <label class="css-label" [attr.for]="'checkboxSector'+sector_index">{{sector.name}}</label>
+                        </div>
+
+
+                        <div  *ngIf="(sectors$ | async)?.showAddmoreFlag" class="edit">
+
+                            <div [class.filter-add]="!(sectors$ | async)?.expendAddmoreFlag" [class.filter-open]="(sectors$ | async)?.expendAddmoreFlag" (click)="customAdd('sectors')" >
+                                <div class="pull-left"><i class="icon-add"></i></div>
+                                <div class="pull-left"><span>More</span></div>
+                                <div class=" clearfix"></div>
+                            </div>
+
+                            <div [class.filter-add]="(sectors$ | async)?.expendAddmoreFlag"  [class.filter-open]="!(sectors$ | async)?.expendAddmoreFlag">
+
+                                <auto-complete [placeholder]="'Add a Sector'" [fullWidth]="true" [resetOnSelect]="true" [recordType]="'Sector'" (changeRecords)="onAddElement($event,'sectors')" [excludeItems] = "(sectors$ | async)?.elements">
+                                </auto-complete>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<!--BUTTONS SUBMIT REFERESH-->
+<div class="row block-footer border-none padding-top-0">
+    <!--<button   class="apply" (click)="onApply()">Apply</button>-->
+    <button  class="reset-full" (click)="onResetUrl()">Reset</button>
+</div>
+
+
+
+

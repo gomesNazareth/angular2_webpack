@@ -1,0 +1,1022 @@
+<!--Mobile sign up-->
+<div class="slid-mob hidden-md hidden-lg" [hidden]="(current_step$ | async) == 4 || !(has_location$ | async)">
+    <div class="head col-lg-12">
+        <h2>Build a Strong Profile </h2>
+        <h3>and experience the power of our <span> Job Matching Percentages!</span></h3>
+    </div>
+    <div class="contant">
+        <div class="contant-container">
+            <div class="sign-nav">
+                <div class="steps" [class.active]="(current_step$ | async) >= 1">
+                    <div class="step-tick"><i class="zmdi zmdi-check"></i></div>
+                    <div class="round" [class.active]="(current_step$ | async) >= 1"> <i class="icon-Prftnl-Info"></i> </div>
+                </div>
+                <div class="steps-line"></div>
+                <div class="steps"  [class.active]="(current_step$ | async) >= 2">
+                    <div class="step-tick">
+                        <i *ngIf="(current_step$ | async) >= 2" class="zmdi zmdi-check"></i>
+                    </div>
+                    <div class="round"  [class.active]="(current_step$ | async) >= 2" [class.opacity]="(current_step$ | async) < 2"> <i class="icon-Personal-Info"></i></div>
+                </div>
+                <div class="steps-line"  [class.active]="(current_step$ | async) >= 2" [class.opacity]="(current_step$ | async) < 2"></div>
+                <div class="steps"  [class.active]="(current_step$ | async) >= 3" >
+                    <div class="step-tick">
+                        <i *ngIf="(current_step$ | async) >= 3" class="zmdi zmdi-check"></i>
+                    </div>
+                    <div class="round" [class.active]="(current_step$ | async) >= 3" [class.opacity]="(current_step$ | async) < 3"><i class="icon-Visual-Info"></i> </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="sign-frm mob-sp-jb" *ngIf="(loadSpinner$ | async)">
+                <spinner [visible]="true"></spinner>
+            </div>
+
+
+            <!-- Stage1 Mob -->
+            <div class="sign-frm" [class.active]="(current_step$ | async) >= 1" [hidden]="(current_step$ | async) != 1">
+                <form [formGroup]="completeFirstForm" [hidden]="(current_step$ | async) != 1 || (loadSpinner$| async)">
+                <div class="col-sm-12 col-xs-12 text-center">
+                    <h3>Professional Information</h3>
+                </div>
+                <!--*ngIf="showCurrentEmp"-->
+                <div *ngIf="showCurrentEmp">
+
+                    <div class="col-sm-12 col-xs-12 clicks">
+                        <div class="sk-radio blck-2"> <h4>Are You Currently Employed </h4></div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 clicks">
+                        <div class="sk-radio">
+                            <div class="radio radio-primary">
+                                <input id="radio3" type="radio" value="false" formControlName="working">
+                                <label for="radio3">
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sk-radio">
+                            <div class="radio radio-primary">
+                                <input id="radio4" type="radio" value="true" formControlName="working"  >
+                                <label for="radio4">
+                                    <span>Yes</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div *ngIf="completeFirstForm.controls['working'].value == 'true'">
+
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Job Type</h4>
+                        <bootstrap-selectbox *ngIf="(jobTypeList$ | async)"
+                                             (selectedId)="completeFirstForm.controls['job_type_id'].setValue($event.id);validateInput('job_type_id');"
+                                             [selectedValue]="completeFirstForm.controls['job_type_id'].value"
+                                             [placeholder]="'Select Job Type'"
+                                             [selectOneEnter]="false"
+                                             [selectList]="(jobTypeList$ | async)">
+                        </bootstrap-selectbox>
+                        <input type="text" name="job_type_id"  formControlName="job_type_id" class="hide" >
+                        <div  *ngIf="((touchedListObj | async).job_type_id || !(pristineFlag$ | async)) && (validationListErrorObj | async).job_type_id"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please select a Job Type
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Job Title</h4>
+                        <input type="text" placeholder="Sales Manager / Marketing Executive" formControlName="position" (keydown)="validateInput('position')" >
+                        <div  *ngIf="((touchedListObj | async).position || !(pristineFlag$ | async)) && (validationListErrorObj | async).position"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please enter your Job Title
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Current Employer</h4>
+
+                        <auto-complete  [placeholder]="'Current Employer Name'" [fullWidth]="true" [selectOneEnter]="true"
+                                       [initData]="[{text:completeFirstForm.controls['company_name'].value,id:completeFirstForm.controls['current_comp_id'].value}]"
+                                       (changeRecords)="onSelectCompany($event)"  [keepSelected]="true" [recordType]="'Company'" >
+                        </auto-complete>
+                        <!--<auto-complete *ngIf="!completeFirstForm.controls['current_comp_id'].value" [placeholder]="'Current Employer Name'" [fullWidth]="true" [selectOneEnter]="true"-->
+                                       <!--(changeRecords)="onSelectCompany($event)"  [keepSelected]="true" [recordType]="'Company'" >-->
+                        <!--</auto-complete>-->
+                        <input type="hidden" placeholder="Current Employer Name " formControlName="current_comp_id">
+                        <div  *ngIf="((touchedListObj | async).current_comp_id || !(pristineFlag$ | async)) && (validationListErrorObj | async).current_comp_id"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                          Please enter your Current Employer's Name
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Job Start Date</h4>
+                        <datePicker-block   [toYear]="toYear" [maxDate]="maxDate" (emitSelDate)="completeFirstForm.controls['from_date'].setValue($event.selDate);validateInput('from_date')" [sel_id]="'1'" [dp_value]="completeFirstForm.controls['from_date'].value" [dp_placeholder]="'Start Date'"></datePicker-block>
+
+                        <input type="hidden" placeholder="Start Date " formControlName="from_date" (change)="validateInput('from_date')">
+                        <div  *ngIf="((touchedListObj | async).from_date || !(pristineFlag$ | async)) && (validationListErrorObj | async).from_date"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please enter your Start Date at this job
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Sector</h4>
+                        <bootstrap-selectbox *ngIf="(sectorList$ | async)" (selectedId)="completeFirstForm.controls['sector_id'].setValue($event.id)"
+                                             [selectedValue]="completeFirstForm.controls['sector_id'].value"  [placeholder]="'Select Sector Type'"
+                                             [selectOneEnter]="false"
+                                             [selectList]="(sectorList$ | async)">
+                        </bootstrap-selectbox>
+                        <input type="text" name="sector_id"  formControlName="sector_id" class="hide" >
+                        <div  *ngIf="(completeFirstForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                            Please select your Sector
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Functional Area</h4>
+                        <bootstrap-selectbox *ngIf="(functionalAreaList$ | async)"
+                                             (selectedId)="completeFirstForm.controls['functional_area_id'].setValue($event.id)"
+                                             [selectedValue]="completeFirstForm.controls['functional_area_id'].value"
+                                             [placeholder]="'Select a Functional Area'"
+                                             [selectOneEnter]="false"
+                                             [selectList]="(functionalAreaList$ | async)">
+                        </bootstrap-selectbox>
+
+                        <input type="text" name="functional_area_id"   formControlName="functional_area_id" class="hide" >
+                        <div  *ngIf="(completeFirstForm.controls['functional_area_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['functional_area_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                            Please select your Functional Area
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Experience Level</h4>
+                        <bootstrap-selectbox *ngIf="(experienceLevelList$ | async)"
+                                             (selectedId)="completeFirstForm.controls['job_experience_level_id'].setValue($event.id)"
+                                             [selectedValue]="completeFirstForm.controls['job_experience_level_id'].value"
+                                             [placeholder]="'Select Experience Level'"
+                                             [selectOneEnter]="false"
+                                             [selectList]="(experienceLevelList$ | async)">
+                        </bootstrap-selectbox>
+
+                        <input type="text" name="job_experience_level_id"   formControlName="job_experience_level_id" class="hide" >
+                        <div  *ngIf="(completeFirstForm.controls['job_experience_level_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['job_experience_level_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                            Please select your Experience Level
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 sign-up-years">
+                        <h4>Years of Experience</h4>
+
+                        <!--<bootstrap-selectbox   (selectedId)="completeFirstForm.controls['total_years_experience'].setValue($event.id)"  [selectedValue]="completeFirstForm.controls['total_years_experience'].value"  [placeholder]="'Number of Years'"  [showSearch]="false" [selectList]="yearsExpList" >-->
+                        <!--</bootstrap-selectbox>-->
+                        <input type="text" placeholder="Number of Years"   formControlName="total_years_experience" >
+                        <div  *ngIf="(completeFirstForm.controls['total_years_experience'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['total_years_experience'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                            Please enter years of Experience
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+
+                <div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Current Salary (USD)</h4>
+                        <input type="text" placeholder="USD 5,000"  formControlName="current_salary">
+                        <div  *ngIf="(completeFirstForm.controls['current_salary'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['current_salary'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                            Please enter your Current Salary.
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h4>Expected Salary (USD)</h4>
+                        <input type="text" placeholder="USD 5,000"  formControlName="expected_salary">
+                        <div  *ngIf="(completeFirstForm.controls['expected_salary'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['expected_salary'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                            Please enter your Expected Salary
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="skill-mob" >
+                    <short-skills *ngIf="dataLoaded"  (selectSkills)="setSkills($event)" [skillList]="skillList"  ></short-skills>
+                    <div class="clearfix"></div>
+                </div>
+                </form>
+                <div class="col-sm-12  mob-reg-btn">
+                    <a (click)="onSubmitProfile(1)"><button class="nxt full-width-button">Next</button></a>
+                    <!--<button class="bck"> Done </button>-->
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+
+
+            <!-- Stage2 Mob -->
+                <div class="sign-frm" [class.active]="(current_step$ | async) >= 2" [hidden]="(current_step$ | async) != 2">
+                 <form [formGroup]="completeSecondForm" [hidden]="(current_step$ | async) != 2 || (loadSpinner$| async)">
+
+                    <div class="col-sm-12 col-xs-12 text-center">
+                        <h3>Personal Information</h3>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Highest Education</h4>
+                            <bootstrap-selectbox *ngIf="(educationLevelList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['job_education_id'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['job_education_id'].value"
+                                                 [placeholder]="'Select Highest Education'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(educationLevelList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="job_education_id"   formControlName="job_education_id" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['job_education_id'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['job_education_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Highest Education
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Languages&nbsp;<span>*3 is the maximum Language Limit</span></h4>
+                            <lang-tag (onLanChange)="onChangeLan($event)" [languageList]="languagesList" ></lang-tag>
+                            <div class=" clearfix"></div>
+                            <div *ngIf="(language_touched || (formPostedValid$ | async))&& !language_valid" class="alert alert-danger">
+                                Select Language
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Mobile Number</h4>
+                            <jquery-tel [placeholder]="'Enter Your Mobile'"  (getProcessedPhoneNo)="completeSecondForm.controls['mobile_phone'].setValue($event.phone_no)"  [match]="'phone_no'" [phone_no]="completeSecondForm.controls['mobile_phone'].value" >
+
+                            </jquery-tel>
+                            <input type="hidden"  formControlName="mobile_phone">
+
+                            <div  *ngIf="(completeSecondForm.controls['mobile_phone'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['mobile_phone'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Mobile Number
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Marital Status</h4>
+                            <bootstrap-selectbox *ngIf="(maritalList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['marital_status'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['marital_status'].value"
+                                                 [placeholder]="'Select Marital Status'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(maritalList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="marital_status"    formControlName="marital_status" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['marital_status'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['marital_status'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Marital Status
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Visa Status</h4>
+                            <bootstrap-selectbox *ngIf="(visaStatusList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['visa_status_id'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['visa_status_id'].value"
+                                                 [placeholder]="'Select Visa Status'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(visaStatusList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="visa_status_id"   formControlName="visa_status_id" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['visa_status_id'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['visa_status_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Visa Status
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <h4>Notice Period</h4>
+                            <bootstrap-selectbox *ngIf="(noticeList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['notice_period_in_month'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['notice_period_in_month'].value"
+                                                 [placeholder]="'1 Month'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(noticeList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="notice_period_in_month"   formControlName="notice_period_in_month" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['notice_period_in_month'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['notice_period_in_month'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Notice Period
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class=" drving">
+                        <div class=" col-sm-6 col-xs-12 clicks">
+                            <div class="sk-radio"><h4>Driving License </h4></div>
+                            <div class="sk-radio">
+                                <div class="radio radio-primary">
+                                    <input  id="driving_license_ratio_yes_mob" name="has_driving_license" type="radio" value="true" formControlName="has_driving_license">
+                                    <label for="driving_license_ratio_yes_mob">
+                                        <span>Yes</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="sk-radio">
+                                <div class="radio radio-primary">
+                                    <input  id="driving_license_ratio_no_mob" type="radio" name="has_driving_license"  value="false" formControlName="has_driving_license">
+                                    <label for="driving_license_ratio_no_mob">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class=" col-sm-6 col-xs-12" *ngIf="completeSecondForm.controls['has_driving_license'].value == 'true'">
+
+                            <bootstrap-selectbox *ngIf="(countryList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['driving_license_country_id'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['driving_license_country_id'].value"
+                                                 [placeholder]="'Select a Country'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(countryList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="hidden" name="driving_license_country_id"   formControlName="driving_license_country_id"  >
+
+                            <div  *ngIf="completeSecondForm.controls['has_driving_license'].value == 'true' &&
+                            (completeSecondForm.controls['driving_license_country_id'].touched || !(pristineFlag$ | async)) &&
+                            !completeSecondForm.value['driving_license_country_id']"
+                                  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Driving Country
+                            </div>
+                        </div>
+                        <div class=" clearfix "></div>
+                    </div>
+
+
+
+                  </form>
+                    <div class="col-sm-12 mob-reg-btn">
+
+                        <a (click)="onBack(2)"><button class="bck wid-50"> Back </button></a>
+                        <a (click)="onSubmitProfile(2)" ><button class="nxt wid-50">Next</button></a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            <!-- Stage3 Mob -->
+
+            <div class="col-sm-12 col-md-12 col-lg-12" [hidden]="(current_step$ | async) != 3 || (loadSpinner$| async) ">
+                <div class="sign-frm">
+                <div class="upload">
+                    <div class="upload-left" *ngIf="(avatarImage$ | async) == null">
+                        <i class="icon-profile"></i>
+                        <!--<img src="images/our-team-6.png">-->
+                    </div>
+                    <div class="upload-left" *ngIf="(avatarImage$ | async)  != null">
+                        <img [src]="(avatarImage$ | async)">
+                    </div>
+                    <div class="upload-right">
+                        <h5> Upload Your Picture  </h5>
+                        <a href="#" data-toggle="modal" data-target=".your-profile-img">
+                            <button class="upld-btn"> Upload </button>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="upload border-none">
+                    <div class="upload-left" *ngIf="(video$ | async) == null">
+                        <i class="icon-Elevator-Video"></i>
+                    </div>
+                    <div class="upload-left" *ngIf="(video$ | async) != null">
+                        <i class="success-video"><img src="images/Elevator-Video-success.svg"></i>
+                    </div>
+                    <div class="upload-right">
+                        <h5>Upload Your 30-Second Elevator Video</h5>
+                        <a href="#" data-toggle="modal" data-target=".your-profile-video">
+                            <button class="upld-btn"> Upload </button>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div>
+                    <div  *ngIf="uploadError"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button close-error">
+                        </button>
+                        No file has been Selected
+                    </div>
+                </div>
+
+                <div class="mob-reg-btn">
+                    <a class="bt-3rd"><button  (click)="onBack(3)" class="bck wid-50"> Back </button></a>
+                    <a class="bt-3rd gray-c"><button  (click)="onSkip(3)" class="bck">Later</button></a>
+                    <a class="bt-3rd"><button  (click)=" onSubmitProfile(3)" class="nxt wid-50">Done</button></a>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+
+    <!-- Logout -->
+    <div>
+        <button class="sign-job-bt cursor_pointer1" (click)="_accountService.getLogOutUser()">Logout</button>
+    </div>
+
+</div>
+
+
+<!--Country City New-->
+<div class="slid-frm" [hidden]="(current_step$ | async) == 4 || (has_location$ | async)">
+    <div class="slid-container">
+        <div class="slid-head">
+            <h1>Build a Strong Profile</h1>
+            <h2>and experience the power of our
+                <span>Job Matching Percentages!</span>
+            </h2>
+
+            <div class="box-c-t">
+                <form [formGroup]="completeLocationForm">
+                    <div class="home-full">
+                        <div class="col-lg-6 col-sm-6">
+                            <i>Country</i>
+                            <bootstrap-selectbox *ngIf="(countryList$ | async)" (selectedId)="onSelectCountry($event)"  [selectedValue]="country_id"  [placeholder]="'Select a Country'" [selectList]="(countryList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide the section its no needed in design  -->
+                            <input  type="text" name="country_id"  [ngModel]="country_id" formControlName="country_id" class="hide" >
+                        </div>
+
+                        <!-- City -->
+                        <div class="col-lg-6 col-sm-6">
+                            <i>City</i>
+                            <div *ngFor="let sel_country of (countryList$ | async)">
+                                <auto-comp1 *ngIf="sel_country.id == country_id"
+                                            [countryId]="sel_country.id"
+                                            [current_city]="cityObj"
+                                            [initData]="sel_country.id == cityObj.country_id ?[cityObj]:[]"
+                                            (changeCityId)="cityObj.id = $event.id;cityObj.name = $event.name;">
+                                </auto-comp1>
+                            </div>
+                            <input type="text" placeholder="Select a city" *ngIf="!country_id">
+                            <input  type="hidden" name="city_id"  [ngModel]="cityObj.id" formControlName="city_id" >
+
+                        </div>
+                    </div>
+
+                    <div class="home-full">
+                        <div class="col-lg-6 col-sm-6">
+                            <!-- just hide the section its no needed in design  -->
+                            <div  *ngIf="(completeLocationForm.controls['country_id'].touched || !(pristineFlag$ | async)) && completeLocationForm.controls['country_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert" class="hide">
+                                Please select a Country
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <!-- Alert -->
+                            <div *ngIf="(completeLocationForm.controls['city_id'].touched || !(pristineFlag$ | async)) && completeLocationForm.controls['city_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select a City
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12 margin-top-20">
+                        <button class="bt-normal-1" (click)="_accountService.getLogOutUser()">Cancel</button>
+                        <button class="bt-normal-2" (click)="onSubmitProfile(0)">Next</button>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<!--Complete Profile-->
+<div class="slid-frm hidden-sm hidden-xs" [hidden]="(current_step$ | async) == 4 || (has_location$ | async) == false">
+    <div class="slid-container">
+        <div class="slid-head">
+            <h1>Build a Strong Profile</h1>
+            <h2>and experience the power of our
+                <span>Job Matching Percentages!</span>
+            </h2>
+        </div>
+        <div class="slid-section" [hidden]="!(has_location$ | async)">
+            <div class="slid-left">
+                <div class="logo-reg">
+                    <img src="images/logo3.svg">
+                </div>
+                <div class="reg-contnr">
+                    <div class="reg-step">
+                        <div class="step-lft">
+                            <i class="icon-Prftnl-Info"></i>
+                        </div>
+                        <div class="step-txt">Professional Information
+                            <span><i class="zmdi zmdi-check"></i></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="reg-space"></div>
+                    <div class="reg-step opacity" [hidden]="(current_step$ | async) > 1">
+                        <div class="step-lft">
+                            <i class="icon-Personal-Info"></i>
+                        </div>
+                        <div class="step-txt">Personal Information</div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="reg-step" [hidden]="(current_step$ | async) == 1">
+                        <div class="step-lft"><i class="icon-Personal-Info"></i></div>
+
+                        <div class="step-txt">Personal Information <span><i class="zmdi zmdi-check"></i></span></div>
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="reg-space opacity"></div>
+                    <div class="reg-step opacity" [hidden]="(current_step$ | async) == 3">
+                        <div class="step-lft">
+                            <i class="icon-Visual-Info"></i>
+                        </div>
+                        <div class="step-txt">Visual Information</div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="reg-step" [hidden]="(current_step$ | async) < 3">
+                        <div class="step-lft"><i class="icon-Visual-Info"></i></div>
+                        <div class="step-txt">Visual Information <span><i class="zmdi zmdi-check"></i></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="sign-job-bt cursor_pointer1" (click)="_accountService.getLogOutUser()">Logout</button>
+                </div>
+            </div>
+
+            <div class="slid-right" *ngIf="(loadSpinner$ | async)">
+                <spinner [visible]="true"></spinner>
+            </div>
+
+            <!-- Stage1 -->
+
+                <div class="slid-right" [hidden]="(current_step$ | async) != 1" >
+                    <form [formGroup]="completeFirstForm" [hidden]="(current_step$ | async) != 1 || (loadSpinner$| async)">
+                    <div class="reg-full-box">
+                        <!--*ngIf="showCurrentEmp"-->
+                        <div class=" col-lg-12 col-md-12 clicks" *ngIf="showCurrentEmp">
+                            <h3>Are You Currently Employed </h3>
+                            <div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input id="radio1" type="radio" value="false" formControlName="working">
+                                        <label for="radio1">
+                                            <span>No</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="sk-radio">
+                                    <div class="radio radio-primary">
+                                        <input id="radio2" type="radio" value="true" formControlName="working"  >
+                                        <label for="radio2">
+                                            <span>Yes</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reg-full-box" *ngIf="completeFirstForm.controls['working'].value == 'true'">
+
+                            <div class=" col-lg-6 col-md-6 ">
+                                <h3>Job Type</h3>
+                                <bootstrap-selectbox *ngIf="(jobTypeList$ | async)"
+                                                     (selectedId)="completeFirstForm.controls['job_type_id'].setValue($event.id);validateInput('job_type_id');"
+                                                     [selectedValue]="completeFirstForm.controls['job_type_id'].value"
+                                                     [placeholder]="'Select Job Type'"
+                                                     [selectOneEnter]="false"
+                                                     [selectList]="(jobTypeList$ | async)">
+                                </bootstrap-selectbox>
+                                <input type="hidden" name="job_type_id"  formControlName="job_type_id"   >
+                                <div  *ngIf="((touchedListObj | async).job_type_id || !(pristineFlag$ | async)) && (validationListErrorObj | async).job_type_id"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                    Please select a Job Type
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6 col-md-6">
+                            <h3>Job Title</h3>
+                            <input type="text" placeholder="Sales Manager / Marketing Executive" formControlName="position" (keydown)="validateInput('position')" >
+                            <div  *ngIf="((touchedListObj | async).position || !(pristineFlag$ | async)) && (validationListErrorObj | async).position"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please enter your Job Title
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="reg-full-box" *ngIf="completeFirstForm.controls['working'].value == 'true'">
+
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Current Employer</h3>
+                            <!--<bootstrap-selectbox *ngIf="conpanyList.length >0" (selectedId)="onSelectCompany($event)" (selectedString)="onSelectCompany($event)"-->
+                                                 <!--[selectedValue]="completeFirstForm.controls['current_comp_id'].value"  [placeholder]="'Current Employer Name'"-->
+                                                 <!--[selectList]="conpanyList">-->
+                            <!--</bootstrap-selectbox>-->
+
+                            <!--*ngIf="completeFirstForm.controls['current_comp_id'].value"-->
+                            <auto-complete  [placeholder]="'Current Employer Name'" [fullWidth]="true" [selectOneEnter]="true" [placeholder]="'Current Employer Name'"
+                                            [initData]="[{text:completeFirstForm.controls['company_name'].value,id:completeFirstForm.controls['current_comp_id'].value}]"
+                                           (changeRecords)="onSelectCompany($event)"  [keepSelected]="true" [recordType]="'Company'" >
+                            </auto-complete>
+                            <!--<auto-complete *ngIf="!completeFirstForm.controls['current_comp_id'].value" [placeholder]="'Current Employer Name'" [fullWidth]="true" [selectOneEnter]="true"-->
+                                           <!--(changeRecords)="onSelectCompany($event)" [keepSelected]="true"  [recordType]="'Company'" >-->
+                            <!--</auto-complete>-->
+
+                            <input type="hidden" placeholder="Current Employer Name " formControlName="current_comp_id">
+                            <div  *ngIf="((touchedListObj | async).current_comp_id || !(pristineFlag$ | async)) && (validationListErrorObj | async).current_comp_id"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please enter your Current Employer's Name
+                            </div>
+
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Job Start Date</h3>
+                            <datePicker-block  [toYear]="toYear" [maxDate]="maxDate"     (emitSelDate)="completeFirstForm.controls['from_date'].setValue($event.selDate);validateInput('from_date')" [sel_id]="'2'" [dp_value]="completeFirstForm.controls['from_date'].value" [dp_placeholder]="'Start Date'"></datePicker-block>
+
+                            <input type="hidden" placeholder="Start Date " formControlName="from_date" (change)="validateInput('from_date')">
+                            <div  *ngIf="((touchedListObj | async).from_date || !(pristineFlag$ | async)) && (validationListErrorObj | async).from_date"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please enter your Start Date at this Job
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Sector</h3>
+                            <bootstrap-selectbox *ngIf="(sectorList$ | async)" (selectedId)="completeFirstForm.controls['sector_id'].setValue($event.id)"
+                                                 [selectedValue]="completeFirstForm.controls['sector_id'].value"  [placeholder]="'Select Sector'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(sectorList$ | async)">
+                            </bootstrap-selectbox>
+                            <input type="text" name="sector_id"  formControlName="sector_id" class="hide" >
+                            <div  *ngIf="(completeFirstForm.controls['sector_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['sector_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please select your Sector
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Functional Area</h3>
+                            <bootstrap-selectbox *ngIf="(functionalAreaList$ | async)"
+                                                 (selectedId)="completeFirstForm.controls['functional_area_id'].setValue($event.id)"
+                                                 [selectedValue]="completeFirstForm.controls['functional_area_id'].value"
+                                                 [placeholder]="'Select a Functional Area'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(functionalAreaList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <input type="text" name="functional_area_id"   formControlName="functional_area_id" class="hide" >
+                            <div  *ngIf="(completeFirstForm.controls['functional_area_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['functional_area_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                               Please select your Functional Area
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Experience Level</h3>
+                            <bootstrap-selectbox *ngIf="(experienceLevelList$ | async)"
+                                                 (selectedId)="completeFirstForm.controls['job_experience_level_id'].setValue($event.id)"
+                                                 [selectedValue]="completeFirstForm.controls['job_experience_level_id'].value"
+                                                 [placeholder]="'Select Experience Level'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(experienceLevelList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <input type="text" name="job_experience_level_id"   formControlName="job_experience_level_id" class="hide" >
+                            <div  *ngIf="(completeFirstForm.controls['job_experience_level_id'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['job_experience_level_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please select your Experience Level
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6 sign-up-years">
+                            <h3>Years of Experience</h3>
+                            <!--<bootstrap-selectbox   (selectedId)="completeFirstForm.controls['total_years_experience'].setValue($event.id)"  [selectedValue]="completeFirstForm.controls['total_years_experience'].value"  [placeholder]="'Number of Years'"  [showSearch]="false" [selectList]="yearsExpList" >-->
+                            <!--</bootstrap-selectbox>-->
+                            <input type="text" placeholder="Number of Years"   formControlName="total_years_experience" >
+                            <div  *ngIf="(completeFirstForm.controls['total_years_experience'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['total_years_experience'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter Years of Experience
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Current Salary (USD)</h3>
+                            <input type="text" placeholder="USD 5,000"  formControlName="current_salary">
+                            <div  *ngIf="(completeFirstForm.controls['current_salary'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['current_salary'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please enter your Current Salary
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Expected Salary (USD)</h3>
+                            <input type="text" placeholder="USD 5,000"  formControlName="expected_salary">
+                            <div  *ngIf="(completeFirstForm.controls['expected_salary'].touched || !(pristineFlag$ | async)) && completeFirstForm.controls['expected_salary'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+
+                                Please enter your Expected Salary
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                         <short-skills *ngIf="dataLoaded"  (selectSkills)="setSkills($event)" [skillList]="skillList"  ></short-skills>
+                    </div>
+                    </form>
+
+                    <div class="reg-full-box reg-btn mg-top-small">
+                        <div class="col-lg-12 col-md-12">
+                            <a (click)="onSubmitProfile(1)">
+                                <button class="nxt"> Next </button>
+                            </a>
+                            <!-- <button class="bck"> Done </button>-->
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Stage2 -->
+                <div class="slid-right pad-top-25" [hidden]="(current_step$ | async) != 2">
+            <form [formGroup]="completeSecondForm" [hidden]="(current_step$ | async) != 2 || (loadSpinner$| async)">
+
+                    <div class="reg-full-box">
+                        <div class=" col-lg-12 col-md-12">
+                            <h3>Highest Education</h3>
+                            <bootstrap-selectbox *ngIf="(educationLevelList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['job_education_id'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['job_education_id'].value"
+                                                 [placeholder]="'Select Highest Education'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(educationLevelList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="job_education_id"   formControlName="job_education_id" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['job_education_id'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['job_education_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Highest Education
+                            </div>
+                        </div>
+
+                        <!--<div class=" col-lg-6 col-md-6 ">-->
+                            <!--<h3>Languages-->
+                                <!--<span> (Maximum 3 Languages)</span>-->
+                            <!--</h3>-->
+                            <!--<input type="text" placeholder="Sales Manager / Marketing Executive">-->
+                        <!--</div>-->
+                    </div>
+                     <div class="reg-full-box">
+                        <div class=" col-lg-12 col-md-12">
+                            <div class="left2 edit">
+                                <div class="txt">
+                                    <h3>Languages&nbsp;<span>*3 is the maximum Language limit</span></h3>
+                                    <div class=" clearfix"></div>
+                                </div>
+                                <div class="language-tag jb-l-tag">
+                                    <lang-tag (onLanChange)="onChangeLan($event)" [languageList]="languagesList" ></lang-tag>
+                                    <div class=" clearfix"></div>
+                                    <div *ngIf="(language_touched || (formPostedValid$ | async))&& !language_valid" class="alert alert-danger">
+                                        Select Language
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Mobile Number</h3>
+
+                            <jquery-tel [placeholder]="'Enter Your Mobile'"  (getProcessedPhoneNo)="completeSecondForm.controls['mobile_phone'].setValue($event.phone_no)"  [match]="'phone_no'" [phone_no]="completeSecondForm.controls['mobile_phone'].value" >
+
+                            </jquery-tel>
+                            <input type="hidden"  formControlName="mobile_phone">
+
+                            <div  *ngIf="(completeSecondForm.controls['mobile_phone'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['mobile_phone'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please enter your Mobile Number
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Marital Status</h3>
+                            <bootstrap-selectbox *ngIf="(maritalList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['marital_status'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['marital_status'].value"
+                                                 [placeholder]="'Select Marital Status'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(maritalList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="marital_status"    formControlName="marital_status" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['marital_status'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['marital_status'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Marital Status
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box">
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Visa Status</h3>
+                            <bootstrap-selectbox *ngIf="(visaStatusList$ | async)"
+                            (selectedId)="completeSecondForm.controls['visa_status_id'].setValue($event.id)"
+                            [selectedValue]="completeSecondForm.controls['visa_status_id'].value"
+                            [placeholder]="'Select Visa Status'"
+                            [selectOneEnter]="false"
+                            [selectList]="(visaStatusList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="visa_status_id"   formControlName="visa_status_id" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['visa_status_id'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['visa_status_id'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Visa Status
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+                            <h3>Notice Period</h3>
+                            <bootstrap-selectbox *ngIf="(noticeList$ | async)"
+                            (selectedId)="completeSecondForm.controls['notice_period_in_month'].setValue($event.id)"
+                            [selectedValue]="completeSecondForm.controls['notice_period_in_month'].value"
+                            [placeholder]="'1 Month'"
+                            [selectOneEnter]="false"
+                            [selectList]="(noticeList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="text" name="notice_period_in_month"   formControlName="notice_period_in_month" class="hide" >
+
+                            <div  *ngIf="(completeSecondForm.controls['notice_period_in_month'].touched || !(pristineFlag$ | async)) && completeSecondForm.controls['notice_period_in_month'].errors"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select your Notice Period
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reg-full-box drving">
+                        <div class=" col-lg-6 col-md-6 clicks">
+                            <div class="sk-radio">
+                                <h3>Driving License </h3>
+                            </div>
+                            <div class="sk-radio">
+                                <div class="radio radio-primary">
+                                    <input id="driving_license_ratio_yes" type="radio" value="true" formControlName="has_driving_license">
+                                    <label for="driving_license_ratio_yes">
+                                        <span>Yes</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="sk-radio">
+                                <div class="radio radio-primary">
+                                    <input id="driving_license_ratio_no" type="radio" value="false" formControlName="has_driving_license">
+                                    <label for="driving_license_ratio_no">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6" *ngIf="completeSecondForm.controls['has_driving_license'].value == 'true'">
+                            <bootstrap-selectbox *ngIf="(countryList$ | async)"
+                                                 (selectedId)="completeSecondForm.controls['driving_license_country_id'].setValue($event.id)"
+                                                 [selectedValue]="completeSecondForm.controls['driving_license_country_id'].value"
+                                                 [placeholder]="'Select a Country'"
+                                                 [selectOneEnter]="false"
+                                                 [selectList]="(countryList$ | async)">
+                            </bootstrap-selectbox>
+
+                            <!-- just hide this section we no need this -->
+                            <input type="hidden" name="driving_license_country_id"   formControlName="driving_license_country_id"  >
+
+                            <div  *ngIf="completeSecondForm.controls['has_driving_license'].value == 'true' &&
+                            (completeSecondForm.controls['driving_license_country_id'].touched || !(pristineFlag$ | async)) &&
+                            !completeSecondForm.value['driving_license_country_id']"
+                                  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                Please select the Issuing Country
+                            </div>
+                        </div>
+                    </div>
+            </form>
+                    <div class="reg-full-box reg-btn">
+                        <div class="col-lg-12 col-md-12">
+                            <a (click)="onSubmitProfile(2)">
+                                <button class="nxt"> Next </button>
+                            </a>
+                            <a (click)="onBack(2)">
+                                <button class="bck"> Back </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+
+
+
+            <!-- Stage3 -->
+            <div class="slid-right pad-top-25" [hidden]="(current_step$ | async) != 3 || (loadSpinner$| async) ">
+
+                <div class="reg-full-box">
+                    <div class="col-lg-12">
+
+                        <div class="upload">
+
+                            <div class="upload-left" *ngIf="(avatarImage$ | async) == null">
+                                <i class="icon-profile"></i>
+                            </div>
+                            <div class="upload-left" *ngIf="(avatarImage$ | async)  != null">
+                                <img [src]="(avatarImage$ | async)">
+                            </div>
+
+                            <div class="upload-right">
+                                <h5> Upload Your Picture </h5>
+                                <a href="#" data-toggle="modal" data-target=".your-profile-img"> <button class="upld-btn"> Upload </button></a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+
+                        <div class="upload no-border">
+
+                            <div class="upload-left" *ngIf="(video$ | async) == null">
+                                <i class="icon-Elevator-Video"></i>
+                            </div>
+                            <div class="upload-left" *ngIf="(video$ | async) != null">
+                              <i class="success-video"><img src="images/Elevator-Video-success.svg"></i>
+                            </div>
+                            <div class="upload-right">
+                                <h5>Upload Your 30-Second Elevator Video</h5>
+                                <a href="#" data-toggle="modal" data-target=".your-profile-video"> <button class="upld-btn"> Upload </button></a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div>
+                            <div  *ngIf="uploadError"  class="alert alert-danger alert-dismissible martop5" role="alert">
+                                You have not uploaded your Profile Picture. If you want to upload later, click "Upload Later"
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="reg-full-box reg-btn mg-top-jobseeker-last">
+                    <div class="col-lg-12 col-md-12">
+                        <a> <button class="nxt" (click)=" onSubmitProfile(3)"> Done </button></a>
+                        <a><button class="bck" (click)="onSkip(3)"> Upload Later </button></a>
+                        <a><button class="bck" (click)="onBack(3)"> Back </button></a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class=" clearfix"></div>
+        </div>
+
+    </div>
+    <!--Desktop sign up-->
+</div>
+
+
+<!--Profile Completed Message-->
+<div class="slid-frm" [hidden]="(current_step$ | async) != 4 || (loadSpinner$| async) ">
+    <div class="loading-section">
+        <div class="load"><img src="images/loading.gif"></div>
+        <h4>Your Profile Can be a Game Changer!<br>Take the Time to Complete it...</h4>
+        <h3>Good Luck with Your Job Search!</h3>
+    </div>
+</div>
+
+<!--<div class="gray-bg hidden-md hidden-lg"></div>-->
+<div class="blue-bg"></div>
+<build-file [popupClass]="'your-profile-img'" (selectedFile)="loadFiles($event,'image')"></build-file>
+<build-file [popupClass]="'your-profile-video'" (selectedFile)="loadFiles($event,'video')"
+            [custromfileInfo]="{title:'Video Profile',format_list:videoFormatList,size:5,fileExtentions:videoFileExtentions,mode:'normal'}">
+
+</build-file>

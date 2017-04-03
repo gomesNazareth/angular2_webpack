@@ -1,0 +1,133 @@
+// -------- Settings ----------
+
+.settings{
+    .zero-margin{ 
+        padding-left:0px !important; 
+        padding-right:0px !important
+    }
+    .min-height{ 
+        min-height:216px
+    }
+    .min-height-165{ 
+        min-height:165px
+    }
+    .spacing-left{ 
+        margin-left:12px
+    }
+    .spacing{ 
+        padding:15px 0px
+    }
+    .align-left{ 
+        text-align:left
+    }
+    .margin-left{ 
+        margin-left:8px
+    }
+    .block-footer{ 
+        border:none; 
+        padding:0px; 
+        padding-top:10px 
+    }
+    .row{
+        margin: 0px;
+    }
+   
+    .padding-20{ 
+        padding:20px;
+    }   
+    h2{ 
+        font-size:$font-16; 
+        color: $navy-dark; 
+        margin:0px;
+        font-family: $font-medium;
+        display: block;
+        border-bottom: 1px solid $grey-border;
+        padding: 10px 15px;
+    }
+    h3{ 
+        font-size:$font-14; 
+        color: $navy-dark; 
+        display: block;
+        font-family: $font-medium;
+        margin-top: 10px;
+    }
+
+    .border-left{
+        border-right:1px solid #f1f1f1;
+    }
+    span{
+        text-align: left;
+        font-size: $font-14;
+        color: $navy-dark;
+        font-family: $font-medium;
+        float: left;
+    }
+    p{
+        text-align: right;
+        font-size: $font-14;
+        margin: 0px;
+    }
+    strong{
+        font-weight: normal!important;
+        // display: block;
+        text-align: center;
+        padding-bottom:10px;
+        font-size: $font-14;
+    }
+    .skill-radio{
+        width: 100%;
+        .sk-radio{
+            display: inline-block;
+            width: 23%;
+            text-align: center;
+            outline: none;
+
+            input:focus{
+                box-shadow: none;
+                outline:0px !important;
+                -webkit-appearance:none;
+            }
+
+            span{
+                font-weight: normal;
+                font-size: $font-16;
+                padding-left:0px 5px;
+                color: $blue-bali
+
+            }
+            .clicks .radio{
+                padding-left: 20px;
+                /* padding-top: 10px; */
+                color: #374b61;
+                /* margin: 0px auto; */
+                text-align: center;
+            }
+        }
+    }
+    .half{ 
+        width:97% !important
+    }
+    .left{ 
+        margin-left:8px;
+    }
+
+ .set{
+    width: 100%; 
+    margin-bottom:10px;  
+    .set-lft{ 
+        float:left; 
+        width: 48.5%
+    }
+    .set-rgt{ 
+        float:right; 
+        width: 48.5% 
+    }
+}   
+
+}
+
+.box-4{
+    float: left;
+    width: 24%;
+    text-align: center;
+}

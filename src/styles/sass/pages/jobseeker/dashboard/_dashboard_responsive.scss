@@ -1,0 +1,754 @@
+// Deskttop
+@media (max-width: 1200px){
+
+    .mobile{ 
+        display:none
+    }
+    .percentage-btn{
+        .btn1{ 
+            width:100%!important
+        }
+        .btn2{ 
+            width:49%;
+            float: left;
+            margin-left:0px
+        }
+        .btn3{ 
+            width:49%;
+            float:right;
+            margin-left:0px
+        }
+    }
+    #viewed-Profile{
+        .company-following{  
+            margin-bottom:5px; 
+        }
+    }
+
+   
+
+    .total-applications{
+        .tottal{ 
+            padding:14px; 
+            .tottal-lft{ 
+                width: 50px;
+            } 
+                    h2{
+                padding-top: 0px;  
+            }
+        }
+    }
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+    
+    .mobile{ 
+        display:none;
+    }
+    .tracking-title{ 
+        display:none 
+    }
+    .left-center{ 
+        float:left;
+    }
+    .right-center{ 
+        float:left
+    }
+    
+   .total-applications{
+        .col-lg-3{
+            border-top: solid $grey-border 1px
+        }
+        .tottal{ 
+            height: 90px;
+            width:250px;
+            margin: 0 auto;
+        }
+    }
+    //dashboard
+    .advertisement{
+        img{ 
+            padding-bottom:20px
+        }
+    }
+    .dashboard-graph .desktop .nav > li > a{ 
+        padding: 30px 15px;
+    }
+    .percentage-btn{
+        .btn1{ 
+            width: 100%!important
+        }
+        .btn2{ 
+            width: 49%;
+            float: left;
+            margin-left: 0px
+        }
+        .btn3{ 
+            width: 49%;
+            float:right;
+            margin-left: 0px
+        }
+    }
+
+     .analysis{ 
+        .col-sm-12{ 
+            border-bottom:solid 1px $grey-border  
+        }    
+    }
+   
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px){
+    .mobile{
+        display:block; 
+    }
+    .desktop{
+        display:none;
+    }
+    .hide-feedback{
+        display:none
+    }
+    .tracking-title{
+        display:none
+    }
+    .padding-20{
+        padding: 10px
+    }
+    .padding-0{
+        padding-right:0px
+    }
+    .bottom-gap{
+        margin-bottom: 10px;
+    }
+    .right{
+        float: none
+    }
+    .left{
+        float: none
+    }
+    .commen-container{
+        margin-top:0px; 
+        padding: 10px 0px 0px 0px;
+        margin-top: 91px;
+    }
+    .commen-container-less{ 
+        padding: 0px 0px 0px 0px;
+        margin-bottom: 0px; 
+        margin-top: 61px;
+    }
+
+    .left-center{
+        float:none;
+        text-align: center
+    }
+    .right-center{
+        float:none;
+        text-align: center 
+    }
+    .main-tab{
+        position: static;
+        .nav-tabs > li{ 
+            float: none
+        }
+        .nav-tabs > li a{
+            padding: 0.9375em 1.25em;
+            font-size:$font-16
+        }
+        .nav-tabs li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{ 
+            font-size:$font-16
+        }
+    }
+    .advertisement{
+        img{ 
+            padding-bottom:10px; 
+        }
+    }
+    footer{
+        .col-lg-12{ 
+            margin-top: 20px; 
+        }
+        hr{ 
+            display: none
+        }
+        a{  
+            display: inline-block;
+            border:none;
+            color:$blue-bali;
+            padding:0px 5px 10px 5px;
+        }
+        .copyright{
+            color:$blue-bali;
+            padding: 0.625em 0px;
+            border-top: solid 1px #2b3e52
+        }
+    }
+    .total-applications{
+        .col-lg-3{
+            padding-bottom: 30px;
+            border-top: solid $grey-border 1px
+        }
+        .tottal{
+            .tottal-lft{ 
+                width:70px; 
+            }
+            h2{ 
+                padding-top:6px;  
+            }
+            height: 90px;
+            width:250px;
+            margin: 0 auto;
+        }
+    }
+    .dashboard-graph .nav > li > a{
+        float: left;
+        padding: 10px 0px;
+        text-align: center;
+        width: 33.333%;
+        font-size:14px!important;
+    }
+    .job-applications-sub-tab .nav > li > a{
+        padding: 0.625em 9px;
+        width: 100%
+    }
+    .search-mobile input:hover{ 
+        width: 200px
+    }
+    .popup{
+        .modal-dialog{ 
+            margin: 7% 20px!important
+        }
+    }
+    .company{
+        h5{ 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 640px;
+        }
+    }
+    .twenty-box{
+        width: 30%;
+        margin-bottom:10px
+    }
+    .ten-box{
+        display: none
+    }
+    .min-hight{
+        min-height:auto
+    }
+    .block{
+        .block-title-2{
+            .left{ 
+                float: left
+            }
+            .right{ 
+                float: right
+            }
+        }
+        .block-title-3{
+            .left{ 
+                float: left
+            }
+            .right{ 
+                float: right
+            }
+        }
+        .block-footer{
+            button{ 
+                width: 100%
+            }
+        }
+    }
+    .side-advt{
+        width: 50%;
+        float: left;
+        padding-right: 10px
+    }
+    .company-following{ 
+        float: none;
+        margin-top: 10px
+    }
+    .follow-following{ 
+        float: none;
+        margin-top: 10px;
+    }
+    .half-box-lft{ 
+        float:none;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .half-box-rgt{ 
+        float:none;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .percentage-btn{
+        .btn1{ 
+            width: 100%!important;
+        }
+        .btn2{ 
+            width: 49%;
+            float: left;
+            margin-left: 0px; 
+        }
+        .btn3{ 
+            width: 49%;
+            float:right;
+            margin-left: 0px; 
+        }
+    }
+    .information{
+        .info{ 
+            border: none;
+            .col-lg-6{  
+                border-bottom: solid 1px $grey-border
+            }
+        }
+    }
+    .company{
+        .follow-following{
+            width: 49%!important;
+        }
+    }
+
+    
+    .main-tab{
+        top: 51px;
+    }
+
+    #poll{
+        .min-hight-55{
+            min-height: auto;
+        }
+    }
+
+     .analysis{ 
+        .col-sm-12{ 
+            border-bottom:solid 1px $grey-border  
+        }    
+    }
+
+    .most-viewed-jobseeker-profile-left{
+        width: 100%;
+    }
+    .most-viewed-jobseeker-profile-right{
+        width: 100%;
+    }
+    .top-sp-mob{
+        margin-top: 96px!important;
+    }
+     .numeric{
+        padding-bottom:10px!important;
+    }
+    .bar-chart{
+        .bar-graph{
+            .bar{
+                height: 128px!important;
+                width: 10px!important;
+                .bar-per{
+                    width: 10px!important;
+                }
+            }
+        }
+    }
+    .mobile-job-application{
+        margin-bottom: 5px;
+    }
+    .most-viewed-jobseeker-profile-left{
+        padding:0px!important;
+    }
+    .block{
+        .block-title{
+            h1{
+                text-align: center;
+                display: block;
+            }
+        }
+    }
+    .dashboard-graph .nav > li > a{
+        font-family: $font-medium;
+    }
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px){
+    .desktop{ 
+        display:none
+    }
+    .mobile{
+        display: block;
+    }
+    .hide-feedback{ 
+        display:none
+    }
+    .padding-20{
+        padding: 10px
+    }
+    .bottom-gap{
+        margin-bottom: 10px
+    }
+    .right{
+        float: none!important;
+        // padding-top: 10px
+    }
+    .left{
+        float: none!important
+    }
+    .padding-0{
+        padding-right:0px
+    }
+    .commen-container{
+        padding: 10px 0px 0px 0px;
+        margin-top: 91px
+    }
+    .advertisement{
+        img{ 
+            padding-bottom:10px; 
+        }
+    }
+
+    .left-center{
+        float:none;
+        text-align: center
+    }
+    .right-center{ 
+        float:none;
+        text-align: center 
+    }
+    .main-tab{
+        position: static;
+        top: 51px;
+        .nav-tabs > li{ 
+            float: none
+        }
+        .nav-tabs > li a{
+            padding: 0.9375em 1.25em;
+            font-size:$font-16
+        }
+        .nav-tabs li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+            font-size:$font-16
+        }
+    }
+
+    footer{
+        display: block;
+        width: 100%;
+        float: left;
+        background-color: $navy-dark;
+        .col-lg-12{ 
+            margin-top: 20px; 
+        }
+        hr{ 
+            display: none
+        }
+        a{
+            display:inline-block;
+            border: none;
+            color:$blue-bali;
+            padding:0px 3px 10px 3px
+        }
+        .copyright{
+            color:$blue-bali;
+            padding: 0.625em 0px;
+            font-size: 12px;
+            border-top: solid 1px #2b3e52;
+        }
+    }
+    .block{
+        
+        .block-title{
+            h2{ 
+                font-size:$font-16!important;
+                display: block;
+                text-align: center;
+            
+            }
+            h1{
+                text-align: center;
+                display: block;
+            }
+            .right{
+                padding-top: 10px;
+            }
+        }
+        .block-title-2{
+            .left{ 
+                float: left
+            }
+            .right{ 
+                float: right;
+            }
+            h2{
+                text-align: center;
+            }
+            h1{
+                text-align: center;
+            }
+        }
+        .block-title-3{
+            .left{ 
+                float: left
+            }
+            .right{ 
+                float: right;
+            }
+        }
+        .block-footer {
+            button{ 
+                width: 100%;
+                height: auto!important;
+                padding: 10px 0px
+            }
+        }
+    }
+    // Dashbord
+    .total-applications{
+        .blue{
+            border: solid 1px $blue
+        }
+        .green{
+            border: solid 1px $successful
+        }
+        .red{
+            border: solid 1px $unsuccessful
+        }
+        .col-lg-3{
+            padding-bottom: 30px;
+            border-top: solid $grey-border 1px;
+        }
+        h6{ 
+            font-size: $font-12;
+            color:$blue-bali;
+            margin-top: 0px;
+        }
+        .cercle{
+            text-align: center;
+            width: 75px;
+            height: 75px;
+            padding-top: 9px;
+            h3{
+                font-size: $font-18;
+                color:$navy-dark;
+                margin-bottom: 35px;
+                padding-top:10px
+            }
+        }
+        .tottal{
+            margin-top: 0px;
+            .tottal-lft{ 
+                width:70px; 
+            }
+
+            height: 90px;
+            width:100%;
+            margin: 0 auto;
+            h2{
+                color:$navy-dark;
+                font-weight: bold;
+                font-size:$font-35;
+                padding-top: 6px;
+            }
+        }
+    }
+
+    .dashboard-graph .nav > li > a{
+        float: left;
+        padding: 10px 0px;
+        text-align: center;
+        width: 33.333%;
+        font-size: 13px !important;
+        font-family: $font-medium;
+        i{ 
+            display:none
+        }
+    }
+    .job-applications-sub-tab .nav > li > a{
+        padding: 0.625em 14px;
+        width: 100%;
+        font-size: 12px !important
+    }
+    .popup{
+        .modal-dialog{ 
+            margin: 26% 20px!important
+        }
+    }
+
+    .min-hight{
+        min-height:auto
+    }
+    .side-advt{
+        width: 50%;
+        float: left;
+        padding-right: 10px
+    }
+
+    .job-applications-sub-tab{
+        width: 206px;
+        margin: 0 auto
+    }
+
+    .half-box-lft{
+        float:none;
+        width: 100%;
+        margin-bottom: 5px
+    }
+    .half-box-rgt{
+        float:none;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .third-box{
+        width: 100%;
+        margin-right:0% 
+    }
+    .twenty-box{
+        width: 30%;
+        margin-bottom:10px;  
+    }
+    .ten-box{
+        display: none
+    }
+    .percentage-btn{
+        .btn1{ 
+            width: 100%!important;
+        }
+        .btn2{
+            width: 49%;
+            float: left;
+            margin-left: 0px; 
+        }
+        .btn3{
+            width: 49%;
+            float:right;
+            margin-left: 0px; 
+        }
+    }
+    .information{
+        .info{ 
+            border: none;
+            .col-lg-6{  
+                border-bottom: solid 1px $grey-border
+            }
+        }
+
+    }
+    .company{
+        .follow-following{
+            width: 49%!important;
+        }
+    }
+
+    #poll{
+        .block{
+            .block-title{
+                h2{
+                    text-align: left;
+                }
+                span{
+                    font-size: 14px;
+                }
+                .right{padding-top:0px!important;}
+            }
+        }
+        .min-hight-55{
+            min-height: auto;
+        }
+    }
+
+    #poll{
+        .left{ 
+            float: left!important 
+        }
+        .right{ 
+            float: right!important
+        }
+        .block .block-title-2 h2{ 
+            text-align: left; 
+            margin-top:10px!important  
+        }
+    }
+
+    #viewed-Profile{
+        .commen-container{
+            margin-top:60px;
+        }
+    }
+    .bottom-gap{
+        margin-bottom: 5px;
+    }
+
+    #most-profile{
+        .commen-container{
+            padding:0px!important;
+        }
+    }
+
+    .analysis{ 
+        .col-sm-12{ 
+            border-bottom:solid 1px $grey-border  
+        }    
+    }
+    .most-viewed-jobseeker-profile-left{
+        width: 100%;
+    }
+    .most-viewed-jobseeker-profile-right{
+        width: 100%;
+    }
+    .top-sp-mob{
+        margin-top: 36px!important;
+    }
+    .bar-chart{
+        .bar-graph{
+            .bar{
+                height: 128px!important;
+                width: 10px!important;
+                .bar-per{
+                    width: 10px!important;
+                }
+            }
+        }
+    }
+    #mobile-country{
+        .disabled_button{
+            padding:0px;
+            height: 35px;
+            line-height: 35px;
+        }
+        button{
+            padding:0px;
+            height: 35px;
+            line-height: 35px;
+        }
+    }
+
+    #mobile-sector{
+        .disabled_button{
+            padding:0px;
+            height: 35px;
+            line-height: 35px;
+        }
+        button{
+            padding:0px;
+            height: 35px;
+            line-height: 35px;
+        }
+    }
+    .numeric{
+        padding-bottom:10px!important;
+    }
+    .mobile-job-application{
+        margin-bottom: 5px;
+    }
+    .most-viewed-jobseeker-profile-left{
+        padding:0px!important;
+    }
+    .follow-following{
+        margin-left: 0px;
+    }
+    
+}

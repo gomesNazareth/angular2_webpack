@@ -1,0 +1,141 @@
+
+<div class="tab-content job-bloovo">
+    <div role="tabpanel" class="tab-pane active load-data-js" id="apply-job">
+    <div  [class.commen-container]="!routeParamsFlag" [class.commen-container-less]="routeParamsFlag"  class="invite clicks" id="my-profile">
+        <div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="block bottom-gap min-full">
+                    <div class="block-title-2">
+                        <div class="left-apply-box">
+                            <h2 class="padding-top-10">Apply Job  <span class="light">{{jobTitle}}</span></h2>
+                        </div>
+                        <div class="right-apply-box">
+                            <a (click)="onClickBack()" class="cursor_pointer1"> <button> Back </button></a></div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <!--<div class="block-contant">-->
+                        <!--<div class="box-apply-full">-->
+                        <!--<div class="col-lg-12">-->
+                            <!--&lt;!&ndash; alert for appling without resume &ndash;&gt;-->
+                            <!--<div class="without-apply-resume">-->
+                                <!--<div *ngIf="(listResumes$ | async)?.length ==0" class="alert alert-danger alert-dismissible" role="alert">-->
+                                    <!--<i class="zmdi zmdi-alert-triangle"></i>-->
+                                    <!--<span>Please upload your CV before Appling</span>-->
+                                    <!--<button [routerLink]="'/'+_accountService.getPath()+'/profile'"> Upload CV</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="pad-5">-->
+                            <!--<div *ngIf="(errrorFlag$ |async) == true" class="alert alert-danger alert-dismissible mar15" role="alert">-->
+                                <!--Error occurred while appling for the Job-->
+                            <!--</div>-->
+                            <!--<div *ngIf="(errrorMessage$ |async) != null " class="alert alert-danger alert-dismissible mar15" role="alert">-->
+                                <!--<button type="button close-error" class="close" data-dismiss="alert"-->
+                                        <!--aria-label="Close"><span aria-hidden="true">&times;</span>-->
+                                <!--</button>-->
+                                <!--{{(errrorMessage$ |async)}}-->
+                            <!--</div>-->
+                            <!--<div *ngIf="(successFlag$ |async) == true"   class="comen-alert mar15">-->
+                                <!--<i class="zmdi zmdi-check-circle"></i>-->
+                                <!--Your application has been successfully submitted.-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-12 col-md-12" *ngIf="(listResumes$ | async)?.length !=0">-->
+                            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-mob-bt-side">-->
+                                <!--<h4 class="navy padding-btm-10" ><b>Choose Your CV</b></h4>-->
+                                <!--<div class="apply-res" *ngFor="let selResume of (listResumes$ | async),let resume_index =index">-->
+                                <!--<div class="resume-box"><i class="zmdi zmdi-file-text"></i></div>-->
+                                <!--<div class="resume-txt">-->
+                                    <!--<div class="radio radio-primary" >-->
+                                        <!--<input type="radio" [checked]="selResume.default"-->
+                                               <!--[attr.value]="selResume.id" [attr.id]="'radio1'+resume_index" name="radio1">-->
+                                        <!--<label [attr.for]="'radio1'+resume_index" (click)="onSelectResume(resume_index)">-->
+                                            <!--<span>{{selResume.name}}</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12 border-none" *ngIf="(listResumes$ | async)?.length !=0">-->
+                                <!--<div class="padding-left-15">-->
+                                <!--<h4 class="navy padding-btm-10"><b>Chose Your Cover Letter</b></h4>-->
+
+                                <!--<div class="apply-res"  *ngFor="let selcoverletter of (listCoverLetter$ | async),let coverletter_index =index">-->
+                                    <!--<div class="resume-box"><i class="zmdi zmdi-file-text"></i></div>-->
+                                    <!--<div class="resume-txt">-->
+                                        <!--<div class="radio radio-primary">-->
+                                            <!--<input type="radio" [checked]="selcoverletter.default"-->
+                                                   <!--[attr.value]="selcoverletter.id" [attr.id]="'radio2'+coverletter_index" name="radio2">-->
+                                            <!--<label [attr.for]="'radio2'+coverletter_index" (click)="onSelectCoverLetter(coverletter_index)">-->
+                                                <!--<span>{{selcoverletter.name}}</span>-->
+                                            <!--</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="clearfix"></div>
+            <div class="block-footer footer-fix-applay">
+                <button [disabled]="(successFlag$ |async) == true" (click)="onApplyJob()">
+                    Apply for the Job
+                </button>
+                <span class="cancel padding-0">
+                    <button (click)="onClickBack()">  Cancel </button>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 information">
+        <div class="block bottom-gap">
+
+            <div class="profile-status">
+
+                <div class="profile-status-header">
+                    <h3>{{(profileHeader$ | async)?.first_name}}</h3>
+                    <h4>Your Profile is Not Complete</h4>
+                </div>
+
+                <div class="block-contant">
+                    <div class="profile-percentage">
+                        <div class="prg-cercle">
+                            <div class=" c100 p92 green">
+                                <span>{{matchingPercent | number:'1.1-1'}}%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="block-title-2 border-none">
+                        <button [routerLink]="'/'+_accountService.getPath()+'/profile'">Update Profile</button>
+                    </div>
+                    <div class="dark">Get Noticed!</div>
+                    <p class="big-18">
+                        <span class="light">A Complete Profile Gives You a </span><span class="dark">Better
+                        Employer Reach</span><span class="light"> & </span> <span class="dark"> a Higher Chance of</span>
+                        <span class="light">Getting the</span> <span class="dark"> Perfect Job Match.</span>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+</div>
+</div>

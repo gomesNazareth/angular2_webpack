@@ -1,0 +1,22 @@
+<section class="sector-inner commen-container-public">
+    <div class=" col-lg-12 padd-responsive">
+        <div class="inner-hed ">
+            <h2> Jobs by Sector</h2>
+            <div class=" clearfix"></div>
+        </div>
+    </div>
+    <div class="all-area">
+
+        <a *ngFor="let sel_sector of (sectors$ | async)"
+           [routerLink]="['/home/jobs/sector/'+sel_sector.id+'/'+accountService.getSpaceToDash(sel_sector.name)]">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padd-responsive">
+                <div class="home-contry">
+                    <h3>{{sel_sector.name}}&nbsp;<span *ngIf="sel_sector.jobs_count == 1">({{sel_sector.jobs_count}}&nbsp;Job)</span><span *ngIf="sel_sector.jobs_count != 1">({{sel_sector.jobs_count}}&nbsp;Jobs)</span></h3>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+</section>

@@ -1,0 +1,56 @@
+<div class="col-lg-12 col-md-12">
+    <h3>Your Key Skills&nbsp;<span>*3 is the maximum Skills limit</span></h3>
+</div>
+<div *ngFor="let selskill of (skillListObs | async),let sIndex = index">
+    <div class="col-lg-12">
+        <div class="skill-input">
+            <auto-complete *ngIf="selskill.name == ''" [selectOneEnter]="true" [recordType]="'Skill'" (changeRecords)="addNewSkillName($event,sIndex)" ></auto-complete>
+            <auto-complete *ngIf="selskill.name != ''" [selectOneEnter]="true" [recordType]="'Skill'"  [placeholder]="selskill.name" (changeRecords)="addNewSkillName($event,sIndex)" ></auto-complete>
+        </div>
+        <div class="add-bt-skill">
+            <a *ngIf="sIndex < (maxCount-1) && sIndex == (skillList.length -1) && selskill.name != ''" (click)="addMore()">+</a>
+            <a *ngIf="(sIndex == (maxCount -1)) || sIndex < (skillList.length -1)" (click)="subLess(sIndex)">-</a>
+            <a *ngIf="skillList.length == 1 && selskill.name == ''"  class="button-blank">+</a>
+        </div>
+        
+    </div>
+    <div class="col-lg-12">
+        <div class="reg-full-box">
+            <div class="col-lg-4 col-md-4 col-sm-4 clicks beginner-s">
+                <div class="sk-radio">
+                    <div class="radio radio-primary">
+                         <input type="radio"  value="1" [id]="'radio_add1'+sIndex" (click)="addRating(sIndex,1)"  [checked]="selskill.level == 1"  [attr.name]="'radio_add'+sIndex" >
+                        <label [attr.for]="'radio_add1'+sIndex">
+                            <span>Beginner</span>
+                        </label> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 clicks intermediate-s">
+                <div class="sk-radio">
+                    <div class="radio radio-primary">
+                         <input type="radio"  value="2" [id]="'radio_add2'+sIndex"  (click)="addRating(sIndex,2)"  [checked]="selskill.level == 2"  [attr.name]="'radio_add'+sIndex">
+                        <label [attr.for]="'radio_add2'+sIndex">
+                            <span>Intermediate</span>
+                        </label>  
+                    </div>
+                </div>          
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 clicks expert-s">
+                <div class="sk-radio">
+                    <div class="radio radio-primary">
+                         <input type="radio"  value="3" [id]="'radio_add3'+sIndex" (click)="addRating(sIndex,3)"  [checked]="selskill.level == 3"   [attr.name]="'radio_add'+sIndex">
+                        <label [attr.for]="'radio_add3'+sIndex">
+                            <span>Expert</span>
+                        </label>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+

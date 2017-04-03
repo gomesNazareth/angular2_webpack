@@ -1,0 +1,300 @@
+<div class="tab-content" xmlns="http://www.w3.org/1999/html">
+    <div role="tabpanel" class="tab-pane" id="poll" [class.active]="isPollActive">
+        <div class="commen-container">
+            <div *ngIf="allPollFlag">
+                <div class="col-lg-12">
+                    <div class="block bottom-gap">
+                        <div class="block-title-2">
+                            <div class="left"><h2 class="padding-top-10">{{'All polls'  }}</h2></div>
+                            <div class="right">
+                                <a [routerLink]="['/'+_accountService.getPath()+'/dashboard','polls']">
+                                    <button>{{'Back'  }}</button>
+                                </a>
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all-poll">
+
+                    <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                         *ngFor="let selPoll of (allPoll$ | async),let i = index">
+
+                        <div class="block bottom-gap">
+
+                            <div class="block-title-3 border-bottom">
+                                <div class="left"><span class="light padding-top-10">{{selPoll.pollDate | date:'d MMM,  yyyy'}}</span>
+                                </div>
+                                <div class="right" *ngIf="selPoll.status == 'closed'">
+                                    <div class="closed">{{'Closed'}}</div>
+                                </div>
+                                <div class=" clr"></div>
+                            </div>
+                            <div class="block-contant poll-height">
+                                <p class="big-font">
+                                    {{selPoll.question}}
+                                </p>
+
+
+                                <div class="clicks" *ngIf="selPoll.status == 'open'">
+
+
+                                    <div *ngIf="selPoll.errorFlag == true" class="alert alert-danger alert-dismissible mar15" role="alert">
+                                        Please select a Poll Option
+                                    </div>
+                                    <div *ngIf="selPoll.errorMessageServer != null " class="alert alert-danger alert-dismissible mar15" role="alert">
+
+                                        {{(selPoll.errorMessageServer)}}
+                                    </div>
+
+
+
+                                    <div *ngIf="selPoll.postsuccessFlag == true"   class="comen-alert">
+                                        <i class="zmdi zmdi-check-circle"></i> Your vote has been casted Successfully.
+                                    </div>
+
+                                    <div  [class.radio]="!selPoll.multiple_selection"
+                                         *ngFor="let selOption of selPoll.pollOption,let j = index">
+
+                                        <span *ngIf="!selPoll.multiple_selection">
+
+                                        <input type="radio" [attr.name]="'radio_all'+i"
+                                               (click)="onSelectPoll2(i,false,selOption.pollId)"
+                                               [attr.id]="'radio' + selOption.pollId+j+i"  >
+                                        <label [attr.for]="'radio' + selOption.pollId+j+i">
+
+
+                                            <span>{{selOption.pollOption}}</span>
+                                        </label>
+
+                                            </span>
+
+
+
+                                        <span *ngIf="selPoll.multiple_selection">
+                                    <input class="css-checkbox ng-untouched ng-pristine ng-valid"
+                                           type="checkbox"
+                                            (click)="onSelectPoll2(i,true,selOption.pollId)"
+                                           [attr.name]="'checkbox' + selOption.pollId+j+i"
+                                           [attr.id]="'checkbox' + selOption.pollId+j+i"
+                                           ng-reflect-checked="false">
+                                    <label class="css-label"
+                                           [attr.for]="'checkbox' + selOption.pollId+j+i"
+                                    >
+
+                                        {{selOption.pollOption}}
+                                    </label>
+
+
+</span>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="prograss-section" *ngIf="selPoll.status == 'closed'">
+                                    <div class="progress-bloovo"
+                                         *ngFor="let selOption of selPoll.pollOption,let j = index">
+                                        <div class="prograss-title">
+                                            <h5 class="pull-left prograss-txt">{{selOption.pollOption}}</h5>
+                                            <h5 class="pull-right prograss-txt percentage-color">{{selOption.pollval}}%</h5>
+                                            <div class=" clr"></div>
+                                        </div>
+                                        <div class="progress">
+                                            <div data-percentage="0%" [style.width.%]="selOption.pollval"
+                                                 class="progress-bar progress-bar-success" role="progressbar"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="clr"></div>
+                            </div>
+                            <div class="block-footer" *ngIf="selPoll.status == 'open'">
+
+                                    <button (click)="onPostPoll2(i)"    [disabled]="selPoll.postsuccessFlag == true"><i class="icon-thumbs-up"></i> {{'Vote'  }}</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <span *ngIf="!allPollFlag">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                     <div *ngIf="errorFlag" class="alert alert-danger alert-dismissible mar15" role="alert">
+                                                <button type="button close-error" class="close" data-dismiss="alert"
+                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                </button>
+                                                Please select a poll Option
+                                            </div>
+                    <div *ngIf="(customError$ |async) != null " class="alert alert-danger alert-dismissible mar15" role="alert">
+                                                <button type="button close-error" class="close" data-dismiss="alert"
+                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                </button>
+                                                {{(customError$ |async)}}
+                                            </div>
+
+                    <div *ngIf="(voteCastFlag$ | async)"   class="comen-alert">
+                            <i class="zmdi zmdi-check-circle"></i> Your vote has been casted Successfully.
+                        </div>
+
+                    <div  class="block min-hight">
+                         <div *ngIf="(prePollFlag$ | async)" class="block-contant empty-min15">
+                         <spinner [visible]="true"> </spinner>
+                         </div>
+                        <div *ngIf="!(prePollFlag$ | async) && !poll.status" class="fit-box-empty">
+                            <div class="empty-prf ">
+                                <i class="icon-empty-myjob"></i>
+                                <h5>No Poll Available</h5>
+                            </div>
+                        </div>
+                        <span *ngIf="poll.status == 'open'">
+                        <div class="block-title">
+                            <div class="left"><h2>{{"Poll"  }}</h2></div>
+                            <div class="right">
+                                <span class="light"><i
+                                        class="zmdi zmdi-calendar-alt"></i> {{'End date'  }}</span>
+                                <span class="dark"> {{poll.pollDate | date:'d MMM,  yyyy'}}</span>
+
+
+                            </div>
+                            <div class=" clr"></div>
+                        </div>
+                        <div class="block-contant">
+                            <spinner [visible]="(castPollFlag$ | async)"> </spinner>
+                            <p class="big-font">
+                                {{poll.question}}
+                            </p>
+                            <div class="clicks">
+                                <div *ngFor="let selPoll of poll.pollOption,let i=index" class="radio radio-primary">
+                                    <input type="radio" name="radio" (click)="onSelectPoll(selPoll.pollId)"
+                                           [attr.id]="'radio' + i">
+                                    <label [attr.for]="'radio' + i">
+                                        <span>{{selPoll.pollOption}} </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="clr"></div>
+                        </div>
+                        <div class="block-footer">
+
+                                <button type="button"   [disabled]="(voteCastFlag$ | async)" (click)="onPostPoll()"><i
+                                        class="icon-thumbs-up"></i> Vote</button>
+
+                        </div>
+                        </span>
+                        <span *ngIf="poll.status == 'closed'">
+                        <div class="block">
+                            <div class="block-title-3">
+                                <div class="left"><span class="light line-35">{{poll.pollDate | date:'d MMM,  yyyy'}}</span>
+                                </div>
+                                <div class="right" *ngIf="poll.status == 'closed'">
+                                    <div class="closed">{{'Closed'  }}</div>
+                                </div>
+                                <div class=" clr"></div>
+                            </div>
+                            <div class="clr"></div>
+                            </div>
+                        <div class="block-contant min-hight-55">
+                                <p class="big-font">
+                                    {{poll.question}}
+                                </p>
+                                <div class="prograss-section" *ngIf="poll.status == 'closed'">
+                                    <div class="progress-bloovo"
+                                         *ngFor="let selOption of poll.pollOption,let j = index">
+                                        <div class="prograss-title">
+                                            <h5 class="pull-left prograss-txt">{{selOption.pollOption}}</h5>
+                                            <h5 class="pull-right prograss-txt percentage-color">{{selOption.pollval}}%</h5>
+                                            <div class=" clr"></div>
+                                        </div>
+                                        <div class="progress">
+                                            <div data-percentage="0%" [style.width.%]="selOption.pollval"
+                                                 class="progress-bar progress-bar-success" role="progressbar"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                             </div>
+                        </div>
+                        </span>
+                     </div>
+
+
+
+
+                </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="block bottom-gap min-hight">
+
+
+                    <div class="block-title">
+                        <div class="left"><h1>Previous Poll Result</h1></div>
+                        <div class=" clr"></div>
+                    </div>
+                    <div class="block-contant empty-min15">
+
+                        <spinner [visible]="(prePollFlag$ | async)"> </spinner>
+
+                        <div *ngIf="!(prePollFlag$ | async) && !barStatCollection.pollDesc" class="fit-box-empty">
+                            <div class="empty-prf ">
+                            <i class="icon-empty-myjob"></i>
+                            <h5>No Poll Available</h5>
+                        </div>
+                        </div>
+
+                        <p class="big-font">
+                            {{barStatCollection.pollDesc}}
+                        </p>
+
+
+                        <div class="prograss-section">
+                            <div *ngFor="let selPoll of barStatCollection.previousPollList,let i = index"
+                                 class="progress-bloovo">
+                                <div class="prograss-title">
+                                    <h5 class="prograss-txt pull-left">{{selPoll.shortDesc}}</h5>
+                                    <h5 class="prograss-txt pull-right percentage-color">{{selPoll.pollVal}}%</h5>
+                                    <div class=" clr"></div>
+                                </div>
+                                <div class="progress">
+                                    <div data-percentage="0%" [style.width.%]="selPoll.pollVal"
+                                         class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="clr"></div>
+                    </div>
+
+
+                    <div class="block-footer" *ngIf="barStatCollection.pollDesc">
+                        <a *ngIf="barStatCollection.pollDesc" [routerLink]="['/'+_accountService.getPath()+'/dashboard','poll-list']">
+                            <button>{{'All poll list'  }}</button>
+                        </a>
+                         <a *ngIf="!barStatCollection.pollDesc" class="disabled">
+                            <button>{{'All poll list'  }}</button>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+           </span>
+
+        </div>
+    </div>
+</div>

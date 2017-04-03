@@ -1,0 +1,116 @@
+<div [style.display]="status2 == 'read' ?'block':'none'"> <!-- save -->
+    <div class="block-title">
+        <div class="left"><h4>Address</h4></div>
+        <div class="right"><a (click)="onEditAddress()"><span class="light"><i
+                class="zmdi zmdi-edit"></i> Edit</span></a></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="block-contant">
+        <i class="spinner-addrs" *ngIf="(addressLoader$ | async)"><spinner [visible]="(addressLoader$ | async)"></spinner></i>
+        <div *ngIf="!(addressLoader$ | async)">
+            <span *ngIf="(jobSeekerAddress | async)?.country?.name">
+                <div class="txt">{{(jobSeekerAddress | async)?.address_line1}}</div>
+                <div class="txt">{{(jobSeekerAddress | async)?.address_line2}}</div>
+                <div class="txt">{{(jobSeekerAddress | async)?.postal_code}}</div>
+                <div class="txt">{{(jobSeekerAddress | async)?.city?.name}}, {{(jobSeekerAddress | async)?.country?.name}}</div>
+            </span>
+
+            <div *ngIf="!(jobSeekerAddress | async)?.country?.name" class="empty-prf">
+                <i class="icon-empty-address"></i>
+                <h5> Add Your Address </h5>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div [style.display]="status2 == 'edit' ?'block':'none'">  <!-- edit -->
+    <div class="block-title-2">
+        <div class="left"><h4>Address</h4></div>
+        <div class="right">
+            <button (click)="saveAddressDetails()" [disabled]="(addressLoader$ | async)" class="left-mobole-only"><i class="zmdi zmdi-floppy"></i> Save</button>
+            <span class="cancel padding-0"><button (click)="onReadAddress()"><i class="zmdi zmdi-close"></i> Cancel</button></span>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="block-contant">
+        <i class="spinner-addrs" *ngIf="(addressLoader$ | async)"><spinner [visible]="(addressLoader$ | async)"></spinner></i>
+        <form *ngIf="!(addressLoader$ | async) && activeForm"   [formGroup]="address_form">
+
+            <input name="address_form_address_line1" formControlName="address_line1" [ngModel]="addressLine1" placeholder="Address Area">
+
+            <div *ngIf="(address_form.controls['address_line1'].touched &&  !address_form.controls['address_line1'].valid) ||
+                        (postFlag &&  !address_form.controls['address_line1'].valid)"
+                 class="alert alert-danger alert-dismissible" role="alert">
+                Enter your Address (maximum 30 characters)
+            </div>
+
+            <input ame="address_form_address_line2" formControlName="address_line2" [ngModel]="addressLine2" placeholder="Address Area 2">
+            <div *ngIf="(address_form.controls['address_line2'].touched &&  !address_form.controls['address_line2'].valid) ||
+                        (postFlag &&  !address_form.controls['address_line2'].valid)"
+                 class="alert alert-danger alert-dismissible marbtm5" role="alert">
+                Enter your Address (maximum 30 characters)
+            </div>
+
+            <input type="text" name="address_form_post_code"
+                   formControlName="zip"
+                   [ngModel]="postCode"
+                   placeholder="Post Code">
+            <div *ngIf="(address_form.controls['zip'].touched &&  !address_form.controls['zip'].valid) ||
+                        (postFlag &&  !address_form.controls['zip'].valid)"
+                 class="alert alert-danger alert-dismissible marbtm5" role="alert">
+                Enter your Post Code
+            </div>
+
+            <div class="select-box">
+                <div class="half-box-lft">
+                    <div class="btn-group">
+
+                        <bootstrap-selectbox *ngIf="countryList" (selectedId)="countryId =$event.id"
+                                             [selectedValue]="countryId"  [placeholder]="'Select a Country'"
+                                             [selectList]="countryList">
+                        </bootstrap-selectbox>
+                        <input type="hidden" name="address_form_country_code"
+                               [ngModel]="countryId" formControlName="current_country_id">
+
+
+
+                        <div *ngIf="(address_form.controls['current_country_id'].touched &&  !address_form.controls['current_country_id'].valid) || 
+                                    (postFlag &&  !address_form.controls['current_country_id'].valid)"
+                             class="alert alert-danger alert-dismissible margin-top-5" role="alert">
+                            Select your Country
+                        </div>
+                    </div>
+                </div>
+                <div class="half-box-rgt">
+                    <div class="btn-group">
+
+                        <input *ngIf="!countryId" placeholder="City" type="text" name="city_id">
+
+                        <input type="hidden" name="city_id"
+                               [ngModel]="cityId"
+                               formControlName="current_city_id"
+
+                        >
+                        <span class="edit" >
+                         <span *ngFor="let sel_country of countryList" >
+                            <auto-comp1 *ngIf="sel_country.id == countryId"
+                                        [countryId]="sel_country.id"
+                                        [initData]="(sel_country.id ==  currentCountryId) ?[city]:[]"
+                                        (changeCityId)="onSelectCity($event)"
+                            >
+                            </auto-comp1>
+                         </span>
+                         </span>
+
+                        <div *ngIf="(address_form.controls['current_city_id'].touched || postFlag) && address_form.controls['current_city_id'].errors"
+                             class="alert alert-danger alert-dismissible" role="alert">
+                            Select your City
+                        </div>
+                    </div>
+                </div>
+                <div class=" clearfix"></div>
+            </div>
+        </form>
+    </div>
+</div>

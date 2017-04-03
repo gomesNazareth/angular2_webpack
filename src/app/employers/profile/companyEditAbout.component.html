@@ -1,0 +1,45 @@
+<div class="commen-container-less mobile-margin-less">
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h3>About Company</h3>
+        </div>
+
+        <div class="mobile_profile_container">
+
+            <!-- alert success-->
+            <div *ngIf="postSuccessFull" class="alert comen-alert">
+                <i class="zmdi zmdi-check-circle"></i>
+                Your Information Successfully changed.
+            </div>
+
+            
+
+
+            <form [formGroup]="commonForm">
+                <!-- alert worng-->
+                <div class="alert alert-danger" *ngIf="(commonForm.controls['summary'].touched || !(pristineFlag$ | async)) && commonForm.controls['summary'].errors" >
+                   Please enter Company Summary
+                </div>
+
+                
+
+                <div>
+                    <textarea class="about_company_mob" name="summary"  placeholder="Summary" formControlName="summary"></textarea>
+                </div>
+
+                <!-- border -->
+                <div><hr></div>
+
+                <div>
+                    <a class="save-changes" (click)="onCompanySave()">Save changes</a>
+                    <a class="cursor_pointer1 section_cancel" (click)="onBack()" >Cancel</a>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</div>

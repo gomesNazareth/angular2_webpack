@@ -1,0 +1,48 @@
+<div class="popup">
+    <div class="custom-upload-pop">
+        <div class="file_upload_popup_close modal {{popupClass}}"   tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body upload-dp">
+                        <h2>{{fileInfo.title}}</h2>
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+
+                        <div>
+                        
+                            <h4>We accept <span class="dark">{{fileInfo.fileExtentions}}</span> Maximum Upload Size <span class="dark">{{fileInfo.size}} {{fileInfo.sizeUnit}}</span>.</h4>
+
+                            <div *ngIf=" (fileInfo.size * 1048576)  < tagetFile?.size"  class="alert alert-danger alert-dismissible" role="alert">
+                               File size too large!
+                            </div>
+
+                            <div *ngIf="tagetFile?.type && fileInfo.format_list.indexOf(tagetFile?.type) == -1" class="alert alert-danger alert-dismissible" role="alert">
+                                Invalid File Format
+                            </div>
+
+                            <div *ngIf="(selectImageDone$ | async)">
+                                <img-cropper  #cropperAvatar [image]="dataCropAvatar" [settings]="cropperSettings"></img-cropper>
+                            </div>
+
+                            <div class="fancy-file">
+                                <div class="fancy-file-name">
+                                    {{(tagetFile?.name)?tagetFile?.name:"Please Select File"}}
+                                </div>
+                                <button class="fancy-file-button cursor_pointer1">Browse</button>
+                                <div class='input-container'>
+                                    <input  *ngIf="fileInfo.mode == 'cropper'" type="file" (change)="fileChange($event)" placeholder="Upload file" class="browser" accept="{{fileInfo.format_list}}">
+                                    <input  *ngIf="fileInfo.mode == 'normal'" type="file" (change)="createImage($event)" placeholder="Upload file" class="browser" accept="{{fileInfo.format_list}}">
+                                </div>
+                            </div>
+
+                            <div   class="pop-button">
+                                <button (click)="selectImage()" data-dismiss="modal" type="button" class="btn postive"> Save </button>
+                                <button type="button" class="btn negative" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

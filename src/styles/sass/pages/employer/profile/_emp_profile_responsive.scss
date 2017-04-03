@@ -1,0 +1,894 @@
+// Desktop
+@media (max-width: 1200px){
+    #viewed-Profile{
+        .filter-jobs .featured-box .feturd-compny span{ 
+            line-height:60px;  
+        }
+    }
+    #viewed-Profile{
+        .mob-viewd{
+            margin-top:20px;   
+        }
+       .clos{ 
+            padding:2px 6px;   
+        }
+       .stnderd{ 
+            padding:2px 6px;   
+       }
+        .featured{ 
+            padding:2px 6px;  
+        }
+    } 
+     #users{   
+        #most-profile{
+            .padding-20{
+                margin:0px!important  
+            } 
+        }
+        .filter-jobs{
+            .featured-box{
+                border-top: 0px solid $grey-border
+            }
+        }    
+    }
+    #followers{ 
+        .align .company-following{ 
+            float: right;  
+        }
+    }
+    //User Report
+    .user-report{
+        .saved-searches .savedserch .col-lg-2{ 
+            border-top: 1px solid $grey-border; 
+            text-align: center; 
+            padding:0px; 
+        }
+        .savedserch{ 
+            .row{ 
+                border-top:solid 5px $bg 
+            }
+
+        } 
+    }
+    #featured-employer{
+    .subscription-box{
+        .subscription-steps{
+            .step-container{ 
+                width:640px;  
+            }
+               .sucess-bar-e{ 
+                width:20%;
+            } 
+            .unsucess-bar-e{ 
+                width:20%;
+            } 
+        }
+        .subscription{
+
+            .fltr-check{ 
+                margin-top:100px;
+                margin-left:10px; 
+                margin-bottom:20px;     
+            }
+            .logo-contaner{ 
+                width:110px; 
+                height:110px;   
+            }
+            .or{ 
+                top: 37px; 
+            }        
+        }
+    }
+        .subscription-box .subscription .fltr-check{ 
+            margin-bottom:5px; 
+        }  
+        .step3{
+            .block-footer{ 
+                button{ 
+                    width:49%;  
+                }
+           }
+        }    
+    }  
+    // users new design style
+    .user-section{
+        .filter-jobs{
+            .featured-box{
+                border-top:0px!important;
+                border-bottom:0px!important;
+            }
+        }
+    }
+    #articleposted{
+        .tracking-title{
+            .col-lg-8{
+                font-size: 12px;
+            }
+            .col-lg-2{
+                font-size: 12px;
+            }
+        }
+    }
+    #jobposted{
+        .tracking-title{
+            .col-lg-8{
+                font-size: 12px;
+            }
+            .col-lg-2{
+                font-size: 12px;
+            }
+        }
+    } 
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 1200px) and (max-width: 1435px){
+    #articleposted{
+        .tracking-title{
+            .col-lg-8{
+                font-size: 12px;
+            }
+            .col-lg-2{
+                font-size: 12px;
+            }
+        }
+    }
+    #jobposted{
+        .tracking-title{
+            .col-lg-8{
+                font-size: 12px;
+            }
+            .col-lg-2{
+                font-size: 12px;
+            }
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 900px) and (max-width: 1024px){
+    // users new design style
+    .user-section{
+        .featured-box{
+            border-top:0px!important;
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+    // users new design style
+    .box-action{
+        width: 50%!important;
+    }
+    .last-mob{
+        border-top:none!important;
+        border-left:1px solid $grey-border;
+    }
+    .user-section{
+        .featured-box{
+            border-top:0px!important;
+        }
+    }
+
+    .user-section{
+        .featured-box{
+            border-top:0px!important;
+        }
+    }
+    //Autocomple-Employer Profile
+    .mobile-only-drop{
+        padding: 15px !important;
+        overflow: hidden;
+        width: 50%;
+        border-radius: 0px!important;
+        height: 110px;
+        overflow: scroll;
+        overflow-x: hidden;
+        li{
+            padding: 5px 0px;
+        }
+    }
+    .user-report-side-bar{
+        min-height: auto;
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+    .emplyer-edit{
+        .member{
+            .member-box{
+                margin-bottom:5px; 
+            }
+        }
+        .culture{ 
+            .our-team .col-lg-5{ 
+                text-align: left  
+            }
+            .social-media{ 
+                margin-top:0px;  
+            }
+        }
+    
+        .btn-size{ 
+            .block-title-2 button{ 
+                width:100%!important;  
+            }
+        }
+    } 
+    #users{  
+       #most-profile{
+            .light{ 
+                margin-left:10px; 
+            }
+            .padding-20{
+                margin:0px!important  
+            } 
+           .invt{ 
+                margin-right:10px;  
+            }
+       }
+       .filter-jobs{
+            .featured-box{
+                border-top: 0px solid $grey-border
+            }
+        } 
+        .block .block-footer button{ 
+            width:auto  
+        }
+    } 
+    #followers{ 
+        .align .company-following{ 
+            width:100%;  
+        }
+    }
+    //User Report
+    .user-report{
+        .saved-searches .savedserch .col-lg-2{ 
+            border-top: 1px solid $grey-border; 
+            text-align: center; 
+            padding:10px; 
+        }
+        .savedserch{ 
+            .row{ 
+                border-top:solid 5px $bg 
+            }
+            .open-jobs{
+                margin: 10px auto;
+            }
+            .close-jobs{
+                margin: 10px auto;
+            }
+        }
+        #jobposted .savedserch .col-lg-2{ 
+            line-height:30px!important; 
+            min-height:50px;    
+        }
+    }
+    #featured-employer{
+        .subscription-box{
+            .subscription-steps{
+                .step-container{ 
+                    width:408px;  
+                }
+                .sucess-bar-e{ 
+                    width:15%;
+                } 
+                .unsucess-bar-e{ 
+                    width:15%;
+                } 
+            }
+            .subscription{
+                .col-lg-5{
+                    border-right:none;  
+                    border-bottom:solid 1px $grey-border; 
+                    position:relative; 
+                    padding-bottom:30px; 
+                }
+                .block-footer{ 
+                    width:40%; 
+                }
+                .logo-contaner{ 
+                    float:none; 
+                    margin-right:auto;
+                }
+                .or{ 
+                    background:$grey-border; 
+                    width:35px; 
+                    height:35px; 
+                    text-align: center; 
+                    line-height:35px; 
+                    border-radius:50%; 
+                    position: absolute; 
+                    left:45%; bottom:-18px;
+                    top:inherit;
+                }
+                .fltr-check{ 
+                    margin-left:0px; 
+                    margin-bottom:20px;     
+                }
+            }
+        }
+    }
+    .step2{
+        .block-footer{ 
+            button{ 
+                width:49%;  
+            }
+        }
+    } 
+    .step3{
+        .block-footer{ 
+            button{ 
+                width:49%;  
+            }
+        }
+    }    
+    .subscription-box .subscription .fltr-check{ 
+        margin-bottom:5px; 
+        margin-top:0px;   
+    }  
+    .step4{
+        .panel-title{ 
+            padding-bottom:40px; 
+        }
+        .panel-heading{
+            .pull-right{ 
+                float: left!important 
+            }
+        }    
+        
+    } 
+    .employers-details{
+        .employers-logo{
+            float: none!important;
+        }
+    }
+// user new design style
+    .box-action{
+        width: 100%!important;
+        border:1px solid $grey-border!important;
+        min-height: auto!important;
+    }
+    .user-footer{
+        button{
+            width: 50%!important;
+            margin-right: 0px!important;
+        }
+    }
+    .user-section{
+        .featured-box{
+            border-top:0px!important;
+        }
+    }
+     #users{
+        .block{
+            .block-footer{
+                button{
+                    padding: 0px 15px !important;
+                }
+            }
+        }
+    }
+    // user signing section
+    .new-user-sign-form{
+        h2{
+            font-size: $font-24;
+        }
+    }
+    // Employer-Profile container spacing
+    #employer-rofile{
+        .commen-container{
+            margin-top: -5px!important;
+            padding:0px!important;
+        }
+    }
+    .mobile-margin-less{
+        margin-top: 0px;
+    }
+    //Autocomple-Employer Profile
+    .mobile-only-drop{
+        padding: 15px !important;
+        overflow: hidden;
+        width: 50%;
+        border-radius: 0px!important;
+        height: 110px;
+        overflow: scroll;
+        overflow-x: hidden;
+        li{
+            padding: 5px 0px;
+        }
+    }
+     #followers{
+        .commen-container{
+            margin-top: -5px;
+            padding:0px!important;
+        }
+        
+    }
+    .report-blank{
+        padding:25px 0px;
+    }
+    .user-report-side-bar{
+        min-height: auto;
+    }
+    .user-report{
+        margin-top: 0px;
+        padding:0px;
+    }
+
+    // invite find
+    .invite-find{
+        margin-left: -5px!important;
+         margin-right: -5px!important;
+
+        .left{
+            float: left!important;
+            h2{
+                text-align: left!important;
+            }
+        }
+        .right{
+            padding-top: 0px!important;
+        }
+        .full-box {
+            .left{
+                input{
+                    width: 80%;
+                }
+            }
+        }
+        .invit-egg-default{
+            width: 45px!important;
+            height: 55px!important;
+            line-height: 65px!important;
+        }
+    }
+    #our-team{
+        padding:5px 10px!important;
+    }
+    #our-culture{
+        padding:10px 5px!important;
+        .block-contant{
+            padding:0px!important;
+        }
+    }
+    #our-jobs{
+        padding:10px!important;
+        .block-contant{
+            padding:0px!important;
+        }
+    }
+    .user-footer2{
+        margin-bottom: 5px;
+    }
+    .veiw-secton{
+        padding:10px;
+       }
+
+    .sd-height{
+        height: 50px!important;
+        line-height: 30px!important;
+        span{
+            line-height: 30px!important;
+        }
+         .active-label{
+            margin-top: 10px;
+        }
+        .expired-label{
+            margin-top: 10px;
+        }
+        .deleted-label{
+            margin-top: 10px;
+        }
+        .draft-label{
+            margin-top: 10px;
+        }
+   }
+    
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+    #viewed-Profile{ 
+        float:left!important;
+        width: 100%;
+    }
+    #most-profile{
+        .align{
+            .company-following{ 
+                width:49%; 
+                margin-bottom:0px; 
+            }
+        } 
+        .padding-20-0{ 
+            padding:0px 10px!important;  
+        }
+        .padding-20{ 
+            margin:0px 0px;   
+        }
+        .invt{
+            width: 60px; 
+            i{ 
+                line-height:60px
+            }
+            .invit-egg-default{ 
+                width:60px;
+                height: 76px; 
+                line-height:96px;   
+            }
+            .invit-egg{ 
+                width:60px;
+                height: 76px;  
+            }
+        }
+    }  
+    #viewed-Profile{
+        .mob-viewd{ 
+            margin-left:-10px; 
+            margin-top:10px;   
+        }
+        .clos{ 
+            padding:2px 6px;   
+        }
+        .stnderd{ 
+            padding:2px 6px;   
+        }
+        .featured{ 
+            padding:2px 6px;  
+        }
+    }
+    .emplyer-edit{
+        .our-team{ 
+            .social-media{ 
+                margin-top:0px; 
+                width:auto!important
+            }
+            .block-title-2 button{ 
+                width:49%;  
+            }
+            .team-details{ 
+                float: none; 
+                margin-left: 100px;
+            } 
+        }
+        .culture .col-lg-6{ 
+            border-bottom:solid 1px $grey-border  
+        }
+    }
+    #users{
+        .block-title-2{ 
+            button{ 
+                margin-bottom:5px;  
+            }
+            .pull-right{ 
+                float: left;
+            }
+        }
+        .filter-jobs .featured-box{ 
+            border-top: 0px solid $grey-border
+        }
+        .block .block-footer button{ 
+            padding:0px 10px!important;  
+        }
+    }    
+    #followers{ 
+        .align .company-following{ 
+            width:100%;  
+        }
+        .block .block-footer button{ 
+            padding:10px 10px 
+        }
+    }
+//User Report
+    .user-report{
+        .saved-searches .savedserch .col-lg-2{ 
+            border-top: 1px solid $grey-border; 
+            text-align: center
+        }
+        .saved-searches .savedserch .navy{
+            white-space: nowrap;           
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 212px
+        }
+        .savedserch{ 
+            .row{ 
+                border-top:solid 5px $bg 
+            }
+            .open-jobs{
+                margin: 10px auto;
+            }
+            .close-jobs{
+                margin: 10px auto;
+            }
+        }
+     
+        #jobposted .savedserch .col-lg-2{ 
+            line-height:30px!important; 
+            min-height:50px!important;    
+        }
+    }
+    #featured-employer{
+        .subscription-box{
+            .subscription-steps{
+                .step-container{ 
+                    width:265px;  
+                }
+                .sucess-bar-e{ 
+                    width:5%!important;
+                } 
+                .unsucess-bar-e{ 
+                    width:5%!important;
+                } 
+            }
+            
+            .subscription{
+                .col-lg-5{
+                    border-right:none;  
+                    border-bottom:solid 1px $grey-border; 
+                    position:relative; 
+                    padding-bottom:30px; 
+                }
+                .block-footer{ 
+                    width:40%;
+                }
+                .logo-contaner{ 
+                    float:none; 
+                    margin-right:auto;
+                }
+                .or{ 
+                    background:$grey-border; 
+                    width:35px; 
+                    height:35px; 
+                    text-align: center; 
+                    line-height:35px; 
+                    border-radius:50%; 
+                    position: absolute; 
+                    left:45%; 
+                    bottom:-18px;
+                    top:inherit;
+                }
+                .fltr-check{ 
+                    margin-top:30px; 
+                    margin-left:0px; 
+                    margin-bottom:20px;     
+                } 
+            }
+        }
+        .step2{
+            .block-footer{ 
+                button{ 
+                    width:49%;  
+                }
+            }
+        }    
+        .step3{
+            .block-footer{ 
+                button{ 
+                    width:49%;  
+                }
+           }
+        }  
+        .subscription-box .subscription .fltr-check{ 
+            margin-bottom:10px; 
+            margin-top:20px;   
+        }
+    }
+    .step4{
+        .panel-title{ 
+            padding-bottom:40px; 
+        }
+       .panel-heading{
+            .pull-right{ 
+                float: left!important 
+            }
+        }
+    }
+    #emp-rofile{ 
+        .employers-information .requirement .req-1{ 
+            width:30px!important; 
+            padding-left:8px;   
+        }
+        .employers-information .requirement .req-2{ 
+            width: calc(97% - 30px); 
+        }
+    }  
+    .employers-details{
+        .employers-logo{
+            float: none!important;
+        }
+    }
+// user new design style
+    .box-action{
+        width: 100%!important;
+        border:1px solid $grey-border!important;
+        min-height: auto!important;
+    }
+    .add-new-user-forms{
+        .section-end{
+            .sk-radio{
+                width: 50%;
+                .radio{
+                    padding-top:0px!important;
+                }
+            }
+            .Rol-text{
+                width: 100%;
+            }
+        }
+    }
+    .user-footer{
+        padding:10px 0px;
+        button{
+            width: 50%!important;
+            margin-right: 0px!important;
+        }
+    }
+    .user-section{
+        .featured-box{
+            border-top:0px!important;
+        }
+    }
+    #users{
+        .commen-container{
+            margin-bottom: 0px!important;
+        }
+    }
+    #users{
+        .block{
+            .block-footer{
+                button{
+                    padding: 0px 15px !important;
+                }
+            }
+        }
+    }
+    // user signing section
+    .new-user-sign-form{
+        h2{
+            font-size: $font-22;
+        }
+    }
+    // Employer-Profile container spacing
+    #employer-rofile{
+        .commen-container{
+            margin-top: -5px!important;
+            padding:0px!important;
+        }
+    }
+    .mobile-margin-less{
+        margin-top: 0px;
+    }
+    //Autocomple-Employer Profile
+    .mobile-only-drop{
+        padding: 15px !important;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 0px!important;
+        height: 110px;
+        overflow: scroll;
+        overflow-x: hidden;
+        li{
+            padding: 5px 0px;
+        }
+    }
+    #followers{
+        .commen-container{
+            margin-top: -5px!important;
+            padding:0px!important;
+        }
+    }
+    .user-section{
+        .feturd-compny-dtls{
+            padding:0px!important;
+        }
+    }
+    .report-blank{
+        padding:25px 0px;
+    }
+    .user-report-side-bar{
+        min-height: auto;
+    }
+    .user-report{
+        margin-top: 0px;
+        padding:0px;
+    }
+    .user-section{
+        .user-card{
+            padding:10px!important;
+        }
+        .block-footer{
+            padding:10px!important;
+        }
+    }
+
+    // invite find
+    .invite-find{
+        margin-left: -5px!important;
+         margin-right: -5px!important;
+
+        .left{
+            float: left!important;
+            h2{
+                text-align: left!important;
+            }
+        }
+        .right{
+            padding-top: 0px!important;
+        }
+        .full-box {
+            .left{
+                input{
+                    width: 80%;
+                }
+            }
+        }
+        .invit-egg-default{
+            width: 45px!important;
+            height: 55px!important;
+            line-height: 65px!important;
+        }
+    }
+   #our-team{
+        padding:5px 10px!important;
+   }
+   #our-culture{
+        padding:10px 5px!important;
+        .block-contant{
+            padding:0px!important;
+        }
+   }
+   #our-jobs{
+        padding:10px!important;
+        .block-contant{
+            padding:0px!important;
+        }
+   }
+   .user-footer2{
+    margin-bottom: 5px;
+   }
+   .veiw-secton{
+    padding:10px;
+   }
+   .our-culture{
+        .carousel-inner{
+            height: 200px!important;
+            .item{
+                height: 200px!important;
+            }
+        }
+   }
+   .d-report{
+        width:100%!important;
+   }
+   .sd-height{
+        height: 50px!important;
+        line-height: 30px!important;
+        span{
+            line-height: 30px!important;
+        }
+         .active-label{
+            margin-top: 10px;
+        }
+        .expired-label{
+            margin-top: 10px;
+        }
+         .deleted-label{
+            margin-top: 10px;
+        }
+        .draft-label{
+            margin-top: 10px;
+        }
+   }
+    .report-list{
+        .feturd-compny{
+            height: 40px!important;
+            i{
+                line-height: 40px;
+            }
+        }
+    }
+
+
+
+}

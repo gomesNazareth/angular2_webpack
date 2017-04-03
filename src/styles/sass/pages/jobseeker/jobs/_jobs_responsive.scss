@@ -1,0 +1,1624 @@
+// Desktop
+@media (max-width: 1200px){
+
+    //Jobs
+    .featured-jobs{
+        .feturd-compny{
+            margin-left:6px!important
+        }
+        .txt-white{
+            font-size:$font-14!important
+        }
+        .carousel-control{
+            display:none
+        }
+    }
+    .featured-jobs:hover .carousel-control{ 
+        display: block 
+    }
+    .featured-box{
+        .matching-applicants{
+            min-height:160px;  
+        }
+    }
+
+    .filter-button{
+        display:inherit
+    }
+    .filter-mobile{
+        display:inherit
+    }
+    .filter-hide{ 
+        display: none
+    }
+    
+    .txt-white{
+        font-size:14px
+    }
+    .requirement{
+        
+        .req-2{  
+            .txt{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 188px!important
+            }
+        }
+    }
+    .benefits{
+        .benafit-box{ 
+            width: 24.3%;
+            min-height:auto; 
+        }
+    }
+    .company-details{
+        .compny-logo{
+            float:left
+        }
+        
+    }
+    .my-job{
+        .filter-jobs{
+            .feturd-compny-dtls{
+                .txt-white{ 
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 100%;
+                }
+                .cmpny-txt{ 
+                    padding-top:0px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 100%
+                }
+            }
+        }
+        .tracking{
+            width:300px;
+            .track{
+                .big-icn{
+                    font-size:40px
+                }
+                .line{
+                    width:30px; 
+                }
+                .light{
+                    font-size:14px
+                }
+            }
+        }
+    }
+    .saved-searches{
+        .hide-saved{ 
+            display:none;
+        }
+    }
+    .saved-jobs{
+        .filter-jobs{
+            .featured-box .matching-applicants .applicants-numbers{ 
+                width:100px;
+            }
+            .featured-box .probability .applicants-numbers{ 
+                width:100px;
+            }
+            .txt-white{
+                max-width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+        }
+
+    }
+    .company{
+        .follow-following{
+            width: 110px!important;
+        }
+    }
+
+
+   
+}
+
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 990px) and (max-width: 1435px){
+
+   #all-companies{
+      .company-following{ 
+        width:150px;
+      }
+      
+           
+      .align{ 
+        text-align: right; 
+        margin-top:0px;
+      }
+   } 
+    .featured-jobs .featured-box .feturd-compny-dtls .txt-white{ 
+      font-size:14px!important;
+    }
+   
+    #viewed-Profile{
+      .filter-jobs{
+        .txt-white{
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+      }    
+   }
+   
+  .ftrd-slider{
+    // .carousel-control.left{ 
+    //   left: 3px!important; 
+    // }
+    // .carousel-control.right{ 
+    //   right: 0px!important; 
+    // }
+  }    
+  .sign-page{
+     .bg img{ 
+      height: 100vh; 
+      width: auto;  
+    }
+  }   
+ 
+ .total-applications{
+    .tottal{ 
+      height: 120px; 
+      padding-top:20px;
+    }
+  } 
+
+  .button-fiton-mobile2{ 
+    width:140px!important; 
+    margin-top:5px;
+  }
+
+  .blog_sidebar{
+    .blog_post_thambnail_small{
+        height: 55px;
+    }
+    .top_viewed{
+      h1{
+        font-size: 14px;
+      }
+    }
+  }
+
+  .blog{
+    .blog_post_thumbnail{
+      height: 175px;
+    }
+    .blog_post_detail{
+      padding-left:10px;
+      h1{
+        line-height: 24px;
+      }
+    }
+  }
+
+  .compny-percentage{
+      .feturd-compny-dtls{ 
+        width: 66%;
+      }
+  }
+  .employers-details{
+    .employers-tab{
+       #our-culture{
+         .thumbnail{
+            img{ 
+              height: 100%; 
+              width: auto!important 
+            }
+          } 
+        } 
+      } 
+    } 
+
+  .similar-jobs{
+    .filter-jobs{
+      .featured-box{
+        .feturd-compny-dtls{
+          .txt-white{
+            font-size: $font-14;
+          }
+          .cmpny-txt{
+            span{
+              width: 87%;
+            }
+          }
+        }
+      }
+    } 
+  }
+
+  .similar-employers{
+    .follow-following{ 
+        font-size:$font-12
+    }
+    .company-following{
+        font-size:$font-12
+    }
+
+  }
+
+
+  
+
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 900px) and (max-width: 1024px){
+
+
+  .featured-jobs{
+    .mob-bdr{ 
+      border-right:1px solid #475c73 ;
+    }
+    .col-md-8{ 
+      min-height:auto;
+    }
+    .matching-applicants{ 
+      min-height:160px;
+    }
+  }
+
+   #viewed-Profile{
+      .align{ 
+        margin-top:0px;  
+      }
+     
+      
+      .side-advt{ 
+        width:100% ; 
+        padding-right:0px;  
+      }
+      .bottom-gap{ 
+        margin-bottom:0px;  
+      }
+   }
+
+   #most-profile{
+   .align{
+       .company-following{ 
+        width:100%; 
+        margin-bottom:5px; 
+      }
+   } 
+   .padding-20{ 
+      padding: 20px; margin: auto;   
+   }
+   .padding-20-0{ 
+      padding:20px 0px!important;  
+    }
+
+  }  
+
+
+  
+
+
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 900px) and (max-width: 1024px){
+
+
+  .featured-jobs{
+    .mob-bdr{ 
+      border-right:1px solid #475c73 ;
+    }
+    .col-md-8{ 
+      min-height:auto;
+    }
+    .matching-applicants{ 
+      min-height:160px;
+    }
+  }
+
+   #viewed-Profile{
+      .align{ 
+        margin-top:0px;  
+      }
+     
+      
+      .side-advt{ 
+        width:100% ; 
+        padding-right:0px;  
+      }
+      .bottom-gap{ 
+        margin-bottom:0px;  
+      }
+   }
+
+   #most-profile{
+   .align{
+       .company-following{ 
+        width:100%; 
+        margin-bottom:5px; 
+      }
+   } 
+   .padding-20{ 
+      padding: 20px; margin: auto;   
+   }
+   .padding-20-0{ 
+      padding:20px 0px!important;  
+    }
+
+  } 
+
+  .feed-b{
+        h4{
+            position:static;
+            margin-top: 0px;
+        }
+    }
+
+    .bt-sj-edit{
+        padding-left: 23%!important;
+    } 
+
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+
+    //Jobs
+    .future-serch{
+        .col-lg-10{
+            padding-right:5px!important
+        }
+        .col-lg-11{
+            padding-right:5px!important
+        }
+        .future-serch-icon{
+            i{ 
+                display:none;
+            }
+            input{ 
+                width:100%;
+            }
+        }
+    }
+
+    .featured-jobs{
+        .carousel-inner{ 
+            height:auto
+        }
+        .matching-applicants{ 
+            border-left:none!important;
+            min-height:100px; 
+        }
+        .carousel-control{ 
+            width: 30px;
+            left: -10px; 
+        }
+        .carousel-control.right{ 
+            right:-10px;
+        }
+        .mob-bdr{ 
+            border-bottom: solid 1px #475c73
+        }
+        .mob-bdr1{ 
+            border-bottom: solid 1px $grey-border
+        }
+    }
+    .filter-jobs{
+        .featured-box{ 
+            border-bottom: 5px solid $grey-border
+        }
+        .txt-white{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .padding-20-0{ 
+            padding:10px 0px
+        }
+        .matching-applicants{ 
+            border-right: none!important;
+            border-left: none!important;
+            min-height:100px
+        }
+        .mob-bdr1{
+            border-bottom: solid 1px $grey-border; 
+            border-right:1px solid $grey-border
+        }
+        
+    }
+    .filter-button{ 
+        display:inherit
+    }
+    .filter-mobile{ 
+        display:inherit
+    }
+    .filter-hide{ 
+        display: none
+    }
+    
+    .benefits{
+        .benafit-box{ 
+            width: 24.3%;
+            min-height:auto; 
+        }
+    }
+    .my-job{
+        .myjob-border{ 
+            border-top:solid 5px $grey-border
+        }
+        .filter-jobs{
+            .feturd-compny-dtls{
+                .txt-white{ 
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width:500;
+                }
+                .cmpny-txt{ 
+                    padding-top:0px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width:500
+                }
+            }
+        }
+        .tracking{
+            .track{
+                .big-icn{ 
+                    font-size:40px;  
+                }
+                .line{ 
+                    width:30px;
+                    margin-top:38px;   
+                }
+                .light{ 
+                    font-size:14px
+                }
+            }
+        }
+    }
+    .saved-searches{
+        .select-all{ 
+            background:none;
+            border:none
+        }
+        .block{
+            .block-title-2{
+                span{ 
+                    padding-right:0px
+                }
+            }
+        }
+        .text-center{ 
+            text-align: left
+        }
+        .hide-saved{ 
+            display:none;
+        }
+        .savedserch{
+            .css-label{ 
+                margin-top:20px;  
+            }
+            .row{ 
+                min-height:60px
+            }
+            .col-lg-3{ 
+                padding-left:20px!important
+            }
+            .col-lg-5{ 
+                min-height:20px
+            }
+            .col-lg-2{ 
+                min-height:20px;
+                line-height:20px
+            }
+            .block-title-2{ 
+                padding:10px;
+                button{ 
+                    width:48%
+                }
+            }
+        }
+    }
+    .saved-jobs{
+        .filter-jobs{
+            .mob-bdr1{ 
+                padding-top:45px
+            }
+            .matching-applicants{ 
+                min-height: auto!important
+            }
+            .txt-white{
+                max-width: 130px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+            .sort-drop{ 
+                position: inherit!important
+            }
+
+            .srt-feture{ 
+                display:none
+            }
+        }
+        .left{ 
+            width:100%
+        }
+        .right{ 
+            float: left!important
+        }
+        .open-hide{
+            display:none
+        }
+        .probability{ 
+            min-height:auto
+        }
+        .saved-check{ 
+            width:20px;
+            line-height:20px;
+            position: absolute;
+            top:20px;
+            left:10px
+        }
+        .select-all{
+            background:$white;
+            border: 1px solid $grey-dark
+        }
+    }
+
+    .job_mobile{
+        .feturd-compny{
+            margin-left: 0px!important;
+            width: 40px!important;
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+                img{
+                    vertical-align:middle;
+                    width: 90%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .job-sec{
+        i{  
+        padding-top:2px;
+        }
+    }
+
+    .padding-left-15{
+        padding-left:0px!important;
+    }
+
+
+    .mob-c-l-only{
+        width:90px!important;
+        height:90px!important;
+        span{
+            line-height: 90px!important;
+        }
+        i{
+            line-height: 90px!important;
+        }
+    }
+
+
+    .jobseeker_feedback_box{
+        padding-left:0px;
+    }
+    .interview-phone{
+        .country-list{
+            width: 300px;
+        }
+    }
+    .filter-jobs{
+        .feedback-open{
+            .block-title-2{
+                button{
+                    width: 200px;
+                }
+            }
+        }
+    }
+
+    .my-job .filter-jobs .featured-box{
+        width: 100%;
+        border-right:0px;
+    }
+
+    .application-tracking-t-myjob-icons{
+        width: calc(100% - 220px);
+        float: left;
+        height: 110px;
+    }
+
+    .application-status-t-myjob-action{
+        width: 220px;
+        float: left;
+        height: 110px;
+        .tracking-status{
+            margin-top: 18px;
+        }
+        .successful{
+            margin-top: 18px;
+        }
+        .feedback-btn{
+            bottom:0px;
+        }
+    }
+
+    .bt-sj-edit{
+        padding-left: 15%;
+    } 
+   
+ 
+}
+
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+
+    //jobs
+    .future-serch{
+        .col-lg-10{ 
+            padding-right:5px!important  
+        }
+        .col-lg-11{ 
+            padding-right:5px!important  
+        }
+        .future-serch-icon{
+            i{ 
+                display:none;
+            }
+            input{ 
+                width:100%;
+            }
+        }
+    }
+    .featured-jobs{
+        .carousel-inner{ 
+            height:auto;  
+        }
+        .txt-white{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+        }
+        .padding-20-0{ 
+            padding:10px 0px
+        }
+        .matching-applicants{ 
+            border-left:none!important;
+            min-height:100px
+        }
+        .carousel-control{ 
+            width: 30px;
+            left: -10px
+        }
+        .carousel-control.right{ 
+            right:-10px
+        }
+        .mob-bdr{ 
+            border-bottom: solid 1px #475c73
+        }
+    }
+    .filter-jobs{
+        .drop-jobs{ 
+            text-align: left
+        }
+        .sort-drop{
+            position: absolute;
+            left: 80px; 
+        }
+        .featured-box{ 
+            border-top: 5px solid $grey-border
+        }
+        .txt-white{
+            font-size:14px;
+        }
+        .padding-20-0{ 
+            padding:10px 0px
+        }
+        .matching-applicants{ 
+            border-left:none!important; 
+            border-right:none!important;
+            min-height:100px; 
+        }
+        .mob-bdr1{ 
+            border-bottom: solid 1px $grey-border
+        }
+        .feedback-open{
+            .col-lg-6{ 
+                padding-right:0px!important
+            }
+            .interviw-scroll{ 
+                margin-left:0px;
+                margin-top:0px;
+                .feedback-box{ 
+                    padding:10px 0px
+                }
+            }
+            .block-title-2{
+                .accepte{
+                    button{  
+                        width:99%   
+                    }
+                }
+                button{ 
+                    margin-bottom:5px;
+                    width:100%
+                }
+            }
+        }
+    }
+
+    .filter-button{
+        display:inherit
+    }
+    .filter-mobile{
+        display:inherit
+    }
+    .filter-hide{
+        display: none
+    }
+    .requirement{
+        .col-lg-4{
+            min-height: auto;
+        }
+    }
+    .benefits{
+        .benafit-box{ 
+            width: 32.6%;
+            min-height:auto
+        }
+    }
+    .filter-btn{
+        .block .block-footer{
+            button{ 
+                margin-bottom:10px; 
+                width:100%
+            }
+        }
+    }
+    .my-job{
+        .myjob-border{ 
+            border-top:solid 5px $grey-border
+        }
+        .col-lg-2{ 
+            border-top: solid 1px $grey-border;
+            min-height:auto;
+            .tracking-status{ 
+                margin: 20px auto;
+                display: inline-block;
+                width:49% ; 
+            }
+            .feedback-btn{ 
+                position:inherit;
+                width:49%;
+                display: inline-block;
+                margin: 20px auto
+            }
+            .successful{
+                width:49%;
+                display: inline-block;
+                margin: 20px auto
+            }
+        }
+    }
+    .saved-searches{
+        .select-all{ 
+            background:none;
+            border:none;   
+        }
+        .block{
+            .block-title-2{
+                span{ 
+                    padding-right:0px;   
+                }
+            }
+        }
+        .text-center{ 
+            text-align: left; 
+        }
+        .hide-saved{ 
+            display:inherit; 
+            padding-right: 10px
+        }
+        .savedserch{
+            .col-lg-3{ 
+                padding-left:20px!important;  
+            }
+            .col-lg-5{ 
+                min-height:auto;
+                line-height:20px
+            }
+            .col-lg-2{ 
+                min-height:20px!important;
+                line-height:20px!important;
+            }
+            .block-title-2{ 
+                padding:10px;
+                button{ 
+                    width:49%
+                }
+            }
+        }
+    }
+    .saved-jobs{
+        .filter-jobs{
+            .mob-bdr1{ 
+                padding-top:45px
+            }
+            .matching-applicants{ 
+                min-height: auto!important 
+            }
+            .txt-white{
+                max-width: 130px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+            .sort-drop{ 
+                position: inherit!important;
+            }
+            .srt-feture{ 
+                display:none
+            }
+        }
+        .left{ 
+            width:100%  
+        }
+        .right{ 
+            float: left!important
+        }
+        .open-hide{
+            min-height:30px;
+            border:none;
+            position: absolute;
+            right:20px;
+            top: 20px;
+            display: inherit
+        }
+        .open-closed{ 
+            min-height:30px;
+            border:none;
+            display:none;
+        }
+        .saved-check{ 
+            width:20px;
+            line-height:20px;
+            position: absolute;
+            top:20px;
+            left:10px;   
+        }
+        .probability{ 
+            min-height:auto;
+            border:none;    
+        }
+        .select-all{
+            background:$white;
+            border: 1px solid $grey-dark;
+        }
+    }
+    .srt-feture{
+        float: left
+    }
+    #all-companies{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border 
+            }
+        }
+        .company-following{ 
+            width:32.5%
+        }
+        .follow-following{ 
+            width:32.5% ;
+        }
+        .align{ 
+            text-align: left;
+            margin-top:-20px
+        }
+    }
+    #followed-companies{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .company-following{ 
+            width:49%;
+            float: left;
+        }
+        .follow-following{ 
+            width:49%;
+            float: left;
+        }
+        .align{ 
+            text-align:left;
+            margin-top:-20px;
+        }
+    }
+    .company{
+        .filter-jobs{
+            .featured-box{ 
+                border-top:none;
+                border-bottom:solid 5px $grey-border
+            }
+        }
+        .company-following{ 
+            width:49%!important;
+            float: left;
+            margin-right: 5px;
+        }
+        .follow-following{ 
+            width:49%!important;
+            float: left;
+        }
+        .align{ 
+            text-align:left;
+            margin-right:10px;
+            margin-left:10px; 
+            margin-top:-20px}
+    }
+
+    .employers-details{
+        .employers-logo{ 
+            width: 102px;
+            height: 102px;
+            margin: 0px auto;
+            margin-top: -100px;
+            float:none;
+            span{
+                line-height:102px;
+            }
+        }
+        .cover-back{ 
+            top:10px;
+        }
+        .cover-photo{ 
+            height:200px;
+        }
+        .employers-detail{ 
+            width:100%;
+            margin-left:0px; text-align:center 
+        }
+        .block .block-title-2 h2{ 
+            line-height:30px;
+            margin-top:0px; 
+            padding-top:10px; 
+        }
+        .display {
+            .social-section{
+                .social-media{ 
+                    text-align:center;
+                }
+            } 
+            margin-top:10px;
+        }
+        .align-employer{ 
+
+            text-align: left;
+            .company-following{ 
+                width:35%
+            }
+            .follow-following{ 
+                width:35%
+            }
+        }
+        .employers-tab{
+            #our-jobs{
+                .border-our-jobs{ 
+                    border:solid 1px $grey-border;
+                    border-bottom:4px solid $grey-border; 
+                }
+                .col-lg-4{ 
+                    border:none;
+                    min-height:auto;
+                    line-height:40px;  
+                }
+                .col-lg-2{  
+                    border:none;
+                    min-height:auto;
+                    line-height:40px;
+                    text-align: left; 
+                }
+                .open-jobs{ 
+                    margin: 0px;
+                }
+                .close-jobs{ 
+                    margin: 0px;
+                }
+                .no-application{ 
+                    border:none;
+                    width: auto;
+                    margin-top:auto;
+                    line-height:26px
+                }
+                .job-mobbrdr{ 
+                    border-top:solid 1px $grey-border;
+                    border-right:solid 1px $grey-border;
+                    text-align: center;
+                    line-height:26px;
+                    padding:10px 0px;
+                    right:-1px;     
+                }
+            }
+
+        }
+    }
+    .applay-mob{
+        .rrssb-buttons{
+            margin: 0px auto;
+            display: block;
+            padding: 0px 15px;
+        }
+    }
+
+    .block{
+        .block-footer{
+            button{
+                width: 100%;
+                height: auto !important;
+                padding: 10px 0px;
+            }
+        }
+    }
+
+    //Apply resume
+        #apply-job{
+            .col-lg-6{ 
+                border-right:none
+            }
+            .block-footer{
+                button{ 
+                    width:49%
+                }
+            }
+
+            .apply-res{
+                .resume-box{ 
+                    height: 50px; 
+                    width: 50px; 
+                    line-height: 50px;
+                    font-size:$font-16  
+                }
+                .resume-txt{ 
+                    left: 60px;
+                    top: 6px;  
+                }
+            }
+        }
+
+    .job_mobile{
+        .feturd-compny{
+            margin-left: 0px!important;
+            width: 40px!important;
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+                img{
+                    vertical-align:middle;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }  
+
+    .filter-jobs .featured-box i{
+        line-height: 40px;
+    } 
+
+    .filter-jobs{
+        .featured-box{
+            .feturd-compny-dtls{
+                padding:5px;
+                margin: 0px;
+                .cmpny-txt{
+                    padding: 2px 0px;;
+                }
+            }
+        }
+    } 
+
+    .company-details .compny-details{
+        width: 100%;
+        padding-left:0px;
+    }
+
+    .detail{
+        .prg-cercle{
+            width: 100%;
+        }
+        .mob-match-right{
+            width: calc(100% - 120px);
+            padding-top:24px;
+            float: left;
+            text-align: left;
+            padding-left:10px;
+        }
+        .compny-logo{
+            float: none!important;
+            margin:0px auto;
+            border-bottom:1px solid #f1f1f1;
+            margin-bottom: 10px;
+        }
+        .c100.small{
+            margin:5px 0px;
+        }
+    }
+
+    .company-details{
+        .prg-cercle{
+            .c100.small{
+                font-size: 50px;
+            }
+        }
+    }
+
+    .padding-left-15{
+        padding-left:0px!important;
+    }
+    .mob-c-l-only{
+        width:80px!important;
+        height:70px!important;
+         span{
+            line-height: 70px!important;
+        }
+        i{
+            line-height: 70px!important;
+        }
+    }
+
+    .padding-left-15{
+        padding-left:0px!important;
+    }
+    .jobseeker_feedback_box{
+        padding-left:0px;
+    }
+    .interview-sec-height{
+        height: 130px!important;
+    }
+    .interview-phone{
+        .country-list{
+            width: 300px;
+        }
+    }
+    .filter-jobs{
+        .feedback-open{
+            .block-title-2{
+                button{
+                    width: 49%;
+                }
+            }
+        }
+    }
+
+    .my-job .filter-jobs .featured-box{
+        width: 100%;
+        border-right:0px;
+    }
+
+    .application-tracking-t-myjob-icons{
+        width:100%;
+        height: 110px;
+    }
+
+    .application-status-t-myjob-action{
+        width: 100%;
+        height: 35px;
+        .tracking-status{
+            margin-top: 0px;
+            width: 50%;
+            float: left;
+        }
+        .successful{
+            bottom:0px;
+            position:static;
+            width: 50%;
+            float: left;
+            margin-top: 0px;
+        }
+        .feedback-btn{
+            bottom:0px;
+            position:static;
+            width: 50%;
+            float: left;
+        }
+    }
+     #apply-job{
+        .commen-container{
+            min-height: auto!important;
+        }
+        .min-full{
+            height: auto!important;
+        }
+    }
+    .hide-smart{
+        display: none!important;
+    }
+
+    .featured-box{
+        .mobile-without-matching{
+           
+            i{
+                
+                font-size: 20px!important;
+                line-height: 40px!important;
+            }
+        }
+    }
+  .apply-job-bt-full{
+    width: 100% !important;
+  }
+    .company-details{
+    .compny-logo{
+        width: 100px!important;
+        height: 100px!important;
+        i{
+            line-height: 100px!important;
+        }
+        span{
+            line-height: 100px!important;
+        }
+    }
+  }
+  .mobile-sp-remove{
+    .bottom-gap{
+        margin-bottom: 0px!important;
+    }
+  }
+  #my-jobs{
+        .commen-container{
+            margin-top: 20px!important;
+        }
+    }
+
+}
+
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 767px) and (max-width: 768px){
+    #apply-job{
+        .commen-container{
+            min-height: auto!important;
+        }
+        .min-full{
+            height: auto!important;
+        }
+    }
+    .skill-title-post-body{
+        width: 100%;
+    }
+   
+    
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+
+  .applay-mob{
+    .rrssb-buttons{
+        margin: 0px auto;
+        display: block;
+        padding: 0px 15px!important;
+    }
+  }
+
+  .refine-serch{
+    .block-title-2{
+        .hide{
+            display: none !important;
+        }
+        span{
+            display: inherit;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+        }
+    }
+  }
+  .block{
+    .block-footer{
+        button{
+            width: 100%;
+            height: auto !important;
+            height: 35px!important;
+            line-height: 35px!important;
+            padding:0px!important;
+        }
+    }
+  }
+
+  #my-jobs{
+        .block-title-2{
+            h2{
+                font-size: 16px !important;
+            }
+        }
+    }
+
+    //Apply resume
+    #apply-job{
+        .col-lg-6{ 
+            border-right:none
+        }
+        .block-footer{
+            button{ 
+                width:49%
+            }
+        }
+
+        .apply-res{
+            .resume-box{ 
+                height: 50px; 
+                width: 50px; 
+                line-height: 50px;
+                font-size:$font-16  
+            }
+            .resume-txt{ 
+                left: 60px;
+                top: 6px;  
+            }
+        }
+    }
+
+    .featured-box{
+        .mobile-without-matching{
+            width: 40px!important;
+            height: 40px!important;
+            line-height: 35px!important;
+            float: none!important;
+            i{
+                
+                font-size: 20px!important;
+                line-height: 40px!important;
+            }
+        }
+    }
+    
+    .saved-jobs{
+        .open-jobs{ background: $successful;
+            color: $white; 
+            text-align: center; 
+            width:10px; 
+            height:10px; 
+            line-height:30px; 
+            margin:0 auto;
+            border-radius: 160px;
+            webkit-border-radius:160px;
+            moz-border-radius:160px;
+            margin-top: 10px;
+        }
+        .close-jobs{ background: $unsuccessful; 
+            color: $white; 
+            text-align: center; 
+            width:10px; 
+            height:10px; 
+            line-height:30px;
+            margin: 0 auto;
+            border-radius: 160px;
+            webkit-border-radius:160px;
+            moz-border-radius:160px;
+            margin-top: 10px;
+        }
+    }
+
+    .job_description_spacing{
+        .bullet{
+            ul{
+                li{
+                    margin-left: 0px;
+                }
+            }
+        }
+     }  
+    
+    .job_mobile-bottom{
+        .feturd-compny-dtls{ 
+            margin-top: 0px;
+            margin-left: 0px!important;
+        }
+        .c100.small{
+            font-size: 65px;
+            float: right;
+            right: 0px;
+        }
+    }
+
+
+    .job_mobile{
+        .feturd-compny{
+            margin-left: 0px!important;
+            width: 40px!important;
+            height: 40px!important;
+            span{
+                line-height: 40px!important;
+                img{
+                    vertical-align:middle;
+                    width: 90%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    #suggested-jobs{
+        .featured-box{
+            border-bottom:5px solid #f1f1f1;
+        }
+    }
+
+    #tag-job{
+         padding: 10px;      
+    }
+
+    .mobile-job-application .nav-tabs > li > a{
+        font-size: $font-14;
+    }
+
+    .filter-jobs{
+        .featured-box{
+            .feturd-compny-dtls{
+                padding:5px;
+                .cmpny-txt{
+                    padding: 2px 0px;
+                }
+            }
+        }
+    }
+
+    .company-details .compny-details{
+        width: 100%;
+        padding-left:0px;
+    }
+
+    .detail{
+        .prg-cercle{
+            width: 100%;
+        }
+        .mob-match-right{
+            width: calc(100% - 120px);
+            padding-top: 24px;
+            float: left;
+            text-align: left;
+            padding-left:10px;
+        }
+        .compny-logo{
+            float: none!important;
+            margin:0px auto;
+            border-bottom:1px solid #f1f1f1;
+            margin-bottom: 10px;
+        }
+        .c100.small{
+            margin:5px 0px;
+        }
+    }
+
+    .company-details{
+        .prg-cercle{
+            .c100.small{
+                font-size: 50px;
+            }
+        }
+    }
+
+    .featured-jobs .featured-box .feturd-compny span{
+        line-height: 40px;
+    }
+    .padding-left-15{
+        padding-left:0px!important;
+    }
+    .jobseeker_feedback_box{
+        padding-left:0px;
+    }
+    .interview-sec-height{
+        height: 130px!important;
+    }
+    .interview-phone{
+        .country-list{
+            width: 300px;
+        }
+    }
+    .filter-jobs{
+        .feedback-open{
+            .block-title-2{
+                button{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .my-job .filter-jobs .featured-box{
+        width: 100%;
+        border-right:0px;
+    }
+
+    .application-tracking-t-myjob-icons{
+        width:100%;
+        height: 110px;
+    }
+
+    .application-status-t-myjob-action{
+        width: 100%;
+        height: 35px;
+        .tracking-status{
+            margin-top: 0px;
+            width: 49%;
+            float: left;
+        }
+        .successful{
+            margin-top: 0px;
+            width: 49%;
+            float: left;  
+        }
+        .feedback-btn{
+            bottom:0px;
+            position:static;
+            width: 50%;
+            float: left;
+            margin-left: 1%;
+        }
+    }
+    #apply-job{
+        .commen-container{
+            min-height: auto!important;
+        }
+        .min-full{
+            height: auto!important;
+        }
+    }
+
+    .saved-jobs{
+        .filter-jobs .featured-box{
+            border-top: 2px solid #f1f1f1;
+        }
+    }
+  .apply-job-bt-full{
+      width: 100% !important;
+  }
+  .company-details{
+    .compny-logo{
+        width: 100px!important;
+        height: 100px!important;
+        i{
+            line-height: 100px!important;
+        }
+        span{
+            line-height: 100px!important;
+        }
+    }
+  }
+  .mobile-sp-remove{
+    .bottom-gap{
+        margin-bottom: 0px!important;
+    }
+  }
+  #my-jobs{
+        .commen-container{
+            margin-top: 20px!important;
+        }
+    }
+   
+   
+} 

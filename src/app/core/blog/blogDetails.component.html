@@ -1,0 +1,190 @@
+<div class="commen-container-less load-data-js">
+    <div class="col-lg-8 col-md-8">
+        <div class="blog_detail bottom-gap">
+            <div class="area border-bottom">
+                <div class="left-blog-text">
+                    <h2>{{(selectedBlog$ | async)?.name}}</h2>
+                </div>
+                <div class="right-blog-text">
+                    <a  [routerLink]="['/'+_accountService.getPath()+'/blog']" routerLinkActive="active" class="cursor_pointer1">  <button>
+                        <i class="zmdi zmdi-arrow-left hidden-lg visible-sm visible-xs"></i>
+                        <span class="hidden-xs hidden-sm">Back</span>
+                    </button></a>
+                </div>
+            </div>
+
+            <!-- blog image and content -->
+            <div class="area padding-10-15">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 zero-margin">
+                    <div class="blog-post-from">
+                        <i *ngIf="!(selectedBlog$ | async)?.postedUserIcon" class="zmdi zmdi-city-alt"></i>
+                        <img *ngIf="(selectedBlog$ | async)?.postedUserIcon" [src]="(selectedBlog$ | async)?.postedUserIcon">
+                    </div>
+                    <div class="blog_post_by">
+                        <h3>{{(selectedBlog$ | async)?.postedUserName}}</h3>
+                        <span><i class="zmdi zmdi-calendar-alt"></i>{{(selectedBlog$ | async)?.postDate | date:'d MMM,  yyyy'}}</span>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 zero-margin blog" *ngIf="(selectedBlog$ | async)?.id">
+
+                    <share-social-media-2 [url]="(url$ | async)+'/blog/'+(selectedBlog$ | async)?.id" [title]="(selectedBlog$ | async)?.name" [description]="(selectedBlog$ | async)?.name"></share-social-media-2>
+                </div>
+            </div>
+
+            <!-- psot image area -->
+            <div class="area padding-left-right">
+                <div class="post-image-big">
+                    <div *ngIf="!(selectedBlog$ | async)?.bannerImage"></div>
+                    <img *ngIf="(selectedBlog$ | async)?.bannerImage" [src]="(selectedBlog$ | async)?.bannerImage">
+                </div>
+            </div>
+
+            <!-- contents -->
+
+            <div class="area padding-left-right">
+                <br>
+                <p [innerHTML]= "(selectedBlog$ | async)?.description"></p>
+            </div>
+
+            <div class="area " >
+                <div class="blg-mob">
+                    <div class="padding-left-right" >
+                        <div class="download-coment-like" [class.blog-desable-bt]="!_accountService.getAuth()">
+                            <div class="col-lg-3 col-sm-4 col-xs-12">
+                                <div class="like-comment">
+
+                                    <span *ngIf="!(selectedBlog$ | async)?.liked">
+                                        <a *ngIf="!_accountService.getAuth()" class="cursor_pointer1"  data-tooltip="Like">
+                                            <i class="zmdi " [class.zmdi-favorite]="(selectedBlog$ | async)?.liked" [class.zmdi-favorite-outline]="!(selectedBlog$ | async)?.liked" ></i>
+                                            <strong>{{(selectedBlog$ | async)?.likes}}</strong>
+                                            <i *ngIf="(selectedBlog$ | async)?.likes == 1">Like</i>
+                                            <i *ngIf="(selectedBlog$ | async)?.likes > 1 || (selectedBlog$ | async)?.likes == 0">Likes</i>
+                                        </a>
+
+                                        <a *ngIf="_accountService.getAuth()" class="cursor_pointer1" (click)="getLike()" data-tooltip="Like">
+                                            <i class="zmdi " [class.zmdi-favorite]="(selectedBlog$ | async)?.liked" [class.zmdi-favorite-outline]="!(selectedBlog$ | async)?.liked" ></i>
+                                            <strong>{{(selectedBlog$ | async)?.likes}}</strong>
+                                             <i *ngIf="(selectedBlog$ | async)?.likes == 1">Like</i>
+                                             <i *ngIf="(selectedBlog$ | async)?.likes > 1 || (selectedBlog$ | async)?.likes == 0">Likes</i>
+                                        </a>
+                                    </span>
+                                    <span *ngIf="(selectedBlog$ | async)?.liked">
+                                        <a  *ngIf="!_accountService.getAuth()" class="cursor_pointer1"  data-tooltip="Like">
+                                            <i class="zmdi " [class.zmdi-favorite]="(selectedBlog$ | async)?.liked" [class.zmdi-favorite-outline]="!(selectedBlog$ | async)?.liked" ></i>
+                                            <strong>{{(selectedBlog$ | async)?.likes}}</strong>
+                                            <i *ngIf="(selectedBlog$ | async)?.likes == 1">Like</i>
+                                            <i *ngIf="(selectedBlog$ | async)?.likes > 1 || (selectedBlog$ | async)?.likes == 0">Likes</i>
+                                        </a>
+
+                                        <a *ngIf="_accountService.getAuth()" class="cursor_pointer1" (click)="getUnLike()" data-tooltip="Like">
+                                            <i class="zmdi " [class.zmdi-favorite]="(selectedBlog$ | async)?.liked" [class.zmdi-favorite-outline]="!(selectedBlog$ | async)?.liked" ></i>
+                                            <strong>{{(selectedBlog$ | async)?.likes}}</strong>
+                                              <i *ngIf="(selectedBlog$ | async)?.likes == 1">Like</i>
+                                              <i *ngIf="(selectedBlog$ | async)?.likes > 1 || (selectedBlog$ | async)?.likes == 0">Likes</i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4 col-xs-12">
+                                <div class="like-comment">
+
+                                    <span>
+                                        <a class="cursor_pointer1" data-tooltip="Comments">
+                                            <i class="zmdi zmdi-comment-alt-text"></i><strong>{{(selectedBlog$ | async)?.totalComments}}</strong>
+                                            <i *ngIf="(selectedBlog$ | async)?.totalComments == 1">Comment</i>
+                                            <i *ngIf="(selectedBlog$ | async)?.totalComments > 1 || (selectedBlog$ | async)?.totalComments == 0">Comments</i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-4 col-xs-12">
+                                <a *ngIf="!_accountService.getAuth()"  class="cursor_pointer1">
+                                    <span class="pull-right download">
+                                        <i class="download-spin-blog"><spinner [visible]="(filedDownloadFlag$ | async)" ></spinner></i>
+                                        <i class="zmdi zmdi-download"></i>
+                                        Download
+                                    </span>
+                                </a>
+                                <a *ngIf="_accountService.getAuth()" (click)="onSavePDF()" class="cursor_pointer1">
+                                    <span class="pull-right download">
+                                        <i class="download-spin-blog"><spinner [visible]="(filedDownloadFlag$ | async)" ></spinner></i>
+                                        <i class="zmdi zmdi-download"></i>
+                                        Download
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Comments -->
+            <div class="area padding-10-0-20" id="comment">
+                <h5>Comments</h5>
+                <div class="area">
+                    <!-- comments listing -->
+                    <ul *ngIf="(selectedBlog$ | async)?.comments" >
+
+                        <li  *ngFor="let selcomment of (selectedBlog$ | async).comments,let comIndex = index"  [class.border-bottom]="comIndex < ((selectedBlog$ | async).comment.length -1 )">
+
+                                <div class="user-coment">
+                                    <i class="icon-profile"></i>
+                                </div>
+
+
+                                <div class="commnet-content">
+                                    <div>
+                                        <strong>{{selcomment.userName}}</strong><br>
+                                        <span><i class="zmdi zmdi-calendar-alt"></i>{{selcomment.postedDate | date:'d MMM,  yyyy' }}</span>
+                                        <span><i class="zmdi zmdi-time"></i>{{selcomment.postedDate | date:'HH:mm' }}</span>
+                                    </div>
+                                    <div>
+                                        <p>{{selcomment.description}} </p>
+                                    </div>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- comment form -->
+            <div class="area padding-left-right" >
+                <div>
+                    <div *ngIf="(postsuccessFlag$ | async) == true"   class="comen-alert">
+                        <i class="zmdi zmdi-check-circle"></i> Your comment has been submitted successfully! It will display here after the approval of author.
+                    </div>
+                    <spinner [visible]="(postFormLoaderFlags$ | async)" ></spinner>
+                </div>
+                <div class="blg-frm">
+
+                        <div class="user-coment">
+                            <img  *ngIf="(selectedBlog$ | async)?.current_user_avatar" [src]="(selectedBlog$ | async)?.current_user_avatar">
+
+                             <i  *ngIf="!(selectedBlog$ | async)?.current_user_avatar" class="icon-profile"></i>
+                        </div>
+
+
+
+                        <div class="commnet-feild"  [style.display]="!(postFormLoaderFlags$ | async)?'block':'none'" >
+                            <form [formGroup]="commentForm">
+                                <textarea  [readonly]="!_accountService.getAuth()"  name="comment_string" formControlName="comment_string"  placeholder="Enter your comment (maximum of 1,500 characters)" ></textarea>
+
+                                <div class="txt font-12" *ngIf="_accountService.getAuth()"
+                                     [class.alert-danger]="(commentForm.controls['comment_string'].touched || !(pristineFlag$ |async) )&& !commentForm.controls['comment_string'].valid">
+                                    Enter your comment (maximum of 1,500 characters)
+                                </div>
+                                <button *ngIf="this._accountService.getAuth()" class="pull-left margin" (click)="onPostComment()">Submit</button>
+                            </form>
+                            <button *ngIf="!this._accountService.getAuth()" class="pull-left margin" [routerLink]="'/home/signup'">SignUp to comment</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- sidebar -->
+    <top-viewed-blog></top-viewed-blog>
+</div>

@@ -1,0 +1,64 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="block bottom-gap">
+        <div class="block-title-2">
+
+            <div class="pull-left  align-center-text" *ngIf="!_accountService.getCheckEmployer()"><h2 class="padding-top-10">{{'Job Applications Submitted by Sector'}}</h2></div>
+            <div class="pull-left  align-center-text" *ngIf="_accountService.getCheckEmployer()"><h2 class="padding-top-10">{{'Job Applications Received by Sector'}}</h2></div>
+
+            <div class="pull-right hidden-xs">
+                <a (click)="goBack()"><button>{{'Back'}}</button></a>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="block-contant padding-10">
+            <div class="prograss-section padding-btm-20">
+                <spinner [visible]="isLoadingS"></spinner>
+                <div class="col-lg-6"  *ngFor="let jobBySector of (jobsBySector$ | async)">
+
+
+                    <div class="progress-bloovo">
+                        <div class="prograss-title">
+                            <h5 class="prograss-txt pull-left">{{jobBySector?.sector}}</h5>
+                            <h5 class="prograss-txt pull-right percentage-color" >{{jobBySector?.percentage | number:'2.2-2'}}%</h5>
+                            <div class=" clr"></div>
+                        </div>
+                        <div class="progress">
+                            <div data-percentage="0%" [style.width.%]="jobBySector?.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6"  *ngFor="let jobBySector of (jobsStatsObs | async)?.job_applications?.job_applications_by_sector">
+                    <div class="progress-bloovo">
+                        <div class="prograss-title">
+                            <h5 class="prograss-txt pull-left">{{jobBySector?.name}}</h5>
+                            <h5 class="prograss-txt pull-right percentage-color" >{{jobBySector?.percentage | number:'1.1-1'}}%</h5>
+                            <div class=" clr"></div>
+                        </div>
+                        <div class="progress">
+                            <div data-percentage="0%" [style.width.%]="jobBySector?.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="clr"></div>
+            </div>
+
+
+
+            <div class="clr"></div>
+
+            <div class="hidden-md hidden-lg hidden-sm">
+                <a (click)="goBack()"><button class="full-back">{{'Back'}}</button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+<div *ngFor="let ad of ads,let i = index" class="advertisments">
+        <div class="advt"><a href="/ad/{{ad.id}}"><img src="{{ad.url}}" width="100%"> </a></div>
+    </div>
+</div>-->

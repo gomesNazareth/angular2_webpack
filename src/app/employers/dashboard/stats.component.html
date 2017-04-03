@@ -1,0 +1,434 @@
+<div class="main-tab load-data-js mobile-tab-top"></div>
+<emp-profile-topmenu [activeFlag]="'stats'"></emp-profile-topmenu>
+<div class="tab-content job-bloovo">
+    <!---------------------------  Companies edit details ---------------------------------->
+    <div role="tabpanel" class="tab-pane active" id="employer-rofile">
+        <div  class="commen-container">
+
+            <div  *ngIf="viewMode == 'general'" class="graph-tabs">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                    <div class="block bottom-gap">
+                        <div class="block-title"> <h1> Job Stats </h1> </div>
+                        <div class="dashboard-employer">
+
+
+                            <!---- Mobile ---->
+
+                            <div class="mb-dash">
+                                <div class="mobile-job-application hidden-md hidden-lg">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 padding-none">
+                                        <nav class="nav-sidebar dashboard-tab-fix">
+                                            <ul class="nav tabs">
+                                                <li class="active"><a><span>{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.total_jobs}}</span> Jobs Posted</a></li>
+                                                <li class=""><a><span class="green">{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.active_jobs}}</span> Active Jobs</a></li>
+                                                <li class=""><a><span class="red">{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.closed_jobs}}</span> Expired Jobs</a></li>
+                                                <div class=" clearfix"></div>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!----End Mobile ---->
+
+                            <!---- Desktop ---->
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12  padding-none tab-content">
+                                <div *ngIf="isLoadingBars" class="min-bar-277" >
+                                    <i><spinner [visible]="isLoadingBars"></spinner></i>
+                                </div>
+                                <div *ngIf="!isLoadingBars" class="tab-pane active text-style padding-20" id="job-applications">
+
+                                    <div class="dash-center text-center">
+                                        Number of Jobs Posted
+                                    </div>
+                                    <div class="bar-chart">
+                                        <div class="bar-graph">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let selStat of monthStats">
+                                                <div class="tooltip-x">
+                                                <strong class="tooltiptext-x" *ngIf="selStat>1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Jobs</p>
+                                                </strong>
+                                                <strong class="tooltiptext-x" *ngIf="selStat==1">
+                                                    <b>{{selStat}}</b>
+                                                    <p>Job</p>
+                                                </strong>
+                                                <div class="bar">
+                                                    <div class="bar-per"  [style.height.%]="selStat"></div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" clearfix "></div>
+                                        </div>
+                                        <div class="bar-date">
+
+                                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 " *ngFor="let selMonth of months">
+                                                <h5>{{selMonth}}</h5>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class=" desktop total-applications ">
+                                <div class="col-lg-3 col-md-3 hidden-sm  padding-none">
+                                    <nav class="nav-sidebar">
+                                        <ul class="nav tabs dashboard-tab-fix">
+                                            <li class="active"><a href="#job-applications" data-toggle="tab">
+                                                <div class="tottal">
+                                                    <div class="icon-stats"><i class="icon-jobs-posted" ></i> </div>
+                                                    <div class="count-stats">
+                                                        <h2>{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.total_jobs}}</h2>
+                                                        <h6 *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.total_jobs == 1">Job Posted</h6>
+                                                        <h6 *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.total_jobs != 1">Jobs Posted</h6>
+                                                    </div>
+                                                    <div class=" clearfix"></div>
+                                                </div>
+                                            </a>
+                                            </li>
+                                            <li class="">
+                                                <a>
+                                                    <div class="pull-left ">
+                                                        <div class="cercle green">
+
+                                                            <div class="dash-center" >{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.active_jobs}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-left" *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.active_jobs == 1"><span class="dash-navy" > Active Job </span> </div>
+                                                    <div class="pull-left" *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.active_jobs != 1"><span class="dash-navy" > Active Jobs </span> </div>
+                                                    <div class=" clearfix"></div>
+
+
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a>
+                                                    <div class="pull-left ">
+                                                        <div class="cercle red">
+
+                                                            <div class="dash-center" >{{(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.closed_jobs}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-left" *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.closed_jobs == 1"><span class="dash-navy" > Expired Job </span> </div>
+                                                    <div class="pull-left" *ngIf="(companyStats$ | async)?.jobs_graph?.counter_jobs_details?.closed_jobs != 1"><span class="dash-navy" > Expired Jobs </span> </div>
+                                                    <div class=" clearfix"></div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <!---- End Desktop ---->
+                            <div class=" clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div  *ngIf="viewMode == 'general'" class="job-application">
+
+                <!---- Desktop ---->
+                <div class="desktop">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="block bottom-gap">
+                            <div class="block-title"> <h1>Job Applications Received by Country</h1></div>
+                            <div class="block-contant empty-min15">
+
+                                <div class="empty-prf " *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_country?.length ==0 || isLoadingC">
+
+                                    <span *ngIf="!isLoadingC">  <i class="icon-empty-nodata"></i>  <h5>No Data Available</h5></span>
+                                    <spinner [visible]="isLoadingC"></spinner>
+
+                                </div>
+
+                                <div class="prograss-section">
+                                    <span *ngFor="let selVal of (jobsStats$ | async)?.job_applications?.job_applications_by_country,let selIndex =index">
+
+                                        <div class="progress-bloovo" *ngIf="selIndex <= 4">
+
+                                            <div class="prograss-title">
+                                                <div class="prograss-txt pull-left">{{selVal.name}}</div>
+                                                <div class="prograss-txt pull-right percentage-color" >{{selVal.percentage | number:'1.1-1'}}%</div>
+                                                <div class=" clr"></div>
+                                            </div>
+                                            <div class="progress">
+                                                <div data-percentage="0%" [style.width.%]="selVal.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="block-footer" >
+                                <a>
+                                    <button class="disabled_button" *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_country?.length <=4" >
+                                        More...
+                                    </button>
+                                    <button *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_country?.length > 4" [routerLink]="['/'+_accountService.getPath()+'/dashboard/applicants-by-country']"  >
+                                        More...
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="block bottom-gap">
+                            <div class="block-title">
+                                <h1>Job Applications Received by Sector</h1>
+                            </div>
+                            <div class="block-contant empty-min15">
+                                <div class="empty-prf" *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_sector?.length ==0 || isLoadingS">
+                                    <span *ngIf="!isLoadingS">  <i class="icon-empty-nodatasector"></i>
+                                        <h5>No Data Available</h5>
+                                    </span>
+                                    <spinner [visible]="isLoadingS"></spinner>
+                                </div>
+
+                                <div class="prograss-section">
+                                    <span *ngFor="let selVal of (jobsStats$ | async)?.job_applications?.job_applications_by_sector,let selSectorIndex = index ">
+
+                                        <div class="progress-bloovo" *ngIf="selSectorIndex <= 4" >
+
+                                            <div class="prograss-title" >
+                                                <div class="prograss-txt pull-left">{{selVal?.name}}</div>
+                                                <div class="prograss-txt  pull-right percentage-color" >{{selVal?.percentage | number:'1.1-1'}}%</div>
+                                                <div class=" clr"></div>
+
+                                            </div>
+                                            <div class="progress" >
+        <div data-percentage="0%" [style.width.%]="selVal.percentage"  class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="block-footer"  >
+
+                                <a>
+                                    <button    class="disabled_button" *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_sector?.length <=4">More...
+                                    </button>
+
+                                    <button *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_sector?.length > 4"
+                                            [routerLink]="['/'+_accountService.getPath()+'/dashboard/applicants-by-sector']"  >More...
+                                    </button>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" clr"></div>
+                </div>
+                <!---- Mobile ---->
+                <div class="mobile">
+                    <div class=" col-xs-12 col-sm-12">
+                        <div class=" block">
+                            <div class=" block-title">
+                                <h1>Job Applications Submitted by</h1>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class=" col-xs-12 col-sm-12">
+
+                        <div class="mobile-job-application bottom-gap-10">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#mobile-country" aria-controls="mobile-country" role="tab" data-toggle="tab">Country</a></li>
+                                <li role="presentation"><a href="#mobile-sector" aria-controls="mobile-sector" role="tab" data-toggle="tab">Sector</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="mobile-country">
+                                    <div class="block">
+                                        <div class="block-contant">
+                                            <div class="prograss-section">
+                                                <div *ngFor="let selVal of (jobsStats$ | async)?.job_applications?.job_applications_by_country,let selIndex =index">
+
+                                                    <div class="progress-bloovo" *ngIf="selIndex <= 4">
+                                                    <div class="prograss-title">
+                                                        <div class="prograss-txt pull-left">{{selVal.name}}</div>
+                                                        <div class="prograss-txt pull-right percentage-color" >{{selVal.percentage | number:'2.2-2'}}%</div>
+                                                        <div class=" clr"></div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div data-percentage="0%" [style.width.%]="selVal.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="block-footer" *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_country?.length >4">
+                                            <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/dashboard/applicants-by-country']"  >
+                                                <button>More...</button>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div role="tabpanel" class="tab-pane" id="mobile-sector">
+                                    <div class="block">
+                                        <div class="block-contant">
+                                            <div class="prograss-section">
+                                                <div *ngFor="let selVal of (jobsStats$ | async)?.job_applications?.job_applications_by_sector,let selSectorIndex = index ">
+
+
+                                                <div class="progress-bloovo" *ngIf="selSectorIndex <= 4">
+                                                    <div class="prograss-title">
+                                                        <div class="prograss-txt pull-left">{{selVal.name}}</div>
+                                                        <div class="prograss-txt pull-right percentage-color" >{{selVal.percentage | number:'2.2-2'}}%</div>
+                                                        <div class=" clr"></div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div data-percentage="0%" [style.width.%]="selVal.percentage" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="block-footer" *ngIf="(jobsStats$ | async)?.job_applications?.job_applications_by_sector?.length > 4" >
+                                            <a class="cursor_pointer1" [routerLink]="['/'+_accountService.getPath()+'/dashboard/applicants-by-sector']" ><button>More...</button> </a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div  *ngIf="viewMode == 'general'" class="col-lg-12 dashboard-employer">
+                <div class="block bottom-gap">
+                    <div class="block-title">
+                        <h2> Employer Branding </h2>
+                    </div>
+                    <div class="block-contant padding-0 analysis">
+
+                        <!-- Total Followers -->
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 branding">
+                            <!-- Empty Design for Age Group -->
+                            <div  *ngIf="!(graphStats$ | async)?.followers?.total_count ||  (graphStats$ | async)?.followers?.total_count == 0" class="empty-min-country">
+                                <div class="empty-prf" *ngIf="(graphStats$ | async)?.followers?.total_count ==0">
+                                    <i class="icon-empty-app-group"></i>    
+                                    <h5>No Followers by Age Group Available</h5>    
+                                </div>
+                                <div class="empty-prf " *ngIf="isLoadingfollowers">
+                                  <spinner [visible]="isLoadingfollowers"></spinner>
+                                </div>
+                            </div>
+                            
+                            <div  *ngIf="(graphStats$ | async)?.followers?.total_count">
+                                <div class="padding-10 followers-padd">
+                                    <i class="icon-branding"></i>
+                                    <h1>{{(graphStats$ | async)?.followers?.total_count | number}} </h1>
+                                    <h6>Followers </h6>
+                                </div>
+
+                                <div class="brand-gender">
+                                    <div class="half-box">
+                                        <div class="pull-left"><div class="analy" style="background:#648b9d" ></div><div class="light bold">Male</div> </div>
+                                        <div class="pull-right">{{ malePercent | number:'2.1-1' }}% </div>
+                                    </div>
+                                    <div class="half-box border-none">
+                                        <div class="pull-left"><div class="analy" style="background:#b4c6d8" ></div><div class="light bold">Female</div> </div>
+                                        <div class="pull-right">{{ femalePercent | number:'2.1-1' }}% </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Followed By Country -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="row block-title"><h2>Followers By Country</h2></div>
+
+                            <!-- Empty Design for Followed Country -->
+                            <div class="empty-min-country" *ngIf="!jobGraph?.country?.data[1]?.length  || jobGraph?.country?.data[1]?.length == 0">
+                                <div class="empty-prf ">
+                                    <i class="icon-empty-app-cntry"></i>    
+                                    <h5>No Followers by Country Available</h5>    
+                                </div>
+                            </div>
+
+                            <div class="empty-min-country" *ngIf="isLoadingPieA">
+                                <div class="empty-prf ">
+                                    <spinner [visible]="isLoadingPieA"></spinner>
+                                </div>
+                            </div>
+
+                            <div class="row padding-10 scroll-chart">
+
+                                <div *ngIf="jobGraph?.country?.data[1]?.length >0" class="row">
+                                    <google-donut-chart [mode]="'desktop'"  [options]="jobGraph?.country?.options" [data]="jobGraph?.country?.data"></google-donut-chart>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Followed By Age Group -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="row block-title"><h2>Followers By Age Group</h2></div>
+                            
+                            <!-- Empty Design for Age Group -->
+                            <div class="empty-min-country" *ngIf="!jobGraph?.age?.data[1]?.length || jobGraph?.age?.data[1]?.length == 0">
+                                <div class="empty-prf ">
+                                    <spinner [visible]="isLoadingPieA"></spinner>
+                                    <i class="icon-empty-app-group" ></i>
+                                    <h5>No Followers by Age Group Available</h5>    
+                                </div>
+                            </div>
+
+                            <!-- Empty Design for Age Group -->
+                            <div class="empty-min-country" *ngIf="isLoadingPieA">
+                                <div class="empty-prf ">
+                                    <spinner [visible]="isLoadingPieA"></spinner>
+                                </div>
+                            </div>
+
+                            <div class="row padding-10 scroll-chart">
+
+                                <div *ngIf="jobGraph?.age?.data[1]?.length >0" class="row">
+                                    <google-donut-chart [mode]="'desktop'"  [options]="jobGraph?.age?.options" [data]="jobGraph?.age?.data"></google-donut-chart>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </div>
+            </div>
+            <jobs-country *ngIf="viewMode == 'country'" [jobsStatsObs]="jobsStats$" [cached]="true"></jobs-country>
+
+            <jobs-sector *ngIf="viewMode == 'sector'" [jobsStatsObs]="jobsStats$" [cached]="true"></jobs-sector>
+        </div>
+    </div>
+</div>

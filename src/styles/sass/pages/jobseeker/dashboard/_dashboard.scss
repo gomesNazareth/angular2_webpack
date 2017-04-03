@@ -1,0 +1,573 @@
+// ------------Dash Board------------------
+#viewed-Profile,#poll,#saved-jobs{
+    .left {
+        float: left
+    }
+    .right {
+        float: right;
+    }
+}
+
+.prograss-section{
+    .prograss-txt{ 
+        color:$blue-bali; 
+        margin-top: 5px; 
+        margin-bottom: 5px;
+        font-size:$font-14;
+    }
+    .progress{ 
+        box-shadow:none;
+        background-color:$blue-alice;
+        border-radius:0px; 
+        height:6px;
+    }
+    .progress-bar{
+        box-shadow:none;
+        background-color:$blue
+    }
+    .percentage-color{ 
+        color:$navy-dark
+    }  
+}
+
+.advertisement{
+    img{ 
+        width:100%;
+    }
+}
+
+.dashboard-graph{
+    .col-lg-3{ 
+        padding-left: 0px;
+        padding-right: 0px
+    }
+    li > a{
+        border-radius:0px;
+        color:$navy-dark; 
+        margin-right:0px; 
+        padding:1.5625em 3.125em;
+        font-size:$font-20;
+        border: solid 1px $bg ; 
+    }
+    .nav > li > a{
+        padding:50px 1.875em;
+    }
+    .nav > li > a:hover{ 
+        background-color:$navy-dark;
+        color:$white; 
+        border: solid 1px $navy-dark ;  
+    }
+    li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{ 
+        background-color:$navy-dark; 
+        color:$white; 
+        border: solid 1px $navy-dark; 
+    }
+    li.active > a,li.active > a:hover,li.active > a:focus{
+        background-color:$navy-dark; 
+        color:$white; 
+        border: solid 1px $navy-dark ; 
+    }
+
+}
+.applications{
+    width:70px;
+}
+.job-applications-sub-tab{
+    .nav > li{ 
+        margin-right:-1px;
+    }
+    .nav > li > a{ 
+        padding: 5px 15px; 
+        font-size:$font-14; 
+        color:$blue-bali;
+        border: solid 1px $bg;
+        margin:0px;
+    }
+    .nav-tabs > li > a{ 
+        border-radius: 0px;
+    }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+        background:$navy-dark; 
+        color:$white; 
+        border: solid 1px $navy-dark;
+    }
+}
+
+.total-applications{
+    .col-lg-3{ 
+        border-right: solid 1px $grey-border;
+        padding: 10px; 
+    }
+    .blue-light{
+        border: solid 3px $blue-light
+    }
+    .blue{
+        border: solid 3px $Progress
+    }
+    .green{
+        border: solid 3px $successful
+    }
+    .red{
+        border: solid 3px $unsuccessful
+    }
+     h6{ 
+        font-size: $font-14;
+         color:$blue-bali; 
+         margin-top: 0px;
+     }
+    .cercle{ 
+        text-align: center;
+        width: 110px; 
+        height: 110px; 
+        margin: 0 auto; 
+        border-radius: 50%;
+        h3{ 
+            color:$navy-dark;
+            margin-bottom: 0px;
+            padding-top:14%;
+            margin-top: 10px;
+        }
+     }
+    .tottal{ 
+        padding: 20px 15px; 
+        height: 120px;
+        .tottal-lft{ 
+            float: left; 
+            width: 70px; 
+            margin-right:10px; 
+            img{
+                width: 100%;
+            }
+        }
+        .tottal-rgt{float: left}
+        h2{
+            color:$navy-dark; 
+            font-weight: bold;
+            font-size:$font-34;
+            padding-top: 6px;  
+        }
+    }
+}
+.click-dropdown{
+
+    .dropbtn {
+        background-color:$white;
+        border: none;
+        height: 50px; 
+        padding: 0px 15px;
+        cursor: pointer;
+   }
+
+    .arow-dropdown{ 
+        color: $navy-dark; 
+        position: absolute; 
+        right: 16px;
+        top:-17px; 
+        font-size: $font-22
+    }
+
+    .dropbtn:hover{ border: none;}
+    .dropdown {
+        position: relative; z-index:1;
+        display: inline-block;border: none;
+    }
+
+    .dropdown:hover {
+         color: $white;
+     }
+
+    .dropdown-content {
+        display: none;margin-right: 20px;
+        position: absolute;
+        background-color:$navy-dark;
+        color: $white;
+        min-width: 165px;
+        right: -15px;
+        text-align: left;
+        top:50px;
+  
+        a{ border-top: solid 1px #2c4056;
+            color: $white;
+            padding-right: 20px; 
+            font-size:$font-14; 
+            padding: 8px 10px;
+            text-decoration: none;
+            display: block
+        }
+    }
+    .dropdown-content a:hover {
+        background-color: $navy-light
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+    
+.company{ 
+    margin-top:-1px;
+
+    .align{ 
+        text-align: right; 
+        margin-right:5px;
+    }
+}
+
+
+
+.company-following{ 
+    border:solid 1px $grey-border;  
+    height: 35px;  
+    line-height: 35px; 
+    width: auto;
+    padding:0px 10px; 
+    text-align: center;
+    color:$navy-dark;
+    display: inline-block;
+    i{ 
+        line-height:normal!important;
+    }
+    span{
+        line-height: normal!important;
+    }
+    .follow-change{ 
+        color:$blue-bali
+    }
+} 
+
+.follow-following{ 
+    width: 110px; 
+    display: inline-block;
+    float: right;
+    margin-left: 5px;
+
+    i{line-height:normal!important}
+    button{ 
+        border: none; width: 100%; 
+        background: none;
+        padding: 0px;
+
+    
+    }
+
+    button .msg-follow,
+    button .msg-following,
+    button .msg-unfollow{
+        display: none;
+        font-size: $font-12;
+    }
+    button .msg-follow{
+        display: block; 
+        background:$white; 
+        height: 35px; line-height: 35px;
+        border: solid $grey-dark 1px; 
+        color:$navy-dark;
+        font-size: $font-12;
+        width:100%;  
+    }
+    button.following .msg-follow{
+        display: none; 
+        background:$navy-dark; 
+        height: 35px; line-height: 35px;
+        border: solid $navy-dark 1px; 
+        color:$white;
+        width:100%;
+    }
+    button.following .msg-following{
+        display: block; 
+        background:$navy-dark; 
+        height: 35px; line-height: 35px;
+        border: solid $navy-dark 1px; 
+        color:$white; width:100%;
+        line-height: 35px;
+    }
+
+    button.following:not(.wait):hover .msg-following{
+        display: none;
+    }
+
+    button.following:not(.wait):hover .msg-unfollow{
+        display: block;
+        background:$white; 
+        height: 35px; line-height: 35px;
+        border: solid  $grey-dark 1px; 
+        color:$navy-dark; 
+        width:100%;
+    }
+
+}
+
+.dark{ 
+    color:$navy-dark; 
+    padding-left: 15px
+}
+.light{
+    color:$blue-bali!important;
+}
+.closed{
+    color: $unsuccessful;
+    width:80px;
+    height: 35px; 
+    line-height: 35px; 
+    border:solid 1px $unsuccessful; 
+    text-align: center
+}
+
+
+
+// ---------------------------Mobile-----------------------------------
+// ------------Dash Board------------------
+.mobile-job-application{
+    .nav-tabs > li{
+        width: 50%;
+        background:$white; 
+        color:$navy-dark!important;
+        margin-bottom:-3px; 
+        border-bottom: solid 1px $grey-border;
+    }
+    .nav-tabs > li > a{
+        border: none; 
+        color:$navy-dark; 
+        margin-right: 0px;
+        padding: 10px 0px; 
+        text-align: center
+    }
+    .nav > li > a:hover,
+    .nav > li > a:focus {
+            background-color: $navy-dark;
+            color:$white; 
+        }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+        border:none ;
+        background:$navy-dark;  
+        border-right: solid 1px $navy-dark;
+        color:$white;  
+    }
+    
+    .nav-tabs > li > a{ 
+        border-radius:0px
+    }
+}
+.mobile{
+    .profile-status{ 
+        padding: 20px; 
+        background: $white;
+        text-align: left;
+        .profile-status-header{ 
+            color: $navy-dark; 
+            background:$white;  
+            padding-left: 20px; 
+            padding:15px;   }
+    }
+
+    .display .dp{ 
+        margin-bottom: 20px; 
+    }
+    .full-box12{
+        position: relative; 
+        margin-bottom:7px;
+        input{ 
+            padding-left: 43px!important 
+        }
+    }
+    .s-media{
+        position: absolute; 
+        bottom:2px; 
+        left: 4px;
+        height: 34px!important; 
+        width: 34px!important; 
+        line-height: 34px!important; }
+    .right-skill{ 
+        text-align: center; 
+        margin-top: 15px; 
+    }
+}
+.filter-btn{
+    .block .block-footer{
+        text-align: center;
+        button{ 
+            width: 49%;
+        }
+    }
+}
+
+.tab-menu-each{
+    ul{
+        margin:0px;
+        border-bottom:1px solid #f1f1f1;
+        float: left;
+        width: 100%;
+        li{
+            width: 33.3%;
+            height: 40px;
+            text-align: center;
+            color: $navy-dark;
+            float: left;
+            border-right:1px solid #e1e1e1;
+            a{
+                border:none;
+                padding:0px;
+                display: block;
+                text-align: center;
+                line-height: 40px;
+                font-size: 16px;
+                font-family: $font-medium;
+                border:none!important;
+                background-color:rgba(180, 198, 216, 0.12);
+                &:hover{
+                    background-color:$navy-dark;
+                    color: $white;
+                }
+
+            }
+        }
+    }
+}
+.tab-menu-each li a:focus{
+    border:none!important;
+}
+
+.employer-tab{
+    margin-top: 10px;
+}
+
+.poll-height{
+    height: 250px;
+    overflow-y: scroll;
+
+}
+.most-viewed-jobseeker-profile-left{
+    width: calc(100% - 340px);
+    float: left;
+    padding:10px;
+}
+.most-viewed-jobseeker-profile-right{
+    width: 340px;
+    float: left;
+    padding:10px;
+    .align{
+        text-align: right;
+    }
+}
+
+// Bar chart for jobSeeker
+.job-se-chart-bar{
+    .bar-chart{
+        padding-top:0px!important;
+    }
+}
+.job-seeker-barchart-box{
+    float: left;
+    width: 14.2857%;
+}
+.job-seeker-barchart-box-weekly{
+    float: left;
+    width: 10%;
+}
+
+// tool Tip
+.tooltip-x {
+    position: relative;
+    b{
+        font-family: $font-medium;
+        font-size:14px;
+    }
+    p{
+        color: $grey-dark;
+        font-size: 12px;
+    }
+}
+
+.tooltip-x .tooltiptext-x {
+    visibility: hidden;
+    width: 90px;
+    background-color:$navy-dark;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 3px 0px 0px 0px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 58%;
+    margin-left: -60px;
+}
+
+.tooltip-x .tooltiptext-xv {
+    visibility: hidden;
+    width: 200px;
+    background-color:$navy-dark;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 10px 0px 0px 0px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 9999;
+    bottom: 100%;
+    left: 23%;
+    margin-left: -60px;
+}
+.tooltip-x .tooltiptext-xvv {
+    visibility: hidden;
+    width: 166px;
+    background-color:$navy-dark;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 10px 5px 5px 5px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 9999;
+    bottom: 100%;
+    left: 25%;
+    margin-left: -60px;
+}
+
+.tooltip-x:hover .tooltiptext-x {
+    visibility: visible;
+}
+.tooltip-x:hover .tooltiptext-xv {
+    visibility: visible;
+}
+.tooltip-x:hover .tooltiptext-xvv {
+    visibility: visible;
+}
+
+.tooltiptext-x:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 45%;
+      width: 0;
+      height: 0;
+      border-top: 5px solid $navy-dark;
+      border-right: 7px solid transparent;
+      border-bottom: 0 solid transparent;
+      border-left: 7px solid transparent;
+    }
+
+.tooltiptext-xv:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 45%;
+      width: 0;
+      height: 0;
+      border-top: 5px solid $navy-dark;
+      border-right: 7px solid transparent;
+      border-bottom: 0 solid transparent;
+      border-left: 7px solid transparent;
+    }
+    .tooltiptext-xvv:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 45%;
+      width: 0;
+      height: 0;
+      border-top: 5px solid $navy-dark;
+      border-right: 7px solid transparent;
+      border-bottom: 0 solid transparent;
+      border-left: 7px solid transparent;
+    }

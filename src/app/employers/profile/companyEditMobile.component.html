@@ -1,0 +1,65 @@
+<!-- Mobile Edit for employer profile -->
+<company-general-mobile
+        [companyObs]="companyObs"
+        [companyId]="companyId"
+        [commonDataObs]="commonDataObs"
+        [sectorObs]="sectorObs"
+        [companyTypesObs]="companyTypesObs"
+        [file_profile]="file_profile"
+        [file_cover]="file_cover"
+        [companySizesObs]="companySizesObs"
+        [classificationsListObs]="classificationsListObs"
+        [typeListObs]="typeListObs"
+        [logoUpdatedObs]="logoUpdatedObs"
+        [coverUpdatedObs]="coverUpdatedObs"
+        [sizesListObs]="sizesListObs"
+        (backEmit)="onClickBack($event)"
+        *ngIf="(companyObs | async) != null && (commonDataObs | async) != null && viewType == 'general'">
+</company-general-mobile>
+
+
+<company-about *ngIf="(companyObs | async) != null && viewType == 'about'"  [companyId]="companyId" [companyObs]="companyObs"     (backEmit)="onClickBack($event)"></company-about>
+<company-team-mobile *ngIf="(companyTeamObs | async) != null && viewType == 'team'"  [companyId]="companyId" [companyTeamObs]="companyTeamObs"     (backEmit)="onClickBack($event)"></company-team-mobile>
+<company-culture-mobile *ngIf="(companyCultureObs | async) != null && viewType == 'culture'"  [companyId]="companyId" [companyCultureObs]="companyCultureObs"     (backEmit)="onClickBack($event)"></company-culture-mobile>
+
+<div class="commen-container-less mobile-margin-less" *ngIf="viewType == null">
+    <div class="col-lg-12 full-screen">
+        <!-- general information -->
+        <div class="mobile_profile_strip">
+            <h2>General Information</h2>
+            <a class="cursor_pointer1" (click)="viewType = 'general'">
+                <button><i class="zmdi zmdi-edit"></i></button>
+            </a>
+        </div>
+
+        <!-- About Company -->
+        <div class="mobile_profile_strip">
+            <h2>About Company</h2>
+            <a class="cursor_pointer1" (click)="viewType = 'about'">
+                <button><i class="zmdi zmdi-edit"></i></button>
+            </a>
+        </div>
+
+        <!-- About Company -->
+        <div class="mobile_profile_strip">
+            <h2>Our Team</h2>
+            <a class="cursor_pointer1" (click)="viewType = 'team'">
+                <button><i class="zmdi zmdi-edit"></i></button>
+            </a>
+        </div>
+
+        <!-- About Company -->
+        <div class="mobile_profile_strip">
+            <h2>Our Culture</h2>
+            <a class="cursor_pointer1" (click)="viewType = 'culture'">
+                <button><i class="zmdi zmdi-edit"></i></button>
+            </a>
+        </div>
+
+        <!-- Cancel -->
+        <div class="mobile_profile_strip">
+            <button class="main-cancel-bt" [routerLink]="['/'+_accountService.getPath()+'/profile']" >Save All Chnages</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,172 @@
+<div *ngIf="!showfilter"  class="col-lg-3 refine-serch filter-hide">
+    <div class="block bottom-gap empty-min14">
+        <div class="row block-title">
+            <h2>Refine Your Search By</h2>
+        </div>
+
+        <filter-area-company  *ngIf="order == null"  [page]="'/' + this._accountService.getPath() + '/companies'"></filter-area-company>
+        <filter-area-company  *ngIf="order != null"  [page]="'/' + this._accountService.getPath() + '/companies/top-followed-companies'"></filter-area-company>
+    </div>
+</div>
+
+<div *ngIf="!showfilter" class="col-lg-9 col-md-12 col-sm-12 col-xs-12 compny-percentage">
+
+    <div class="row block filter-jobs bottom-gap">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="!(allCompanies$ | async)?.length">
+            <div class="row">
+                <div class="row empty-min8">
+                    <spinner *ngIf="!(allCompanies$ | async)?.length && (allCompanies$ | async)?.length != 0" [visible]="true"></spinner>
+                    <div *ngIf="(allCompanies$ | async)?.length == 0"  class="empty-prf">
+                        <i class="icon-empty-company"></i>
+                        <h5>Did not match any Companies</h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Current page : {{(currentPage$ | async) }}-->
+        <div class="row" *ngIf="(allCompanies$ | async)?.length">
+
+        <div class="loading-spinner-space" *ngIf="(loadingFlagsArray$ | async)"><spinner [visible]="(loadingFlagsArray$ | async)"></spinner></div>
+            
+
+            <div class="row" *ngFor="let selCom of (allCompanies$ | async),let comcount =index">
+                <!--{{selCom | json}}-->
+                <!--<a  (click)="onClickCompanyDetail(selCom.id)" class="cursor_pointer1">-->
+
+
+                <!-- Desktop-company_listing -->
+                <div class="featured-box">
+
+                    <!-- Desktop-company_listing -->
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-10 hidden-xs">
+
+                        <a class="cursor_pointer1"  [routerLink]="['/'+this._accountService.getPath()+'/companies/' + selCom.id + '/' + selCom.name_url]"  >
+
+                            <div class="feturd-compny mobile-without-matching" *ngIf="!selCom.profileImage">
+                                <i class="zmdi zmdi-city-alt empty-blank"></i>
+                            </div>
+                            <div class="feturd-compny mobile-without-matching" *ngIf="selCom.profileImage">
+                                <span>
+                                    <img src="{{selCom.profileImage}}">
+                                </span>
+                            </div>
+
+                            <div class="feturd-compny-dtls">
+                                <div class="txt-white"><h1>{{selCom?.name}}</h1></div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>{{selCom?.city?.name}}, {{selCom?.country?.name}}</div>
+                                <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{selCom?.sector?.name}}</div>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </a>
+                    </div>
+
+
+
+                    <!-- Mobile-listing -->
+                    <div class="job_mobile hidden-lg hidden-md hidden-sm">
+                        <!-- company logo -->
+                        <a class="cursor_pointer1"  [routerLink]="['/'+this._accountService.getPath()+'/companies/'+selCom.id + '/' + selCom.name_url]"  >
+                            <div class="company_logo">
+                                <a class="cursor_pointer1"  [routerLink]="['/'+this._accountService.getPath()+'/companies/'+selCom.id + '/' + selCom.name_url]"  >
+                                    <div class="feturd-compny mobile-without-matching" *ngIf="!selCom.profileImage">
+                                        <i class="zmdi zmdi-city-alt empty-blank"></i>
+                                    </div>
+                                    <div class="feturd-compny" *ngIf="selCom.profileImage">
+                                        <span>
+                                            <img src="{{selCom.profileImage}}">
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </a>
+
+                        <!-- Job title and company name -->
+                        <div class="job_details">
+                            <a class="cursor_pointer1"  [routerLink]="['/'+this._accountService.getPath()+'/companies/'+selCom.id + '/' + selCom.name_url]">
+                            <div class="txt-white">{{selCom?.name}}</div>
+                            <div class="cmpny-txt"><i class="zmdi zmdi-pin"></i>&nbsp;{{selCom?.city?.name}}, {{selCom?.country?.name}}</div>
+                            <div class="cmpny-txt"><i class="zmdi zmdi-chart-donut"></i>{{selCom?.sector?.name}}</div>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-10">
+                        <div class="align">
+                            <div class=" company-following">
+                                <i class="zmdi zmdi-case" ></i>&nbsp;{{selCom?.jobsOpen | number}}
+                                <span class="follow-change hide-feedback" *ngIf="selCom?.jobsOpen != 1">Jobs&nbsp;Open</span>
+                                <span class="follow-change hide-feedback" *ngIf="selCom?.jobsOpen == 1">Job&nbsp;Open</span>
+
+                            </div>
+                            <div class="company-following">
+                                <i class="zmdi zmdi-accounts"></i>&nbsp;{{selCom?.follower | number}}<span class="follow-change hide-feedback">&nbsp;Followers</span>
+                            </div>
+                            <div class="follow-following bt-company-align" *ngIf="isPublic == false">
+                                <button class="follow" (click)="onFollowCompany(comcount)" *ngIf="selCom?.followingFlag ==false">
+                                    <a  class="msg-follow"><i class="zmdi zmdi-plus-square"></i> Follow</a>
+                                    <a class="msg-following"><i class="zmdi zmdi-check-square"></i> Following</a>
+                                    <a class="msg-unfollow"><i class="zmdi zmdi-minus-square"></i> Unfollow </a>
+                                </button>
+
+                                <button class="follow following"  (click)="onUnFollowCompany(comcount)" *ngIf="selCom?.followingFlag ==true">
+                                    <a  class="msg-follow"><i class="zmdi zmdi-plus-square"></i> Follow</a>
+                                    <a  class="msg-following"><i class="zmdi zmdi-check-square"></i> Following</a>
+                                    <a  class="msg-unfollow"><i class="zmdi zmdi-minus-square"></i> Unfollow </a>
+                                </button>
+                            </div>
+                            <div class=" clearfix"></div>
+                        </div>
+                    </div>
+                    <div class=" clearfix"></div>
+                </div>
+
+                <!-- mobile_company_listing -->
+
+
+
+
+
+
+
+                <!--</a>-->
+            </div>
+        </div>
+    </div>
+
+    <pagination-new *ngIf="isPublic" [url]="'/home/companies'" [totalRecords]="totalRecords$">
+    </pagination-new>
+
+    <pagination-new  *ngIf="!isPublic && order == null" [url]="'/'+this._accountService.getPath()+'/companies'" [totalRecords]="totalRecords$">
+    </pagination-new>
+
+    <pagination-new  *ngIf="!isPublic && order != null" [url]="'/'+this._accountService.getPath()+'/companies/top-followed-companies'" [totalRecords]="totalRecords$">
+    </pagination-new>
+
+</div>
+
+
+<div *ngIf="showfilter" class="col-lg-12 refine-serch">
+    <div class="block bottom-gap">
+        <div class="row block-title-2">
+            <h2 class="padding-top-10">Refine Your Search By</h2>
+            <a (click)="getToggleFilter()">
+                <button><span><i class="zmdi zmdi-arrow-left"></i></span><span class="hide">Back</span></button>
+            </a>
+        </div>
+        <filter-area-company  *ngIf="order == null" [page]="'/'+this._accountService.getPath()+'/companies'"></filter-area-company>
+        <filter-area-company  *ngIf="order != null"  [page]="'/'+this._accountService.getPath()+'/companies/top-followed-companies'"></filter-area-company>
+    </div>
+</div>
+<!-- Filter -->
+<div class="row" id="filter">
+    <div class="filter-mobile">
+        <a (click)="getToggleFilter()">
+            <button *ngIf="!showfilter">Filter</button>
+            <button *ngIf="showfilter">Apply</button>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,489 @@
+// Desktop
+@media (max-width: 1200px){
+
+    .candidates{
+
+       .padding-left{ 
+            padding-left:0px!important;
+        }
+        .padding-right{ 
+            padding-right:10px!important;
+        }
+        .block .block-footer button{ 
+            width:49%; 
+            height: 35px!important;
+            line-height: 35px!important;
+            padding:0px!important;
+            float: left; 
+            margin-right: 1%;
+        }
+    }
+    #my-profile{
+        .dp-rgt{
+            width: calc(100% - 135px)!important;
+        }
+        .dp-empty{
+            height: 150px;
+            width: 120px;
+            line-height: 150px;
+        } 
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 990px) and (max-width: 1435px){
+    #my-profile{
+        .work-experience{
+            .work-logo{
+                width: 30px;
+                .work-lg-defalt{
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+@media (min-width: 900px) and (max-width: 1024px){}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Tablet
+@media (min-width: 768px) and (max-width: 1024px){
+    #my-profile{
+        .work-experience{
+            .work-logo{
+                width: 30px;
+                .work-lg-defalt{
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .information{
+            .col-lg-4{
+                min-height: auto;
+                padding-bottom:10px;
+                border-bottom:1px solid #f1f1f1;
+            }
+        }
+    }
+    .mg-mob{
+        margin:10px 0px;
+        margin-top: 10px!important;
+    }
+    .candi-search-option{
+        .radio{
+            width: 33.33%;
+            float: left;
+            padding:0px!important;
+            margin:10px 0px!important;
+
+            label{
+            padding-left:25px!important;
+            }
+            label::before{
+                margin-left: 0px!important;
+            }
+            label::after{
+                margin-left: 4px!important;
+            }
+        }
+
+    }
+    .candidates{
+        .search-candidates{
+            padding: 0px!important;
+        }
+        .col-lg-3{
+            border:none;
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Smartphone
+@media (max-width: 767px) {
+    //    Candidates
+    .candidates{
+        .col-lg-3{
+            min-height: auto!important;
+        }
+    }
+    .information .info{
+        border-bottom:none;
+    }
+    #my-profile{
+        .dp-lft{
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .dp-txt{
+            font-size: $font-14;
+        }
+        .social-section{
+            border-top: 1px solid #f1f1f1;
+            margin-top: 10px;
+            padding-top: 10px;
+            float: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .candidate-dp{
+            width: 100%!important;
+        }
+        .dp-rgt{
+            width: 100%!important;
+        }
+        .video-sec{
+            height: auto;
+        }
+        .candidate-cv{
+            i{
+                font-size: $font-24;
+            }
+            button{
+                font-size: $font-14;
+            }
+        }
+        .info{
+            .left1{
+                .dark{
+                    font-size: $font-14;
+                }
+            }
+        }
+        .information{
+            .col-lg-4{
+                min-height: auto;
+                padding-bottom:10px;
+                border-bottom:1px solid #f1f1f1;
+            }
+        }
+        .work-experience{
+            .work-logo{
+                .work-lg-defalt{
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .candi-search-bt{
+        top: 4px!important;
+        font-size: 18px!important;
+    }
+    .candi-search-option{
+        .full-box{
+            float: left;
+        }
+        .radio{
+            width: 33.33%;
+            float: left;
+            padding:0px!important;
+            margin:10px 0px!important;
+
+            label{
+            padding-left:25px!important;
+            }
+            label::before{
+                margin-left: 0px!important;
+            }
+            label::after{
+                margin-left: 4px!important;
+            }
+        }
+    }
+    .candidates{
+        .search-candidates{
+            padding: 0px!important;
+        }
+        .col-lg-3{
+            border:none;
+        }
+    }
+    .big-160{
+        height: 35px!important;
+    }
+    .mobile-dtls{
+        .cmpny-txt{
+            padding:0px!important;
+        }
+    }
+    .min-195{
+        min-height: auto!important;
+    }
+     .mobile-dtls{
+        padding:0px!important;
+        padding-left:10px!important;
+    }
+
+    #followers{
+        margin-top: 0px!important;
+        padding:0px!important;
+    }
+    .matching-candidates{
+        .mobile-dtls{
+            width: calc(100% - 30px)!important;
+            float: left;
+        }
+        .invt{
+            width: 30px!important;
+            float: left;
+        }
+        .invit-egg-default{
+            margin: 0px !important;
+            width: 30px !important;
+            height: 36px !important;
+            line-height: 36px !important;
+            float: left;
+            i{
+                line-height: 36px!important;
+                font-size: 18px!important;
+            }
+        }
+    }
+    .candidates{
+        .block .block-footer button{ 
+            width:50%; 
+            float: left;
+            margin-right: 0%;
+        }
+    }
+    .candi-search-part-bt{
+        padding-bottom: 10px!important;
+    }
+    .candidates{
+        .search-candidates{
+            .candidate-txt{
+                margin-bottom: 0px;
+                margin-top: 15px;
+            }
+        }
+    }
+}
+/*---------------------------------------------------i-------------------------------------------------------*/
+// Mobile
+@media (max-width: 480px) {
+    .candidates{
+        .col-lg-3{ 
+            border:none;  
+        }
+        .search-candidates{ 
+            padding:0px;  
+        }
+        .padding-left{ 
+            padding-left:0px!important;
+        }
+        // .padding-right{ 
+        //     padding-right:10px!important;
+        // }
+        .block .block-footer button{ 
+            width:50%; 
+            float: left;
+            margin-right: 0%;
+        }
+    }
+    .candidates-search{
+        .clicks{
+            .block-footer{
+                button{ 
+                    width:100%; 
+                    padding:0px;   
+                }
+            }
+        }
+    } 
+
+    .matching-candidates{
+       .invite{
+           .invt{ 
+            width:30px!important; 
+            padding: 0px; 
+            border:none;   
+        }
+           .invit-egg{ 
+            width:30px; 
+            height:36px; 
+            margin-bottom:0px;    
+        }
+            .invit-egg-default{ 
+                width:30px; 
+                height:36px; 
+                margin-bottom:0px; 
+                line-height:36px;     
+            }
+        } 
+    }
+    
+    #my-profile{
+        .dp-lft{
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .dp-txt{
+            font-size: $font-14;
+        }
+        .social-section{
+            border-top: 1px solid #f1f1f1;
+            margin-top: 10px;
+            padding-top: 10px;
+            float: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .candidate-dp{
+            width: 100%!important;
+        }
+        .dp-rgt{
+            width: 100%!important;
+        }
+        .video-sec{
+            height: auto;
+        }
+        .candidate-cv{
+            i{
+                font-size: $font-24;
+            }
+            button{
+                font-size: $font-14;
+            }
+        }
+        .info{
+            .left1{
+                .dark{
+                    font-size: $font-14;
+                }
+            }
+        }
+        .information{
+            .col-lg-4{
+                min-height: auto;
+                padding-bottom:10px;
+                border-bottom:1px solid #f1f1f1;
+            }
+        }
+        .work-experience{
+            .work-logo{
+                .work-lg-defalt{
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .dp-empty{
+            height: 150px;
+            width: 120px;
+            line-height: 150px;
+        }
+    }
+
+//  Candidates
+    .candidates{
+        .col-lg-3{
+            min-height: auto!important;
+        }
+    }
+    .information .info{
+        border-bottom:none;
+    }
+    .tag-secton{
+        .tagss{
+            .tag-main{
+                .tag-txt{
+                    font-size: $font-14!important;
+                }
+            }
+        }
+    }
+    .bullet{
+        ul{
+            li{
+                margin-left: 19px;
+            }
+        }
+    }
+    .display{
+        .vedio-head{
+            text-align: center;
+        }
+    }
+
+    .candi-search-part{
+        margin: 4px 0px;
+    }
+    .candi-search-bt{
+        top: 4px!important;
+        font-size: 18px!important;
+    }
+    .candi-search-option{
+        .full-box{
+            float: left;
+        }
+        .radio{
+            width: 33.33%;
+            float: left;
+            padding:0px!important;
+            margin: 10px 0px 0px 0px !important;
+            font-size: 10px;
+            label{
+            padding-left:25px!important;
+            }
+            label::before{
+                margin-left: 0px!important;
+            }
+            label::after{
+                margin-left: 4px!important;
+            }
+        }
+    }
+    .big-160{
+        height: 35px!important;
+    }
+    .matching-candidates{
+        .cmpny-txt{
+            padding:0px!important;
+        }
+    }
+    .mobile-invt{
+        width: 55px!important;
+    }
+    .mobile-dtls{
+        .cmpny-txt{
+            padding:0px!important;
+        }
+    }
+    .min-195{
+        min-height: auto!important;
+    }
+    .mobile-dtls{
+        padding:0px!important;
+        padding-left:10px!important;
+    }
+    #followers{
+        margin-top: 0px!important;
+        padding:0px!important;
+    }
+    .matching-candidates{
+        .mobile-dtls{
+            width: calc(100% - 30px)!important;
+            float: left;
+        }
+    }
+    .candi-search-part-bt{
+        padding-bottom: 10px!important;
+    }
+    .candidates{
+        .search-candidates{
+            .candidate-txt{
+                margin-bottom: 10px;
+                margin-top: 15px;
+            }
+        }
+    }
+}
+
