@@ -10,7 +10,6 @@ import {ConfigService} from '../../shared/config.service';
 declare var jQuery:any;
 
 @Component ({
-    moduleId: module.id,
     selector: 'leftside-bar',
     templateUrl: 'leftside_bar.component.html',
 })

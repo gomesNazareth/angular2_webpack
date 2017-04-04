@@ -44,8 +44,20 @@ import { EmployerService } from './core/services/employer.service';
 import {ErrorHandling} from './core/services/errorHandling.service';
 
 
+
+// import '/src/assets/fonts/material/Material-Design-Iconic-Font.woff2';
+// import '/src/styles/fonts/helvertica/helveticaneue_medium-webfont.woff2';
 import '../styles/sass/main.scss';
-// import '../styles/headings.css';
+import '../styles/css/bootstrap.css';
+import '../styles/css/intlTelInput.css';
+import '../styles/fonts/material/material-design.css';
+import '../styles/fonts/helvertica/stylesheet.css';
+import '../styles/fonts/bloovo-font/bloovo-fonts.css';
+import '../styles/css/bootstrap-select.css';
+
+import * as jQuery from 'jquery';
+import * as bootstrap  from 'bootstrap';
+
 
 // Application wide providers
 const APP_PROVIDERS = [

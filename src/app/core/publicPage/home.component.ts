@@ -12,11 +12,14 @@ import {AccountService} from "../account/services/account.service";
 
 // import * as Swiper from 'localrepo/swiper'
 import * as jQuery from 'jquery'
+var Swiper = require('./../../../assets/local_modules/swiper.js');
+declare var Swiper:any;
+
 // var moment = require('jquery');
-// var Swiper = require('swiper');
+
 // var bootstrap = require('bootstrap');
 // SystemJS.import('swiper');
-// declare var Swiper:any;
+
 // declare var jQuery:any;
 @Component({
     selector: "home",
@@ -104,11 +107,11 @@ export class HomeComponent implements OnInit {
     }
 
     ngAfterViewInit()  {
-        // var swiper = new Swiper('.swiper-container', {
-        //     pagination: '.swiper-pagination',
-        //     paginationClickable: true,
-        //     spaceBetween: 30,
-        // });
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            spaceBetween: 30,
+        });
 
 
         jQuery(document).ready(function(){

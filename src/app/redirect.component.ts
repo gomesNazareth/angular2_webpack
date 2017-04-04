@@ -9,7 +9,6 @@ import {ConfigService} from "./shared/config.service";
 
 declare var jQuery:any;
 @Component({
-    moduleId: module.id,
     selector: "re-direct",
     templateUrl: "redirect.component.html"
 

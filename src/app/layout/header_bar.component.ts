@@ -12,7 +12,6 @@ import {ConfigService} from "../../shared/config.service";
 
 
 @Component({
-    moduleId: module.id,
     selector: 'top-header',
     templateUrl: 'header_bar.component.html',
 })

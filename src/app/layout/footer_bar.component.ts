@@ -7,7 +7,6 @@ import {ConfigService} from "../../shared/config.service";
 
 
 @Component({
-    moduleId: module.id,
     selector: "footer-bar",
     templateUrl: "footer_bar.component.html"
 })
