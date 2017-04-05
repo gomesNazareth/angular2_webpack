@@ -6,6 +6,12 @@ import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
 import {PublicPageRoutes} from './core/publicPage/publicPage.routes';
+import {UnAuthPageComponent} from '../shared/directives/unAuthPage.component';
+import {SwitchPageComponent} from '../shared/directives/switchPage.component';
+
+import {CanLoadGuard} from './canLoadGuard.guard';
+
+import {ConfigService} from "../shared/config.service";
 
 
 export const ROUTES: Routes = [

@@ -2181,6 +2181,14 @@ textarea{
   user-select: text;
 }
 
+input{
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 .carousel-inner > .item{
   transition: opacity 0.6s ease-in-out!important;
 }

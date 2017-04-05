@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import {CanActivate, Router} from '@angular/router';
 import { AccountService } from '../app/core/account/services/account.service';
-import {ConfigService} from "../shared/config.service";
+import {ConfigService} from "../app/shared/config.service";
 
 @Injectable()
 export class CanHomeActivateGuard implements CanActivate {

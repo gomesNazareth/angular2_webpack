@@ -11,7 +11,9 @@ import {Blog} from "../../core/blog/models/blog";
 import {AccountService} from "../account/services/account.service";
 
 // import * as Swiper from 'localrepo/swiper'
-import * as jQuery from 'jquery'
+// import * as jQuery from 'jquery';
+// import * as bootstrap  from 'bootstrap';
+declare var jQuery:any;
 var Swiper = require('./../../../assets/local_modules/swiper.js');
 declare var Swiper:any;
 

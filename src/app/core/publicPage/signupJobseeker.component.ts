@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 
+
+
 declare var jQuery:any;
 declare var Pikaday:any;
 

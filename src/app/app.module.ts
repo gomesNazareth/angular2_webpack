@@ -43,7 +43,11 @@ import { EmployerService } from './core/services/employer.service';
 //service
 import {ErrorHandling} from './core/services/errorHandling.service';
 
-
+//Guards
+import {CanEmpActivateGuard} from './canEmpActivateGuard.guard';
+import {CanJobActivateGuard} from './canJobActivateGuard.guard';
+import {CanHomeActivateGuard} from './canHomeActivateGuard.guard';
+import {CanLoadGuard} from './canLoadGuard.guard';
 
 // import '/src/assets/fonts/material/Material-Design-Iconic-Font.woff2';
 // import '/src/styles/fonts/helvertica/helveticaneue_medium-webfont.woff2';
@@ -55,9 +59,8 @@ import '../styles/fonts/helvertica/stylesheet.css';
 import '../styles/fonts/bloovo-font/bloovo-fonts.css';
 import '../styles/css/bootstrap-select.css';
 
-import * as jQuery from 'jquery';
-import * as bootstrap  from 'bootstrap';
-
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -67,6 +70,10 @@ const APP_PROVIDERS = [
   ProfileService,
   EmployerService,
   CookieService,
+  CanLoadGuard,
+  CanEmpActivateGuard,
+  CanJobActivateGuard,
+  CanHomeActivateGuard,
   ErrorHandling
 ];
 

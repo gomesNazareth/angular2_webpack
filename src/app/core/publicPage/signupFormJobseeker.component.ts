@@ -14,7 +14,7 @@ import {TypeValidators} from "../../shared/validators/basicValidators";
 //Services
 import {SignupService} from './services/signup.service';
 import {LoaderService} from "../../shared/services/loader.service";
-import {Observable} from "../../../../../node_modules/rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 
 var moment = require('moment');
 declare var jQuery:any;
