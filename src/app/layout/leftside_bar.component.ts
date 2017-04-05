@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import {FormBuilder,FormGroup} from '@angular/forms';
 import {Router,ActivatedRoute} from '@angular/router';
-import {ConfigService} from '../../shared/config.service';
+import {ConfigService} from '../shared/config.service';
 
 declare var jQuery:any;
 

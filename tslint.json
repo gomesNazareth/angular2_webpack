@@ -46,13 +46,14 @@
       true,
       "single",
       "avoid-escape"
-    ],
-    "variable-name": [
-      true,
-      "allow-leading-underscore",
-      "allow-pascal-case",
-      "ban-keywords",
-      "check-format"
     ]
+//  ,
+//    "variable-name": [
+//      true,
+//      "allow-leading-underscore",
+//      "allow-pascal-case",
+//      "ban-keywords",
+//      "check-format"
+//    ]
   }
 }

@@ -18,7 +18,6 @@ import {HomeComponent} from './home.component';
 
 import {CanHomeActivateGuard} from '../../canHomeActivateGuard.guard';
 
-
 // export const PublicPageRoutes = RouterModule.forChild([
 export const PublicPageRoutes: Array<any> = [
   { path: '', component: HomeComponent},
@@ -26,8 +25,8 @@ export const PublicPageRoutes: Array<any> = [
   // { path: 'signup', component: SignupComponent, canActivate: [CanHomeActivateGuard] },
   // { path: 'signin', component: LoginComponent, canActivate: [CanHomeActivateGuard] },
   // { path: 'signin_social', component: SigninSocialComponent, canActivate: [CanHomeActivateGuard] },
-  { path: 'signup_jobseeker', loadChildren: './signupjobseeker.module#SignupJobseekerModule', canActivate: [CanHomeActivateGuard] },
-  { path: 'signup_employer',loadChildren: './signupemployer.module#SignupEmployerModule', canActivate: [CanHomeActivateGuard] },
+  // { path: 'signup_jobseeker', loadChildren: '#SignupJobseekerModule', canActivate: [CanHomeActivateGuard] },
+  // { path: 'signup_employer',loadChildren: './#SignupEmployerModule', canActivate: [CanHomeActivateGuard] },
   // { path: 'country', component: CountryComponent, canActivate: [CanHomeActivateGuard] },
   // { path: 'sector', component: SectorComponent, canActivate: [CanHomeActivateGuard] },
   // { path: 'about', component: AboutComponent, canActivate: [CanHomeActivateGuard] },

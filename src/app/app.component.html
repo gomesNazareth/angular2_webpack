@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<span>
+    <div  [class.hide]="!accountService.getSwitchPage()"  [class.show]="accountService.getSwitchPage()">
+    <router-outlet name="switchpage"></router-outlet>
+    </div>
+
+    <div  [class.hide]="accountService.getSwitchPage()"  [class.show]="!accountService.getSwitchPage()">
+    <router-outlet name="leftbar"></router-outlet>
+    <div [class.bloovo-container]="(isAuthorized$ | async) && !isPublic" class="bloovo-container">
+      <div [class.side-body]="(isAuthorized$ | async) && !isPublic">
+          <router-outlet name="header"></router-outlet>
+          <router-outlet></router-outlet>
+          <router-outlet name="footer"></router-outlet>
+      </div>
+    </div>
+        </div>
+</span>

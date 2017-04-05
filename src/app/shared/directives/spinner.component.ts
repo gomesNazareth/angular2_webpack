@@ -4,10 +4,10 @@ import {Component, Input} from '@angular/core';
     selector: 'spinner',
     template: ` 
          <div *ngIf="visible" class="loading"> 
-        <img src="images/balls.svg"  >
+        <img src="/assets/images/logo-horizontal.svg">
         </div>
     `
 })
-export class SpinnerComponent { 
-    @Input() visible = true; 
+export class SpinnerComponent {
+    @Input() visible = true;
 }

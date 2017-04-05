@@ -14,7 +14,10 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+
+
 import {PublicPageModule} from './core/publicPage/publicPage.module';
+import {DisplayBlockModule} from './shared/displayBlock.module';
 
 
 /*
@@ -34,6 +37,7 @@ import {InvalidPageComponent} from './shared/directives/invalidPage.component';
 import {UnAuthPageComponent} from './shared/directives/unAuthPage.component';
 import {SwitchPageComponent} from './shared/directives/switchPage.component';
 import {RedirectComponent} from './redirect.component';
+
 
 
 import {AccountService} from  './core/account/services/account.service';
@@ -102,6 +106,7 @@ type StoreType = {
   imports: [ // import Angular's modules
     BrowserModule,
     PublicPageModule,
+    DisplayBlockModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })

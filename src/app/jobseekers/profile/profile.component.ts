@@ -26,13 +26,13 @@ import {ProfileService} from '../../core/services/profile.service';
 import {LoaderService} from '../../shared/services/loader.service';
 import {AccountService} from '../../core/account/services/account.service';
 import {ConfigService} from '../../shared/config.service'
-import {Observable} from "../../../../../node_modules/rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 
-
+import 'jquery';
 declare var jQuery:any;
 declare var Swiper:any;
 declare var saveAs:any;
-
+import  * as  mediaelement from 'localrepo/mediaelement';
 
 @Component({
 
@@ -333,12 +333,12 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
             spaceBetween: 30,
         });
 
-        jQuery(this.elementRef.nativeElement.querySelector('video'))
-            .mediaelementplayer({
-                alwaysShowControls: false,
-                videoVolume: 'horizontal',
-                features: ['playpause', 'progress', 'volume', 'fullscreen']
-            });
+        // jQuery(this.elementRef.nativeElement.querySelector('video'))
+        //     .mediaelementplayer({
+        //         alwaysShowControls: false,
+        //         videoVolume: 'horizontal',
+        //         features: ['playpause', 'progress', 'volume', 'fullscreen']
+        //     });
     }
 
     public loader() {
@@ -475,12 +475,12 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
 
         this.work_experience = profile["work_experience"];
 
-        jQuery(this.elementRef.nativeElement.querySelector('video'))
-            .mediaelementplayer({
-                alwaysShowControls: false,
-                videoVolume: 'horizontal',
-                features: ['playpause', 'progress', 'volume', 'fullscreen']
-            });
+        // jQuery(this.elementRef.nativeElement.querySelector('video'))
+        //     .mediaelementplayer({
+        //         alwaysShowControls: false,
+        //         videoVolume: 'horizontal',
+        //         features: ['playpause', 'progress', 'volume', 'fullscreen']
+        //     });
     }
 
     public loadGeneralInfo(profile) {

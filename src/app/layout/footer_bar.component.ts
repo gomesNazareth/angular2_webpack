@@ -3,7 +3,7 @@ import {Location} from '@angular/common'
 import {Router} from '@angular/router'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {AccountService} from "../core/account/services/account.service";
-import {ConfigService} from "../../shared/config.service";
+import {ConfigService} from "../shared/config.service";
 
 
 @Component({

@@ -13,6 +13,7 @@
     "strictNullChecks": false,
     "lib": [
       "es2015",
+       "es7",
       "dom"
     ],
     "typeRoots": [

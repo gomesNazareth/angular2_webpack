@@ -2,7 +2,10 @@ import {Input, OnInit,Component, Output, EventEmitter, ElementRef, Inject} from 
 import {FormBuilder, FormGroup, FormControl,Validators } from '@angular/forms';
 
 
-var mediaelement = require('localrepo/mediaelement');
+// import 'localrepo/mediaelement';
+import 'jquery';
+import  * as  mediaelement from 'localrepo/mediaelement';
+// var mediaelement = require('localrepo/mediaelement');
 
 declare var jQuery:any;
 

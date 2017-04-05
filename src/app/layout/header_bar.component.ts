@@ -7,7 +7,7 @@ import {NgClass,Location, LocationStrategy, PathLocationStrategy} from '@angular
 import {FormBuilder,FormGroup} from '@angular/forms';
 import {Router,ActivatedRoute} from '@angular/router';
 import {AccountService} from '../core/account/services/account.service';
-import {ConfigService} from "../../shared/config.service";
+import {ConfigService} from "../shared/config.service";
 
 
 
@@ -30,7 +30,7 @@ export class HeaderBarComponent implements OnInit, DoCheck {
     public  sub;
     public isPublic$:BehaviorSubject<any> = new BehaviorSubject(null);
     public isHome$:BehaviorSubject<any> = new BehaviorSubject(null);
-    public publicRoutes = ConfigService.publicRoutes;
+    public publicRoutes: Array<string> = ConfigService.publicRoutes;
 
     ngOnInit() : any {
 
